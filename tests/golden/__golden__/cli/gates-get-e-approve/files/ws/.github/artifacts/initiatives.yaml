@@ -1,0 +1,28 @@
+active: gf-alfa
+initiatives:
+  - id: gf-alfa
+    name: Projeto Alfa
+    status: in-progress
+    roadmap_gate:
+      status: approved
+    risk_matrix_gate:
+      status: approved
+    gate_d2:
+      status: "approved"
+      approved_at: "2026-11-15T12:00:00.000Z"
+      human_approved_at: "2026-11-15T12:00:00.000Z"
+      by: "Outra Pessoa"
+      note: "roadmap revisado"
+  - {
+      id: mod-beta,
+      name: "Modernização Beta",
+      status: planned,
+      type: modernization,
+      gate_d3:
+        {
+          status: "approved",
+          approved_at: "2026-11-15T13:00:00.000Z",
+          human_approved_at: "2026-11-15T13:00:00.000Z",
+          by: "Pessoa Fictícia"
+        }
+    }

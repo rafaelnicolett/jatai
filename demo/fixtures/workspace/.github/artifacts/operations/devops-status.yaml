@@ -1,0 +1,13 @@
+# Estado da esteira do workspace demo, escrito pelo @devops depois do hotfix.
+updated_at: "2026-10-05T15:17:00Z"
+repos:
+  biblioteca-api:
+    pipeline_health: green
+    last_deploy:
+      at: "2026-10-05T15:16:40Z"
+      environment: producao
+      status: success
+    iac_validated: true
+  biblioteca-web:
+    pipeline_health: green
+    iac_validated: true

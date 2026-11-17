@@ -1,0 +1,44 @@
+/* StatusColumn do DS v2 (§4.5): cabeçalho glifo + rótulo 13/700 + contagem
+   13/500 fg-3; lista com gap 8. Largura mínima de 180px (§3.12). */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-2);
+  min-width: var(--jt-layout-status-col-min);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--jt-space-1) var(--jt-space-2);
+  margin: 0;
+  font: var(--jt-type-body-sm);
+  font-weight: var(--jt-weight-bold);
+  color: var(--jt-fg);
+}
+
+.label { white-space: nowrap; }
+
+.count {
+  font-weight: var(--jt-weight-medium);
+  color: var(--jt-fg-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.blocked {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  font-weight: var(--jt-weight-medium);
+  color: var(--jt-status-blocked-fg);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

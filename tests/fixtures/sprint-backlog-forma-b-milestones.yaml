@@ -1,0 +1,909 @@
+# Sprint Backlog sintético: feat-catalogo (catálogo de produtos da Acme)
+#
+# Fixture sintética (F2.3): sprint-backlog.yaml na Forma B (items: + milestones:,
+# sem sprints:), com feature_ref nulo, item fora da ordem de milestone e
+# chaves de topo que o parser ignora (sizing_summary, backlog_items).
+# Conteúdo fictício; só a forma importa para os testes.
+#
+# Sizing: XS | S | M | L | XL
+# Componentes: BKD (backend) | WEB (portal) | EXT (cliente desktop)
+
+version: 1
+initiative_id: feat-catalogo
+gate_g1_report: .github/artifacts/gates/g1-feat-catalogo-20260301.md
+
+milestones:
+  M1:
+    name: Fundação
+    goal: "Contas, lojas e base de dados do catálogo"
+    target_sprints: [1, 2]
+  M2:
+    name: Catálogo
+    goal: "Cadastro de produtos e sincronização com o cliente desktop"
+    target_sprints: [3, 4]
+  M3:
+    name: Busca
+    goal: "Busca, filtros e integrações de estoque"
+    target_sprints: [5]
+  M4:
+    name: Relatórios
+    goal: "Relatórios de vendas e exportações"
+    target_sprints: [6, 7]
+
+items:
+
+  # ── M1 / SPRINT 1 ──────────────────────────────────────────────────
+
+  - id: PLT-001
+    title: "Cadastro de produto (PLT-001)"
+    milestone: M1
+    sprint: 1
+    priority: P0
+    component: BKD
+    feature_ref: F-CAT-01
+    sizing: M
+    type: backend
+    openapi_endpoints: []
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-001.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: []
+    notes: "Nota sintética de PLT-001."
+
+  - id: PLT-002
+    title: "Listagem de loja (PLT-002)"
+    milestone: M1
+    sprint: 1
+    priority: P0
+    component: BKD
+    feature_ref: F-CAT-02
+    sizing: L
+    type: backend
+    openapi_endpoints:
+      - "GET /exemplo/plt-002/1"
+      - "POST /exemplo/plt-002/2"
+      - "PUT /exemplo/plt-002/3"
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-002.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-001]
+
+  - id: PLT-003
+    title: "Edição de categoria (PLT-003)"
+    milestone: M1
+    sprint: 1
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-03
+    sizing: S
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-003/1"
+      - "POST /exemplo/plt-003/2"
+    bdd_scenarios: []
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-002]
+
+  - id: PLT-004
+    title: "Importação de estoque (PLT-004)"
+    milestone: M1
+    sprint: 1
+    priority: P0
+    component: BKD
+    feature_ref: F-CAT-04
+    sizing: M
+    type: backend
+    openapi_endpoints:
+      - "GET /exemplo/plt-004/1"
+      - "POST /exemplo/plt-004/2"
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-004.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-001]
+
+  - id: PLT-005
+    title: "Validação de preço (PLT-005)"
+    milestone: M1
+    sprint: 1
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-05
+    sizing: XS
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-005/1"
+    bdd_scenarios: []
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: [PLT-004]
+
+  - id: TECH-DEBT-001
+    title: "Busca de pedido (TECH-DEBT-001)"
+    milestone: M1
+    sprint: 1
+    priority: P1
+    component: BKD
+    feature_ref: null
+    sizing: S
+    type: backend
+    description: |
+      Texto sintético de exemplo para TECH-DEBT-001.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-001]
+    notes: "Nota sintética de TECH-DEBT-001."
+
+  # ── M1 / SPRINT 2 ──────────────────────────────────────────────────
+
+  - id: PLT-006
+    title: "Cadastro de cliente (PLT-006)"
+    milestone: M1
+    sprint: 2
+    priority: P0
+    component: BKD
+    feature_ref: F-CAT-06
+    sizing: L
+    type: backend
+    openapi_endpoints:
+      - "GET /exemplo/plt-006/1"
+      - "POST /exemplo/plt-006/2"
+      - "PUT /exemplo/plt-006/3"
+      - "DELETE /exemplo/plt-006/4"
+      - "GET /exemplo/plt-006/5"
+      - "POST /exemplo/plt-006/6"
+    bdd_scenarios:
+      - features/catalogo/plt-006-1.feature
+      - features/catalogo/plt-006-2.feature
+    description: |
+      Texto sintético de exemplo para PLT-006.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+      - Critério de pronto sintético 4
+    depends_on: [PLT-001, PLT-004, TECH-DEBT-001]
+
+  - id: PLT-007
+    title: "Listagem de imagem (PLT-007)"
+    milestone: M1
+    sprint: 2
+    priority: P0
+    component: BKD
+    feature_ref: F-CAT-07
+    sizing: L
+    type: backend
+    openapi_endpoints:
+      - "GET /exemplo/plt-007/1"
+      - "POST /exemplo/plt-007/2"
+      - "PUT /exemplo/plt-007/3"
+      - "DELETE /exemplo/plt-007/4"
+      - "GET /exemplo/plt-007/5"
+    bdd_scenarios:
+      - features/catalogo/plt-007-1.feature
+      - features/catalogo/plt-007-2.feature
+    description: |
+      Texto sintético de exemplo para PLT-007.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-001, TECH-DEBT-001]
+
+  - id: PLT-008
+    title: "Edição de filtro (PLT-008)"
+    milestone: M1
+    sprint: 2
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-08
+    sizing: M
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-008/1"
+      - "POST /exemplo/plt-008/2"
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-008.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-007]
+
+  - id: PLT-009
+    title: "Importação de relatório (PLT-009)"
+    milestone: M1
+    sprint: 2
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-09
+    sizing: M
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-009/1"
+      - "POST /exemplo/plt-009/2"
+      - "PUT /exemplo/plt-009/3"
+      - "DELETE /exemplo/plt-009/4"
+    bdd_scenarios:
+      - features/catalogo/plt-009-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-009.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-007, PLT-008]
+
+  - id: PLT-010
+    title: "Validação de produto (PLT-010)"
+    milestone: M1
+    sprint: 2
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-10
+    sizing: S
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-010/1"
+    bdd_scenarios:
+      - features/catalogo/plt-010-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-010.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: [PLT-007]
+
+  - id: PLT-011
+    title: "Busca de loja (PLT-011)"
+    milestone: M1
+    sprint: 2
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-11
+    sizing: M
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-011/1"
+      - "POST /exemplo/plt-011/2"
+      - "PUT /exemplo/plt-011/3"
+    bdd_scenarios:
+      - features/catalogo/plt-011-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-011.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: [PLT-007]
+
+  # ── M2 / SPRINT 3 ──────────────────────────────────────────────────
+
+  - id: PLT-012
+    title: "Cadastro de categoria (PLT-012)"
+    milestone: M2
+    sprint: 3
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-12
+    sizing: M
+    type: extension
+    openapi_endpoints: []
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-012.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-006]
+
+  - id: PLT-013
+    title: "Listagem de estoque (PLT-013)"
+    milestone: M2
+    sprint: 3
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-13
+    sizing: M
+    type: extension
+    openapi_endpoints: []
+    bdd_scenarios:
+      - features/catalogo/plt-013-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-013.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-012]
+
+  - id: PLT-014
+    title: "Edição de preço (PLT-014)"
+    milestone: M2
+    sprint: 3
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-14
+    sizing: L
+    type: extension
+    openapi_endpoints:
+      - "GET /exemplo/plt-014/1"
+    bdd_scenarios:
+      - features/catalogo/plt-014-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-014.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+      - Critério de pronto sintético 4
+    depends_on: [PLT-012, PLT-013]
+
+  - id: CONFIG-001
+    title: "Importação de pedido (CONFIG-001)"
+    milestone: M2
+    sprint: 3
+    priority: P1
+    component: EXT
+    feature_ref: null
+    sizing: XS
+    type: extension
+    description: |
+      Texto sintético de exemplo para CONFIG-001.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: []
+
+  - id: PLT-015
+    title: "Validação de cliente (PLT-015)"
+    milestone: M2
+    sprint: 3
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-15
+    sizing: M
+    type: extension
+    openapi_endpoints:
+      - "GET /exemplo/plt-015/1"
+      - "POST /exemplo/plt-015/2"
+    bdd_scenarios:
+      - features/catalogo/plt-015-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-015.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-014, PLT-006]
+
+  - id: PLT-016
+    title: "Busca de imagem (PLT-016)"
+    milestone: M2
+    sprint: 3
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-16
+    sizing: M
+    type: extension
+    openapi_endpoints:
+      - "GET /exemplo/plt-016/1"
+    bdd_scenarios:
+      - features/catalogo/plt-016-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-016.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-015]
+
+  - id: PLT-017
+    title: "Cadastro de filtro (PLT-017)"
+    milestone: M2
+    sprint: 3
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-17
+    sizing: S
+    type: extension
+    openapi_endpoints: []
+    bdd_scenarios:
+      - features/catalogo/plt-017-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-017.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: [PLT-012]
+
+  - id: PLT-018
+    title: "Listagem de relatório (PLT-018)"
+    milestone: M2
+    sprint: 3
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-18
+    sizing: S
+    type: extension
+    openapi_endpoints:
+      - "GET /exemplo/plt-018/1"
+    bdd_scenarios:
+      - features/catalogo/plt-018-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-018.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-013, PLT-014, PLT-015, PLT-016, PLT-017]
+
+  # ── M2 / SPRINT 4 ──────────────────────────────────────────────────
+
+  - id: PLT-019
+    title: "Edição de produto (PLT-019)"
+    milestone: M2
+    sprint: 4
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-19
+    sizing: XS
+    type: extension
+    openapi_endpoints: []
+    bdd_scenarios:
+      - features/catalogo/plt-019-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-019.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: [PLT-016]
+
+  - id: PLT-020
+    title: "Importação de loja (PLT-020)"
+    milestone: M2
+    sprint: 4
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-20
+    sizing: L
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-020/1"
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-020.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-006]
+
+  - id: PLT-021
+    title: "Validação de categoria (PLT-021)"
+    milestone: M2
+    sprint: 4
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-21
+    sizing: M
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-021/1"
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-021.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: [PLT-020]
+
+  - id: PLT-022
+    title: "Busca de estoque (PLT-022)"
+    milestone: M2
+    sprint: 4
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-22
+    sizing: M
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-022/1"
+      - "POST /exemplo/plt-022/2"
+      - "PUT /exemplo/plt-022/3"
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-022.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-015]
+
+  # ── M3 / SPRINT 5 ──────────────────────────────────────────────────
+
+  - id: PLT-023
+    title: "Cadastro de preço (PLT-023)"
+    milestone: M3
+    sprint: 5
+    priority: P0
+    component: BKD
+    feature_ref: F-CAT-23
+    sizing: M
+    type: backend
+    openapi_endpoints:
+      - "GET /exemplo/plt-023/1"
+    bdd_scenarios:
+      - features/catalogo/plt-023-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-023.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-007]
+
+  - id: PLT-024
+    title: "Listagem de pedido (PLT-024)"
+    milestone: M3
+    sprint: 5
+    priority: P1
+    component: BKD
+    feature_ref: F-CAT-24
+    sizing: M
+    type: backend
+    openapi_endpoints:
+      - "GET /exemplo/plt-024/1"
+    bdd_scenarios: []
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-007]
+
+  - id: PLT-025
+    title: "Edição de cliente (PLT-025)"
+    milestone: M3
+    sprint: 5
+    priority: P0
+    component: BKD
+    feature_ref: F-CAT-25
+    sizing: M
+    type: backend
+    openapi_endpoints: []
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-025.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-007]
+
+  - id: PLT-026
+    title: "Importação de imagem (PLT-026)"
+    milestone: M3
+    sprint: 5
+    priority: P1
+    component: BKD
+    feature_ref: F-CAT-26
+    sizing: S
+    type: backend
+    openapi_endpoints: []
+    bdd_scenarios: []
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-007]
+
+  - id: PLT-027
+    title: "Validação de filtro (PLT-027)"
+    milestone: M3
+    sprint: 5
+    priority: P0
+    component: BKD + WEB
+    feature_ref: F-CAT-27
+    sizing: L
+    type: fullstack
+    openapi_endpoints:
+      - "GET /exemplo/plt-027/1"
+      - "POST /exemplo/plt-027/2"
+      - "PUT /exemplo/plt-027/3"
+      - "DELETE /exemplo/plt-027/4"
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-027.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-009, PLT-007]
+
+  - id: PLT-028
+    title: "Busca de relatório (PLT-028)"
+    milestone: M3
+    sprint: 5
+    priority: P1
+    component: WEB
+    feature_ref: F-CAT-28
+    sizing: M
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-028/1"
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-028.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: [PLT-020]
+
+  - id: PLT-029
+    title: "Cadastro de produto (PLT-029)"
+    milestone: M3
+    sprint: 5
+    priority: P1
+    component: WEB
+    feature_ref: F-CAT-29
+    sizing: M
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-029/1"
+    bdd_scenarios: []
+    description: |
+      Texto sintético de exemplo para PLT-029.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: [PLT-020, PLT-006]
+
+  # ── M4 / SPRINT 6 ──────────────────────────────────────────────────
+
+  - id: PLT-030
+    title: "Listagem de loja (PLT-030)"
+    milestone: M4
+    sprint: 6
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-30
+    sizing: S
+    type: extension
+    openapi_endpoints: []
+    bdd_scenarios:
+      - features/catalogo/plt-030-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-030.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: []
+    notes: "Nota sintética de PLT-030."
+
+  - id: PLT-031
+    title: "Edição de categoria (PLT-031)"
+    milestone: M4
+    sprint: 6
+    priority: P0
+    component: BKD
+    feature_ref: F-CAT-31
+    sizing: L
+    type: backend
+    openapi_endpoints:
+      - "GET /exemplo/plt-031/1"
+      - "POST /exemplo/plt-031/2"
+      - "PUT /exemplo/plt-031/3"
+      - "DELETE /exemplo/plt-031/4"
+    bdd_scenarios:
+      - features/catalogo/plt-031-1.feature
+      - features/catalogo/plt-031-2.feature
+    description: |
+      Texto sintético de exemplo para PLT-031.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+    depends_on: [PLT-030, PLT-006]
+
+  - id: PLT-032
+    title: "Importação de estoque (PLT-032)"
+    milestone: M4
+    sprint: 6
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-32
+    sizing: M
+    type: extension
+    openapi_endpoints:
+      - "GET /exemplo/plt-032/1"
+      - "POST /exemplo/plt-032/2"
+      - "PUT /exemplo/plt-032/3"
+    bdd_scenarios:
+      - features/catalogo/plt-032-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-032.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-030, PLT-031]
+
+  - id: PLT-033
+    title: "Validação de preço (PLT-033)"
+    milestone: M4
+    sprint: 6
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-33
+    sizing: S
+    type: extension
+    openapi_endpoints:
+      - "GET /exemplo/plt-033/1"
+    bdd_scenarios:
+      - features/catalogo/plt-033-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-033.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-032, PLT-019]
+
+  # ── M4 / SPRINT 7 ──────────────────────────────────────────────────
+
+  - id: PLT-034
+    title: "Busca de pedido (PLT-034)"
+    milestone: M4
+    sprint: 7
+    priority: P0
+    component: BKD
+    feature_ref: F-CAT-34
+    sizing: L
+    type: backend
+    openapi_endpoints:
+      - "GET /exemplo/plt-034/1"
+      - "POST /exemplo/plt-034/2"
+      - "PUT /exemplo/plt-034/3"
+      - "DELETE /exemplo/plt-034/4"
+      - "GET /exemplo/plt-034/5"
+    bdd_scenarios:
+      - features/catalogo/plt-034-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-034.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+      - Critério de pronto sintético 3
+      - Critério de pronto sintético 4
+    depends_on: [PLT-031]
+
+  - id: PLT-035
+    title: "Cadastro de cliente (PLT-035)"
+    milestone: M4
+    sprint: 7
+    priority: P0
+    component: WEB
+    feature_ref: F-CAT-35
+    sizing: L
+    type: frontend
+    openapi_endpoints:
+      - "GET /exemplo/plt-035/1"
+      - "POST /exemplo/plt-035/2"
+      - "PUT /exemplo/plt-035/3"
+      - "DELETE /exemplo/plt-035/4"
+    bdd_scenarios:
+      - features/catalogo/plt-035-1.feature
+    description: |
+      Texto sintético de exemplo para PLT-035.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: [PLT-034]
+
+  - id: PLT-036
+    title: "Listagem de imagem (PLT-036)"
+    milestone: M4
+    sprint: 7
+    priority: P0
+    component: EXT
+    feature_ref: F-CAT-36
+    sizing: S
+    type: extension
+    openapi_endpoints:
+      - "GET /exemplo/plt-036/1"
+    bdd_scenarios:
+      - features/catalogo/plt-036-1.feature
+      - features/catalogo/plt-036-2.feature
+    description: |
+      Texto sintético de exemplo para PLT-036.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+      - Critério de pronto sintético 2
+    depends_on: [PLT-032, PLT-033, PLT-034]
+
+  # ── M3 / SPRINT 5 ──────────────────────────────────────────────────
+
+  - id: SPIKE-001
+    title: "Edição de filtro (SPIKE-001)"
+    milestone: M3
+    sprint: 5
+    priority: P1
+    component: EXT
+    feature_ref: null
+    sizing: XS
+    type: spike
+    description: |
+      Texto sintético de exemplo para SPIKE-001.
+      Segunda linha do bloco literal.
+    dor:
+      - Critério de pronto sintético 1
+    depends_on: []
+
+# ──────────────────────────────────────────────────────────────────────
+# SUMÁRIO DE SIZING POR MILESTONE
+# ──────────────────────────────────────────────────────────────────────
+
+sizing_summary:
+  M1:
+    items: 12
+    total_sizing: "soma sintética"
+    sprints: 2
+    notes: "Nota sintética do M1"
+  M2:
+    items: 12
+    total_sizing: "soma sintética"
+    sprints: 2
+    notes: "Nota sintética do M2"
+  M3:
+    items: 8
+    total_sizing: "soma sintética"
+    sprints: 1
+    notes: "Nota sintética do M3"
+  M4:
+    items: 7
+    total_sizing: "soma sintética"
+    sprints: 2
+    notes: "Nota sintética do M4"
+
+backlog_items:
+  - id: BACKLOG-001
+    title: "Ideia sintética para depois do MVP"
+    type: product_backlog
+    priority: P2
+    notes: "Fora do escopo desta fixture."
+
+  - id: BACKLOG-002
+    title: "Outra ideia sintética"
+    type: product_backlog
+    priority: P2
+    notes: "Fora do escopo desta fixture."

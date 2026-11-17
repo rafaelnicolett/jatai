@@ -1,0 +1,14 @@
+# Fixture SINTÉTICA (F0.4, lane B)
+updated_at: "2025-06-01T08:00:00Z"
+repos:
+  pedidos-api:
+    pipeline_health: green
+    last_deploy:
+      at: "2025-05-30T18:00:00Z"
+      environment: staging
+      status: success
+    iac_validated: true
+  catalogo-web:
+    pipeline_health: purple
+    last_deploy:
+      at: "2025-05-29T10:00:00Z"

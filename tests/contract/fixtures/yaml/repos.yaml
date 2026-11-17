@@ -1,0 +1,28 @@
+# Fixture SINTÉTICA (F0.4, lane B)
+version: 1
+repos:
+  - id: pedidos-api
+    source: git
+    url: "https://git.example.invalid/sintetico/pedidos-api.git"
+    ref: main
+    pinned_sha: "0123abc"
+    scan_profile: deep
+    owner: "time-pedidos"
+    stack: "python-fastapi"
+    arch_current: layered
+    arch_confidence: 0.7
+    has_frontend: false
+  - id: catalogo-web
+    source: local-path
+    path: "repos/catalogo-web"
+    scan_profile: shallow
+    has_history: true
+  - id: legado-sem-scan
+    source: git
+    url: "https://git.example.invalid/sintetico/legado.git"
+    scan_profile: ignore
+  - id: Repo_Invalido
+    source: git
+    url: "https://git.example.invalid/x.git"
+  - id: sem-url
+    source: git

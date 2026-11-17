@@ -1,0 +1,10 @@
+node_modules/
+
+# repositórios fora do git
+/repos/
+
+# Estado local do State Service (token em server.json) — nunca versionar.
+/.github/artifacts/.state-service/
+
+# Eventos de atividade de agente (contrato agent-activity) — locais, nunca versionados.
+/.github/artifacts/runs/

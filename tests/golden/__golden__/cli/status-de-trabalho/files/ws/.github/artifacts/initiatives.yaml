@@ -1,0 +1,19 @@
+# Registro de iniciativas do workspace fictício
+active: gf-alfa # iniciativa ativa
+initiatives:
+  - id: gf-alfa
+    name: Projeto Alfa
+    status: "cancelled"
+    mode: greenfield
+    current_phase: business
+    reason: "a prioridade mudou"
+  - {
+      id: mod-beta,
+      name: "Modernização Beta",
+      status: planned,
+      type: modernization,
+      wave_status:
+        {
+          wave-1: { item-1: { status: "failed", reason: "suíte de integração quebrou" } }
+        }
+    }

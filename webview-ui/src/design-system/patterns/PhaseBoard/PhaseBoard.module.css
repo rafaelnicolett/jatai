@@ -1,0 +1,151 @@
+.board {
+  display: flex;
+  gap: var(--jt-space-4);
+  overflow-x: auto;
+  padding-bottom: var(--jt-space-2);
+}
+
+.column {
+  flex: 1 1 180px;
+  min-width: 180px;
+}
+
+.emptyColumn {
+  border: 1px dashed var(--jt-line);
+  border-radius: var(--jt-radius-lg);
+  min-height: 64px;
+}
+
+.columnHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--jt-font-mono);
+  font-size: var(--jt-text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--jt-fg-3);
+  margin-bottom: var(--jt-space-2);
+  padding: 0 var(--jt-space-0-5);
+}
+
+.count {
+  background: var(--jt-surface-2);
+  border-radius: var(--jt-radius-full);
+  min-width: 16px;
+  text-align: center;
+  padding: var(--jt-space-0-5) var(--jt-space-1);
+  font-size: var(--jt-text-xs);
+  color: var(--jt-fg-2);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-2);
+}
+
+.card {
+  background: var(--jt-surface);
+  border: 1px solid var(--jt-line);
+  border-left: 3px solid var(--jt-line-strong);
+  border-radius: var(--jt-radius-lg);
+  padding: var(--jt-space-2) var(--jt-space-3) var(--jt-space-3);
+  box-shadow: var(--jt-elevation-1);
+  cursor: pointer;
+}
+.card:focus-visible {
+  outline: 1px solid var(--jt-line-strong);
+  outline-offset: 2px;
+}
+
+.card--done { border-left-color: var(--jt-status-done-line); opacity: 0.85; }
+.card--running { border-left-color: var(--jt-status-working-line); }
+.card--review { border-left-color: var(--jt-status-you-line); }
+.card--blocked { border-left-color: var(--jt-status-blocked-line); }
+.card--pending { border-left-color: var(--jt-line-strong); border-style: dashed; opacity: 0.7; }
+
+.cardId {
+  font-family: var(--jt-font-mono);
+  font-size: var(--jt-text-xs);
+  color: var(--jt-fg-3);
+  margin-bottom: var(--jt-space-1);
+  letter-spacing: 0.02em;
+}
+
+.cardTitle {
+  font-family: var(--jt-font-display);
+  font-size: var(--jt-text-md);
+  color: var(--jt-fg);
+  line-height: 1.4;
+  margin-bottom: var(--jt-space-2);
+  /* `summary` de um item de wave pode chegar com várias centenas de
+     caracteres — trava em 3 linhas pra manter a altura do card previsível
+     (sem isso um card empurrava os outros da coluna pra fora da tela).
+     Conteúdo completo sempre disponível no modal de detalhe (clique no card). */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* Fallback pra engine sem suporte a `-webkit-line-clamp` (não é o caso do
+     Electron/Chromium do VS Code, mas custa nada declarar): trava a altura
+     em ~3 linhas e esconde o excesso. */
+  max-height: calc(1.4em * 3);
+}
+
+.cardFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jt-space-1);
+  min-height: 20px;
+}
+
+.meta {
+  font-family: var(--jt-font-mono);
+  font-size: var(--jt-text-xs);
+  color: var(--jt-fg-3);
+}
+
+.approveWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  width: 100%;
+}
+
+.frictionLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--jt-space-1);
+  font-size: var(--jt-text-xs);
+  color: var(--jt-status-blocked-fg);
+  cursor: pointer;
+}
+.frictionLabel input { margin-top: var(--jt-space-0-5); accent-color: var(--jt-status-blocked-line); flex-shrink: 0; }
+
+.modalField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-0-5);
+}
+
+.modalFieldLabel {
+  font-family: var(--jt-font-mono);
+  font-size: var(--jt-text-xs);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--jt-fg-3);
+}
+
+.modalFieldValue {
+  font-size: var(--jt-text-md);
+  color: var(--jt-fg);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.modalApprove {
+  padding-top: var(--jt-space-1);
+  border-top: 1px solid var(--jt-line);
+}

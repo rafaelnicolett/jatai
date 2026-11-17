@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-wave-item-completo",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "mod-beta",
+        "--type",
+        "modernization"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "mod-beta",
+        "--wave",
+        "wave-1",
+        "--item",
+        "item-1.1",
+        "--status",
+        "done",
+        "--repo",
+        "app-ficticio",
+        "--completed-at",
+        "2026-01-03",
+        "--artifact",
+        "relatorio-a.md",
+        "--artifact",
+        "relatorio-b.md",
+        "--summary",
+        "Resumo fictício",
+        "--commit",
+        "abc1234",
+        "--known-bug",
+        "BUG-X: comportamento fictício",
+        "--merge-block",
+        "aguardando revisão",
+        "--requires-approval"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta",
+        "wave": "wave-1",
+        "item": "item-1.1",
+        "status": "done"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "mod-beta",
+        "--wave",
+        "wave-1",
+        "--item",
+        "item-1.1",
+        "--status",
+        "in-progress",
+        "--summary",
+        "Resumo novo"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta",
+        "wave": "wave-1",
+        "item": "item-1.1",
+        "status": "in-progress"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "mod-beta",
+        "--wave",
+        "wave-1",
+        "--item",
+        "item-1.2",
+        "--status",
+        "planned"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --status: 'planned'",
+          "field": "status",
+          "value": "planned",
+          "allowed": [
+            "pending",
+            "in-progress",
+            "blocked",
+            "failed",
+            "done",
+            "skipped",
+            "cancelled"
+          ]
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 549 7d721bc0ba325f84250480e79736736fa10106d20dfe7b663c2a03a8aca64e34 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/mod-beta.jsonl": "file 100644 833 9a6c90b5c79b0c548216daf2e5c75c38bd8295b692efdc7e137b48d1fe38c733 text"
+  }
+}

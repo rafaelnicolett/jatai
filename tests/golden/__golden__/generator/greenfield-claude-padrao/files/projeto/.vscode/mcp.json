@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "helyx": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/.github/scripts/helyx-mcp.cjs"
+      ],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}

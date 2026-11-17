@@ -1,0 +1,52 @@
+name: Fazer uma pergunta
+description: Dúvida sobre como usar a Jataí, a metodologia ou como contribuir.
+title: "[pergunta] "
+labels: ["tipo: pergunta", "triagem"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Pergunte à vontade: não existe pergunta boba, e a resposta aqui ajuda a próxima pessoa.
+        Se a dúvida for sobre uma possível vulnerabilidade, não pergunte aqui. Siga o [SECURITY.md](https://github.com/rafaelnicolett/jatai/blob/main/SECURITY.md).
+
+  - type: textarea
+    id: pergunta
+    attributes:
+      label: Sua pergunta
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: O que você está tentando fazer
+      description: O objetivo por trás da pergunta costuma ajudar mais do que a pergunta sozinha.
+
+  - type: textarea
+    id: tentativas
+    attributes:
+      label: O que você já tentou
+
+  - type: input
+    id: versao
+    attributes:
+      label: Versão da Jataí
+      description: No VS Code, abra Extensões e procure a Jataí. A versão aparece ao lado do nome.
+
+  - type: dropdown
+    id: harness
+    attributes:
+      label: Harness
+      options:
+        - Claude Code
+        - GitHub Copilot
+        - Os dois
+        - Não se aplica
+
+  - type: checkboxes
+    id: confirmacoes
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: Li e sigo o [código de conduta](https://github.com/rafaelnicolett/jatai/blob/main/CODE_OF_CONDUCT.md).
+          required: true

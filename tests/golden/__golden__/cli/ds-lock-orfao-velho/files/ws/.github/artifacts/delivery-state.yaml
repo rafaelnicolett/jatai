@@ -1,0 +1,6 @@
+initiative_id: default
+phases:
+  business:
+    status: done
+  product:
+    status: done

@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "scenario": "ds-checklist-alias",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--initiative",
+        "gf-alfa",
+        "--phase",
+        "sprint-plan",
+        "--item",
+        "backlog-ok",
+        "--checked",
+        "true"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives/gf-alfa/delivery-state.yaml",
+        "changed": true,
+        "phase": "sprint-plan",
+        "item": "backlog-ok",
+        "checked": true
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives/": "dir",
+    "ws/.github/artifacts/initiatives/gf-alfa/": "dir",
+    "ws/.github/artifacts/initiatives/gf-alfa/delivery-state.yaml": "file 100644 94 e3cf59f141e487feed3de3aeb91c4dc024bc6f3f13a4cfa2a5a82d394b607f1f text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 287 7745b8e53bd94673587d19fe937b0a9734e3e1433483675124ad1bbbfb6df014 text"
+  }
+}

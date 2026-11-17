@@ -1,0 +1,2 @@
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"gf-alfa","phase_id":"product","agent_id":"@product","artifact_path":".github/artifacts/initiatives/gf-alfa/delivery-state.yaml","harness":"cli","message":"fase 'product' → done"}
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"gf-alfa","phase_id":"product","artifact_path":".github/artifacts/initiatives/gf-alfa/delivery-state.yaml","harness":"cli","message":"fase 'product' → done"}

@@ -1,0 +1,146 @@
+/* Button do DS v2 (§4.9). Variantes e tamanhos 36/40/44/48. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--jt-space-2);
+  min-height: var(--jt-size-control-md);
+  padding: var(--jt-space-2) var(--jt-space-4);
+  border: 1px solid transparent;
+  border-radius: var(--jt-radius-md);
+  background: transparent;
+  color: var(--jt-fg);
+  font: var(--jt-type-body-strong);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color var(--jt-dur-fast) var(--jt-ease-standard),
+    border-color var(--jt-dur-fast) var(--jt-ease-standard),
+    color var(--jt-dur-fast) var(--jt-ease-standard);
+}
+
+/* Foco: contorno de 3px afastado 2px (§4.0). Nunca outline: none sem substituto. */
+.btn:focus-visible {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+}
+
+/* ---- tamanhos ---- */
+.btn--sm {
+  min-height: var(--jt-size-control-sm);
+  padding: var(--jt-space-2) var(--jt-space-3);
+  border-radius: var(--jt-radius-sm);
+  font-size: var(--jt-text-md);
+}
+.btn--md { min-height: var(--jt-size-control-md); }
+.btn--lg { min-height: var(--jt-size-control-lg); padding: var(--jt-space-3) var(--jt-space-4); }
+.btn--xl { min-height: var(--jt-size-control-xl); padding: var(--jt-space-3) var(--jt-space-5); }
+
+/* ---- variantes ---- */
+.btn--primary {
+  background: var(--jt-mel);
+  color: var(--jt-fg-on-mel);
+  font-weight: var(--jt-weight-bold);
+}
+.btn--secondary {
+  background: var(--jt-surface-2);
+  border-color: var(--jt-line);
+  color: var(--jt-fg);
+}
+.btn--tertiary {
+  border-color: var(--jt-line);
+  color: var(--jt-fg-2);
+}
+.btn--accent {
+  border-color: var(--jt-mel-line);
+  color: var(--jt-mel-ink);
+  font-weight: var(--jt-weight-bold);
+}
+.btn--you {
+  border-color: var(--jt-status-you-line);
+  color: var(--jt-status-you-fg);
+  font-weight: var(--jt-weight-bold);
+}
+.btn--icon {
+  width: var(--jt-size-control-md);
+  padding: 0;
+  background: var(--jt-surface-2);
+  border-color: var(--jt-line);
+  color: var(--jt-fg-2);
+}
+.btn--icon.btn--sm { width: var(--jt-size-control-sm); }
+.btn--command {
+  background: var(--jt-surface-2);
+  border-color: var(--jt-line);
+  color: var(--jt-fg-2);
+}
+.btn--danger {
+  border-color: var(--jt-status-blocked-line);
+  color: var(--jt-status-blocked-fg);
+}
+
+/* ---- hover: só com ponteiro que paira (§4.0) ---- */
+@media (hover: hover) {
+  .btn--primary:hover:not(:disabled):not([aria-disabled="true"]) { background: var(--jt-mel-hover); }
+  .btn--secondary:hover:not(:disabled):not([aria-disabled="true"]),
+  .btn--icon:hover:not(:disabled):not([aria-disabled="true"]),
+  .btn--command:hover:not(:disabled):not([aria-disabled="true"]) { border-color: var(--jt-line-strong); }
+  .btn--tertiary:hover:not(:disabled):not([aria-disabled="true"]) { background: var(--jt-surface-2); }
+  .btn--accent:hover:not(:disabled):not([aria-disabled="true"]) { background: var(--jt-status-working-bg); }
+  .btn--you:hover:not(:disabled):not([aria-disabled="true"]) { background: var(--jt-status-you-bg); }
+  .btn--danger:hover:not(:disabled):not([aria-disabled="true"]) { background: var(--jt-status-blocked-bg); }
+}
+.btn--primary:active:not(:disabled):not([aria-disabled="true"]) { background: var(--jt-mel-active); }
+
+/* ---- alternância ligada (aria-pressed) ---- */
+.btn[aria-pressed="true"] {
+  background: var(--jt-status-you-bg);
+  border-color: var(--jt-selected);
+}
+
+/* ---- desabilitado: texto fg-3 (≥ 4,5:1 mesmo assim), sem opacidade ---- */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  color: var(--jt-fg-3);
+  cursor: not-allowed;
+}
+.btn--primary:disabled,
+.btn--primary[aria-disabled="true"] {
+  background: var(--jt-surface-2);
+  border-color: transparent;
+}
+
+/* ---- carregando ---- */
+.btn[aria-busy="true"] { cursor: progress; }
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  flex-shrink: 0;
+  animation: spin var(--jt-dur-orbit) linear var(--jt-iterations-ambient);
+  animation-play-state: var(--jt-anim-play);
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: none; }
+}
+
+.kbd {
+  padding: 0 var(--jt-space-1);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-xs);
+  font: var(--jt-type-data-sm);
+  color: var(--jt-fg-2);
+}
+
+/* Windows Alto Contraste: borda de botão do sistema; foco em Highlight. */
+@media (forced-colors: active) {
+  .btn { border-color: ButtonText; }
+  .btn:focus-visible { outline-color: Highlight; }
+  .btn:disabled,
+  .btn[aria-disabled="true"] { color: GrayText; border-color: GrayText; }
+  .btn[aria-pressed="true"] { border-color: Highlight; }
+  /* Preenchimento da marca: o Chromium pinta um Canvas atrás do texto de um fundo ajustado, e o
+     ButtonFace sobre Canvas some (o rótulo vira um retângulo preto). Sem o ajuste, vale o par
+     ButtonText/ButtonFace dos tokens, como foi escrito. */
+  .btn--primary:not(:disabled):not([aria-disabled="true"]) { forced-color-adjust: none; }
+}

@@ -1,0 +1,42 @@
+# DCO (ADR-0014): todo commit de PR precisa de `Signed-off-by` com o email do
+# autor. A Jataí usa DCO no lugar de CLA. Regras em scripts/dco-check.mjs.
+#
+# Actions fixadas pelo SHA completo do commit, com a versão no comentário
+# (as mesmas do ci.yml).
+name: DCO
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  dco:
+    name: DCO (Signed-off-by)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout (histórico completo)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Node 20
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 20
+          package-manager-cache: false
+
+      # Base = ponta atual da branch de destino, não o base.sha do evento: um
+      # merge da main na branch do PR não pode fazer os commits da main contarem.
+      - name: Signed-off-by em cada commit do PR
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/dco-check.mjs "origin/$BASE_REF" "$HEAD_SHA"

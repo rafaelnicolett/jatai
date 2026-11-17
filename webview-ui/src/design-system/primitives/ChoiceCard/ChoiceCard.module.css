@@ -1,0 +1,91 @@
+/* ChoiceCard (DS v2, F4.2): cartão de escolha. Seleção é azul (você). */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jt-space-2);
+  width: 100%;
+  min-height: var(--jt-size-control-xl);
+  padding: var(--jt-space-4);
+  padding-right: var(--jt-space-8);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-surface);
+  color: var(--jt-fg);
+  font: var(--jt-type-body);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--jt-dur-fast) var(--jt-ease-standard),
+    background-color var(--jt-dur-fast) var(--jt-ease-standard);
+}
+
+@media (hover: hover) {
+  .card:hover:not(:disabled):not([aria-disabled="true"]) { border-color: var(--jt-line-strong); }
+}
+
+.card:focus-visible {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+}
+
+.icon {
+  display: inline-flex;
+  color: var(--jt-fg-2);
+}
+
+.title {
+  font: var(--jt-type-body-strong);
+  color: var(--jt-fg);
+}
+
+.desc {
+  font: var(--jt-type-body-sm);
+  color: var(--jt-fg-2);
+}
+
+.meta {
+  display: inline-flex;
+  gap: var(--jt-space-1);
+}
+
+.check {
+  position: absolute;
+  top: var(--jt-space-3);
+  right: var(--jt-space-3);
+  color: var(--jt-selected);
+  visibility: hidden;
+}
+
+/* Selecionado: 2px de --jt-selected (1px de borda + 1px interno, sem deslocar),
+   fundo you-bg, título em 700 e o ✓ no canto. */
+.card[aria-pressed="true"],
+.card[aria-checked="true"] {
+  border-color: var(--jt-selected);
+  box-shadow: inset 0 0 0 1px var(--jt-selected);
+  background: var(--jt-status-you-bg);
+}
+.card[aria-pressed="true"] .title,
+.card[aria-checked="true"] .title { font-weight: var(--jt-weight-bold); }
+.card[aria-pressed="true"] .icon,
+.card[aria-checked="true"] .icon { color: var(--jt-status-you-fg); }
+.card[aria-pressed="true"] .check,
+.card[aria-checked="true"] .check { visibility: visible; }
+
+/* Indisponível: texto fg-3, sem hover. */
+.card:disabled,
+.card[aria-disabled="true"] {
+  cursor: not-allowed;
+  color: var(--jt-fg-3);
+}
+.card:disabled .title,
+.card[aria-disabled="true"] .title { color: var(--jt-fg-3); }
+
+@media (forced-colors: active) {
+  .card { border-color: ButtonText; }
+  .card:focus-visible { outline-color: Highlight; }
+  .card[aria-pressed="true"],
+  .card[aria-checked="true"] { border-color: Highlight; box-shadow: inset 0 0 0 1px Highlight; }
+  .check { color: Highlight; }
+}

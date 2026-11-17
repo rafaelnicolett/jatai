@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ../code/services/orbita-api
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - ENV=local
+    
+

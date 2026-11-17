@@ -1,0 +1,158 @@
+/**
+ * Wave-3: extraído de DashboardView.module.css antes da view antiga ser
+ * apagada (item 3.7, `mod-cockpit-flow-model`) — só as classes que
+ * OperationsView.tsx de fato usa, mesmos valores.
+ */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-6);
+  padding: var(--jt-space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jt-space-6);
+  padding: var(--jt-space-6);
+  border-radius: var(--jt-radius-xl);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--jt-mel) 20%, var(--jt-surface)), var(--jt-surface) 60%);
+  border: 1px solid var(--jt-line);
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+}
+
+.eyebrow {
+  font-size: var(--jt-text-xs);
+  font-weight: var(--jt-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--jt-mel-ink);
+}
+
+.title {
+  font-size: var(--jt-text-2xl);
+  font-weight: var(--jt-weight-bold);
+  color: var(--jt-fg);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-size: var(--jt-text-md);
+  color: var(--jt-fg-2);
+  margin: 0;
+  max-width: 52ch;
+}
+
+.sectionCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-3);
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-0-5);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: var(--jt-text-base);
+  font-weight: var(--jt-weight-semibold);
+}
+
+.sectionSubtitle {
+  font-size: var(--jt-text-xs);
+  color: var(--jt-fg-3);
+}
+
+.kpiStrip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--jt-space-3);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--jt-space-4);
+  align-items: start;
+}
+
+.focusColumn { min-width: 0; }
+
+.focusCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--jt-space-3);
+  background: var(--jt-surface);
+  border: 1px solid var(--jt-mel-line);
+  border-radius: var(--jt-radius-lg);
+  padding: var(--jt-space-4);
+}
+
+.focusIconBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--jt-radius-sm);
+  background: var(--jt-status-working-bg);
+  color: var(--jt-mel-ink);
+  flex-shrink: 0;
+}
+
+.focusBody { flex: 1; min-width: 0; }
+
+.focusEyebrow {
+  font-size: var(--jt-text-xs);
+  font-weight: var(--jt-weight-semibold);
+  color: var(--jt-fg-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.focusLabel {
+  font-size: var(--jt-text-base);
+  font-weight: var(--jt-weight-semibold);
+  color: var(--jt-fg);
+  margin-top: var(--jt-space-0-5);
+}
+
+.focusWhy {
+  font-size: var(--jt-text-sm);
+  color: var(--jt-fg-2);
+  margin-top: var(--jt-space-1);
+  line-height: var(--jt-leading-normal);
+}
+
+.progress { color: var(--jt-fg-2); }
+
+.activityColumn {
+  background: var(--jt-surface);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-lg);
+  padding: var(--jt-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-3);
+}
+
+.activityHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--jt-text-md);
+  font-weight: var(--jt-weight-semibold);
+  color: var(--jt-fg);
+}

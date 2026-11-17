@@ -1,0 +1,166 @@
+# Registro de iniciativas do workspace demo (Biblioteca de Bairro, fictício).
+# Três iniciativas: uma feature em Execução (a ativa), um hotfix concluído e uma
+# modernização em Planejamento. Toda pessoa citada é "Pessoa Exemplo".
+active: feat-reserva-com-fila
+initiatives:
+  - id: feat-reserva-com-fila
+    name: "Reserva de livros com fila de espera"
+    status: in-progress
+    stream: execution
+    current_phase: 3d-feature-add
+    mode: brownfield
+    type: feature
+    created_at: "2026-10-05"
+    owner: "Pessoa Exemplo"
+    scope: [biblioteca-api, biblioteca-web]
+    migration_strategy: expand-contract
+    context: "Quando todos os exemplares de um livro estão emprestados, o sócio entra numa fila de espera. A fila anda por ordem de pedido (ADR-0001)."
+    driven_by:
+      - "pedido recorrente do balcão: sócios voltam várias vezes para ver se o livro foi devolvido"
+    epics:
+      - "epic-1: Modelo de reservas e API (tabela reservas, contrato do POST /reservas)"
+      - "epic-2: Fila de espera (ordem do pedido, aviso ao próximo, posição na API)"
+      - "epic-3: Tela de reservas no portal (fila, botão Reservar, aviso por mensagem)"
+    planning_artifacts:
+      - .github/artifacts/planning/feat-reserva-com-fila/roadmap.md
+      - .github/artifacts/planning/feat-reserva-com-fila/risk-matrix.md
+      - docs/adr/0001-fila-de-reservas-por-ordem-de-pedido.md
+    roadmap_gate: { status: approved, approved_at: "2026-10-05T13:24:00Z", by: "Pessoa Exemplo" }
+    risk_matrix_gate: { status: approved, approved_at: "2026-10-05T13:30:00Z", by: "Pessoa Exemplo" }
+    gate_d2:
+      status: approved
+      approved_at: "2026-10-05T13:52:10Z"
+      human_approved_at: "2026-10-05T13:52:10Z"
+      by: "Pessoa Exemplo"
+      note: "roadmap, matriz de risco e ADR-0001 revisados"
+    gate_d3:
+      status: pending
+    epic_status:
+      epic-1:
+        task-1.1:
+          status: done
+          repo: biblioteca-api
+          completed_at: "2026-10-05T14:32:00Z"
+          artifacts:
+            - .github/artifacts/execution/test-backfill-report-biblioteca-api-emprestimos.md
+          summary: "Testes de caracterização do fluxo de empréstimo: emprestar, recusar sem exemplar e devolver. 6 testes novos, todos verdes antes de qualquer mudança."
+        task-1.2:
+          status: done
+          repo: biblioteca-api
+          completed_at: "2026-10-05T15:05:40Z"
+          artifacts:
+            - .github/artifacts/execution/migration-report-biblioteca-api-tabela-reservas.md
+          summary: "Expand: a tabela reservas nasce ao lado das existentes, sem tocar em emprestimos. Reversível por um passo."
+          requires_approval: true
+          human_approved_at: "2026-10-05T15:20:00Z"
+        task-1.3:
+          status: done
+          repo: biblioteca-api
+          completed_at: "2026-10-05T15:49:00Z"
+          artifacts:
+            - .github/artifacts/execution/feature-report-biblioteca-api-reservas.md
+            - features/epic-1/reservar-livro.feature
+          summary: "Contrato e endpoint POST /reservas, com cenários BDD antes do código. O portal passa a depender deste contrato."
+          requires_approval: true
+        task-1.4:
+          status: skipped
+          repo: biblioteca-api
+          summary: "A documentação OpenAPI é gerada em tempo de execução; não há arquivo para atualizar."
+      epic-2:
+        task-2.1:
+          status: in-progress
+          repo: biblioteca-api
+          summary: "Ordenar a fila por data do pedido; faltam os testes de empate."
+        task-2.2:
+          status: pending
+          repo: biblioteca-api
+        task-2.3:
+          status: blocked
+          repo: biblioteca-api
+          reason: "aguarda a aprovação do contrato da API de reservas (task-1.3)"
+      epic-3:
+        task-3.1:
+          status: failed
+          repo: biblioteca-web
+          reason: "2 testes de componente da FilaDeReservas falharam"
+          artifacts:
+            - .github/artifacts/execution/feature-report-biblioteca-web-fila.md
+        task-3.2:
+          status: pending
+          repo: biblioteca-web
+        task-3.3:
+          status: cancelled
+          repo: biblioteca-web
+          reason: "escopo cortado por Pessoa Exemplo: o aviso por mensagem de texto fica para outra iniciativa"
+
+  - id: hotfix-prazo-de-devolucao
+    name: "Hotfix: prazo de devolução vencia um dia depois para empréstimos feitos à noite"
+    status: done
+    stream: execution
+    current_phase: 3d-feature-add
+    mode: brownfield
+    type: hotfix
+    created_at: "2026-10-05"
+    owner: "Pessoa Exemplo"
+    scope: [biblioteca-api]
+    waves:
+      - "wave-1: Diagnóstico — reproduzir o prazo errado e pinar o comportamento com teste de caracterização"
+      - "wave-2: Fix + Testes — contar o prazo no fuso da biblioteca, com teste de regressão"
+      - "wave-3: Validação — revisar, validar em homologação e publicar"
+    gate_d3:
+      status: approved
+      approved_at: "2026-10-05T15:08:00Z"
+      human_approved_at: "2026-10-05T15:08:00Z"
+      by: "Pessoa Exemplo"
+      note: "PR mergeado e testes verdes"
+    wave_status:
+      wave-1:
+        item-1.1:
+          status: done
+          repo: biblioteca-api
+          completed_at: "2026-10-05T14:19:00Z"
+          artifacts:
+            - .github/artifacts/execution/test-backfill-report-biblioteca-api-prazo.md
+          summary: "Bug reproduzido e pinado: um empréstimo às 22h30 ganhava um dia de prazo."
+      wave-2:
+        item-2.1:
+          status: done
+          repo: biblioteca-api
+          completed_at: "2026-10-05T14:41:00Z"
+          artifacts:
+            - .github/artifacts/execution/feature-report-biblioteca-api-prazo-devolucao.md
+          summary: "calcular_prazo passa a contar os dias no fuso da biblioteca. Teste de regressão incluído."
+      wave-3:
+        item-3.1:
+          status: done
+          repo: biblioteca-api
+          completed_at: "2026-10-05T15:04:30Z"
+          summary: "Revisado e validado em homologação; a correção foi publicada."
+
+  - id: mod-emprestimos-hexagonal
+    name: "Módulo de empréstimos: de camadas para hexagonal"
+    status: in-progress
+    stream: planning
+    current_phase: 2b-risk-prioritization
+    mode: brownfield
+    type: modernization
+    created_at: "2026-10-05"
+    owner: "Pessoa Exemplo"
+    scope: [biblioteca-api]
+    depends_on: [feat-reserva-com-fila]
+    arch_target: hexagonal
+    driven_by:
+      - debt-api-01
+      - debt-api-03
+    waves:
+      - "wave-1: Rede de segurança (golden master das respostas da API e characterization tests das rotas)"
+      - "wave-2: Domínio atrás de portas (Branch by Abstraction, regras de empréstimo e reserva)"
+      - "wave-3: Adaptadores (Strangler, repositórios SQL trocados um a um)"
+    planning_artifacts:
+      - .github/artifacts/planning/mod-emprestimos-hexagonal/roadmap.md
+      - .github/artifacts/planning/mod-emprestimos-hexagonal/risk-matrix.md
+    roadmap_gate: { status: approved, approved_at: "2026-10-05T14:10:00Z", by: "Pessoa Exemplo" }
+    risk_matrix_gate:
+      status: pending
+    gate_d2:
+      status: pending

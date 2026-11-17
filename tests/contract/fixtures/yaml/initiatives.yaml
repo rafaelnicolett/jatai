@@ -1,0 +1,74 @@
+# Fixture SINTÉTICA (F0.4, lane B) — ids e nomes inventados, nenhum dado real.
+version: 1
+active: loja-demo
+initiatives:
+  # greenfield, fluxo de 16 fases
+  - id: loja-demo
+    name: "Loja Demo"
+    status: in-progress
+    mode: greenfield
+    type: feature
+    stream: upstream
+    current_phase: business
+    owner: "time-produto"
+    priority: P1
+    created_at: "2025-03-01"
+    artifacts:
+      - ".github/artifacts/business-brief.md"
+    context: "Vitrine sintética para o contrato de round-trip."
+  # brownfield com Planning (waves + gates)
+  - id: pedidos-mod
+    name: "Modernização de Pedidos"
+    status: in-progress
+    mode: brownfield
+    type: modernization
+    stream: execution
+    current_phase: execution
+    created_at: "2025-04-02"
+    depends_on: [loja-demo]
+    scope: [pedidos-api, catalogo-web]
+    arch_target: hexagonal
+    driven_by: [tech-debt]
+    migration_strategy: strangler-fig
+    planning_artifacts:
+      - ".github/artifacts/planning/pedidos-mod/roadmap.md"
+    roadmap_gate:
+      status: approved
+      approved_at: "2025-04-05"
+    risk_matrix_gate:
+      status: approved
+    gate_d2:
+      status: approved
+      approved_at: "2025-04-06"
+      note: "aprovado em revisão sintética"
+    waves:
+      - "Wave 1 — Rede de segurança"
+      - "Wave 2 — Extração"
+    wave_status:
+      wave-1:
+        status: in-progress
+        # itens são filhos DIRETOS da onda (sem wrapper `items:`)
+        item-1.1:
+          status: done
+          repo: pedidos-api
+          completed_at: "2025-04-10"
+          artifacts: ["tests/characterization/pedidos.test.ts"]
+          summary: "characterization tests do módulo de pedidos"
+          commit: "abc1234"
+          known_bugs_pinned: ["BUG-SINTETICO-1"]
+          merge_block: "aguardando revisão humana"
+          requires_approval: true
+        item-1.2:
+          status: in-progress
+          repo: catalogo-web
+  # hotfix na hierarquia Epic (ADR-0006)
+  - id: catalogo-hotfix
+    name: "Correção do Catálogo"
+    status: planned
+    type: hotfix
+    epics:
+      - "Epic 1 — Diagnóstico"
+    epic_status:
+      epic-1:
+        task-1.1:
+          status: planned

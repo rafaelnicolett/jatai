@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "scenario": "ds-regex-injecao-phase",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "fase(1",
+        "--status",
+        "done"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --phase: 'fase(1' — id de fase aceita só letras, números, '-' e '_'",
+          "field": "phase",
+          "value": "fase(1"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "business|x",
+        "--status",
+        "pending"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --phase: 'business|x' — id de fase aceita só letras, números, '-' e '_'",
+          "field": "phase",
+          "value": "business|x"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "fase[1",
+        "--item",
+        "x",
+        "--checked",
+        "true"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --phase: 'fase[1' — id de fase aceita só letras, números, '-' e '_'",
+          "field": "phase",
+          "value": "fase[1"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "fase: 1",
+        "--status",
+        "done"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --phase: 'fase: 1' — id de fase aceita só letras, números, '-' e '_'",
+          "field": "phase",
+          "value": "fase: 1"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 95 d62ab40a37518b27f62e977fc3f4788800185d0bfddb074a6025bcfe8a2809eb text"
+  }
+}

@@ -1,0 +1,123 @@
+# Fixture sintética (F2.3): mesma forma de um foundation-state real de um
+# assessment multi-repo, com nomes, datas e métricas fictícios.
+foundation:
+  run_id: foundation-2026-03-10
+  diagram_format: drawio
+  started_at: "2026-03-10T14:59:17Z"
+  scope: multi-repo
+  repos:
+    - acme-server-application
+    - acme-api
+    - acme-android
+    - acme-api-integracao-financeira
+  notes: >-
+    Todos os repositórios entregues como snapshots (has_history: false).
+    Análises temporais (hotspot, churn, código morto) indisponíveis — declarar
+    nos relatórios, nunca inferir.
+
+# Estado por repositório (fases scope: repo)
+repos:
+  acme-server-application:
+    phases:
+      tech-stack:
+        status: done
+        agent: "@tech-mapper"
+        completed_at: "2026-03-10T15:06:00Z"
+        artifacts:
+          - assessment/repos/acme-server-application/tech-stack/tech-radar.md
+        human_checklist:
+          stack-identified: true
+          deps-listed: true
+          runtime-versions: true
+          dockerfile-secret-flagged: true
+      arch:
+        status: done
+        agent: "@arch-discoverer"
+        completed_at: "2026-03-10T15:20:00Z"
+        artifacts:
+          - assessment/repos/acme-server-application/architecture/arch-discovery.md
+          - assessment/repos/acme-server-application/architecture/c4-context.md
+          - assessment/repos/acme-server-application/architecture/c4-container.md
+          - assessment/repos/acme-server-application/architecture/c4-component.md
+          - assessment/repos/acme-server-application/architecture/arch-discovery.drawio
+        human_checklist:
+          arch-pattern: true
+          c4-l1-context: true
+          c4-l2-container: true
+          c4-l3-component: true
+          diagram-generated: true    # drawio refeito com layout limpo após feedback
+          arch-skill-recommended: true
+          strangler-fig-confirmed: true
+      coding-archaeology:
+        status: done
+        agent: "@coding-archaeologist"
+        completed_at: "2026-03-10T15:45:00Z"
+        artifacts:
+          - assessment/repos/acme-server-application/coding-guidelines/project-coding-guide.md
+          - .claude/skills/coding-guidelines-acme-server-application/SKILL.md
+        human_checklist:
+          naming: true
+          module-structure: true
+          error-handling: true
+          test-patterns: true
+          logging: true
+          anti-patterns: true
+      quality:
+        status: done
+        agent: "@quality-auditor+@security-auditor+@test-coverage-mapper"
+        completed_at: "2026-03-10T15:57:00Z"
+        human_checklist:
+          coverage-measured: true
+          hotspots-identified: true
+          security-critical-ack: true
+          snapshot-limitation-ack: true
+      debt:
+        status: done
+        agent: "@debt-analyst"
+        completed_at: "2026-03-10T16:02:00Z"
+        artifacts:
+          - assessment/repos/acme-server-application/debt/tech-debt.md
+        human_checklist:
+          quick-wins-listed: true
+          prioritized-by-impact: true
+          critical-flagged: true
+    findings_summary:
+      critical: 4
+      high: 5
+      medium: 3
+      low: 2
+    gate_d1:
+      status: approved
+      approved_at: "2026-03-10T16:03:00Z"
+        artifacts:
+          - assessment/repos/acme-server-application/quality/quality-report.md
+          - assessment/repos/acme-server-application/quality/coverage-gaps.md
+          - assessment/repos/acme-server-application/security/security-report.md
+        findings_preview:
+          quality_score: 3
+          security: critical
+          security_counts: {critical: 5, high: 6, medium: 6, low: 3}
+          coverage: "app-services 1/20, controllers 0/40, models 15/40"
+  acme-api:
+    phases:
+      tech-stack:
+        status: done
+        agent: "@tech-mapper"
+        completed_at: "2026-03-10T16:12:00Z"
+        artifacts:
+          - assessment/repos/acme-api/tech-stack/tech-radar.md
+        human_checklist:
+          stack-identified: true
+          deps-listed: true
+          shared-db-flagged: true
+          secrets-good-practice: true
+      arch:
+        status: in-progress
+        agent: "@arch-discoverer"
+  acme-android:
+    phases: {}
+  acme-api-integracao-financeira:
+    phases: {}
+
+# Estado cross-repo (fases scope: workspace)
+phases: {}

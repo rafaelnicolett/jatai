@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "case": "greenfield-pw-33",
+  "base": "greenfield-claude-padrao",
+  "input": {
+    "projectName": "orbita",
+    "deliveryMode": "agentic-only",
+    "hostAdapter": "claude",
+    "backendStack": "python-agentic",
+    "backendArchitecture": "hexagonal",
+    "frontendStack": "android-compose",
+    "frontendArchitecture": "clean-frontend",
+    "database": "mongodb",
+    "cloud": "none",
+    "cicd": "github-actions"
+  },
+  "outcome": {
+    "resolved": {
+      "isLocal": true
+    }
+  },
+  "calls": [],
+  "entries": {
+    "projeto/.claude/agents/backend-python-agentic.agent.md": "file 100644 126 9b00f55e60dedff1edbf44abc1bd548e6aa373abeffe958a9a1522a0552c569f text",
+    "projeto/.claude/agents/backend-python-api.agent.md": "absent",
+    "projeto/.github/artifacts/gates/README.md": "file 100644 1426 45fdf882eba44ff926a16813a40722dbfcf4bf280e17fb2846cf1ecdd90c7c29 text",
+    "projeto/AGENTS.md": "file 100644 1077 e6ba43d4f5cc3ae74a67d8312ee0e8318fd79ae52d8bee28c271139ccedcf1fc text",
+    "projeto/CLAUDE.md": "file 100644 1619 3d83d19dd05ec65313cd057fb365d203116f865720ca5c981176128c138f7f07 text",
+    "projeto/api/openapi.yaml": "file 100644 890 2eaec859877e6bb9644c6c9f74df3a3b8b667e5390e62fb63ca7a0a25fb198c2 text",
+    "projeto/code/apps/": "dir",
+    "projeto/code/apps/orbita-web/": "dir",
+    "projeto/code/apps/orbita-web/.gitignore": "file 100644 29 b6494f9ee3b7be2b706c82a6615936717b840d240f633ac83aea7dca3d25cccc text",
+    "projeto/code/apps/orbita-web/README.md": "file 100644 340 1b14d4b3b66d9a5c5ed4519062ddc84d81feb08520933da3d49f4105234d0626 text",
+    "projeto/code/apps/orbita-web/app/": "dir",
+    "projeto/code/apps/orbita-web/app/build.gradle.kts": "file 100644 728 2f9e6981d6c18b8e6cd54fab310e98dbc805c51d6acdcc998423625cdce52449 text",
+    "projeto/code/apps/orbita-web/app/src/": "dir",
+    "projeto/code/apps/orbita-web/app/src/main/": "dir",
+    "projeto/code/apps/orbita-web/app/src/main/AndroidManifest.xml": "file 100644 434 db7ae0706b77c113cdb99677a58f517becb70dc303e1ba3fba2b9e4d6bc3d465 text",
+    "projeto/code/apps/orbita-web/app/src/main/java/": "dir",
+    "projeto/code/apps/orbita-web/app/src/main/java/com/": "dir",
+    "projeto/code/apps/orbita-web/app/src/main/java/com/example/": "dir",
+    "projeto/code/apps/orbita-web/app/src/main/java/com/example/orbita/": "dir",
+    "projeto/code/apps/orbita-web/app/src/main/java/com/example/orbita/MainActivity.kt": "file 100644 357 0c5486e23cdb8168fd45dffc3c069480176933b30f3b818c336f4348c3345a04 text",
+    "projeto/code/apps/orbita-web/app/src/main/res/": "dir",
+    "projeto/code/apps/orbita-web/app/src/main/res/layout/": "dir",
+    "projeto/code/apps/orbita-web/build.gradle.kts": "file 100644 115 bfc23b7da4185bd89f9b6ec8dad7c0a0cfaa11f7a3961c88764b6c79aeb5e6f6 text",
+    "projeto/code/apps/orbita-web/settings.gradle.kts": "file 100644 107 46cea7c10d43cb45815873308bf495793dc098a8ca41f194d3f0ce848daddabe text",
+    "projeto/code/services/orbita-api/README.md": "file 100644 1160 e8f1f7b0c4c6652745dfda66b6082f058546a842dc71af2af542a0ec88da830a text",
+    "projeto/code/services/orbita-api/pyproject.toml": "file 100644 663 17b26c91a54ffb29fb30d809cd6c27012b5f28a16063d1b0d45fcfcba2c1255b text",
+    "projeto/code/services/orbita-api/src/agents/": "dir",
+    "projeto/code/services/orbita-api/src/agents/__init__.py": "file 100644 0 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 text",
+    "projeto/code/services/orbita-api/src/domain/__init__.py": "absent",
+    "projeto/code/services/orbita-api/src/domain/model/__init__.py": "absent",
+    "projeto/code/services/orbita-api/src/main.py": "file 100644 283 efee75b638edb34957ef025d823bc6a88056820b6dc4dadf1bd5dea57a73af95 text",
+    "projeto/code/services/orbita-api/src/prompts/": "dir",
+    "projeto/code/services/orbita-api/src/prompts/__init__.py": "file 100644 0 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 text",
+    "projeto/code/services/orbita-api/src/tools/": "dir",
+    "projeto/code/services/orbita-api/src/tools/__init__.py": "file 100644 0 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 text",
+    "projeto/helyx.config.yaml": "file 100644 794 1dd573f8770329165ba4b45b929da70550cb7b23c4b8c4133287d436395c998a text",
+    "projeto/infrastructure/docker-compose.local.yml": "file 100644 344 4c1ddb1d3ae36fdc327a7bdfe6d4e06734d9eb92c16c425adcd11a5ed6dd3be2 text"
+  }
+}

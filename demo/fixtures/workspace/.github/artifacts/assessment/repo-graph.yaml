@@ -1,0 +1,13 @@
+# Grafo de dependências entre os repositórios do workspace demo (@dependency-mapper).
+version: 1
+edges:
+  - from: biblioteca-web
+    to: biblioteca-api
+    kind: http
+    evidence: "repos/biblioteca-web/src/api/client.ts:2 (fetch em /api, com proxy em vite.config.ts)"
+    confidence: high
+  - from: biblioteca-web
+    to: biblioteca-api
+    kind: contract
+    evidence: "repos/biblioteca-web/src/api/reservas.ts:3 repete o formato de repos/biblioteca-api/app/schemas/reserva.py:11"
+    confidence: medium

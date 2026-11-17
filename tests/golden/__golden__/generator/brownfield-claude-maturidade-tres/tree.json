@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "case": "brownfield-claude-maturidade-tres",
+  "base": "brownfield-claude-padrao",
+  "input": {
+    "hostAdapter": "claude",
+    "projectName": "orbita-ws",
+    "maturityFrameworks": [
+      "dora-4keys",
+      "space-devex",
+      "owasp-samm"
+    ],
+    "preexisting": []
+  },
+  "outcome": {
+    "resolved": true
+  },
+  "calls": null,
+  "entries": {
+    "workspace/helyx.config.yaml": "file 100644 291 187159652f818d242d2b74f9814308c7927f13c000dce140ef372a6bd2f543cf text"
+  }
+}

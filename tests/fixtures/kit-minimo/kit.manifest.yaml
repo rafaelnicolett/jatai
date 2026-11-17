@@ -1,0 +1,28 @@
+# Kit mínimo para os testes do gerador de catálogo (F7.2). Tudo inventado.
+schema: 1
+
+editions:
+  greenfield:
+    out: templates
+    keep: []
+    units:
+      - agents/guardian
+      - { from: variants/greenfield/agents/maestro.agent.md, to: agents/maestro.agent.md }
+      - { from: variants/greenfield/agents/operation/operador.agent.md, to: agents/operation/operador.agent.md }
+    skills:
+      - alfa
+      - arch-beta
+
+  brownfield:
+    out: brownfield-templates
+    keep: []
+    units:
+      - agents/discovery
+      - agents/execution
+      - agents/guardian
+      - { from: variants/brownfield/agents/maestro.agent.md, to: agents/maestro.agent.md }
+      - { from: variants/brownfield/agents/operation/operador.agent.md, to: agents/operation/operador.agent.md }
+    skills:
+      - alfa
+      - arch-beta
+      - maturity-gama

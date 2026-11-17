@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: painel-ficticio
+  datasource:
+    url: jdbc:postgresql://localhost:5432/painel_ficticio
+    username: dev
+    password: dev
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus

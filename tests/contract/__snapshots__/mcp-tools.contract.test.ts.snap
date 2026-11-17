@@ -1,0 +1,750 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`contrato — MCP tools/list > snapshot completo de tools/list no formato de fio (title, description, inputSchema, outputSchema, execution) 1`] = `
+[
+  {
+    "description": "Lê o registro completo de iniciativas do State Service local (GET /initiatives) — a mesma fonte usada pelo Cockpit. Não aceita parâmetros.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "properties": {},
+      "type": "object",
+    },
+    "name": "get_initiatives",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "error": {
+          "type": "string",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+        "state": {},
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Get Initiatives",
+  },
+  {
+    "description": "Lê o delivery-state do State Service local (GET /delivery-state). Sem initiativeId, devolve o delivery-state global; com initiativeId, devolve o da iniciativa.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "initiativeId": {
+          "description": "ID da iniciativa; se omitido, devolve o delivery-state global",
+          "type": "string",
+        },
+      },
+      "type": "object",
+    },
+    "name": "get_delivery_state",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "error": {
+          "type": "string",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+        "state": {},
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Get Delivery State",
+  },
+  {
+    "description": "Verifica se o State Service local está no ar (GET /health). Não aceita parâmetros.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "properties": {},
+      "type": "object",
+    },
+    "name": "check_state_service_health",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "error": {
+          "type": "string",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Check State Service Health",
+  },
+  {
+    "description": "Cria ou atualiza uma iniciativa em initiatives.yaml via State Service (POST /initiatives) — mesmo motor de escrita do \`helyx-state initiatives create\`. Campos omitidos não são alterados (upsert parcial); \`active: true\` também marca a iniciativa como ativa.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "active": {
+          "description": "Se true, também troca a iniciativa ativa (setActive)",
+          "type": "boolean",
+        },
+        "createdAt": {
+          "type": "string",
+        },
+        "currentPhase": {
+          "type": "string",
+        },
+        "id": {
+          "description": "ID da iniciativa (obrigatório)",
+          "type": "string",
+        },
+        "mode": {
+          "enum": [
+            "greenfield",
+            "brownfield",
+          ],
+          "type": "string",
+        },
+        "name": {
+          "type": "string",
+        },
+        "owner": {
+          "type": "string",
+        },
+        "priority": {
+          "type": "string",
+        },
+        "reason": {
+          "description": "Motivo, obrigatório com status cancelled (ADR-0022)",
+          "type": "string",
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "in-progress",
+            "done",
+            "paused",
+            "cancelled",
+          ],
+          "type": "string",
+        },
+        "stream": {
+          "type": "string",
+        },
+        "type": {
+          "enum": [
+            "feature",
+            "modernization",
+            "hotfix",
+            "foundation",
+          ],
+          "type": "string",
+        },
+      },
+      "required": [
+        "id",
+      ],
+      "type": "object",
+    },
+    "name": "upsert_initiative",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "changed": {
+          "type": "boolean",
+        },
+        "checked": {
+          "type": "boolean",
+        },
+        "error": {},
+        "id": {
+          "type": "string",
+        },
+        "item": {
+          "type": "string",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+        "path": {
+          "type": "string",
+        },
+        "phase": {
+          "type": "string",
+        },
+        "status": {
+          "type": "string",
+        },
+        "wave": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Upsert Initiative",
+  },
+  {
+    "description": "Troca qual iniciativa é a ativa (POST /initiatives/:id/switch-active) — mesmo motor de escrita do \`helyx-state initiatives switch-active\`. ACHADO conhecido (não corrigido, ver relatório do item 3.1): não valida se o id existe.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "ID da iniciativa a marcar como ativa",
+          "type": "string",
+        },
+      },
+      "required": [
+        "id",
+      ],
+      "type": "object",
+    },
+    "name": "switch_active_initiative",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "changed": {
+          "type": "boolean",
+        },
+        "checked": {
+          "type": "boolean",
+        },
+        "error": {},
+        "id": {
+          "type": "string",
+        },
+        "item": {
+          "type": "string",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+        "path": {
+          "type": "string",
+        },
+        "phase": {
+          "type": "string",
+        },
+        "status": {
+          "type": "string",
+        },
+        "wave": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Switch Active Initiative",
+  },
+  {
+    "description": "Atualiza a fase corrente de uma iniciativa (POST /initiatives/:id/bump-phase) — mesmo motor de escrita do \`helyx-state initiatives bump-phase\`. Devolve erro se a iniciativa não existir.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "ID da iniciativa",
+          "type": "string",
+        },
+        "phase": {
+          "description": "Nova fase corrente",
+          "type": "string",
+        },
+      },
+      "required": [
+        "id",
+        "phase",
+      ],
+      "type": "object",
+    },
+    "name": "bump_initiative_phase",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "changed": {
+          "type": "boolean",
+        },
+        "checked": {
+          "type": "boolean",
+        },
+        "error": {},
+        "id": {
+          "type": "string",
+        },
+        "item": {
+          "type": "string",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+        "path": {
+          "type": "string",
+        },
+        "phase": {
+          "type": "string",
+        },
+        "status": {
+          "type": "string",
+        },
+        "wave": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Bump Initiative Phase",
+  },
+  {
+    "description": "Cria ou atualiza um item de wave de uma iniciativa (POST /initiatives/:id/wave-items/:wave/:item) — mesmo motor de escrita do \`helyx-state initiatives upsert-wave-item\`. Devolve erro se a iniciativa não existir.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "artifacts": {
+          "items": {
+            "type": "string",
+          },
+          "type": "array",
+        },
+        "commit": {
+          "type": "string",
+        },
+        "completedAt": {
+          "type": "string",
+        },
+        "group": {
+          "description": "'epic' grava em epic_status em vez de wave_status (ADR-0006) — default 'wave', retrocompat total",
+          "enum": [
+            "wave",
+            "epic",
+          ],
+          "type": "string",
+        },
+        "id": {
+          "description": "ID da iniciativa",
+          "type": "string",
+        },
+        "item": {
+          "description": "Nome do item dentro da wave",
+          "type": "string",
+        },
+        "knownBugsPinned": {
+          "items": {
+            "type": "string",
+          },
+          "type": "array",
+        },
+        "mergeBlock": {
+          "type": "string",
+        },
+        "reason": {
+          "description": "Motivo, obrigatório com blocked, failed e cancelled (ADR-0022)",
+          "type": "string",
+        },
+        "repo": {
+          "type": "string",
+        },
+        "requiresApproval": {
+          "description": "Raro — marca o item como gate que exige aprovação humana explícita (ver WaveItemStatusEntry.requires_approval)",
+          "type": "boolean",
+        },
+        "status": {
+          "description": "Status do item (obrigatório), no vocabulário de trabalho (ADR-0022)",
+          "enum": [
+            "pending",
+            "in-progress",
+            "blocked",
+            "failed",
+            "done",
+            "skipped",
+            "cancelled",
+          ],
+          "type": "string",
+        },
+        "summary": {
+          "type": "string",
+        },
+        "wave": {
+          "description": "Nome/índice da wave",
+          "type": "string",
+        },
+      },
+      "required": [
+        "id",
+        "wave",
+        "item",
+        "status",
+      ],
+      "type": "object",
+    },
+    "name": "upsert_wave_item",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "changed": {
+          "type": "boolean",
+        },
+        "checked": {
+          "type": "boolean",
+        },
+        "error": {},
+        "id": {
+          "type": "string",
+        },
+        "item": {
+          "type": "string",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+        "path": {
+          "type": "string",
+        },
+        "phase": {
+          "type": "string",
+        },
+        "status": {
+          "type": "string",
+        },
+        "wave": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Upsert Wave Item",
+  },
+  {
+    "description": "Atualiza status/completedAt/artifacts de uma fase do delivery-state (POST /delivery-state/upsert-phase) — mesmo motor de escrita do \`helyx-state delivery-state upsert-phase\`. Escopo via global (workspace) ou initiativeId — exatamente um dos dois.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "agent": {
+          "type": "string",
+        },
+        "artifacts": {
+          "items": {
+            "type": "string",
+          },
+          "type": "array",
+        },
+        "completedAt": {
+          "type": "string",
+        },
+        "global": {
+          "description": "true = escopo global; omitir e usar initiativeId para escopo por iniciativa",
+          "type": "boolean",
+        },
+        "initiativeId": {
+          "description": "ID da iniciativa; obrigatório se global não for true",
+          "type": "string",
+        },
+        "phase": {
+          "description": "Nome da fase",
+          "type": "string",
+        },
+        "reason": {
+          "description": "Motivo, obrigatório com blocked, failed e cancelled (ADR-0022)",
+          "type": "string",
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "in-progress",
+            "blocked",
+            "failed",
+            "done",
+            "skipped",
+            "cancelled",
+          ],
+          "type": "string",
+        },
+      },
+      "required": [
+        "phase",
+        "status",
+      ],
+      "type": "object",
+    },
+    "name": "upsert_delivery_phase",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "changed": {
+          "type": "boolean",
+        },
+        "checked": {
+          "type": "boolean",
+        },
+        "error": {},
+        "id": {
+          "type": "string",
+        },
+        "item": {
+          "type": "string",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+        "path": {
+          "type": "string",
+        },
+        "phase": {
+          "type": "string",
+        },
+        "status": {
+          "type": "string",
+        },
+        "wave": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Upsert Delivery Phase",
+  },
+  {
+    "description": "Marca/desmarca um item de checklist de uma fase do delivery-state (POST /delivery-state/upsert-checklist) — mesmo motor de escrita do \`helyx-state delivery-state upsert-checklist\`. Escopo via global (workspace) ou initiativeId — exatamente um dos dois.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "checked": {
+          "description": "true = marcado, false = desmarcado",
+          "type": "boolean",
+        },
+        "global": {
+          "description": "true = escopo global; omitir e usar initiativeId para escopo por iniciativa",
+          "type": "boolean",
+        },
+        "initiativeId": {
+          "description": "ID da iniciativa; obrigatório se global não for true",
+          "type": "string",
+        },
+        "item": {
+          "description": "Nome do item de checklist",
+          "type": "string",
+        },
+        "phase": {
+          "description": "Nome da fase",
+          "type": "string",
+        },
+        "section": {
+          "description": "Default "human_checklist" se omitido",
+          "type": "string",
+        },
+      },
+      "required": [
+        "phase",
+        "item",
+        "checked",
+      ],
+      "type": "object",
+    },
+    "name": "upsert_delivery_checklist_item",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "changed": {
+          "type": "boolean",
+        },
+        "checked": {
+          "type": "boolean",
+        },
+        "error": {},
+        "id": {
+          "type": "string",
+        },
+        "item": {
+          "type": "string",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+        "path": {
+          "type": "string",
+        },
+        "phase": {
+          "type": "string",
+        },
+        "status": {
+          "type": "string",
+        },
+        "wave": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Upsert Delivery Checklist Item",
+  },
+  {
+    "description": "Registra um evento de atividade de agente (início, progresso, fim, artefato gravado, bloqueio ou pedido de decisão) em runs/*.jsonl via State Service (POST /runs/append) — mesmo motor do \`helyx-state runs append\`. Só metadados: nunca conteúdo de arquivo, prompt ou saída de ferramenta. artifact_path é relativo à raiz do workspace.",
+    "execution": {
+      "taskSupport": "forbidden",
+    },
+    "inputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "enum": [
+            "agent",
+            "human",
+          ],
+          "type": "string",
+        },
+        "agent_id": {
+          "description": "Agente, ex.: @migration-agent",
+          "maxLength": 200,
+          "type": "string",
+        },
+        "artifact_path": {
+          "description": "Caminho do artefato, relativo à raiz do workspace; nunca o conteúdo",
+          "maxLength": 200,
+          "type": "string",
+        },
+        "event_type": {
+          "description": "Tipo do evento (decisão humana não entra por aqui)",
+          "enum": [
+            "agent-started",
+            "agent-progress",
+            "agent-done",
+            "artifact-written",
+            "blocked",
+            "decision-requested",
+          ],
+          "type": "string",
+        },
+        "harness": {
+          "description": "Por onde o evento foi capturado; default mcp",
+          "enum": [
+            "claude-code",
+            "copilot",
+            "cli",
+            "mcp",
+            "watcher",
+          ],
+          "type": "string",
+        },
+        "initiative_id": {
+          "description": "Iniciativa do evento",
+          "maxLength": 200,
+          "type": "string",
+        },
+        "message": {
+          "description": "Texto curto; cortado em 140 caracteres",
+          "type": "string",
+        },
+        "phase_id": {
+          "description": "Fase do evento",
+          "maxLength": 200,
+          "type": "string",
+        },
+        "reason": {
+          "description": "Motivo de um bloqueio ou de um pedido de decisão",
+          "type": "string",
+        },
+        "repo_id": {
+          "maxLength": 200,
+          "type": "string",
+        },
+        "task_id": {
+          "description": "Tarefa no estado, ex.: epic-0/task-0.2",
+          "maxLength": 200,
+          "type": "string",
+        },
+      },
+      "required": [
+        "event_type",
+      ],
+      "type": "object",
+    },
+    "name": "append_run_event",
+    "outputSchema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "properties": {
+        "error": {},
+        "event": {
+          "additionalProperties": {},
+          "type": "object",
+        },
+        "ok": {
+          "type": "boolean",
+        },
+        "path": {
+          "type": "string",
+        },
+      },
+      "required": [
+        "ok",
+      ],
+      "type": "object",
+    },
+    "title": "Append Run Event",
+  },
+]
+`;

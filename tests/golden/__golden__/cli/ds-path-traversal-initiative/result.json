@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "scenario": "ds-path-traversal-initiative",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--initiative",
+        "../../../../fora-do-workspace",
+        "--phase",
+        "business",
+        "--status",
+        "done"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --initiative: '../../../../fora-do-workspace' — o id vira nome de pasta: sem '/', '\\', '.' ou '..' sozinhos e sem caractere de controle",
+          "field": "initiative",
+          "value": "../../../../fora-do-workspace"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--initiative",
+        "..\\..\\fora-do-workspace",
+        "--phase",
+        "business",
+        "--item",
+        "x",
+        "--checked",
+        "true"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --initiative: '..\\..\\fora-do-workspace' — o id vira nome de pasta: sem '/', '\\', '.' ou '..' sozinhos e sem caractere de controle",
+          "field": "initiative",
+          "value": "..\\..\\fora-do-workspace"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--initiative",
+        "..",
+        "--phase",
+        "business",
+        "--status",
+        "done"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --initiative: '..' — o id vira nome de pasta: sem '/', '\\', '.' ou '..' sozinhos e sem caractere de controle",
+          "field": "initiative",
+          "value": ".."
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "../fora-do-workspace"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --id: '../fora-do-workspace' — o id vira nome de pasta: sem '/', '\\', '.' ou '..' sozinhos e sem caractere de controle",
+          "field": "id",
+          "value": "../fora-do-workspace"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "switch-active",
+        "--id",
+        "gf-alfa/../../fora"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --id: 'gf-alfa/../../fora' — o id vira nome de pasta: sem '/', '\\', '.' ou '..' sozinhos e sem caractere de controle",
+          "field": "id",
+          "value": "gf-alfa/../../fora"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir"
+  }
+}

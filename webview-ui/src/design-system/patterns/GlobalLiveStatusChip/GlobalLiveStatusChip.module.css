@@ -1,0 +1,29 @@
+.chip {
+  display: flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  font-size: var(--jt-text-xs);
+  color: var(--jt-fg-2);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-fg-3);
+}
+
+.dot[data-tone="live"] {
+  background: var(--jt-status-done-line);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.dot[data-tone="stale"] { background: var(--jt-feedback-warning-fg); }
+
+.chip[data-tone="stale"] { color: var(--jt-feedback-warning-fg); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}

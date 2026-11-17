@@ -1,0 +1,158 @@
+/*
+ * O palco e o que fica por cima da arte (F5.3). O palco escala com `transform`
+ * (uma vez, no contêiner); os rótulos ficam dentro dele, presos à ilha, com a
+ * escala invertida (`--k`), então o texto mantém o tamanho do DS v2 em
+ * qualquer largura do painel.
+ */
+
+.stage {
+  /* A escala do palco: o valor de verdade vem do componente, pelo estilo da própria raiz; os rótulos a invertem. */
+  --k: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  /* Reencaixar a cena (abrir o painel, mudar a largura) é uma transição de `transform`, no compositor. */
+  transition: transform var(--jt-dur-slow) var(--jt-ease-standard);
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage { transition: none; }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--jt-z-raised);
+}
+
+/* ── Rótulo da ilha ───────────────────────────────────────────────────── */
+.label,
+.gate,
+.tag,
+.more {
+  position: absolute;
+  transform: translate(-50%, -100%) scale(calc(1 / var(--k)));
+  transform-origin: 50% 100%;
+  white-space: nowrap;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--jt-space-2);
+  padding: var(--jt-space-1) var(--jt-space-3);
+  border: 1px solid var(--jt-scene-hud-line);
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-scene-hud-pill);
+  color: var(--jt-fg);
+}
+.label[data-state="current"] { border-color: var(--jt-status-working-line); }
+.label[data-state="sleeping"] { opacity: 0.8; }
+.labelName { font: var(--jt-type-label-island); }
+.labelMeta { font: var(--jt-type-meta); }
+.labelMeta[data-tone="done"] { color: var(--jt-status-done-fg); }
+.labelMeta[data-tone="working"] { color: var(--jt-status-working-fg); }
+.labelMeta[data-tone="queue"] { color: var(--jt-status-queue-fg); }
+.labelMeta[data-tone="future"] { color: var(--jt-status-future-fg); }
+
+/* "■ 1 espera você", "⊘ 1 bloqueada": o estado também em texto, nunca só em cor. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  font: var(--jt-type-meta);
+  font-weight: 600;
+}
+.chip[data-tone="you"] { color: var(--jt-status-you-fg); }
+.chip[data-tone="blocked"] { color: var(--jt-status-blocked-fg); }
+
+/* ── Chip do gate na ponte: "D1 ✓", "◌ D3" ────────────────────────────── */
+.gate {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  padding: 0 var(--jt-space-2);
+  border-radius: var(--jt-radius-full);
+  font: var(--jt-type-eyebrow-strong);
+}
+.gate[data-tone="done"] { background: var(--jt-status-done-bg); color: var(--jt-status-done-fg); }
+.gate[data-tone="future"] { background: var(--jt-scene-hud-pill); color: var(--jt-status-future-fg); border: 1px dashed var(--jt-status-future-line); }
+
+/* ── Rótulo da abelha parada (bloqueio e falha) ───────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  max-width: 260px;
+  padding: 0 var(--jt-space-2);
+  border: 1px solid var(--jt-status-blocked-line);
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-scene-hud-pill);
+  color: var(--jt-status-blocked-fg);
+  font: var(--jt-type-meta);
+  font-weight: 600;
+  transform-origin: 0 100%;
+  transform: translate(0, -100%) scale(calc(1 / var(--k)));
+}
+.tagText { overflow: hidden; text-overflow: ellipsis; }
+
+.more {
+  padding: 0 var(--jt-space-2);
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-scene-hud-pill);
+  color: var(--jt-fg-2);
+  font: var(--jt-type-eyebrow-strong);
+}
+
+/* ── Alvos de clique das ilhas ────────────────────────────────────────── */
+.hits {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--jt-z-hud);
+}
+
+.isle {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  border-radius: var(--jt-radius-2xl);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+  /* O foco é o anel em duas cores do SVG; o contorno do navegador sai, e o anel entra no lugar. */
+  outline: none;
+}
+@media (hover: hover) {
+  .isle:hover { background: color-mix(in srgb, var(--jt-mel) 6%, transparent); }
+}
+
+.ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.halo,
+.select,
+.focus {
+  fill: none;
+  opacity: 0;
+  stroke-linejoin: round;
+}
+.halo { stroke: var(--jt-scene-halo); stroke-width: 8; }
+.select { stroke: var(--jt-scene-select); stroke-width: 3; stroke-dasharray: 10 7; }
+.focus { stroke: var(--jt-focus); stroke-width: 3; }
+
+.isle[aria-expanded="true"] .halo,
+.isle[aria-expanded="true"] .select { opacity: 1; }
+.isle:focus-visible .halo,
+.isle:focus-visible .focus { opacity: 1; }
+
+@media (forced-colors: active) {
+  .isle:focus-visible .focus { stroke: Highlight; }
+  .label, .gate, .tag { border-color: CanvasText; }
+}

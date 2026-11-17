@@ -1,0 +1,45 @@
+/* O painel da ilha (F5.3): lateral de 380 px no painel largo; folha inferior abaixo de 1080 px. */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-3);
+  padding: var(--jt-space-4);
+  border: 1px solid var(--jt-scene-hud-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-scene-panel);
+  box-shadow: var(--jt-elevation-3);
+  color: var(--jt-fg);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--jt-space-2);
+}
+.heading { display: flex; flex-direction: column; gap: var(--jt-space-0-5); min-width: 0; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  font: var(--jt-type-eyebrow);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.eyebrow[data-tone="done"] { color: var(--jt-status-done-fg); }
+.eyebrow[data-tone="working"] { color: var(--jt-status-working-fg); }
+.eyebrow[data-tone="future"] { color: var(--jt-status-future-fg); }
+
+.title {
+  margin: 0;
+  font: var(--jt-type-display-lg);
+  overflow-wrap: anywhere;
+}
+.title:focus-visible {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+}

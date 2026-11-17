@@ -1,0 +1,6 @@
+initiative_id: default
+phases:
+  bdd:
+    status: done
+  sprint-plan:
+    status: done

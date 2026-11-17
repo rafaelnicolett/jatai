@@ -1,0 +1,30 @@
+# Fixture SINTÉTICA (F0.4, lane B) — formato canônico (sprints[].items[])
+meta:
+  product: "Loja Demo"
+  total_sprints: 2
+  sprint_duration_weeks: 2
+sprints:
+  - id: S1
+    name: "Sprint 1"
+    goal: "Catálogo navegável"
+    items:
+      - id: LD-1
+        title: "Listar produtos"
+        status: in-progress
+        component: backend
+        feature_ref: catalogo
+        sizing: M
+        story_points: 5
+        depends_on: []
+        tags: [api]
+      - id: LD-2
+        title: "Página de produto"
+        status: blocked
+        blocked_reason: "aguardando design"
+        estimate: 3
+        epic_ref: EP-1
+  - id: S2
+    items:
+      - id: LD-3
+        title: "Carrinho"
+        status: shipped

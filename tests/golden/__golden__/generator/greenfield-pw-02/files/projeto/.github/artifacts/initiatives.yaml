@@ -1,0 +1,6 @@
+initiatives:
+  - id: "painel-ficticio"
+    name: "painel-ficticio"
+    status: "planned"
+    mode: "greenfield"
+active: "painel-ficticio"

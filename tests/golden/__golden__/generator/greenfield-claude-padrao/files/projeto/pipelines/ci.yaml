@@ -1,0 +1,38 @@
+name: CI — orbita
+# Gerado pela Helyx
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: cd code/services/orbita-api && pip install -e .[dev]
+
+      - name: Run tests
+        run: cd code/services/orbita-api && pytest --cov
+
+      - name: Lint
+        run: cd code/services/orbita-api && ruff check src/ tests/
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t orbita:latest code/services/orbita-api
+
+# Este pipeline será expandido pelo @devops durante configuração de CI/CD

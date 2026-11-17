@@ -1,0 +1,23 @@
+# Fixture SINTÉTICA (F0.4, lane B)
+version: 1
+edges:
+  - from: catalogo-web
+    to: pedidos-api
+    kind: http
+    evidence: "src/api/client.ts chama /orders"
+    confidence: high
+  - from: pedidos-api
+    to: catalogo-web
+    kind: event
+    evidence: "publica order.created"
+  - from: pedidos-api
+    to: pedidos-api
+    kind: lib
+    evidence: "self"
+  - from: pedidos-api
+    to: estoque-api
+    kind: grpc
+    evidence: "proto"
+  - from: catalogo-web
+    to: estoque-api
+    kind: db

@@ -1,0 +1,25 @@
+<mxfile host="demo" version="24.0.0">
+  <diagram id="c4-container" name="C4 · contêineres da biblioteca-api">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" page="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="portal" value="biblioteca-web&#xa;(portal em React)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="api" value="biblioteca-api&#xa;(FastAPI: router, service, repository)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="banco" value="SQLite&#xa;(desenvolvimento)" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1">
+          <mxGeometry x="340" y="180" width="100" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" value="HTTP /api" style="endArrow=classic;html=1;" edge="1" parent="1" source="portal" target="api">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="SQLAlchemy" style="endArrow=classic;html=1;" edge="1" parent="1" source="api" target="banco">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

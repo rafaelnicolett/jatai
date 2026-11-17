@@ -1,0 +1,107 @@
+/* TaskCard do DS v2 (§4.5): padding 8/12, raio 12, gap 4. */
+@keyframes enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  padding: var(--jt-space-2) var(--jt-space-3);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-lg);
+  background: var(--jt-surface-2);
+  /* Card que muda de coluna entra com fade (estado mudou). Com movimento
+     reduzido a duração cai para 120 ms: só opacidade. */
+  animation: enter var(--jt-dur-base) var(--jt-ease-enter);
+  transition: border-color var(--jt-dur-fast) var(--jt-ease-standard);
+}
+
+.card[data-variant="working"] { border-color: var(--jt-status-working-line); }
+.card[data-variant="you"] { border-color: var(--jt-status-you-line); }
+.card[data-variant="done"] { background: transparent; }
+
+/* Bloqueado e falhou: borda sólida blocked-line (a coluna não muda). */
+.card[data-condition="blocked"],
+.card[data-condition="failed"] { border-color: var(--jt-status-blocked-line); }
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jt-space-2);
+}
+
+.id {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  font: var(--jt-type-data-xs);
+  color: var(--jt-fg-3);
+}
+
+.elapsed {
+  font: var(--jt-type-meta);
+  color: var(--jt-fg-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.title {
+  margin: 0;
+  font: var(--jt-type-body-strong);
+  color: var(--jt-fg);
+}
+
+.titleButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: var(--jt-line-strong);
+  text-underline-offset: var(--jt-space-0-5);
+  cursor: pointer;
+}
+.titleButton:focus-visible {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+  border-radius: var(--jt-radius-xs);
+}
+
+.meta {
+  margin: 0;
+  font: var(--jt-type-meta);
+  color: var(--jt-fg-2);
+}
+.card[data-variant="working"] .meta { color: var(--jt-status-working-fg); }
+
+.reason {
+  margin: 0;
+  font: var(--jt-type-meta);
+  color: var(--jt-status-blocked-fg);
+}
+
+/* Feito e cancelado: textos em fg-2. Cancelado sai riscado (ADR-0022 §7). */
+.card[data-variant="done"] .title,
+.card[data-variant="done"] .meta,
+.card[data-variant="done"] .id { color: var(--jt-fg-2); }
+.card[data-condition="cancelled"] .title { text-decoration: line-through; }
+.card[data-condition="cancelled"] .reason { color: var(--jt-fg-2); }
+
+.actions { display: flex; padding-top: var(--jt-space-1); }
+
+@media (hover: hover) {
+  .card[data-interactive="true"]:not([data-condition]):hover { border-color: var(--jt-line-strong); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+}
+
+@media (forced-colors: active) {
+  .card { border-color: CanvasText; }
+  .titleButton:focus-visible { outline-color: Highlight; }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "scenario": "ds-bug15-agent-com-aspas",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "qa",
+        "--status",
+        "done",
+        "--agent",
+        "qa \"lead\""
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "qa",
+        "status": "done"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 56 45233ad8d3ac77038e9b36232e16a651a167708b16c1ad9efaa2da9ee68f9f42 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 223 b9a1b46cd38bc41ea81d4fce887595e6a2e5ee03dbc9b39ca20a69f92e5b46dc text"
+  }
+}

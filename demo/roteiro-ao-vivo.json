@@ -1,0 +1,111 @@
+{
+  "comentario": "Roteiro do `npm run demo:play` (F7.4): cenas da feature ativa, com os horários de agora. Cada cena espera `depoisDeSegundos` antes do evento. `estado` (opcional) é uma mudança de estado que o CLI de estado grava junto. Tudo inventado.",
+  "iniciativa": "feat-reserva-com-fila",
+  "cenas": [
+    {
+      "depoisDeSegundos": 0,
+      "evento": {
+        "event_type": "agent-progress",
+        "task_id": "epic-2/task-2.1",
+        "phase_id": "feature",
+        "agent_id": "feature-adder",
+        "repo_id": "biblioteca-api",
+        "actor": "agent",
+        "harness": "mcp",
+        "message": "testes de empate escritos; rodando a suíte",
+        "metadata": { "count": 4 }
+      }
+    },
+    {
+      "depoisDeSegundos": 4,
+      "evento": {
+        "event_type": "artifact-written",
+        "task_id": "epic-2/task-2.1",
+        "phase_id": "feature",
+        "agent_id": "feature-adder",
+        "repo_id": "biblioteca-api",
+        "artifact_path": ".github/artifacts/execution/feature-report-biblioteca-api-reservas.md",
+        "actor": "agent",
+        "harness": "claude-code"
+      }
+    },
+    {
+      "depoisDeSegundos": 3,
+      "evento": {
+        "event_type": "agent-done",
+        "task_id": "epic-2/task-2.1",
+        "phase_id": "feature",
+        "agent_id": "feature-adder",
+        "repo_id": "biblioteca-api",
+        "actor": "agent",
+        "harness": "mcp",
+        "message": "fila por ordem de pedido pronta"
+      },
+      "estado": {
+        "wave": "epic-2",
+        "item": "task-2.1",
+        "status": "done",
+        "repo": "biblioteca-api",
+        "summary": "Fila ordenada por data do pedido, com desempate pelo id."
+      }
+    },
+    {
+      "depoisDeSegundos": 3,
+      "evento": {
+        "event_type": "agent-started",
+        "task_id": "epic-2/task-2.2",
+        "phase_id": "feature",
+        "agent_id": "feature-adder",
+        "repo_id": "biblioteca-api",
+        "actor": "agent",
+        "harness": "mcp",
+        "message": "avisando o próximo da fila na devolução"
+      },
+      "estado": {
+        "wave": "epic-2",
+        "item": "task-2.2",
+        "status": "in-progress",
+        "repo": "biblioteca-api"
+      }
+    },
+    {
+      "depoisDeSegundos": 6,
+      "evento": {
+        "event_type": "decision-requested",
+        "task_id": "epic-2/task-2.2",
+        "actor": "human",
+        "harness": "mcp",
+        "message": "o aviso ao próximo da fila fica só na tela do portal?",
+        "metadata": { "reason": "escopo do aviso" }
+      }
+    },
+    {
+      "depoisDeSegundos": 12,
+      "decisao": true,
+      "evento": {
+        "run_id": "state-commands",
+        "event_type": "decision-made",
+        "task_id": "epic-2/task-2.2",
+        "actor": "human",
+        "by": "Pessoa Exemplo",
+        "harness": "cli",
+        "message": "só na tela, por enquanto",
+        "metadata": { "reason": "o aviso por mensagem foi cortado do escopo" }
+      }
+    },
+    {
+      "depoisDeSegundos": 4,
+      "evento": {
+        "event_type": "agent-progress",
+        "task_id": "epic-2/task-2.2",
+        "phase_id": "feature",
+        "agent_id": "feature-adder",
+        "repo_id": "biblioteca-api",
+        "actor": "agent",
+        "harness": "mcp",
+        "message": "aviso na tela implementado",
+        "metadata": { "count": 1 }
+      }
+    }
+  ]
+}

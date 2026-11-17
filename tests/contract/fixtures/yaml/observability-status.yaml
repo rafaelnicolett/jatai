@@ -1,0 +1,16 @@
+# Fixture SINTÉTICA (F0.4, lane B)
+updated_at: "2025-06-01T08:05:00Z"
+repos:
+  pedidos-api:
+    health_checks:
+      - service: api
+        status: healthy
+      - service: worker
+        status: flaky
+    active_alerts:
+      - id: AL-1
+        severity: critical
+        message: "latência p99 alta"
+        since: "2025-06-01T07:00:00Z"
+      - id: AL-2
+        severity: warning

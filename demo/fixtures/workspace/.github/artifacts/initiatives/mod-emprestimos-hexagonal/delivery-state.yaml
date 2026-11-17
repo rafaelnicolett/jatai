@@ -1,0 +1,18 @@
+# Estado de entrega da modernização do workspace demo, ainda em Planejamento.
+version: 1
+initiative_id: mod-emprestimos-hexagonal
+phases:
+  architecture:
+    status: done
+    agent: "@modernization-planner"
+    completed_at: "2026-10-05T14:07:00Z"
+    artifacts:
+      - path: .github/artifacts/planning/mod-emprestimos-hexagonal/roadmap.md
+    human_checklist:
+      alvo-hexagonal-justificado: true
+      ondas-incrementais: true
+  sprint-plan:
+    status: in-progress
+    agent: "@risk-prioritizer"
+    human_checklist:
+      matriz-de-risco-aprovada: false

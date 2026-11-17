@@ -1,0 +1,14 @@
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--jt-space-2);
+  padding: var(--jt-space-2) var(--jt-space-4);
+  background: var(--jt-feedback-warning-bg, var(--jt-surface-2));
+  border-bottom: 1px solid var(--jt-feedback-warning-fg);
+  color: var(--jt-fg);
+  font-size: var(--jt-text-sm);
+}
+
+.icon { color: var(--jt-feedback-warning-fg); flex-shrink: 0; }
+.list { display: flex; flex-direction: column; gap: var(--jt-space-0-5); }
+.item { line-height: 1.4; }

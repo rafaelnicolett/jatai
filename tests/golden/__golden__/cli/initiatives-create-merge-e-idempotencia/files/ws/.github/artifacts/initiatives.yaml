@@ -1,0 +1,10 @@
+initiatives:
+  - id: "gf-alfa"
+    name: "Alfa renomeado"
+    status: "done"
+  - id: "mod-beta"
+    name: "mod-beta"
+    status: "planned"
+    mode: "brownfield"
+    type: "modernization"
+active: "gf-alfa"

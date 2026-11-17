@@ -1,0 +1,15 @@
+# Fixture SINTÉTICA (F0.4, lane B) — formato plano por milestone
+milestones:
+  M1:
+    name: "Marco 1"
+    goal: "MVP"
+items:
+  - id: MS-1
+    title: "Cadastro"
+    milestone: M1
+    status: done
+  - id: MS-2
+    title: "Login"
+    milestone: M1
+  - id: MS-3
+    title: "Sem marco"

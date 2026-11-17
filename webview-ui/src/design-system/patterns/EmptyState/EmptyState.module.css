@@ -1,0 +1,71 @@
+/* Estado vazio do DS v2 (§4.12): page, inline e quiet. */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--jt-space-3);
+  padding: var(--jt-space-8);
+  max-width: 420px;
+  margin: var(--jt-space-8) auto;
+}
+
+.mark { color: var(--jt-mel); }
+
+.iconBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--jt-radius-lg);
+  background: var(--jt-status-working-bg);
+  color: var(--jt-mel-ink);
+}
+
+.title {
+  font: var(--jt-type-display-md);
+  color: var(--jt-fg);
+  margin: 0;
+}
+
+.body {
+  font: var(--jt-type-body);
+  color: var(--jt-fg-2);
+  margin: 0;
+}
+
+.action { margin-top: var(--jt-space-2); }
+
+/* inline: dentro de um painel, borda tracejada (raio 16, padding 24). */
+.inline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jt-space-2);
+  padding: var(--jt-space-6);
+  border: 1px dashed var(--jt-line-strong);
+  border-radius: var(--jt-radius-xl);
+}
+.inlineTitle {
+  margin: 0;
+  font: var(--jt-type-body-strong);
+  font-weight: var(--jt-weight-bold);
+  color: var(--jt-fg);
+}
+.inlineBody {
+  margin: 0;
+  font: var(--jt-type-body);
+  color: var(--jt-fg-2);
+}
+
+/* quiet: uma linha calma, sem moldura. */
+.quiet {
+  display: flex;
+  align-items: center;
+  gap: var(--jt-space-2);
+  margin: 0;
+  font: var(--jt-type-body-sm);
+  color: var(--jt-fg-2);
+}
+.quiet [data-status="done"] { color: var(--jt-status-done-fg); }

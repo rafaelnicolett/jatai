@@ -1,0 +1,733 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`round-trip — assessment/foundation-state.yaml > modelo lido da fixture (snapshot): v2 multi-repo, alias design-system → design 1`] = `
+{
+  "phases": {
+    "business-archeology": {
+      "human_checklist": {},
+      "status": "pending",
+    },
+    "domain": {
+      "agent": "@domain-extractor",
+      "human_checklist": {
+        "contexts-reviewed": false,
+      },
+      "status": "agent-done",
+    },
+  },
+  "repos": {
+    "catalogo-web": {
+      "gate_d1": {
+        "approved_at": "2025-02-03T10:00:00Z",
+        "status": "approved",
+      },
+      "phases": {
+        "tech-mapping": {
+          "human_checklist": {},
+          "status": "in-progress",
+        },
+      },
+    },
+    "pedidos-api": {
+      "findings_summary": {
+        "critical": 1,
+        "high": 2,
+        "low": 4,
+        "medium": 3,
+      },
+      "gate_d1": {
+        "status": "pending",
+      },
+      "phases": {
+        "design": {
+          "human_checklist": {},
+          "status": "done",
+        },
+        "tech-mapping": {
+          "agent": "@tech-mapper",
+          "completed_at": "2025-02-01T09:00:00Z",
+          "human_checklist": {},
+          "status": "done",
+        },
+      },
+    },
+  },
+  "version": 2,
+}
+`;
+
+exports[`round-trip — assessment/repo-graph.yaml > modelo + erros lidos da fixture (snapshot): self-loop, kind inválido e aresta sem evidence descartados; confidence default 'medium' 1`] = `
+{
+  "errors": [
+    "edges[2]: 'pedidos-api' aponta para si mesmo — use a coupling matrix do repo",
+    "edges[3]: 'kind' inválido — use lib | http | event | db | contract",
+    "edges[4]: 'catalogo-web → estoque-api' sem 'evidence' — aresta sem prova não entra",
+  ],
+  "graph": {
+    "edges": [
+      {
+        "confidence": "high",
+        "evidence": "src/api/client.ts chama /orders",
+        "from": "catalogo-web",
+        "kind": "http",
+        "to": "pedidos-api",
+      },
+      {
+        "confidence": "medium",
+        "evidence": "publica order.created",
+        "from": "pedidos-api",
+        "kind": "event",
+        "to": "catalogo-web",
+      },
+    ],
+    "version": 1,
+  },
+}
+`;
+
+exports[`round-trip — context-repos.yaml > modelo + erros lidos da fixture (snapshot): paths default ['**'], status default 'candidate' 1`] = `
+{
+  "errors": [
+    "contexts[2]: slug 'Slug_Invalido' não é kebab-case",
+    "contexts[3] 'sem-lugar': 'lives_in' vazio — o agente não saberia onde atuar",
+  ],
+  "map": {
+    "contexts": [
+      {
+        "description": "Ciclo de vida do pedido",
+        "lives_in": [
+          {
+            "paths": [
+              "src/orders/**",
+              "src/checkout/**",
+            ],
+            "repo": "pedidos-api",
+          },
+          {
+            "paths": [
+              "**",
+            ],
+            "repo": "catalogo-web",
+          },
+        ],
+        "name": "Pedidos",
+        "slug": "pedidos",
+        "status": "accepted",
+      },
+      {
+        "lives_in": [
+          {
+            "paths": [
+              "**",
+            ],
+            "repo": "catalogo-web",
+          },
+        ],
+        "name": "catalogo",
+        "slug": "catalogo",
+        "status": "candidate",
+      },
+    ],
+    "version": 1,
+  },
+}
+`;
+
+exports[`round-trip — delivery-state.yaml > modelo lido da fixture (snapshot): alias sprint-planner → sprint-plan, status desconhecido → unknown com o texto (ADR-0022) 1`] = `
+{
+  "phases": {
+    "business": {
+      "agent": "@business",
+      "artifacts": [
+        {
+          "exists": true,
+          "note": "versão 1",
+          "path": ".github/artifacts/business-brief.md",
+        },
+      ],
+      "completed_at": "2025-03-05T12:00:00Z",
+      "human_checklist": {
+        "kpi-defined": false,
+        "problem-section": true,
+      },
+      "status": "done",
+    },
+    "domain": {
+      "human_checklist": {},
+      "status": "unknown",
+      "status_text": "round_2_done",
+    },
+    "product": {
+      "agent": "@product",
+      "human_checklist": {
+        "prd-references-brief": true,
+      },
+      "status": "in-progress",
+    },
+    "sprint-plan": {
+      "agent": "@sprint-planner",
+      "human_checklist": {
+        "backlog-ok": true,
+      },
+      "status": "done",
+    },
+  },
+  "version": 2,
+}
+`;
+
+exports[`round-trip — initiatives.yaml > modelo lido da fixture (snapshot) — sem erros 1`] = `
+{
+  "active": "loja-demo",
+  "initiatives": [
+    {
+      "artifacts": [
+        ".github/artifacts/business-brief.md",
+      ],
+      "context": "Vitrine sintética para o contrato de round-trip.",
+      "created_at": "2025-03-01",
+      "current_phase": "business",
+      "id": "loja-demo",
+      "mode": "greenfield",
+      "name": "Loja Demo",
+      "owner": "time-produto",
+      "priority": "P1",
+      "status": "in-progress",
+      "stream": "upstream",
+      "type": "feature",
+    },
+    {
+      "arch_target": "hexagonal",
+      "created_at": "2025-04-02",
+      "current_phase": "execution",
+      "depends_on": [
+        "loja-demo",
+      ],
+      "driven_by": [
+        "tech-debt",
+      ],
+      "gate_d2": {
+        "approved_at": "2025-04-06",
+        "note": "aprovado em revisão sintética",
+        "status": "approved",
+      },
+      "id": "pedidos-mod",
+      "migration_strategy": "strangler-fig",
+      "mode": "brownfield",
+      "name": "Modernização de Pedidos",
+      "planning_artifacts": [
+        ".github/artifacts/planning/pedidos-mod/roadmap.md",
+      ],
+      "risk_matrix_gate": {
+        "status": "approved",
+      },
+      "roadmap_gate": {
+        "approved_at": "2025-04-05",
+        "status": "approved",
+      },
+      "scope": [
+        "pedidos-api",
+        "catalogo-web",
+      ],
+      "status": "in-progress",
+      "stream": "execution",
+      "type": "modernization",
+      "wave_status": {
+        "wave-1": {
+          "items": {
+            "item-1.1": {
+              "artifacts": [
+                "tests/characterization/pedidos.test.ts",
+              ],
+              "commit": "abc1234",
+              "completed_at": "2025-04-10",
+              "known_bugs_pinned": [
+                "BUG-SINTETICO-1",
+              ],
+              "merge_block": "aguardando revisão humana",
+              "repo": "pedidos-api",
+              "requires_approval": true,
+              "status": "done",
+              "summary": "characterization tests do módulo de pedidos",
+            },
+            "item-1.2": {
+              "repo": "catalogo-web",
+              "status": "in-progress",
+            },
+          },
+          "status": "in-progress",
+        },
+      },
+      "waves": [
+        "Wave 1 — Rede de segurança",
+        "Wave 2 — Extração",
+      ],
+    },
+    {
+      "epic_status": {
+        "epic-1": {
+          "items": {
+            "task-1.1": {
+              "status": "planned",
+            },
+          },
+          "status": "in-progress",
+        },
+      },
+      "epics": [
+        "Epic 1 — Diagnóstico",
+      ],
+      "id": "catalogo-hotfix",
+      "name": "Correção do Catálogo",
+      "status": "planned",
+      "type": "hotfix",
+    },
+  ],
+  "version": 1,
+}
+`;
+
+exports[`round-trip — operations/*.yaml (4 artefatos de Operation) > modelo + erros de devops-status.yaml (snapshot) 1`] = `
+{
+  "errors": [],
+  "model": {
+    "repos": {
+      "catalogo-web": {
+        "last_deploy": {
+          "at": "2025-05-29T10:00:00Z",
+          "environment": "unknown",
+          "status": "unknown",
+        },
+      },
+      "pedidos-api": {
+        "iac_validated": true,
+        "last_deploy": {
+          "at": "2025-05-30T18:00:00Z",
+          "environment": "staging",
+          "status": "success",
+        },
+        "pipeline_health": "green",
+      },
+    },
+    "updated_at": "2025-06-01T08:00:00Z",
+  },
+}
+`;
+
+exports[`round-trip — operations/*.yaml (4 artefatos de Operation) > modelo + erros de incidents.yaml (snapshot) 1`] = `
+{
+  "errors": [
+    "incidents[2]: 'id'/'title'/'started_at' obrigatórios",
+  ],
+  "model": {
+    "incidents": [
+      {
+        "id": "INC-1",
+        "post_mortem": ".github/artifacts/incidents/INC-1.md",
+        "resolved_at": "2025-05-20T11:30:00Z",
+        "severity": "major",
+        "started_at": "2025-05-20T10:00:00Z",
+        "status": "resolved",
+        "title": "Checkout fora do ar",
+      },
+      {
+        "id": "INC-2",
+        "severity": "minor",
+        "started_at": "2025-06-01T09:00:00Z",
+        "status": "active",
+        "title": "Fila atrasada",
+      },
+    ],
+    "updated_at": "2025-06-02T00:00:00Z",
+  },
+}
+`;
+
+exports[`round-trip — operations/*.yaml (4 artefatos de Operation) > modelo + erros de observability-status.yaml (snapshot) 1`] = `
+{
+  "errors": [],
+  "model": {
+    "repos": {
+      "pedidos-api": {
+        "active_alerts": [
+          {
+            "id": "AL-1",
+            "message": "latência p99 alta",
+            "severity": "critical",
+            "since": "2025-06-01T07:00:00Z",
+          },
+        ],
+        "health_checks": [
+          {
+            "service": "api",
+            "status": "healthy",
+          },
+        ],
+      },
+    },
+    "updated_at": "2025-06-01T08:05:00Z",
+  },
+}
+`;
+
+exports[`round-trip — operations/*.yaml (4 artefatos de Operation) > modelo + erros de sustain-log.yaml (snapshot) 1`] = `
+{
+  "errors": [
+    "patches[2]: 'repo'/'description'/'applied_at' obrigatórios",
+  ],
+  "model": {
+    "patches": [
+      {
+        "applied_at": "2025-06-02T12:00:00Z",
+        "description": "atualiza lib de HTTP",
+        "kind": "dependency",
+        "pr": "#12",
+        "repo": "pedidos-api",
+      },
+      {
+        "applied_at": "2025-06-02T13:00:00Z",
+        "description": "patch de segurança",
+        "kind": "patch",
+        "repo": "catalogo-web",
+      },
+    ],
+    "updated_at": "2025-06-03T00:00:00Z",
+  },
+}
+`;
+
+exports[`round-trip — repos.yaml > modelo + erros lidos da fixture (snapshot): id não-kebab e git sem url são descartados 1`] = `
+{
+  "errors": [
+    "repos[3]: id 'Repo_Invalido' não é kebab-case",
+    "repos[4] 'sem-url': source 'git' exige 'url'",
+  ],
+  "inventory": {
+    "repos": [
+      {
+        "arch_confidence": 0.7,
+        "arch_current": "layered",
+        "has_frontend": false,
+        "id": "pedidos-api",
+        "owner": "time-pedidos",
+        "pinned_sha": "0123abc",
+        "ref": "main",
+        "scan_profile": "deep",
+        "source": "git",
+        "stack": "python-fastapi",
+        "url": "https://git.example.invalid/sintetico/pedidos-api.git",
+      },
+      {
+        "has_history": true,
+        "id": "catalogo-web",
+        "path": "repos/catalogo-web",
+        "scan_profile": "shallow",
+        "source": "local-path",
+      },
+      {
+        "id": "legado-sem-scan",
+        "scan_profile": "ignore",
+        "source": "git",
+        "url": "https://git.example.invalid/sintetico/legado.git",
+      },
+    ],
+    "version": 1,
+  },
+}
+`;
+
+exports[`round-trip — sprint-backlog.yaml (3 formatos aceitos) > modelo lido do formato canônico (sprints[].items[]) (snapshot) 1`] = `
+{
+  "items": [
+    {
+      "blockedReason": undefined,
+      "component": "backend",
+      "dependsOn": [],
+      "epicRef": undefined,
+      "feature": "catalogo",
+      "id": "LD-1",
+      "size": "M",
+      "sprintId": "S1",
+      "status": "in-progress",
+      "storyPoints": 5,
+      "tags": [
+        "api",
+      ],
+      "title": "Listar produtos",
+    },
+    {
+      "blockedReason": "aguardando design",
+      "component": undefined,
+      "dependsOn": [],
+      "epicRef": "EP-1",
+      "feature": undefined,
+      "id": "LD-2",
+      "size": undefined,
+      "sprintId": "S1",
+      "status": "blocked",
+      "storyPoints": 3,
+      "tags": [],
+      "title": "Página de produto",
+    },
+    {
+      "blockedReason": undefined,
+      "component": undefined,
+      "dependsOn": [],
+      "epicRef": undefined,
+      "feature": undefined,
+      "id": "LD-3",
+      "size": undefined,
+      "sprintId": "S2",
+      "status": "backlog",
+      "storyPoints": undefined,
+      "tags": [],
+      "title": "Carrinho",
+    },
+  ],
+  "meta": {
+    "product": "Loja Demo",
+    "sprintDurationWeeks": 2,
+    "totalSprints": 2,
+  },
+  "sprints": [
+    {
+      "goal": "Catálogo navegável",
+      "id": "S1",
+      "items": [
+        {
+          "blockedReason": undefined,
+          "component": "backend",
+          "dependsOn": [],
+          "epicRef": undefined,
+          "feature": "catalogo",
+          "id": "LD-1",
+          "size": "M",
+          "sprintId": "S1",
+          "status": "in-progress",
+          "storyPoints": 5,
+          "tags": [
+            "api",
+          ],
+          "title": "Listar produtos",
+        },
+        {
+          "blockedReason": "aguardando design",
+          "component": undefined,
+          "dependsOn": [],
+          "epicRef": "EP-1",
+          "feature": undefined,
+          "id": "LD-2",
+          "size": undefined,
+          "sprintId": "S1",
+          "status": "blocked",
+          "storyPoints": 3,
+          "tags": [],
+          "title": "Página de produto",
+        },
+      ],
+      "name": "Sprint 1",
+    },
+    {
+      "goal": undefined,
+      "id": "S2",
+      "items": [
+        {
+          "blockedReason": undefined,
+          "component": undefined,
+          "dependsOn": [],
+          "epicRef": undefined,
+          "feature": undefined,
+          "id": "LD-3",
+          "size": undefined,
+          "sprintId": "S2",
+          "status": "backlog",
+          "storyPoints": undefined,
+          "tags": [],
+          "title": "Carrinho",
+        },
+      ],
+      "name": "S2",
+    },
+  ],
+}
+`;
+
+exports[`round-trip — sprint-backlog.yaml (3 formatos aceitos) > modelo lido do formato plano de stories (snapshot) 1`] = `
+{
+  "items": [
+    {
+      "blockedReason": undefined,
+      "component": undefined,
+      "dependsOn": [],
+      "epicRef": undefined,
+      "feature": undefined,
+      "id": "ST-1",
+      "size": undefined,
+      "sprintId": "3",
+      "status": "review",
+      "storyPoints": undefined,
+      "tags": [],
+      "title": "Busca",
+    },
+    {
+      "blockedReason": undefined,
+      "component": undefined,
+      "dependsOn": [],
+      "epicRef": undefined,
+      "feature": undefined,
+      "id": "ST-2",
+      "size": undefined,
+      "sprintId": "3",
+      "status": "backlog",
+      "storyPoints": undefined,
+      "tags": [],
+      "title": "Filtros",
+    },
+  ],
+  "meta": undefined,
+  "sprints": [
+    {
+      "id": "3",
+      "items": [
+        {
+          "blockedReason": undefined,
+          "component": undefined,
+          "dependsOn": [],
+          "epicRef": undefined,
+          "feature": undefined,
+          "id": "ST-1",
+          "size": undefined,
+          "sprintId": "3",
+          "status": "review",
+          "storyPoints": undefined,
+          "tags": [],
+          "title": "Busca",
+        },
+        {
+          "blockedReason": undefined,
+          "component": undefined,
+          "dependsOn": [],
+          "epicRef": undefined,
+          "feature": undefined,
+          "id": "ST-2",
+          "size": undefined,
+          "sprintId": "3",
+          "status": "backlog",
+          "storyPoints": undefined,
+          "tags": [],
+          "title": "Filtros",
+        },
+      ],
+      "name": "loja-demo",
+    },
+  ],
+}
+`;
+
+exports[`round-trip — sprint-backlog.yaml (3 formatos aceitos) > modelo lido do formato plano por milestone (snapshot) 1`] = `
+{
+  "items": [
+    {
+      "blockedReason": undefined,
+      "component": undefined,
+      "dependsOn": [],
+      "epicRef": "M1",
+      "feature": undefined,
+      "id": "MS-1",
+      "size": undefined,
+      "sprintId": "M1",
+      "status": "done",
+      "storyPoints": undefined,
+      "tags": [],
+      "title": "Cadastro",
+    },
+    {
+      "blockedReason": undefined,
+      "component": undefined,
+      "dependsOn": [],
+      "epicRef": "M1",
+      "feature": undefined,
+      "id": "MS-2",
+      "size": undefined,
+      "sprintId": "M1",
+      "status": "backlog",
+      "storyPoints": undefined,
+      "tags": [],
+      "title": "Login",
+    },
+    {
+      "blockedReason": undefined,
+      "component": undefined,
+      "dependsOn": [],
+      "epicRef": undefined,
+      "feature": undefined,
+      "id": "MS-3",
+      "size": undefined,
+      "sprintId": "sem-milestone",
+      "status": "backlog",
+      "storyPoints": undefined,
+      "tags": [],
+      "title": "Sem marco",
+    },
+  ],
+  "meta": undefined,
+  "sprints": [
+    {
+      "goal": "MVP",
+      "id": "M1",
+      "items": [
+        {
+          "blockedReason": undefined,
+          "component": undefined,
+          "dependsOn": [],
+          "epicRef": "M1",
+          "feature": undefined,
+          "id": "MS-1",
+          "size": undefined,
+          "sprintId": "M1",
+          "status": "done",
+          "storyPoints": undefined,
+          "tags": [],
+          "title": "Cadastro",
+        },
+        {
+          "blockedReason": undefined,
+          "component": undefined,
+          "dependsOn": [],
+          "epicRef": "M1",
+          "feature": undefined,
+          "id": "MS-2",
+          "size": undefined,
+          "sprintId": "M1",
+          "status": "backlog",
+          "storyPoints": undefined,
+          "tags": [],
+          "title": "Login",
+        },
+      ],
+      "name": "Marco 1",
+    },
+    {
+      "goal": undefined,
+      "id": "sem-milestone",
+      "items": [
+        {
+          "blockedReason": undefined,
+          "component": undefined,
+          "dependsOn": [],
+          "epicRef": undefined,
+          "feature": undefined,
+          "id": "MS-3",
+          "size": undefined,
+          "sprintId": "sem-milestone",
+          "status": "backlog",
+          "storyPoints": undefined,
+          "tags": [],
+          "title": "Sem marco",
+        },
+      ],
+      "name": "sem-milestone",
+    },
+  ],
+}
+`;

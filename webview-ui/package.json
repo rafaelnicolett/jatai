@@ -1,0 +1,43 @@
+{
+  "name": "helyx-cockpit-webview",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && vite build -c vite.config.wizard.ts",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --force",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "tokens": "node scripts/build-tokens.mjs",
+    "tokens:check": "node scripts/build-tokens.mjs --check"
+  },
+  "dependencies": {
+    "lucide-react": "^1.25.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^3.10.0",
+    "use-sync-external-store": "^1.2.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/use-sync-external-store": "^1.5.0",
+    "@types/vscode-webview": "^1.57.5",
+    "@vitejs/plugin-react": "^4.3.0",
+    "axe-core": "^4.14.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "jsdom": "^24.0.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^8.58.2",
+    "vite": "^5.2.11",
+    "vitest": "^1.6.0"
+  }
+}

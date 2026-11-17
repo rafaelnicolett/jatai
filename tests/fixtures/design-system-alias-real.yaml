@@ -1,0 +1,486 @@
+# Fixture sintética (F2.3): mesma forma de um foundation-state real de um
+# assessment multi-repo, com nomes, datas e métricas fictícios.
+foundation:
+  run_id: foundation-2026-03-10
+  diagram_format: drawio
+  started_at: "2026-03-10T14:59:17Z"
+  scope: multi-repo
+  repos:
+    - acme-server-application
+    - acme-api
+    - acme-android
+    - acme-api-integracao-financeira
+  notes: >-
+    Todos os repositórios entregues como snapshots (has_history: false).
+    Análises temporais (hotspot, churn, código morto) indisponíveis — declarar
+    nos relatórios, nunca inferir.
+
+# Estado por repositório (fases scope: repo)
+repos:
+  acme-server-application:
+    phases:
+      tech-stack:
+        status: done
+        agent: "@tech-mapper"
+        completed_at: "2026-03-10T15:06:00Z"
+        artifacts:
+          - assessment/repos/acme-server-application/tech-stack/tech-radar.md
+        human_checklist:
+          stack-identified: true
+          deps-listed: true
+          runtime-versions: true
+          dockerfile-secret-flagged: true
+      arch:
+        status: done
+        agent: "@arch-discoverer"
+        completed_at: "2026-03-10T15:20:00Z"
+        artifacts:
+          - assessment/repos/acme-server-application/architecture/arch-discovery.md
+          - assessment/repos/acme-server-application/architecture/c4-context.md
+          - assessment/repos/acme-server-application/architecture/c4-container.md
+          - assessment/repos/acme-server-application/architecture/c4-component.md
+          - assessment/repos/acme-server-application/architecture/arch-discovery.drawio
+        human_checklist:
+          arch-pattern: true
+          c4-l1-context: true
+          c4-l2-container: true
+          c4-l3-component: true
+          diagram-generated: true    # drawio refeito com layout limpo após feedback
+          arch-skill-recommended: true
+          strangler-fig-confirmed: true
+      coding-archaeology:
+        status: done
+        agent: "@coding-archaeologist"
+        completed_at: "2026-03-10T15:45:00Z"
+        artifacts:
+          - assessment/repos/acme-server-application/coding-guidelines/project-coding-guide.md
+          - .claude/skills/coding-guidelines-acme-server-application/SKILL.md
+        human_checklist:
+          naming: true
+          module-structure: true
+          error-handling: true
+          test-patterns: true
+          logging: true
+          anti-patterns: true
+      quality:
+        status: done
+        agent: "@quality-auditor+@security-auditor+@test-coverage-mapper"
+        completed_at: "2026-03-10T15:57:00Z"
+        human_checklist:
+          coverage-measured: true
+          hotspots-identified: true
+          security-critical-ack: true
+          snapshot-limitation-ack: true
+      debt:
+        status: done
+        agent: "@debt-analyst"
+        completed_at: "2026-03-10T16:02:00Z"
+        artifacts:
+          - assessment/repos/acme-server-application/debt/tech-debt.md
+        human_checklist:
+          quick-wins-listed: true
+          prioritized-by-impact: true
+          critical-flagged: true
+    findings_summary:
+      critical: 4
+      high: 5
+      medium: 3
+      low: 2
+    gate_d1:
+      status: approved
+      approved_at: "2026-03-10T16:03:00Z"
+  acme-api:
+    phases:
+      tech-stack:
+        status: done
+        agent: "@tech-mapper"
+        completed_at: "2026-03-10T16:12:00Z"
+        artifacts:
+          - assessment/repos/acme-api/tech-stack/tech-radar.md
+        human_checklist:
+          stack-identified: true
+          deps-listed: true
+          shared-db-flagged: true
+          secrets-good-practice: true
+      arch:
+        status: done
+        agent: "@arch-discoverer"
+        completed_at: "2026-03-10T16:26:00Z"
+        artifacts:
+          - assessment/repos/acme-api/architecture/arch-discovery.md
+          - assessment/repos/acme-api/architecture/c4-context.md
+          - assessment/repos/acme-api/architecture/c4-container.md
+          - assessment/repos/acme-api/architecture/c4-component.md
+          - assessment/repos/acme-api/architecture/arch-discovery.drawio
+        human_checklist:
+          arch-pattern: true
+          c4-l1-context: true
+          c4-l2-container: true
+          c4-l3-component: true
+          diagram-generated: true
+          arch-skill-recommended: true
+          shared-db-bidirectional: true
+      coding-archaeology:
+        status: done
+        agent: "@coding-archaeologist"
+        completed_at: "2026-03-10T16:32:00Z"
+        artifacts:
+          - assessment/repos/acme-api/coding-guidelines/project-coding-guide.md
+          - .claude/skills/coding-guidelines-acme-api/SKILL.md
+        human_checklist:
+          naming: true
+          module-structure: true
+          error-handling: true
+          test-patterns: true
+          logging: true
+          anti-patterns: true
+      quality:
+        status: done
+        agent: "@quality-auditor+@security-auditor+@test-coverage-mapper"
+        completed_at: "2026-03-10T16:45:00Z"
+        artifacts:
+          - assessment/repos/acme-api/quality/quality-report.md
+          - assessment/repos/acme-api/quality/coverage-gaps.md
+          - assessment/repos/acme-api/security/security-report.md
+        findings_preview:
+          quality_score: 4
+          security: critical
+          security_counts: {critical: 4, high: 3, medium: 4, low: 3}
+          coverage: "handlers 2/10, controllers 0/20, repos 0/15"
+        human_checklist:
+          coverage-measured: true
+          hotspots-identified: true
+          security-critical-ack: true
+          snapshot-limitation-ack: true
+      debt:
+        status: done
+        agent: "@debt-analyst"
+        completed_at: "2026-03-10T16:50:00Z"
+        artifacts:
+          - assessment/repos/acme-api/debt/tech-debt.md
+        human_checklist:
+          quick-wins-listed: true
+          prioritized-by-impact: true
+          critical-flagged: true
+    findings_summary:
+      critical: 4
+      high: 4
+      medium: 3
+      low: 2
+    gate_d1:
+      status: approved
+      approved_at: "2026-03-10T16:51:00Z"
+  acme-android:
+    phases:
+      tech-stack:
+        status: done
+        agent: "@tech-mapper"
+        completed_at: "2026-03-10T16:55:00Z"
+        artifacts:
+          - assessment/repos/acme-android/tech-stack/tech-radar.md
+        human_checklist:
+          stack-identified: true
+          deps-listed: true
+          rxjava-dead-mvp-migration: true
+          apim-key-flagged: true
+      arch:
+        status: done
+        agent: "@arch-discoverer"
+        completed_at: "2026-03-10T17:08:00Z"
+        artifacts:
+          - assessment/repos/acme-android/architecture/arch-discovery.md
+          - assessment/repos/acme-android/architecture/c4-context.md
+          - assessment/repos/acme-android/architecture/c4-container.md
+          - assessment/repos/acme-android/architecture/c4-component.md
+          - assessment/repos/acme-android/architecture/arch-discovery.drawio
+        note: "MVVM 90% confirmado; falso-positivo MVP corrigido no tech-radar; drawio corrigido (faltava html=1)"
+        human_checklist:
+          arch-pattern: true
+          c4-l1-context: true
+          c4-l2-container: true
+          c4-l3-component: true
+          diagram-generated: true
+          arch-skill-recommended: true
+      coding-archaeology:
+        status: done
+        agent: "@coding-archaeologist"
+        completed_at: "2026-03-10T17:16:00Z"
+        artifacts:
+          - assessment/repos/acme-android/coding-guidelines/project-coding-guide.md
+          - .claude/skills/coding-guidelines-acme-android/SKILL.md
+        human_checklist:
+          naming: true
+          module-structure: true
+          error-handling: true
+          test-patterns: true
+          logging: true
+          anti-patterns: true
+      quality:
+        status: done
+        agent: "@quality-auditor+@security-auditor+@test-coverage-mapper"
+        completed_at: "2026-03-10T17:26:00Z"
+        artifacts:
+          - assessment/repos/acme-android/quality/quality-report.md
+          - assessment/repos/acme-android/quality/coverage-gaps.md
+          - assessment/repos/acme-android/security/security-report.md
+        findings_preview:
+          quality_score: 4.5
+          security: critical
+          security_counts: {critical: 3, high: 3, medium: 6, low: 3}
+          coverage: "viewmodels 0/8, repos 0/8, apis 0/6"
+        human_checklist:
+          coverage-measured: true
+          hotspots-identified: true
+          security-critical-ack: true
+          snapshot-limitation-ack: true
+      debt:
+        status: done
+        agent: "@debt-analyst"
+        completed_at: "2026-03-10T17:31:00Z"
+        artifacts:
+          - assessment/repos/acme-android/debt/tech-debt.md
+        human_checklist:
+          quick-wins-listed: true
+          prioritized-by-impact: true
+          critical-flagged: true
+      design-system:
+        status: done
+        agent: "@assessor"
+        skill: ui-ux-design-system
+        completed_at: "2026-03-12T00:00:00Z"
+        human_checklist:
+          tokens-extracted: true
+          components-cataloged: true
+          asset-inventory: true
+          flutter-handoff: true
+        note: "Passo suplementar pós-F1 (skill ui-ux-design-system passou a existir). Extração as-is do DS do app atual (tokens + inventário de assets); insumo para F0 do app Flutter. Read-only. Não reabre o Gate D1/F1."
+        includes_asset_inventory: true
+        artifacts:
+          - assessment/repos/acme-android/design-system/design-system.md
+          - assessment/repos/acme-android/design-system/design-tokens.json
+    findings_summary:
+      critical: 3
+      high: 4
+      medium: 4
+      low: 2
+    gate_d1:
+      status: approved
+      approved_at: "2026-03-10T17:32:00Z"
+  acme-api-integracao-financeira:
+    phases:
+      tech-stack:
+        status: done
+        agent: "@tech-mapper"
+        completed_at: "2026-03-10T17:42:00Z"
+        artifacts:
+          - assessment/repos/acme-api-integracao-financeira/tech-stack/tech-radar.md
+        human_checklist:
+          stack-identified: true
+          deps-listed: true
+          rails-callback-flagged: true
+          coverage-near-zero-flagged: true
+      arch:
+        status: agent-done
+        agent: "@arch-discoverer"
+        completed_at: "2026-03-10T17:52:00Z"
+        artifacts:
+          - assessment/repos/acme-api-integracao-financeira/architecture/arch-discovery.md
+          - assessment/repos/acme-api-integracao-financeira/architecture/c4-context.md
+          - assessment/repos/acme-api-integracao-financeira/architecture/c4-container.md
+          - assessment/repos/acme-api-integracao-financeira/architecture/c4-component.md
+          - assessment/repos/acme-api-integracao-financeira/architecture/arch-discovery.drawio
+        note: "sub-agente falhou por API error apos 3 C4; assessor completou arch-discovery.md + drawio (html=1 em todas as celulas)"
+        human_checklist:
+          arch-pattern: true
+          c4-l1-context: true
+          c4-l2-container: true
+          c4-l3-component: true
+          diagram-generated: true
+          arch-skill-recommended: true
+          shared-db-not-http: true
+      coding-archaeology:
+        status: done
+        agent: "@coding-archaeologist"
+        completed_at: "2026-03-10T17:58:00Z"
+        artifacts:
+          - assessment/repos/acme-api-integracao-financeira/coding-guidelines/project-coding-guide.md
+          - .claude/skills/coding-guidelines-acme-api-integracao-financeira/SKILL.md
+        human_checklist:
+          naming: true
+          module-structure: true
+          error-handling: true
+          test-patterns: true
+          logging: true
+          anti-patterns: true
+      quality:
+        status: done
+        agent: "@quality-auditor+@security-auditor+@test-coverage-mapper"
+        completed_at: "2026-03-10T18:12:00Z"
+        artifacts:
+          - assessment/repos/acme-api-integracao-financeira/quality/quality-report.md
+          - assessment/repos/acme-api-integracao-financeira/quality/coverage-gaps.md
+          - assessment/repos/acme-api-integracao-financeira/security/security-report.md
+        findings_preview:
+          quality_score: 3.5
+          security: critical
+          security_counts: {critical: 3, high: 5, medium: 3, low: 0}
+          coverage: "services 1/8, controllers 0/9, gateway de pagamento 0 (sem projeto de teste)"
+        human_checklist:
+          coverage-measured: true
+          hotspots-identified: true
+          security-critical-ack: true
+          snapshot-limitation-ack: true
+      debt:
+        status: done
+        agent: "@debt-analyst"
+        completed_at: "2026-03-10T18:18:00Z"
+        artifacts:
+          - assessment/repos/acme-api-integracao-financeira/debt/tech-debt.md
+        human_checklist:
+          quick-wins-listed: true
+          prioritized-by-impact: true
+          critical-flagged: true
+    findings_summary:
+      critical: 4
+      high: 4
+      medium: 3
+      low: 2
+    gate_d1:
+      status: approved
+      approved_at: "2026-03-10T18:19:00Z"
+
+# Estado cross-repo (fases scope: workspace)
+phases:
+  dependency-graph:
+    status: done
+    agent: "@dependency-mapper"
+    completed_at: "2026-03-10T18:25:00Z"
+    artifacts:
+      - assessment/repo-graph.yaml
+      - assessment/repo-graph.md
+    human_checklist:
+      edges-verified: true
+      cycles-confirmed: true
+      db-coupling-flagged: true
+      leaf-identified: true
+  domain:
+    status: done
+    agent: "@domain-extractor"
+    completed_at: "2026-03-10T18:40:00Z"
+    artifacts:
+      - assessment/domain/context-map.md
+      - assessment/domain/ubiquitous-language.md
+      - assessment/domain/aggregates.md
+      - assessment/domain/business-rules.md
+      - assessment/domain/domain-events.md
+      - assessment/domain/gaps.md
+      - context-repos.yaml
+    contexts_count: 12
+    human_checklist:
+      context-map: true
+      ubiquitous-language: true
+      aggregates: true
+      business-rules: true
+      domain-events: true
+      gaps: true
+      contexts-accepted: 12
+  wiki-synthesis:
+    status: done
+    agent: "@assessor"
+    completed_at: "2026-03-10T18:56:00Z"
+    agents_generated: 12
+    artifacts:
+      - .claude/agents/domain/*.agent.md
+      - .github/artifacts/registry.yaml
+    human_checklist:
+      agents-generated: true
+      registry-updated: true
+      sections-populated: true
+  business-context:
+    status: agent-done
+    agent: "@business-archeologist"
+    completed_at: "2026-03-10T18:58:00Z"
+    artifacts:
+      - assessment/business/business-context.md
+      - assessment/business/stakeholder-interview.md
+      - assessment/business/baseline-metrics.json
+  interview:
+    status: done
+    agent: "@business-archeologist"
+    completed_at: "2026-03-10T18:58:00Z"
+    human_checklist:
+      jtbd-mapped: true
+      personas-validated: true
+      value-stream-clear: true
+      answers-recorded: true
+      pains-prioritized: true
+  business-context-done:
+    status: done
+    human_checklist:
+      jtbd-mapped: true
+      personas-validated: true
+      value-stream-clear: true
+  maturity:
+    status: agent-done
+    agent: "@maturity-assessor"
+    completed_at: "2026-03-10T19:08:00Z"
+    artifacts:
+      - assessment/maturity/maturity-scorecard.md
+      - assessment/maturity/maturity-owasp-asvs.md
+      - assessment/maturity/maturity-owasp-samm.md
+      - assessment/maturity/maturity-tech-radar.md
+      - assessment/maturity/maturity-dora-capabilities.md
+      - assessment/maturity/maturity-dora-4keys.md
+      - assessment/maturity/maturity-spotify-health.md
+    scores:
+      owasp-asvs: "FAIL L1"
+      owasp-samm: "0.4/3"
+      dora-capabilities: "0.8/4"
+      dora-4keys: "not_assessable_from_snapshot"
+      spotify-health: "requires_human_session"
+    human_checklist:
+      score-calculated: true
+      benchmarks-referenced: true
+      gaps-prioritized: true
+  report:
+    status: done
+    agent: "@assessor"
+    completed_at: "2026-03-10T19:14:00Z"
+    artifacts:
+      - assessment/report.md
+    human_checklist:
+      exec-summary: true
+      dimension-scores: true
+      execution-recommendation: true
+      subreport-links: true
+  baseline:
+    status: done
+    agent: "@assessor"
+    completed_at: "2026-03-10T19:14:00Z"
+    artifacts:
+      - assessment/business/baseline-metrics.json
+    human_checklist:
+      baseline-json-generated: true
+      score-calculated: true
+      report-consolidated: true
+  skill-linking:
+    status: done
+    agent: "@assessor"
+    completed_at: "2026-03-10T19:20:00Z"
+    artifacts:
+      - ai-sdk.config.yaml
+      - repos.yaml
+    note: "Skills ativas = apenas padrão dominante por repo (fato). Complementares movidas para modernization_candidates (disponíveis, não ativas) por decisão do usuário."
+    human_checklist:
+      backend-skills-confirmed: true
+      frontend-skills-confirmed: true
+      config-written: true
+      complementary-as-candidates: true
+
+gate_f1:
+  status: declared
+  declared_at: "2026-03-10T19:22:00Z"
+  repos_with_d1: 4
+  bounded_contexts_accepted: 12
+  domain_agents_generated: 12
+  note: "Foundation concluída. Workspace liberado para iniciativas feature/modernization/hotfix."

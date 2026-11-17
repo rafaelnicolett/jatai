@@ -1,0 +1,3 @@
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"gf-alfa","artifact_path":".github/artifacts/initiatives.yaml","harness":"cli","message":"iniciativa 'gf-alfa' criada/atualizada"}
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"gf-alfa","artifact_path":".github/artifacts/initiatives.yaml","harness":"cli","message":"iniciativa 'gf-alfa' criada/atualizada (done)"}
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"gf-alfa","artifact_path":".github/artifacts/initiatives.yaml","harness":"cli","message":"iniciativa 'gf-alfa' criada/atualizada (done)"}

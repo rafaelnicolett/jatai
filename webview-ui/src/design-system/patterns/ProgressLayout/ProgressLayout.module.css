@@ -1,0 +1,32 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  padding: var(--jt-space-4) var(--jt-space-6) var(--jt-space-6);
+}
+
+.eventsColumn {
+  width: 320px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--jt-line);
+  min-height: 0;
+}
+
+@media (max-width: 1100px) {
+  .eventsColumn {
+    display: none;
+  }
+}

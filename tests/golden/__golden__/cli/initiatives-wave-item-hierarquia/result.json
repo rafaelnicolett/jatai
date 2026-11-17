@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-wave-item-hierarquia",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "mod-beta"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "mod-beta",
+        "--wave",
+        "E1",
+        "--item",
+        "F1.1",
+        "--status",
+        "done",
+        "--hierarchy",
+        "epic-feature-backlog-task"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta",
+        "wave": "E1",
+        "item": "F1.1",
+        "status": "done"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "mod-beta",
+        "--wave",
+        "wave-1",
+        "--item",
+        "item-1.1",
+        "--status",
+        "done",
+        "--hierarchy",
+        "legacy"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta",
+        "wave": "wave-1",
+        "item": "item-1.1",
+        "status": "done"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "mod-beta",
+        "--wave",
+        "wave-1",
+        "--item",
+        "item-1.1",
+        "--status",
+        "done",
+        "--hierarchy",
+        "arvore"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --hierarchy: 'arvore'",
+          "field": "hierarchy",
+          "value": "arvore",
+          "allowed": [
+            "legacy",
+            "epic-feature-backlog-task"
+          ]
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 215 cd2e323a88b21790da53c5cfdcb3fa4538ca9df79478f16d88f25c4870ef3413 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/mod-beta.jsonl": "file 100644 777 9ea08dc47c417146a6475583756df4f338f9e63df9c1d5638bb8a3ac4fd941d7 text"
+  }
+}

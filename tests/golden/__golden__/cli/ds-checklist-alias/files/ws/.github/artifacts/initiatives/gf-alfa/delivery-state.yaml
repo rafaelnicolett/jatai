@@ -1,0 +1,5 @@
+phases:
+  sprint-planner:
+    status: in-progress
+    human_checklist:
+      backlog-ok: true

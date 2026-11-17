@@ -1,0 +1,9 @@
+
+phases:
+  business:
+    status: in-progress
+    human_checklist:
+      problem-section: true
+      kpi-defined: true
+    checklist:
+      lint-ok: true

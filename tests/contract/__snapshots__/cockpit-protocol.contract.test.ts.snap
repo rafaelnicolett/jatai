@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`contrato — protocolo Cockpit, webview → host > snapshot das 26 mensagens declaradas em WebviewToHostMessage (ordem de declaração) 1`] = `
+[
+  "shell/ready",
+  "shell/requestSnapshot",
+  "injectPrompt",
+  "injectRaw",
+  "runCommand",
+  "openChat",
+  "openWizard",
+  "openImportWizard",
+  "openFile",
+  "refresh",
+  "switchInitiative",
+  "newInitiative",
+  "skipTutorial",
+  "resetTutorial",
+  "markPhaseDone",
+  "toggleGuardRail",
+  "approveAndAdvancePhase",
+  "guardRailAction",
+  "toggleFoundationGuardRail",
+  "approveWaveItem",
+  "approveGateD1",
+  "approveSprintItem",
+  "notifications/markSeen",
+  "openArtifactDiff",
+  "gates/approve",
+  "decisions/record",
+]
+`;
+
+exports[`contrato — protocolo Cockpit, webview → host > snapshot do que o webview emite hoje (18 tipos) 1`] = `
+[
+  "approveAndAdvancePhase",
+  "approveSprintItem",
+  "approveWaveItem",
+  "decisions/record",
+  "gates/approve",
+  "injectRaw",
+  "newInitiative",
+  "notifications/markSeen",
+  "openArtifactDiff",
+  "openChat",
+  "openFile",
+  "refresh",
+  "runCommand",
+  "shell/ready",
+  "shell/requestSnapshot",
+  "switchInitiative",
+  "toggleFoundationGuardRail",
+  "toggleGuardRail",
+]
+`;

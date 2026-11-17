@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "scenario": "ds-upsert-phase-iniciativa-completo",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--initiative",
+        "gf-alfa",
+        "--phase",
+        "product",
+        "--status",
+        "done",
+        "--agent",
+        "@product",
+        "--completed-at",
+        "2026-01-02T10:00:00Z",
+        "--artifact",
+        "docs/prd.md",
+        "--artifact",
+        "docs/visao.md"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives/gf-alfa/delivery-state.yaml",
+        "changed": true,
+        "phase": "product",
+        "status": "done"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--initiative",
+        "gf-alfa",
+        "--phase",
+        "product",
+        "--status",
+        "done",
+        "--artifact",
+        "docs/prd-v2.md"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives/gf-alfa/delivery-state.yaml",
+        "changed": true,
+        "phase": "product",
+        "status": "done"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives/": "dir",
+    "ws/.github/artifacts/initiatives/gf-alfa/": "dir",
+    "ws/.github/artifacts/initiatives/gf-alfa/delivery-state.yaml": "file 100644 145 11141a4458de0f3ab1e3414c9acb23f1f988a27181003f6e31f1235e3ef1193c text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 530 f95f62bbfea84c5d395206f17764e5b1b378888f5b40041cb0a499f13505c294 text"
+  }
+}

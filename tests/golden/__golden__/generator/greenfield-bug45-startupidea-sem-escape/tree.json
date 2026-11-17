@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "case": "greenfield-bug45-startupidea-sem-escape",
+  "base": "greenfield-claude-padrao",
+  "input": {
+    "projectName": "orbita",
+    "startupIdea": "Agenda \"fictícia\" de testes\ncom segunda linha",
+    "deliveryMode": "full-cycle",
+    "hostAdapter": "claude",
+    "backendStack": "python-api",
+    "backendArchitecture": "hexagonal",
+    "frontendStack": "flutter",
+    "database": "postgresql",
+    "cloud": "none",
+    "cicd": "github-actions"
+  },
+  "outcome": {
+    "resolved": {
+      "isLocal": true
+    }
+  },
+  "calls": [],
+  "entries": {
+    "projeto/AGENTS.md": "file 100644 1065 1727f61ee03a90b87e7b46b58d44ae09bb2553f2c423aa2eee535783fde7112d text",
+    "projeto/CLAUDE.md": "file 100644 1606 36196721673013c3501707b75da71db6113fe937ed7bbc87a15d39bbbb108063 text",
+    "projeto/code/apps/": "dir",
+    "projeto/code/apps/orbita-web/": "dir",
+    "projeto/code/apps/orbita-web/.gitignore": "file 100644 66 a9e4f8ab9fcb0faefeb7083cd2d5d877c19f865c866f04972ee6d5645cb227a4 text",
+    "projeto/code/apps/orbita-web/README.md": "file 100644 269 c93f2930cb9a846538109c2b381a7de2eb4a2200f11127806b2e1fd3e0b3e9cd text",
+    "projeto/code/apps/orbita-web/lib/": "dir",
+    "projeto/code/apps/orbita-web/lib/features/": "dir",
+    "projeto/code/apps/orbita-web/lib/main.dart": "file 100644 322 c8f948826e0e1fea3f9730e019c1d2c799b55c508a767ee289e1f16a68bf9f7b text",
+    "projeto/code/apps/orbita-web/lib/shared/": "dir",
+    "projeto/code/apps/orbita-web/pubspec.yaml": "file 100644 400 9b1fb07d71a7452620527af9923604fd19545c03d8e7e50ba07e47e55dd6ab40 text",
+    "projeto/code/apps/orbita-web/test/": "dir",
+    "projeto/code/services/orbita-api/pyproject.toml": "file 100644 608 5fb0dc77b81add435fc3e7ceeb1011e109d19a22ccbda9e74b60bbf02868a76f text",
+    "projeto/code/services/orbita-api/src/main.py": "file 100644 658 e1bd372baea9fbd5a14a2bb24965f6140bb29b223ab4470c442c12702f67fb21 text",
+    "projeto/docs/domain/bounded-contexts.md": "file 100644 1688 4e6db60c934015c1537e081c31e62321fd0fe963d8a1c65d4c91c2af6246bce3 text",
+    "projeto/helyx.config.yaml": "file 100644 743 4682042e653e3d90439474c346e8b3a4359619a83cfced4b4fe8f72d0febb131 text"
+  }
+}

@@ -1,0 +1,68 @@
+# VSCode Extension — Ignore list for packaging
+
+# Source files (don't ship)
+src/
+tests/
+scripts/
+coverage/
+.eslintrc.json
+.dependency-cruiser.cjs
+.gitignore
+tsconfig.json
+vitest.config.ts
+*.vsix
+**/*.tsbuildinfo
+**/*.bak
+**/.DS_Store
+
+# Workflows do CI (F0.3). O `.github` da lista padrão do vsce só casa com o
+# próprio nome, não com os arquivos de dentro: sem esta linha,
+# .github/workflows/*.yml iam no .vsix (o scripts/vsix-check.mjs pegou).
+# Também deixa de fora os templates de issue e PR, as labels e o CODEOWNERS (F7.3).
+.github/
+
+# Documentos de comunidade (F7.3). Servem a quem contribui no GitHub, não a quem
+# instala a extensão. Da raiz, o .vsix só leva README, CHANGELOG, LICENSE e
+# THIRD_PARTY_NOTICES (allowlist do scripts/vsix-check.mjs).
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+GOVERNANCE.md
+MAINTAINERS.md
+
+# Documentação do repositório (F1.1: guia de identidade visual). Serve a quem
+# lê no GitHub, não a quem instala; o scripts/vsix-check.mjs reprovaria docs/.
+docs/
+
+# Workspace demo (F7.4): as fixtures em demo/ e o workspace gerado em .demo/ servem
+# a quem contribui e a quem documenta, não a quem instala a extensão.
+demo/
+.demo/
+
+# Cockpit Next webview: só o build (dist/webview/) importa — a fonte e o
+# node_modules próprio de webview-ui/ nunca vão pro .vsix.
+webview-ui/
+
+# Dev dependencies
+node_modules/
+
+# Source maps não vão no pacote. Antes só `dist/*.map` (raiz) era excluído,
+# e dist/mcp/server.js.map e templates/scripts/helyx-state.cjs.map iam junto.
+**/*.map
+
+# dist/: só o que o build atual produz. As saídas antigas de `tsc` (uma por
+# módulo, ~300 arquivos no 0.9.10) ficam de fora mesmo que existam em disco.
+dist/**
+!dist/extension.js
+!dist/webview/**
+# As edições do kit, materializadas de kit/ pelo build (ADR-0018): o gerador as
+# lê em runtime (dist/kit/templates/, dist/kit/brownfield-templates/).
+!dist/kit/**
+
+# Fonte única do kit (F3.5, ADR-0018). O pacote leva as edições materializadas
+# (dist/kit/, acima), que o gerador lê; a fonte fica de fora.
+kit/
+
+# Fontes e variantes da marca (F1.1): ficam no repositório, mas a extensão não
+# usa nenhuma em runtime. O pacote leva só o ícone e o glifo referenciados.
+media/brand/**

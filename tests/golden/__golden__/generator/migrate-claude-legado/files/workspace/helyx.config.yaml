@@ -1,0 +1,6 @@
+# Config do workspace fictício (comentário do usuário)
+version: "1.0.0"
+kit_version: "<KIT_VERSION>"   # versão da Helyx que instalou esta estrutura
+host_adapter: "claude"
+project:
+  name: "ws-legado"   # não perder

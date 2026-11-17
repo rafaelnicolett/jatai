@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "case": "brownfield-claude-workspace-existente",
+  "base": "brownfield-claude-padrao",
+  "input": {
+    "hostAdapter": "claude",
+    "projectName": "orbita-ws",
+    "maturityFrameworks": null,
+    "preexisting": [
+      ".claude/agents/domain/agendamento.agent.md",
+      ".claude/agents/helyx.agent.md",
+      ".claude/settings.json",
+      ".github/artifacts/assessment/.gitkeep",
+      ".github/artifacts/assessment/foundation-state.yaml",
+      ".gitignore",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "docs/input/README.md",
+      "docs/input/contrato-ficticio.md",
+      "helyx.config.yaml",
+      "repos/app-ficticio/README.md"
+    ]
+  },
+  "outcome": {
+    "resolved": true
+  },
+  "calls": null,
+  "entries": {
+    "workspace/.claude/agents/domain/": "dir",
+    "workspace/.claude/agents/domain/agendamento.agent.md": "file 100644 115 a73c3d43b6575cffdad7e21f00aefae627ddf2748a49c8e968f630f1886e4389 text",
+    "workspace/.claude/agents/helyx.agent.md": "file 100644 41 6af381f5f0663e025db9265f9f27d9370bf08e14ebfd1117572585e6ef1f6acd text",
+    "workspace/.claude/settings.json": "file 100644 968 c2a0d191549c71e3d4543c3afa832e8a2d39f0ff5df902a36596493de5562c28 text",
+    "workspace/.github/artifacts/assessment/.gitkeep": "file 100644 22 897bf7e418a9b15debba3ae23ffd1148c0bb76eaa9d71ddaefb89dc026f3857a text",
+    "workspace/.github/artifacts/assessment/foundation-state.yaml": "file 100644 39 c7fb854846049dbdfb9ba43385eae69460ee84118fde6ba26f94897cf2bbd1b0 text",
+    "workspace/.gitignore": "file 100644 436 30b82d15243eae13cf815f4bfea904c0f1828dd3529acf4f12f8eccdde6e2cc1 text",
+    "workspace/AGENTS.md": "file 100644 44 f3fdf05c016f2b2332cc63dc2fbb77885bfd265f7bc22cf95ef11e67bfd97e79 text",
+    "workspace/CLAUDE.md": "file 100644 49 f8d223be6008b5ad0a2238f11e96ac6bc2b3bfd95286d1bf14b473aaa86a3c62 text",
+    "workspace/docs/input/README.md": "file 100644 35 e4c25162d875c54729b0ac5f1dda719511133cb97466721e5c10b2beb751b8ee text",
+    "workspace/docs/input/contrato-ficticio.md": "file 100644 21 e14b0c0ff1a3a9b5ddf6a7e6921d3072d7c2221bb24b06ba98638fcbc85f7e5a text",
+    "workspace/helyx.config.yaml": "file 100644 128 e6d268b90b25eaa461764a5513fd18cb3e3034c21318ef64345894f6cf1025f2 text",
+    "workspace/repos/app-ficticio/": "dir",
+    "workspace/repos/app-ficticio/README.md": "file 100644 36 72c48df3a2a7ce6fed5bf0d38569f77ac0420d272b135f009708bad62a684a23 text"
+  }
+}

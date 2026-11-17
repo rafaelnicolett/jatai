@@ -1,0 +1,49 @@
+{
+  "name": "jatai",
+  "displayName": "Jataí",
+  "package": {
+    "name": "jatai"
+  },
+  "commandPrefix": "jatai",
+  "configSection": "jatai",
+  "participant": {
+    "id": "jatai.concierge",
+    "name": "jatai"
+  },
+  "guide": {
+    "name": "guia",
+    "fullName": "Guia da Jataí"
+  },
+  "files": {
+    "config": "jatai.config.yaml",
+    "cli": "jatai-state.cjs",
+    "orchestratorAgent": "jatai.agent.md",
+    "slashCommand": "jatai.md"
+  },
+  "cliName": "jatai-state",
+  "mcpServerName": "jatai-state-service",
+  "envPrefix": "JATAI_",
+  "templatePrefix": "jatai-template-",
+  "gitignoreMarker": "jatai:repos-versionado-por-decisao-explicita",
+  "urls": {
+    "homepage": "https://jatai.io",
+    "repository": "https://github.com/rafaelnicolett/jatai.git",
+    "issues": "https://github.com/rafaelnicolett/jatai/issues"
+  },
+  "assets": {
+    "icon": "media/jatai-icon-color.png",
+    "activityBarIcon": "media/jatai-icon.svg",
+    "iconFont": "media/fonts/jatai-icons.woff"
+  },
+  "legacy": {
+    "names": ["helyx"],
+    "displayNames": ["Helyx"],
+    "configFiles": ["helyx.config.yaml", "ai-sdk.config.yaml"],
+    "cliFiles": ["helyx-state.cjs"],
+    "orchestratorAgents": ["helyx.agent.md"],
+    "slashCommands": ["helyx.md"],
+    "participants": ["helyx"],
+    "envPrefixes": ["HELYX_"],
+    "gitignoreMarkers": ["helyx:repos-versionado-por-decisao-explicita"]
+  }
+}

@@ -1,0 +1,12 @@
+initiatives:
+  - id: "mod-beta"
+    name: "mod-beta"
+    status: "planned"
+    epic_status:
+      E1:
+        F1.1:
+          status: "done"
+    wave_status:
+      wave-1:
+        item-1.1:
+          status: "done"

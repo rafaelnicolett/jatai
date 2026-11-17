@@ -1,0 +1,14 @@
+# Seletor de issues (F7.3). Sem issue em branco: os três templates (bug, feature
+# e pergunta) cobrem os casos, e os links abaixo levam ao canal certo quando
+# o assunto não é para issue pública.
+blank_issues_enabled: false
+contact_links:
+  - name: Relatar uma vulnerabilidade de segurança
+    url: https://github.com/rafaelnicolett/jatai/security/advisories/new
+    about: Em privado, pelo próprio GitHub. Nunca em issue pública.
+  - name: Relatar um problema de conduta
+    url: https://github.com/rafaelnicolett/jatai/blob/main/CODE_OF_CONDUCT.md
+    about: Como relatar em sigilo. Não use issue pública.
+  - name: Como contribuir
+    url: https://github.com/rafaelnicolett/jatai/blob/main/CONTRIBUTING.md
+    about: Ambiente, regras da casa e como abrir um PR.

@@ -1,0 +1,168 @@
+{
+  "schema": 1,
+  "scenario": "leitura-initiatives-e-delivery-state",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "get"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "state": {
+          "active": "gf-alfa",
+          "initiatives": [
+            {
+              "id": "gf-alfa",
+              "name": "Projeto Alfa",
+              "status": "in-progress",
+              "mode": "greenfield",
+              "current_phase": "business"
+            },
+            {
+              "id": "mod-beta",
+              "name": "Modernização Beta",
+              "status": "planned",
+              "type": "modernization"
+            }
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "get",
+        "--id",
+        "mod-beta"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "initiative": {
+          "id": "mod-beta",
+          "name": "Modernização Beta",
+          "status": "planned",
+          "type": "modernization"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "get",
+        "--id",
+        "nao-existe"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INITIATIVE_NOT_FOUND",
+          "message": "iniciativa 'nao-existe' não existe em initiatives.yaml",
+          "id": "nao-existe"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "get",
+        "--global"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "state": {
+          "phases": {
+            "business": {
+              "status": "done",
+              "human_checklist": {}
+            },
+            "product": {
+              "status": "in-progress",
+              "human_checklist": {}
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "get",
+        "--global",
+        "--phase",
+        "product"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "phase": "product",
+        "state": {
+          "status": "in-progress",
+          "human_checklist": {}
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "get",
+        "--global",
+        "--phase",
+        "qa"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "PHASE_NOT_FOUND",
+          "message": "fase 'qa' não existe em <SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+          "phase": "qa"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "get"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_SCOPE",
+          "message": "informe --global ou --initiative <id>"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 95 d62ab40a37518b27f62e977fc3f4788800185d0bfddb074a6025bcfe8a2809eb text",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 299 e0360edde4c8379f29d619ac12de18f44b7a1151d147d102191438f7b4bd4a31 text"
+  }
+}

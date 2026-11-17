@@ -1,0 +1,123 @@
+/* Lista de potes do DS v2 (§4.4): linha de 48px, pote de 26 × 32, seleção em azul. */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  min-width: 0;
+  padding: var(--jt-space-4);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-surface);
+}
+
+.heading {
+  padding: var(--jt-space-0-5) var(--jt-space-2) var(--jt-space-2);
+  font: var(--jt-type-eyebrow);
+  letter-spacing: var(--jt-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--jt-fg-3);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--jt-space-3);
+  width: 100%;
+  min-height: var(--jt-size-control-xl);
+  padding: var(--jt-space-2);
+  /* A borda existe sempre (transparente), então selecionar não desloca nada. */
+  border: 2px solid transparent;
+  border-radius: var(--jt-radius-lg);
+  background: transparent;
+  color: var(--jt-fg);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--jt-dur-fast) var(--jt-ease-standard);
+}
+@media (hover: hover) {
+  .pot:hover { background: var(--jt-surface-2); }
+}
+.pot:focus-visible {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+}
+.pot[data-selected="true"] {
+  background: var(--jt-surface-2);
+  border-color: var(--jt-selected);
+}
+.pot[data-selected="true"] .label { font-weight: var(--jt-weight-semibold); }
+
+.text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.label { font: var(--jt-type-body-strong); }
+.tag { font: var(--jt-type-meta); color: var(--jt-fg-3); }
+
+.mark { margin-left: auto; flex: none; }
+
+/* O pote: tampa de 4px, corpo de borda 2px com a forma do pote e o mel na altura do progresso. */
+.glyph {
+  position: relative;
+  flex: none;
+  width: var(--jt-size-pot-w);
+  height: var(--jt-size-pot-h);
+}
+.lid {
+  position: absolute;
+  top: 0;
+  left: var(--jt-space-1);
+  right: var(--jt-space-1);
+  height: var(--jt-space-1);
+  border-radius: var(--jt-radius-xs);
+  background: var(--jt-pot-outline);
+}
+.body {
+  position: absolute;
+  top: var(--jt-space-1);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 2px solid var(--jt-pot-outline);
+  border-radius: var(--jt-radius-pot);
+}
+.honey {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--jt-pot-fill);
+  /* O mel sobe uma vez, quando o progresso muda (atividade do sistema); o movimento reduzido zera a duração. */
+  transition: height var(--jt-dur-fill) var(--jt-ease-standard);
+}
+.honey[data-meniscus="true"] { border-top: 2px solid var(--jt-pot-meniscus); }
+
+/* Prateleira (painel dividido): uma linha com rolagem e encaixe. */
+.nav[data-layout="shelf"] .list {
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+.nav[data-layout="shelf"] .list > li { flex: 0 0 auto; scroll-snap-align: start; }
+.nav[data-layout="shelf"] .pot { width: auto; }
+
+@media (forced-colors: active) {
+  .pot[data-selected="true"] { border-color: Highlight; }
+  .body { border-color: CanvasText; }
+  .honey { background: CanvasText; }
+  .lid { background: CanvasText; }
+}

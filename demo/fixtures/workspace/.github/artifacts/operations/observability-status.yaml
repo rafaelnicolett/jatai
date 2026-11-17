@@ -1,0 +1,15 @@
+# Saúde dos serviços do workspace demo, escrita pelo @observability.
+updated_at: "2026-10-05T15:24:30Z"
+repos:
+  biblioteca-api:
+    health_checks:
+      - service: "GET /livros"
+        status: healthy
+      - service: "POST /emprestimos"
+        status: healthy
+    active_alerts: []
+  biblioteca-web:
+    health_checks:
+      - service: "portal"
+        status: healthy
+    active_alerts: []

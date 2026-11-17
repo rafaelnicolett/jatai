@@ -1,0 +1,70 @@
+{
+  "$comment": [
+    "Lista de conteúdo proibido do content-scan (F2.3, ADR-0014). Só o SHA-256 de cada termo normalizado.",
+    "Para incluir um termo: node scripts/content-scan.mjs --hash \"<termo>\" e acrescente {id, category, sha256}.",
+    "Nunca escreva o termo em texto claro neste repositório (nem em commit, teste ou comentário).",
+    "Categorias: cliente (dado de cliente real), terceiro (conteúdo pago ou protegido de terceiro), comercial-interno (iniciativas internas que não são do produto aberto)."
+  ],
+  "terms": [
+    {
+      "id": "C01",
+      "category": "cliente",
+      "sha256": "f8a0331f67b4e883a7d2c7fdeef8f3df0facf9b64df762b05f33379c074453b2"
+    },
+    {
+      "id": "C02",
+      "category": "cliente",
+      "sha256": "c93a684cb2ce72284bb92dcf8d9e4d7a90b927b8cfe6de7bef163a991eb01b24"
+    },
+    {
+      "id": "C03",
+      "category": "cliente",
+      "sha256": "978fec0b31ee79deb7f78891e05e3056c3c4d2db74eef61c66db25158d2922b5"
+    },
+    {
+      "id": "C04",
+      "category": "cliente",
+      "sha256": "0d97d9ccc49dc163bc7f7862a2f980cfd11514c43bb101bf3f5be7566c5652f0"
+    },
+    {
+      "id": "C05",
+      "category": "cliente",
+      "sha256": "286eda253d4debb8f6935429a57ae980949431c664c30333b2f8b0e862c5c162"
+    },
+    {
+      "id": "C06",
+      "category": "cliente",
+      "sha256": "230818ef132cb601233c92ad53718b703e59c263dd5722332a38916ebd6f39e8"
+    },
+    {
+      "id": "T01",
+      "category": "terceiro",
+      "sha256": "4fad1db90e017ace2bd52cf5ecca8405263138c13224c94ee158abbd86cfde61"
+    },
+    {
+      "id": "T02",
+      "category": "terceiro",
+      "sha256": "f86cd4966c8c53c86cfa0bc1f309652fcd3e6ee7f8d20ec25e777c19aeecc7bb"
+    },
+    {
+      "id": "T03",
+      "category": "terceiro",
+      "sha256": "9c98d90b3de28e3dce444833cdabfceae9aad49e9850bd91f462391127b248f9"
+    },
+    {
+      "id": "T04",
+      "category": "terceiro",
+      "sha256": "8d3122322cef7c7ce72258b5d3036bef30b848f3f470184eae20f6c6317c58e0"
+    },
+    {
+      "id": "K01",
+      "category": "comercial-interno",
+      "sha256": "5caa879de43f2344672be8e0ffa3631b651e73f728bc2a051b3ae3c02f15fe35"
+    },
+    {
+      "id": "K02",
+      "category": "comercial-interno",
+      "sha256": "8faa83f14a30b405ab9bd0605d7a5f2a27b5c4fd6b1414a5bc9df0fffc90cdda"
+    }
+  ]
+}

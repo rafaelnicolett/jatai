@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "scenario": "ds-lock-orfao-velho",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "product",
+        "--status",
+        "done"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "product",
+        "status": "done"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 88 be61a889af2af6b39fe24cb7dbf36f2f25e4598553c9b1161ae4b6020f99d184 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 208 3fc4225756377b3bb484126595b8bfa4cfcf7d79d6a174caa6317eb9b8de5284 text"
+  }
+}

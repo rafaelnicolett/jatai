@@ -1,0 +1,7 @@
+repos:
+  - id: app-a
+    source: local-path
+    path: repos/app-a
+  - id: app-b
+    source: local-path
+    path: repos/app-b

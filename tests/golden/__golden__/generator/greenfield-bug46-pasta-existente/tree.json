@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "case": "greenfield-bug46-pasta-existente",
+  "base": "greenfield-copilot-padrao",
+  "input": {
+    "projectName": "orbita",
+    "deliveryMode": "full-cycle",
+    "hostAdapter": "copilot",
+    "backendStack": "python-api",
+    "backendArchitecture": "hexagonal",
+    "frontendStack": "none",
+    "database": "postgresql",
+    "cloud": "none",
+    "cicd": "github-actions"
+  },
+  "outcome": {
+    "resolved": {
+      "isLocal": true
+    }
+  },
+  "calls": [],
+  "entries": {
+    "projeto/notas-do-usuario.md": "file 100644 42 4d6fd685aee54593a1b7c13f72968ddd88a8694123e9c99830fb8167915bbe59 text"
+  }
+}

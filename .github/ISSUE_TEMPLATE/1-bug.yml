@@ -1,0 +1,114 @@
+name: Relatar um bug
+description: Algo na Jataí não funciona como deveria, inclusive na documentação.
+title: "[bug] "
+labels: ["tipo: bug", "triagem"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por relatar. Quanto mais fácil for reproduzir, mais rápido dá para corrigir.
+
+        - **Vulnerabilidade de segurança não vem aqui.** Relate em privado, como explica o [SECURITY.md](https://github.com/rafaelnicolett/jatai/blob/main/SECURITY.md).
+        - Antes de colar log ou print, apague tokens, caminhos com o seu nome e qualquer dado de cliente.
+
+  - type: textarea
+    id: o-que-aconteceu
+    attributes:
+      label: O que aconteceu
+      description: Descreva o problema. Se houver mensagem de erro, copie o texto.
+    validations:
+      required: true
+
+  - type: textarea
+    id: o-que-esperava
+    attributes:
+      label: O que você esperava
+    validations:
+      required: true
+
+  - type: textarea
+    id: passos
+    attributes:
+      label: Passos para reproduzir
+      description: De preferência num workspace de teste, com dados fictícios.
+      placeholder: |
+        1. Abro uma pasta vazia no VS Code
+        2. Rodo o Wizard e escolho "projeto novo"
+        3. ...
+    validations:
+      required: true
+
+  - type: input
+    id: versao
+    attributes:
+      label: Versão da Jataí
+      description: No VS Code, abra Extensões e procure a Jataí. A versão aparece ao lado do nome.
+      placeholder: "ex.: 1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: versao-vscode
+    attributes:
+      label: Versão do VS Code
+      description: Em Ajuda → Sobre (no macOS, Code → Sobre o Visual Studio Code).
+
+  - type: dropdown
+    id: sistema
+    attributes:
+      label: Sistema operacional
+      options:
+        - macOS
+        - Linux
+        - Windows
+        - Outro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: harness
+    attributes:
+      label: Harness
+      options:
+        - Claude Code
+        - GitHub Copilot
+        - Os dois
+        - Não se aplica
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Onde acontece
+      multiple: true
+      options:
+        - Kit de agentes e skills
+        - Cockpit
+        - Wizard
+        - CLI de estado
+        - Mapa
+        - Chat
+        - Instalação ou pacote
+        - Documentação
+        - Não sei
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs e mensagens de erro
+      description: |
+        As mensagens da extensão aparecem em Ajuda → Alternar Ferramentas de Desenvolvedor (Help → Toggle Developer Tools), na aba Console.
+        Nunca cole o conteúdo do `server.json`: ele tem o token do State Service.
+      render: text
+
+  - type: checkboxes
+    id: confirmacoes
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: Procurei nas issues abertas e não achei uma igual.
+        - label: Tirei dos logs e prints tokens, dados pessoais e dados de cliente.
+          required: true
+        - label: Li e sigo o [código de conduta](https://github.com/rafaelnicolett/jatai/blob/main/CODE_OF_CONDUCT.md).
+          required: true

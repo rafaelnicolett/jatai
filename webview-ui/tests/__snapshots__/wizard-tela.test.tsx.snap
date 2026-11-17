@@ -1,0 +1,1607 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`tela do Wizard a cada ação dos roteiros > brownfield completo: pasta, host, frameworks, envio e erro de validação (H-BUG-52, H-BUG-20) > tela 1`] = `
+[
+  {
+    "action": "abertura",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 7",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "choose:claude",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 7",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "pasta",
+      },
+    ],
+    "title": "Onde fica o workspace?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 7",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Onde fica o workspace?",
+  },
+  {
+    "action": "pickFolder",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 7",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Onde fica o workspace?",
+  },
+  {
+    "action": "host:folderPicked",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Onde fica o workspace?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 5 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "repositorios",
+      },
+    ],
+    "title": "Seus repositórios",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "maturidade",
+      },
+    ],
+    "title": "Frameworks de maturidade",
+  },
+  {
+    "action": "toggle:tech-radar",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Frameworks de maturidade",
+  },
+  {
+    "action": "toggle:dora-4keys",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Frameworks de maturidade",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Instalar na pasta",
+    },
+    "setState": [
+      {
+        "screen": "revisao",
+      },
+    ],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 7 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Instalando…",
+    },
+    "setState": [],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "host:validationError",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "pasta",
+      },
+    ],
+    "title": "Onde fica o workspace?",
+  },
+  {
+    "action": "back",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "harness",
+      },
+    ],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "cancel",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual harness você vai usar?",
+  },
+]
+`;
+
+exports[`tela do Wizard a cada ação dos roteiros > greenfield completo: manifest local, envio, erro de geração e novo envio > tela 1`] = `
+[
+  {
+    "action": "abertura",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 1 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Começar",
+    },
+    "setState": [],
+    "title": "Vamos preparar a Helyx",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "modo",
+      },
+    ],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "mode:greenfield",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "harness",
+      },
+    ],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "choose:claude",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "projeto",
+      },
+    ],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "type:"loja-demo"",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "idea:"Uma vitrine sintética para o teste de paridade."",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 5 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "dominio",
+      },
+    ],
+    "title": "Em que domínio ele está?",
+  },
+  {
+    "action": "choose:ecommerce",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 5 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Em que domínio ele está?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "backend",
+      },
+    ],
+    "title": "Como será o backend?",
+  },
+  {
+    "action": "choose:python-api",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como será o backend?",
+  },
+  {
+    "action": "choose:hexagonal",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como será o backend?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "frontend",
+      },
+    ],
+    "title": "E o frontend?",
+  },
+  {
+    "action": "choose:react-vite",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "E o frontend?",
+  },
+  {
+    "action": "choose:feature-based",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "E o frontend?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "infra",
+      },
+    ],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "choose:postgresql",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "choose:aws",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "choose:github-actions",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 9 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "local",
+      },
+    ],
+    "title": "Onde criar o projeto?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 10 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Criar o projeto",
+    },
+    "setState": [
+      {
+        "screen": "revisao",
+      },
+    ],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "host:templateManifest",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 10 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Criar o projeto",
+    },
+    "setState": [],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 10 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Instalando…",
+    },
+    "setState": [],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "host:generationError",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 10 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Tentar de novo",
+    },
+    "setState": [],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 10 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Instalando…",
+    },
+    "setState": [],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "host:validationError",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "projeto",
+      },
+    ],
+    "title": "Qual é o projeto?",
+  },
+]
+`;
+
+exports[`tela do Wizard a cada ação dos roteiros > intro: 'Projeto Existente' + Continuar pede switchToBrownfield sem avançar (L6) > tela 1`] = `
+[
+  {
+    "action": "abertura",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 1 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Começar",
+    },
+    "setState": [],
+    "title": "Vamos preparar a Helyx",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "modo",
+      },
+    ],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "mode:brownfield",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como você quer começar?",
+  },
+]
+`;
+
+exports[`tela do Wizard a cada ação dos roteiros > intro: 'Projeto Existente' e depois 'Novo Projeto' segue no greenfield (L5) > tela 1`] = `
+[
+  {
+    "action": "abertura",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 1 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Começar",
+    },
+    "setState": [],
+    "title": "Vamos preparar a Helyx",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "modo",
+      },
+    ],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "mode:brownfield",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "mode:greenfield",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "harness",
+      },
+    ],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual harness você vai usar?",
+  },
+]
+`;
+
+exports[`tela do Wizard a cada ação dos roteiros > navegação: voltar e avançar mantém o que foi digitado; texto em branco desabilita > tela 1`] = `
+[
+  {
+    "action": "abertura",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 1 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Começar",
+    },
+    "setState": [],
+    "title": "Vamos preparar a Helyx",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "modo",
+      },
+    ],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "mode:greenfield",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "harness",
+      },
+    ],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "choose:claude",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "projeto",
+      },
+    ],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "type:"  loja  "",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "idea:"uma vitrine"",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 5 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "dominio",
+      },
+    ],
+    "title": "Em que domínio ele está?",
+  },
+  {
+    "action": "back",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "projeto",
+      },
+    ],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "type:"   "",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "cancel",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual é o projeto?",
+  },
+]
+`;
+
+exports[`tela do Wizard a cada ação dos roteiros > preview reaproveitado depois de trocar o backend (H-BUG-25) > tela 1`] = `
+[
+  {
+    "action": "abertura",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 1 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Começar",
+    },
+    "setState": [],
+    "title": "Vamos preparar a Helyx",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "modo",
+      },
+    ],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "mode:greenfield",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 2 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como você quer começar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "harness",
+      },
+    ],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "choose:claude",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "projeto",
+      },
+    ],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "type:"loja-demo"",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "idea:"Uma vitrine sintética para o teste de paridade."",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual é o projeto?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 5 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "dominio",
+      },
+    ],
+    "title": "Em que domínio ele está?",
+  },
+  {
+    "action": "choose:ecommerce",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 5 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Em que domínio ele está?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "backend",
+      },
+    ],
+    "title": "Como será o backend?",
+  },
+  {
+    "action": "choose:python-api",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como será o backend?",
+  },
+  {
+    "action": "choose:hexagonal",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como será o backend?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "frontend",
+      },
+    ],
+    "title": "E o frontend?",
+  },
+  {
+    "action": "choose:react-vite",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "E o frontend?",
+  },
+  {
+    "action": "choose:feature-based",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "E o frontend?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "infra",
+      },
+    ],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "choose:postgresql",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "choose:aws",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "choose:github-actions",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 9 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "local",
+      },
+    ],
+    "title": "Onde criar o projeto?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 10 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Criar o projeto",
+    },
+    "setState": [
+      {
+        "screen": "revisao",
+      },
+    ],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "host:templateManifest",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 10 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Criar o projeto",
+    },
+    "setState": [],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "back",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 9 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "local",
+      },
+    ],
+    "title": "Onde criar o projeto?",
+  },
+  {
+    "action": "back",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "infra",
+      },
+    ],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "back",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "frontend",
+      },
+    ],
+    "title": "E o frontend?",
+  },
+  {
+    "action": "back",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "backend",
+      },
+    ],
+    "title": "Como será o backend?",
+  },
+  {
+    "action": "choose:java-spring",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Como será o backend?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "frontend",
+      },
+    ],
+    "title": "E o frontend?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 8 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "infra",
+      },
+    ],
+    "title": "Banco, nuvem e pipeline",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 9 de 10",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "local",
+      },
+    ],
+    "title": "Onde criar o projeto?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 10 de 10",
+    "next": {
+      "disabled": true,
+      "text": "Criar o projeto",
+    },
+    "setState": [
+      {
+        "screen": "revisao",
+      },
+    ],
+    "title": "Revise antes de escrever",
+  },
+]
+`;
+
+exports[`tela do Wizard a cada ação dos roteiros > pronto: a instalação termina, abre o Cockpit e fecha (passo 'Pronto') > tela 1`] = `
+[
+  {
+    "action": "abertura",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 7",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "choose:claude",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 3 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Qual harness você vai usar?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 7",
+    "next": {
+      "disabled": true,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "pasta",
+      },
+    ],
+    "title": "Onde fica o workspace?",
+  },
+  {
+    "action": "host:folderPicked",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 4 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [],
+    "title": "Onde fica o workspace?",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 5 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "repositorios",
+      },
+    ],
+    "title": "Seus repositórios",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 6 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Continuar",
+    },
+    "setState": [
+      {
+        "screen": "maturidade",
+      },
+    ],
+    "title": "Frameworks de maturidade",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Passo 7 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Instalar na pasta",
+    },
+    "setState": [
+      {
+        "screen": "revisao",
+      },
+    ],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "next",
+    "back": {
+      "disabled": true,
+    },
+    "label": "Passo 7 de 7",
+    "next": {
+      "disabled": false,
+      "text": "Instalando…",
+    },
+    "setState": [],
+    "title": "Revise antes de escrever",
+  },
+  {
+    "action": "host:installed",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Concluído",
+    "next": {
+      "disabled": false,
+      "text": "Abrir o Cockpit",
+    },
+    "setState": [],
+    "title": "Pronto",
+  },
+  {
+    "action": "cockpit",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Concluído",
+    "next": {
+      "disabled": false,
+      "text": "Abrir o Cockpit",
+    },
+    "setState": [],
+    "title": "Pronto",
+  },
+  {
+    "action": "cancel",
+    "back": {
+      "disabled": false,
+    },
+    "label": "Concluído",
+    "next": {
+      "disabled": false,
+      "text": "Abrir o Cockpit",
+    },
+    "setState": [],
+    "title": "Pronto",
+  },
+]
+`;

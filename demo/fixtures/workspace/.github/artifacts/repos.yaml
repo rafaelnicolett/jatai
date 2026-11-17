@@ -1,0 +1,24 @@
+# Inventário de repositórios do workspace demo (Biblioteca de Bairro, fictício).
+# Os campos de "descobertos pelo assessment" foram preenchidos pelo @tech-mapper e pelo @arch-discoverer.
+version: 1
+repos:
+  - id: biblioteca-api
+    source: local-path
+    path: "repos/biblioteca-api"
+    scan_profile: deep
+    has_history: false
+    content_sha: 7c1e4b9a0d32
+    has_frontend: false
+    stack: python-fastapi
+    arch_current: "layered (router → service → repository)"
+    arch_confidence: 84
+  - id: biblioteca-web
+    source: local-path
+    path: "repos/biblioteca-web"
+    scan_profile: deep
+    has_history: false
+    content_sha: e58a2f6b1c07
+    has_frontend: true
+    stack: react-vite-typescript
+    arch_current: "feature-based (src/features)"
+    arch_confidence: 79

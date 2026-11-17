@@ -1,0 +1,16 @@
+# Fixture SINTÉTICA (F0.4, lane B)
+updated_at: "2025-06-02T00:00:00Z"
+incidents:
+  - id: INC-1
+    title: "Checkout fora do ar"
+    severity: major
+    status: resolved
+    started_at: "2025-05-20T10:00:00Z"
+    resolved_at: "2025-05-20T11:30:00Z"
+    post_mortem: ".github/artifacts/incidents/INC-1.md"
+  - id: INC-2
+    title: "Fila atrasada"
+    severity: catastrofico
+    started_at: "2025-06-01T09:00:00Z"
+  - id: INC-3
+    title: "Sem início"

@@ -1,0 +1,6 @@
+# config gravado pelo Foundation
+kit_version: "0.9.4"
+repos:
+  app-ficticio:
+    skills:
+      - coding-guidelines-app-ficticio

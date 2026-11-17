@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3622 1294" width="362" height="129">
+  <title>Jataí</title>
+  <!-- Versão horizontal: símbolo Guarda + wordmark "jataí". Proporção da prancha aprovada:
+       símbolo 44, nome 34 (1 em), 12 de espaço. -->
+  <svg x="0" y="0" width="1294" height="1294" viewBox="0 0 512 512">
+    <!-- Símbolo Guarda: a jataí vista de cima. As quatro faixas de mel do abdômen são
+         os quatro streams; a ponta redonda é o "sem ferrão". Paleta: Mel #F39A1D,
+         Própolis #2C1708, Olho #5B6B2C, Asa #FFF6E2. -->
+    <defs>
+      <clipPath id="jatai-guarda-abdomen"><ellipse cx="0" cy="96" rx="56" ry="84"/></clipPath>
+    </defs>
+    <rect width="512" height="512" rx="116" fill="#F39A1D"/>
+    <circle cx="256" cy="262" r="198" fill="none" stroke="#FFF6E2" stroke-opacity=".5" stroke-width="10" stroke-dasharray="2 26" stroke-linecap="round"/>
+    <g transform="translate(256 236) scale(1.08)">
+      <!-- asas: dianteira e traseira de cada lado -->
+      <g fill="#FFF6E2" stroke="#2C1708" stroke-width="7" stroke-linejoin="round">
+        <ellipse cx="-96" cy="-34" rx="94" ry="44" transform="rotate(-24 -96 -34)"/>
+        <ellipse cx="-76" cy="20" rx="66" ry="30" transform="rotate(16 -76 20)"/>
+        <ellipse cx="96" cy="-34" rx="94" ry="44" transform="rotate(24 96 -34)"/>
+        <ellipse cx="76" cy="20" rx="66" ry="30" transform="rotate(-16 76 20)"/>
+      </g>
+      <path d="M-40 -18Q-100 -50 -158 -66M40 -18Q100 -50 158 -66" fill="none" stroke="#2C1708" stroke-opacity=".55" stroke-width="3.5" stroke-linecap="round"/>
+      <!-- antenas -->
+      <path d="M-12 -86Q-22 -118 -50 -128M12 -86Q22 -118 50 -128" fill="none" stroke="#2C1708" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="-50" cy="-128" r="8" fill="#2C1708"/>
+      <circle cx="50" cy="-128" r="8" fill="#2C1708"/>
+      <!-- abdômen: quatro faixas de mel entre três de própolis, ponta redonda -->
+      <ellipse cx="0" cy="96" rx="56" ry="84" fill="#F39A1D" stroke="#2C1708" stroke-width="7"/>
+      <g clip-path="url(#jatai-guarda-abdomen)" fill="#2C1708">
+        <rect x="-70" y="44" width="140" height="20"/>
+        <rect x="-70" y="88" width="140" height="20"/>
+        <rect x="-70" y="132" width="140" height="20"/>
+      </g>
+      <!-- tórax e cabeça -->
+      <circle cx="0" cy="-8" r="44" fill="#2C1708"/>
+      <ellipse cx="0" cy="-70" rx="36" ry="31" fill="#2C1708"/>
+      <ellipse cx="-21" cy="-74" rx="11" ry="16" fill="#5B6B2C" transform="rotate(-14 -21 -74)"/>
+      <ellipse cx="21" cy="-74" rx="11" ry="16" fill="#5B6B2C" transform="rotate(14 21 -74)"/>
+      <circle cx="-24" cy="-80" r="3.4" fill="#FFF6E2" fill-opacity=".85"/>
+      <circle cx="18" cy="-80" r="3.4" fill="#FFF6E2" fill-opacity=".85"/>
+    </g>
+  </svg>
+  <g fill="#2C1708" transform="translate(1663 987)">
+    <!-- j -->
+    <path d="M52 196Q25 196 7 192Q-11 188 -16 186V33Q-10 34 -4 35Q3 36 16 36Q33 36 43 22Q53 8 53 -17V-490H234V31Q234 74 216 112Q197 149 157 172Q117 196 52 196ZM41 -647Q41 -694 69 -722Q97 -750 143 -750Q190 -750 218 -722Q245 -694 245 -647Q245 -602 218 -574Q190 -547 143 -547Q97 -547 69 -574Q41 -602 41 -647Z"/>
+    <!-- a -->
+    <path d="M449 13Q399 13 359 -8Q319 -29 296 -66Q273 -103 273 -150Q273 -204 298 -240Q324 -276 364 -294Q405 -313 451 -313Q525 -313 572 -279Q620 -245 633 -177L564 -197V-303Q564 -327 546 -342Q529 -358 496 -358Q469 -358 434 -351Q398 -344 359 -324L307 -450Q353 -473 408 -488Q464 -504 525 -504Q597 -504 646 -478Q696 -453 721 -406Q746 -358 746 -292V0H590L558 -99L633 -123Q618 -62 574 -24Q530 13 449 13ZM515 -104Q538 -104 552 -118Q566 -131 566 -150Q566 -169 552 -182Q538 -196 515 -196Q490 -196 476 -182Q463 -169 463 -150Q463 -131 476 -118Q490 -104 515 -104Z"/>
+    <!-- t -->
+    <path d="M1050 8Q956 8 903 -34Q850 -77 850 -177V-484L847 -490L885 -613H1031V-235Q1031 -196 1048 -181Q1065 -166 1094 -166Q1108 -166 1122 -169Q1135 -172 1144 -175V-5Q1123 2 1100 5Q1078 8 1050 8ZM773 -323V-490H1144V-323Z"/>
+    <!-- a -->
+    <path d="M1350 13Q1300 13 1260 -8Q1220 -29 1197 -66Q1174 -103 1174 -150Q1174 -204 1200 -240Q1225 -276 1266 -294Q1306 -313 1352 -313Q1426 -313 1474 -279Q1521 -245 1534 -177L1465 -197V-303Q1465 -327 1448 -342Q1430 -358 1397 -358Q1370 -358 1334 -351Q1299 -344 1260 -324L1208 -450Q1254 -473 1310 -488Q1365 -504 1426 -504Q1498 -504 1548 -478Q1597 -453 1622 -406Q1647 -358 1647 -292V0H1491L1459 -99L1534 -123Q1519 -62 1475 -24Q1431 13 1350 13ZM1416 -104Q1439 -104 1453 -118Q1467 -131 1467 -150Q1467 -169 1453 -182Q1439 -196 1416 -196Q1391 -196 1378 -182Q1364 -169 1364 -150Q1364 -131 1378 -118Q1391 -104 1416 -104Z"/>
+    <!-- í -->
+    <path d="M1886 0H1704V-490H1886ZM1793 -542 1709 -628 1874 -780 1959 -695Z"/>
+  </g>
+</svg>

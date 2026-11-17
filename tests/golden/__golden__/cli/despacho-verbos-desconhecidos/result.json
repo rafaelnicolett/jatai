@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "scenario": "despacho-verbos-desconhecidos",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "remove-phase"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "UNKNOWN_VERB",
+          "message": "verbo desconhecido para 'delivery-state': 'remove-phase'. Esperado: upsert-phase, upsert-checklist, get.",
+          "verb": "remove-phase"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "kb",
+        "pull"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "UNKNOWN_ARTIFACT",
+          "message": "artefato desconhecido: 'kb'. Esperado: delivery-state, initiatives, gates, runs.",
+          "artifact": "kb",
+          "artifacts": [
+            "delivery-state",
+            "initiatives",
+            "gates",
+            "runs"
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "delete"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "UNKNOWN_VERB",
+          "message": "verbo desconhecido para 'initiatives': 'delete'. Esperado: create, switch-active, bump-phase, upsert-wave-item, get.",
+          "verb": "delete"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir"
+  }
+}

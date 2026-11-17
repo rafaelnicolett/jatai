@@ -1,0 +1,123 @@
+# Fixture sintética (F2.3): delivery-state.yaml com chave de topo duplicada (stream:),
+# fase chaveada pelo nome do agente (domain-modeler) e um bloco de fase
+# indentado sob o gate (sprint-planner), como já se viu em arquivo real.
+# Conteúdo fictício; só a forma importa para os testes.
+initiative_id: feat-catalogo
+name: "Catálogo de produtos da Acme"
+stream: upstream
+updated_at: "2026-03-01T00:00:00Z"
+
+phases:
+  business:
+    status: done
+    agent: "@business"
+    completed_at: "2026-03-01T00:00:00Z"
+    artifacts:
+      - path: .github/artifacts/business-brief-catalogo.md
+        exists: true
+
+  product:
+    status: done
+    agent: "@product"
+    completed_at: "2026-03-01T00:00:00Z"
+    artifacts:
+      - path: .github/artifacts/prd-catalogo.md
+        exists: true
+      - path: .github/artifacts/feature-list-catalogo.md
+        exists: true
+
+  domain-modeler:
+    status: done
+    agent: "@domain-modeler"
+    completed_at: "2026-03-01T00:00:00Z"
+    artifacts:
+      - path: docs/domain/bounded-contexts.md
+        exists: true
+        note: "Nota sintética 1 de domain-modeler"
+      - path: docs/domain/context-map.md
+        exists: true
+        note: "Nota sintética 2 de domain-modeler"
+      - path: docs/domain/event-storming.md
+        exists: true
+        note: "Nota sintética 3 de domain-modeler"
+
+  bdd:
+    status: done
+    agent: "@bdd"
+    completed_at: "2026-03-01T00:00:00Z"
+    note: "Nota sintética da fase."
+    artifacts:
+      - path: features/catalogo/cadastrar-produto.feature
+        exists: true
+      - path: features/catalogo/editar-produto.feature
+        exists: true
+      - path: features/busca/buscar-por-nome.feature
+        exists: true
+      - path: features/busca/filtrar-por-categoria.feature
+        exists: true
+      - path: features/estoque/ajustar-estoque.feature
+        exists: true
+      - path: features/estoque/alertar-estoque-baixo.feature
+        exists: true
+      - path: features/relatorios/exportar-csv.feature
+        exists: true
+      - path: .github/artifacts/bdd-hotspots-catalogo.md
+        exists: true
+        note: "Nota sintética 8 de bdd"
+
+  architecture:
+    status: done
+    agent: "@architecture"
+    started_at: "2026-03-01T00:00:00Z"
+    completed_at: "2026-03-01T00:00:00Z"
+    artifacts:
+      - path: docs/adr/0003-catalogo-banco-relacional.md
+        exists: true
+        note: "Nota sintética 1 de architecture"
+      - path: docs/adr/0004-busca-indice-local.md
+        exists: true
+        note: "Nota sintética 2 de architecture"
+      - path: docs/adr/0005-imagens-em-storage-externo.md
+        exists: true
+        note: "Nota sintética 3 de architecture"
+      - path: docs/adr/0006-sincronizacao-por-eventos.md
+        exists: true
+        note: "Nota sintética 4 de architecture"
+      - path: docs/architecture/c4-container-catalogo.md
+        exists: true
+        note: "Nota sintética 5 de architecture"
+      - path: api/openapi.yaml
+        exists: true
+        note: "Nota sintética 6 de architecture"
+      - path: docs/architecture/sequences/seq-cadastro.md
+        exists: true
+      - path: docs/architecture/sequences/seq-busca.md
+        exists: true
+      - path: docs/architecture/sequences/seq-exportacao.md
+        exists: true
+
+gate_g1_required: true
+gate_g1_result:
+  status: approved
+  completed_at: "2026-03-01T00:00:00Z"
+  report: .github/artifacts/gates/g1-feat-catalogo-20260301.md
+  stream_align: approved
+  arch_cross: approved
+  blockers: 0
+  recommendations: 1
+  recommendation_ids:
+    - REC-001  # recomendação sintética
+
+  sprint-planner:
+    status: done
+    agent: "@sprint-planner"
+    completed_at: "2026-03-01T00:00:00Z"
+    artifacts:
+      - path: .github/artifacts/sprint-backlog-catalogo.yaml
+        exists: true
+        note: "39 itens sintéticos em 4 milestones."
+
+next_phase: sprint-runner
+next_owner: "@sprint-runner"
+stream: downstream
+upstream_complete: true

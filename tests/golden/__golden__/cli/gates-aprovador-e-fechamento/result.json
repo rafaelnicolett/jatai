@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "scenario": "gates-aprovador-e-fechamento",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d2",
+        "--initiative",
+        "gf-alfa"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --by (o git do workspace não tem user.name; diga o nome de quem aprova)",
+          "field": "by"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d2",
+        "--initiative",
+        "mod-beta",
+        "--by",
+        "Pessoa Fictícia"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "GATE_NOT_CLOSED",
+          "message": "o Gate D2 de 'mod-beta' exige roadmap_gate e risk_matrix_gate aprovados; falta: roadmap_gate (missing), risk_matrix_gate (missing)",
+          "gate": "d2",
+          "initiative": "mod-beta",
+          "open": [
+            {
+              "gate": "roadmap_gate",
+              "status": "missing"
+            },
+            {
+              "gate": "risk_matrix_gate",
+              "status": "missing"
+            }
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d1",
+        "--repo",
+        "web",
+        "--by",
+        "Pessoa Fictícia"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "GATE_NOT_CLOSED",
+          "message": "o Gate D1 de 'web' tem fase do Foundation não concluída: quality (agent-done), debt (missing)",
+          "gate": "d1",
+          "repo": "web",
+          "open": [
+            {
+              "phase": "quality",
+              "status": "agent-done"
+            },
+            {
+              "phase": "debt",
+              "status": "missing"
+            }
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d1",
+        "--repo",
+        "worker",
+        "--by",
+        "Pessoa Fictícia",
+        "--approved-at",
+        "2026-11-15T15:00:00.000Z"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/assessment/foundation-state.yaml",
+        "changed": true,
+        "gate": "d1",
+        "repo": "worker",
+        "human_approved_at": "2026-11-15T15:00:00.000Z",
+        "by": "Pessoa Fictícia"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d2",
+        "--initiative",
+        "gf-alfa",
+        "--by",
+        "Pessoa Fictícia",
+        "--approved-at",
+        "2026-11-15T16:00:00.000Z"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "gate": "d2",
+        "initiative": "gf-alfa",
+        "human_approved_at": "2026-11-15T16:00:00.000Z",
+        "by": "Pessoa Fictícia"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/assessment/": "dir",
+    "ws/.github/artifacts/assessment/foundation-state.yaml": "file 100644 652 f783990179dc9f45266be37a5c1e8442508d44344da2f63c258a3631d6a1d54b text",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 459 0b7ba54c477c0605d307281d782d133dd29bf365f7c9006f391a807bfe3b16ac text",
+    "ws/.github/artifacts/repos.yaml": "file 100644 158 e7550920ceeb6cdab4b4973eb69694d80d4b83c82141fe0999f027b091d34350 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 274 8ef2583347b93f6a0b541d942c475cb0cd8abef34718ede58a35df25c4f07245 text",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 282 045fddf701b184d3854d924156e553ec5c3bd2a10995c485ce9df2f447f90c94 text"
+  }
+}

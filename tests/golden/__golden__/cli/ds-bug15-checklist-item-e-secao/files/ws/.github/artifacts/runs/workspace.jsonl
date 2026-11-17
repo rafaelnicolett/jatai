@@ -1,0 +1,1 @@
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","phase_id":"qa","artifact_path":".github/artifacts/delivery-state.yaml","harness":"cli","message":"checklist 'testes: ok' da fase 'qa' marcado"}

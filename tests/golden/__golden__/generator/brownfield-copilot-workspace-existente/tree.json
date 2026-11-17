@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "case": "brownfield-copilot-workspace-existente",
+  "base": "brownfield-copilot-padrao",
+  "input": {
+    "hostAdapter": "copilot",
+    "projectName": "orbita-ws",
+    "maturityFrameworks": null,
+    "preexisting": [
+      ".git/HEAD",
+      ".github/agents/custom.agent.md",
+      ".github/chatmodes/meu-modo.chatmode.md",
+      ".github/copilot-instructions.md",
+      ".github/workflows/ci.yml",
+      ".gitignore",
+      "AGENTS.md",
+      "README.md"
+    ]
+  },
+  "outcome": {
+    "resolved": true
+  },
+  "calls": null,
+  "entries": {
+    "workspace/.git/": "dir",
+    "workspace/.git/HEAD": "file 100644 21 28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80 text",
+    "workspace/.github/agents/custom.agent.md": "file 100644 21 4ca696b38e595d6c09d630029740ddabf3032383495bad0da4f5af3cd73baf8e text",
+    "workspace/.github/chatmodes/meu-modo.chatmode.md": "file 100644 23 0246fc1f4c198be763d0798b154404ea7e0d4a1fc07e3ef310fd546096e277e8 text",
+    "workspace/.github/workflows/": "dir",
+    "workspace/.github/workflows/ci.yml": "file 100644 27 e6e8f4ec32626a497cfb4808f271912664225b17ef5a8261dc3ea7d5ffebd935 text",
+    "workspace/.gitignore": "file 100644 307 5cdf28c86108e5b269540861443fc84410a8efaeabc82964e602b199e1b7ff5d text",
+    "workspace/README.md": "file 100644 25 cd91720c20e7c3a174ad4938469b121874104210ff5c80a27bbf075216e03a05 text"
+  }
+}

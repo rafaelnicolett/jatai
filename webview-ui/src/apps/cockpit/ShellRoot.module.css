@@ -1,0 +1,10 @@
+/* A página de Operações (o painel contínuo, ADR-0002): o mesmo gutter do Cockpit. */
+.operations {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jt-space-3);
+  padding: var(--jt-space-4) var(--jt-layout-gutter);
+}
+.operations > * { width: 100%; }
+.operations > button { width: auto; }

@@ -1,0 +1,12 @@
+initiatives:
+  - id: "mod-beta"
+    name: "Modernização Beta"
+    status: "in-progress"
+    stream: "execution"
+    current_phase: "test-backfill"
+    mode: "brownfield"
+    type: "modernization"
+    owner: "Pessoa Fictícia"
+    priority: "alta"
+    created_at: "2026-01-02"
+active: "mod-beta"

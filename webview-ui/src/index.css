@@ -1,0 +1,53 @@
+/* Tokens do DS v2 (--jt-*), gerados de tokens.json. Componentes só usam --jt-*. */
+@import "./design-system/tokens/tokens.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: var(--jt-fg);
+  background: var(--jt-bg);
+}
+
+body {
+  font-family: var(--jt-font-body);
+  font-size: var(--jt-text-base);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* O mapa da colmeia (F5.3) abre por cima do Cockpit sem desmontá-lo: com o mapa à
+   frente, o resto da raiz some (e sai da ordem de tabulação), e o estado do Cockpit
+   (épico em destaque, aba, seções) volta como estava. */
+html[data-view="map"] #root > :not([data-scene]) {
+  display: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Utilitário compartilhado do "rodando agora". Movimento é notícia (DS v2
+   §3.11): o indicador respira numa rajada de 2 ciclos quando aparece e
+   depois fica parado. Nada em loop no Cockpit. Com movimento reduzido
+   (prefers-reduced-motion, vscode-reduce-motion ou data-motion="reduce"),
+   --jt-iterations-burst vale 0 e nada se move. */
+@keyframes jt-breath {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.hx-pulse {
+  animation: jt-breath var(--jt-dur-breath) var(--jt-ease-sine) var(--jt-iterations-burst);
+  animation-play-state: var(--jt-anim-play);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hx-pulse { animation: none; }
+}

@@ -1,0 +1,1359 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`contrato — State Service HTTP (rotas × status × envelope × eventos) > a tabela inteira (status + content-type + envelope + eventos) bate com o snapshot 1`] = `
+[
+  {
+    "body": {
+      "ok": true,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /health [auth:none] — GET /health sem auth",
+    "status": 200,
+  },
+  {
+    "body": {
+      "ok": true,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /health [auth:wrong] — GET /health com token errado (continua público)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "ok": true,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /health [auth:valid] — GET /health com token válido",
+    "status": 200,
+  },
+  {
+    "body": {
+      "error": "UNAUTHORIZED: header 'Authorization: Bearer <token>' ausente ou inválido",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /health [auth:none] — POST /health (só GET é público; POST cai no roteador de escrita)",
+    "status": 401,
+  },
+  {
+    "body": {
+      "error": "NOT_FOUND",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /health [auth:valid] body={} — POST /health autenticado",
+    "status": 404,
+  },
+  {
+    "body": {
+      "error": "UNAUTHORIZED: header 'Authorization: Bearer <token>' ausente ou inválido",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "DELETE /health [auth:none] — DELETE /health sem auth",
+    "status": 401,
+  },
+  {
+    "body": {
+      "error": "UNAUTHORIZED: header 'Authorization: Bearer <token>' ausente ou inválido",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /initiatives [auth:none] — GET /initiatives sem auth",
+    "status": 401,
+  },
+  {
+    "body": {
+      "error": "UNAUTHORIZED: header 'Authorization: Bearer <token>' ausente ou inválido",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /initiatives [auth:wrong] — GET /initiatives com token errado",
+    "status": 401,
+  },
+  {
+    "body": {
+      "error": "UNAUTHORIZED: header 'Authorization: Bearer <token>' ausente ou inválido",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /initiatives [auth:malformed] — GET /initiatives com header sem 'Bearer '",
+    "status": 401,
+  },
+  {
+    "body": {
+      "error": "UNAUTHORIZED: header 'Authorization: Bearer <token>' ausente ou inválido",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /nao-existe [auth:none] — GET rota inexistente sem auth (401, não vaza a rota)",
+    "status": 401,
+  },
+  {
+    "body": {
+      "error": "UNAUTHORIZED: header 'Authorization: Bearer <token>' ausente ou inválido",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /events [auth:none] — GET /events sem auth",
+    "status": 401,
+  },
+  {
+    "body": {
+      "ok": true,
+      "state": {
+        "active": "loja-demo",
+        "initiatives": [
+          {
+            "created_at": "2025-03-01",
+            "current_phase": "business",
+            "id": "loja-demo",
+            "mode": "greenfield",
+            "name": "Loja Demo",
+            "status": "in-progress",
+            "stream": "upstream",
+            "type": "feature",
+          },
+        ],
+        "version": 1,
+      },
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /initiatives [auth:valid] — GET /initiatives",
+    "status": 200,
+  },
+  {
+    "body": {
+      "ok": true,
+      "state": {
+        "active": "loja-demo",
+        "initiatives": [
+          {
+            "created_at": "2025-03-01",
+            "current_phase": "business",
+            "id": "loja-demo",
+            "mode": "greenfield",
+            "name": "Loja Demo",
+            "status": "in-progress",
+            "stream": "upstream",
+            "type": "feature",
+          },
+        ],
+        "version": 1,
+      },
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /initiatives?x=1 [auth:valid] — GET /initiatives com query string ignorada",
+    "status": 200,
+  },
+  {
+    "body": {
+      "ok": true,
+      "state": null,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /delivery-state [auth:valid] — GET /delivery-state (global, inexistente → state null)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "ok": true,
+      "state": {
+        "phases": {
+          "business": {
+            "agent": "@business",
+            "human_checklist": {},
+            "status": "in-progress",
+          },
+        },
+      },
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /delivery-state?initiativeId=loja-demo [auth:valid] — GET /delivery-state?initiativeId=loja-demo",
+    "status": 200,
+  },
+  {
+    "body": {
+      "ok": true,
+      "state": null,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /delivery-state?initiativeId=inexistente [auth:valid] — GET /delivery-state?initiativeId=inexistente",
+    "status": 200,
+  },
+  {
+    "body": {
+      "cache-control": "no-cache",
+      "connection": "keep-alive",
+    },
+    "contentType": "text/event-stream",
+    "events": [],
+    "request": "GET /events [auth:valid] — GET /events (SSE: headers)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "error": "NOT_FOUND",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /nao-existe [auth:valid] — GET rota inexistente autenticado",
+    "status": 404,
+  },
+  {
+    "body": {
+      "error": "NOT_FOUND",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /initiatives/loja-demo [auth:valid] — GET /initiatives/loja-demo (não existe rota GET por id)",
+    "status": 404,
+  },
+  {
+    "body": {
+      "error": "METHOD_NOT_ALLOWED",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "PUT /initiatives [auth:valid] body={} — PUT /initiatives",
+    "status": 405,
+  },
+  {
+    "body": {
+      "error": "METHOD_NOT_ALLOWED",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "DELETE /initiatives [auth:valid] — DELETE /initiatives",
+    "status": 405,
+  },
+  {
+    "body": {
+      "error": "METHOD_NOT_ALLOWED",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "PATCH /delivery-state [auth:valid] body={} — PATCH /delivery-state",
+    "status": 405,
+  },
+  {
+    "body": {
+      "error": "UNAUTHORIZED: header 'Authorization: Bearer <token>' ausente ou inválido",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:none] body={"id":"x"} — POST /initiatives sem token",
+    "status": 401,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "INVALID_JSON",
+        "message": "corpo da requisição não é JSON válido",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:valid] body={nao json — POST /initiatives corpo não-JSON",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "id",
+        "message": "flag obrigatória ausente: --id",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:valid] — POST /initiatives corpo vazio",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "id",
+        "message": "flag obrigatória ausente: --id",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:valid] body="texto" — POST /initiatives corpo JSON não-objeto (string)",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "id",
+        "message": "flag obrigatória ausente: --id",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:valid] body=[1,2] — POST /initiatives corpo JSON array",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "id",
+        "message": "flag obrigatória ausente: --id",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:valid] body={"id":""} — POST /initiatives id vazio",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "id",
+        "message": "flag obrigatória ausente: --id",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:valid] body={"id":42} — POST /initiatives id não-string",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "allowed": [
+          "planned",
+          "in-progress",
+          "done",
+          "paused",
+          "cancelled",
+        ],
+        "code": "INVALID_ENUM",
+        "field": "status",
+        "message": "valor inválido para --status: 'finished'",
+        "value": "finished",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:valid] body={"id":"x","status":"finished"} — POST /initiatives status fora do enum",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "allowed": [
+          "greenfield",
+          "brownfield",
+        ],
+        "code": "INVALID_ENUM",
+        "field": "mode",
+        "message": "valor inválido para --mode: 'hybrid'",
+        "value": "hybrid",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:valid] body={"id":"x","mode":"hybrid"} — POST /initiatives mode fora do enum",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "allowed": [
+          "feature",
+          "modernization",
+          "hotfix",
+          "foundation",
+        ],
+        "code": "INVALID_ENUM",
+        "field": "type",
+        "message": "valor inválido para --type: 'epic'",
+        "value": "epic",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives [auth:valid] body={"id":"x","type":"epic"} — POST /initiatives type fora do enum",
+    "status": 400,
+  },
+  {
+    "body": {
+      "changed": true,
+      "id": "pedidos-mod",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "iniciativa 'pedidos-mod' criada/atualizada",
+          "metadata": {
+            "changed": true,
+            "endpoint": "initiatives",
+            "id": "pedidos-mod",
+            "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+          },
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /initiatives [auth:valid] body={"id":"pedidos-mod","name":"Modernização de Pedidos","status":"planned","stream":"foundation","currentPhase":"assessor","mode":"brownfield","type":"modernization","owner":"time-plataforma","priority":"P1","createdAt":"2025-04-02","active":true} — POST /initiatives cria (todos os campos + active:true)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "changed": false,
+      "id": "pedidos-mod",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "iniciativa 'pedidos-mod' criada/atualizada",
+          "metadata": {
+            "changed": false,
+            "endpoint": "initiatives",
+            "id": "pedidos-mod",
+            "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+          },
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /initiatives [auth:valid] body={"id":"pedidos-mod","name":"Modernização de Pedidos"} — POST /initiatives repetido (idempotente → changed:false)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "changed": true,
+      "id": "catalogo-hotfix",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "iniciativa 'catalogo-hotfix' criada/atualizada",
+          "metadata": {
+            "changed": true,
+            "endpoint": "initiatives",
+            "id": "catalogo-hotfix",
+            "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+          },
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /initiatives [auth:valid] body={"id":"catalogo-hotfix","type":"hotfix","active":"true"} — POST /initiatives active:'true' (string não ativa)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "changed": true,
+      "id": "loja-demo",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "iniciativa ativa trocada para 'loja-demo'",
+          "metadata": {
+            "changed": true,
+            "endpoint": "initiatives/switch-active",
+            "id": "loja-demo",
+            "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+          },
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /initiatives/loja-demo/switch-active [auth:valid] — POST switch-active",
+    "status": 200,
+  },
+  {
+    "body": {
+      "changed": false,
+      "id": "loja-demo",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "iniciativa ativa trocada para 'loja-demo'",
+          "metadata": {
+            "changed": false,
+            "endpoint": "initiatives/switch-active",
+            "id": "loja-demo",
+            "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+          },
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /initiatives/loja%2Ddemo/switch-active [auth:valid] — POST switch-active com id url-encoded",
+    "status": 200,
+  },
+  {
+    "body": {
+      "error": "NOT_FOUND",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives/loja-demo/switch-active/extra [auth:valid] — POST switch-active com sufixo extra (404)",
+    "status": 404,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "phase",
+        "message": "flag obrigatória ausente: --phase",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives/loja-demo/bump-phase [auth:valid] body={} — POST bump-phase sem phase",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "phase",
+        "message": "flag obrigatória ausente: --phase",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives/loja-demo/bump-phase [auth:valid] body={"phase":""} — POST bump-phase phase vazia",
+    "status": 400,
+  },
+  {
+    "body": {
+      "changed": true,
+      "id": "loja-demo",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+      "phase": "product",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "iniciativa 'loja-demo' avançou pra fase 'product'",
+          "metadata": {
+            "changed": true,
+            "endpoint": "initiatives/bump-phase",
+            "id": "loja-demo",
+            "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+            "phase": "product",
+          },
+          "phase_id": "product",
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /initiatives/loja-demo/bump-phase [auth:valid] body={"phase":"product"} — POST bump-phase",
+    "status": 200,
+  },
+  {
+    "body": {
+      "changed": false,
+      "id": "loja-demo",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+      "phase": "product",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "iniciativa 'loja-demo' avançou pra fase 'product'",
+          "metadata": {
+            "changed": false,
+            "endpoint": "initiatives/bump-phase",
+            "id": "loja-demo",
+            "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+            "phase": "product",
+          },
+          "phase_id": "product",
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /initiatives/loja-demo/bump-phase [auth:valid] body={"phase":"product"} — POST bump-phase repetido",
+    "status": 200,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "INITIATIVE_NOT_FOUND",
+        "id": "nao-existe",
+        "message": "iniciativa 'nao-existe' não existe em initiatives.yaml",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives/nao-existe/bump-phase [auth:valid] body={"phase":"x"} — POST bump-phase iniciativa inexistente",
+    "status": 404,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "status",
+        "message": "flag obrigatória ausente: --status",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives/pedidos-mod/wave-items/wave-1/item-1.1 [auth:valid] body={} — POST wave-item sem status",
+    "status": 400,
+  },
+  {
+    "body": {
+      "changed": true,
+      "id": "pedidos-mod",
+      "item": "item-1.1",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+      "status": "done",
+      "wave": "wave-1",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "wave item 'wave-1/item-1.1' atualizado (done)",
+          "metadata": {
+            "changed": true,
+            "endpoint": "initiatives/wave-items",
+            "id": "pedidos-mod",
+            "item": "item-1.1",
+            "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+            "status": "done",
+            "wave": "wave-1",
+          },
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /initiatives/pedidos-mod/wave-items/wave-1/item-1.1 [auth:valid] body={"status":"done","repo":"pedidos-api","completedAt":"2025-04-10","artifacts":["docs/adr/0001-exemplo.md",7],"summary":"characterization tests do módulo de pedidos","commit":"abc1234","knownBugsPinned":["BUG-SINTETICO-1"],"mergeBlock":"aguardando revisão","requiresApproval":true} — POST wave-item completo (wave_status)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "changed": true,
+      "id": "pedidos-mod",
+      "item": "task-1.1",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+      "status": "in-progress",
+      "wave": "epic-1",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "wave item 'epic-1/task-1.1' atualizado (in-progress)",
+          "metadata": {
+            "changed": true,
+            "endpoint": "initiatives/wave-items",
+            "id": "pedidos-mod",
+            "item": "task-1.1",
+            "path": "<ROOT>/.github/artifacts/initiatives.yaml",
+            "status": "in-progress",
+            "wave": "epic-1",
+          },
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /initiatives/pedidos-mod/wave-items/epic-1/task-1.1 [auth:valid] body={"status":"in-progress","group":"epic"} — POST wave-item group:epic (epic_status)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "error": {
+        "allowed": [
+          "pending",
+          "in-progress",
+          "blocked",
+          "failed",
+          "done",
+          "skipped",
+          "cancelled",
+        ],
+        "code": "INVALID_ENUM",
+        "field": "status",
+        "message": "valor inválido para --status: 'planned'",
+        "value": "planned",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives/pedidos-mod/wave-items/wave-2/item-2.1 [auth:valid] body={"status":"planned","group":"saga"} — POST wave-item group desconhecido (vira wave)",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "allowed": [
+          "pending",
+          "in-progress",
+          "blocked",
+          "failed",
+          "done",
+          "skipped",
+          "cancelled",
+        ],
+        "code": "INVALID_ENUM",
+        "field": "status",
+        "message": "valor inválido para --status: 'planned'",
+        "value": "planned",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives/pedidos-mod/wave-items/wave-2/item-2.2 [auth:valid] body={"status":"planned","requiresApproval":"true"} — POST wave-item requiresApproval string (ignorado)",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "INITIATIVE_NOT_FOUND",
+        "id": "nao-existe",
+        "message": "iniciativa 'nao-existe' não existe em initiatives.yaml",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives/nao-existe/wave-items/w/i [auth:valid] body={"status":"done"} — POST wave-item iniciativa inexistente",
+    "status": 404,
+  },
+  {
+    "body": {
+      "error": "NOT_FOUND",
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /initiatives/pedidos-mod/wave-items/wave-1 [auth:valid] body={"status":"done"} — POST wave-item sem o segmento de item (404)",
+    "status": 404,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_SCOPE",
+        "message": "informe --global ou --initiative <id>",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-phase [auth:valid] body={"phase":"business","status":"done"} — POST upsert-phase sem escopo",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_SCOPE",
+        "message": "informe --global ou --initiative <id>",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-phase [auth:valid] body={"global":"true","phase":"business","status":"done"} — POST upsert-phase global:'true' (string não vale)",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "phase",
+        "message": "flag obrigatória ausente: --phase",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-phase [auth:valid] body={"global":true,"status":"done"} — POST upsert-phase global sem phase",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "status",
+        "message": "flag obrigatória ausente: --status",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-phase [auth:valid] body={"global":true,"phase":"business"} — POST upsert-phase global sem status",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "allowed": [
+          "pending",
+          "in-progress",
+          "blocked",
+          "failed",
+          "done",
+          "skipped",
+          "cancelled",
+        ],
+        "code": "INVALID_ENUM",
+        "field": "status",
+        "message": "valor inválido para --status: 'round_2_done'",
+        "value": "round_2_done",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-phase [auth:valid] body={"global":true,"phase":"business","status":"round_2_done"} — POST upsert-phase status fora do enum",
+    "status": 400,
+  },
+  {
+    "body": {
+      "changed": true,
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/delivery-state.yaml",
+      "phase": "business",
+      "status": "done",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "fase 'business' do delivery-state atualizada (done)",
+          "metadata": {
+            "changed": true,
+            "endpoint": "delivery-state/upsert-phase",
+            "path": "<ROOT>/.github/artifacts/delivery-state.yaml",
+            "phase": "business",
+            "status": "done",
+          },
+          "phase_id": "business",
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /delivery-state/upsert-phase [auth:valid] body={"global":true,"phase":"business","status":"done","agent":"@business","completedAt":"2025-04-11T10:00:00Z","artifacts":[".github/artifacts/business-brief.md"]} — POST upsert-phase global completo",
+    "status": 200,
+  },
+  {
+    "body": {
+      "changed": true,
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/delivery-state.yaml",
+      "phase": "product",
+      "status": "pending",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "fase 'product' do delivery-state atualizada (pending)",
+          "metadata": {
+            "changed": true,
+            "endpoint": "delivery-state/upsert-phase",
+            "path": "<ROOT>/.github/artifacts/delivery-state.yaml",
+            "phase": "product",
+            "status": "pending",
+          },
+          "phase_id": "product",
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /delivery-state/upsert-phase [auth:valid] body={"global":true,"initiativeId":"loja-demo","phase":"product","status":"pending"} — POST upsert-phase global + initiativeId (global vence)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "changed": true,
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives/loja-demo/delivery-state.yaml",
+      "phase": "product",
+      "status": "in-progress",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "fase 'product' do delivery-state atualizada (in-progress)",
+          "metadata": {
+            "changed": true,
+            "endpoint": "delivery-state/upsert-phase",
+            "path": "<ROOT>/.github/artifacts/initiatives/loja-demo/delivery-state.yaml",
+            "phase": "product",
+            "status": "in-progress",
+          },
+          "phase_id": "product",
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /delivery-state/upsert-phase [auth:valid] body={"initiativeId":"loja-demo","phase":"product","status":"in-progress","agent":"@product"} — POST upsert-phase por iniciativa",
+    "status": 200,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_SCOPE",
+        "message": "informe --global ou --initiative <id>",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-checklist [auth:valid] body={"phase":"business","item":"kpi","checked":true} — POST upsert-checklist sem escopo",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "item",
+        "message": "flag obrigatória ausente: --item",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-checklist [auth:valid] body={"global":true,"phase":"business","checked":true} — POST upsert-checklist sem item",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "checked",
+        "message": "flag obrigatória ausente: --checked",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-checklist [auth:valid] body={"global":true,"phase":"business","item":"kpi"} — POST upsert-checklist sem checked",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "INVALID_BOOLEAN",
+        "field": "checked",
+        "message": "valor inválido para --checked: 'sim' — esperado 'true' ou 'false'",
+        "value": "sim",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-checklist [auth:valid] body={"global":true,"phase":"business","item":"kpi","checked":"sim"} — POST upsert-checklist checked inválido",
+    "status": 400,
+  },
+  {
+    "body": {
+      "error": {
+        "code": "MISSING_FLAG",
+        "field": "checked",
+        "message": "flag obrigatória ausente: --checked",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /delivery-state/upsert-checklist [auth:valid] body={"global":true,"phase":"business","item":"kpi","checked":1} — POST upsert-checklist checked numérico",
+    "status": 400,
+  },
+  {
+    "body": {
+      "changed": true,
+      "checked": true,
+      "item": "kpi-defined",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/delivery-state.yaml",
+      "phase": "business",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "checklist 'kpi-defined' da fase 'business' atualizado (true)",
+          "metadata": {
+            "changed": true,
+            "checked": true,
+            "endpoint": "delivery-state/upsert-checklist",
+            "item": "kpi-defined",
+            "path": "<ROOT>/.github/artifacts/delivery-state.yaml",
+            "phase": "business",
+          },
+          "phase_id": "business",
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /delivery-state/upsert-checklist [auth:valid] body={"global":true,"phase":"business","item":"kpi-defined","checked":true} — POST upsert-checklist checked:true (default human_checklist)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "changed": true,
+      "checked": false,
+      "item": "prd-ok",
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/initiatives/loja-demo/delivery-state.yaml",
+      "phase": "product",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [
+      {
+        "event": {
+          "event_type": "artifact-written",
+          "message": "checklist 'prd-ok' da fase 'product' atualizado (false)",
+          "metadata": {
+            "changed": true,
+            "checked": false,
+            "endpoint": "delivery-state/upsert-checklist",
+            "item": "prd-ok",
+            "path": "<ROOT>/.github/artifacts/initiatives/loja-demo/delivery-state.yaml",
+            "phase": "product",
+          },
+          "phase_id": "product",
+          "run_id": "state-service-write",
+          "timestamp": "<agora>",
+        },
+        "source": "state-write",
+      },
+    ],
+    "request": "POST /delivery-state/upsert-checklist [auth:valid] body={"initiativeId":"loja-demo","phase":"product","item":"prd-ok","checked":"false","section":"checklist"} — POST upsert-checklist checked:'false' string + section",
+    "status": 200,
+  },
+  {
+    "body": {
+      "event": {
+        "agent_id": "@backend",
+        "artifact_path": ".github/artifacts/execution/relatorio.md",
+        "event_type": "artifact-written",
+        "initiative_id": "loja-demo",
+        "run_id": "r-contrato",
+        "timestamp": "2025-04-12T10:00:00.000Z",
+      },
+      "ok": true,
+      "path": "<ROOT>/.github/artifacts/runs/loja-demo.jsonl",
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /runs/append [auth:valid] body={"event_type":"artifact-written","initiative_id":"loja-demo","agent_id":"@backend","artifact_path":".github/artifacts/execution/relatorio.md","run_id":"r-contrato","timestamp":"2025-04-12T10:00:00.000Z"} — POST /runs/append evento de agente (nomes do contrato)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "error": {
+        "allowed": [
+          "agent-started",
+          "agent-progress",
+          "agent-done",
+          "artifact-written",
+          "blocked",
+          "decision-requested",
+        ],
+        "code": "INVALID_ENUM",
+        "field": "event_type",
+        "message": "valor inválido para --event_type: 'decision-made'",
+        "value": "decision-made",
+      },
+      "ok": false,
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "POST /runs/append [auth:valid] body={"event_type":"decision-made","by":"X"} — POST /runs/append decisão humana (agente não registra: 400)",
+    "status": 400,
+  },
+  {
+    "body": {
+      "ok": true,
+      "state": {
+        "active": "loja-demo",
+        "initiatives": [
+          {
+            "created_at": "2025-03-01",
+            "current_phase": "product",
+            "id": "loja-demo",
+            "mode": "greenfield",
+            "name": "Loja Demo",
+            "status": "in-progress",
+            "stream": "upstream",
+            "type": "feature",
+          },
+          {
+            "created_at": "2025-04-02",
+            "current_phase": "assessor",
+            "epic_status": {
+              "epic-1": {
+                "items": {
+                  "task-1.1": {
+                    "status": "in-progress",
+                  },
+                },
+                "status": "in-progress",
+              },
+            },
+            "id": "pedidos-mod",
+            "mode": "brownfield",
+            "name": "Modernização de Pedidos",
+            "owner": "time-plataforma",
+            "priority": "P1",
+            "status": "planned",
+            "stream": "foundation",
+            "type": "modernization",
+            "wave_status": {
+              "wave-1": {
+                "items": {
+                  "item-1.1": {
+                    "artifacts": [
+                      "docs/adr/0001-exemplo.md",
+                    ],
+                    "commit": "abc1234",
+                    "completed_at": "2025-04-10",
+                    "known_bugs_pinned": [
+                      "BUG-SINTETICO-1",
+                    ],
+                    "merge_block": "aguardando revisão",
+                    "repo": "pedidos-api",
+                    "requires_approval": true,
+                    "status": "done",
+                    "summary": "characterization tests do módulo de pedidos",
+                  },
+                },
+                "status": "done",
+              },
+            },
+          },
+          {
+            "id": "catalogo-hotfix",
+            "name": "catalogo-hotfix",
+            "status": "planned",
+            "type": "hotfix",
+          },
+        ],
+        "version": 1,
+      },
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /initiatives [auth:valid] — GET /initiatives (depois das escritas)",
+    "status": 200,
+  },
+  {
+    "body": {
+      "ok": true,
+      "state": {
+        "phases": {
+          "business": {
+            "agent": "@business",
+            "artifacts": [
+              {
+                "path": ".github/artifacts/business-brief.md",
+              },
+            ],
+            "completed_at": "2025-04-11T10:00:00Z",
+            "human_checklist": {
+              "kpi-defined": true,
+            },
+            "status": "done",
+          },
+          "product": {
+            "human_checklist": {},
+            "status": "pending",
+          },
+        },
+      },
+    },
+    "contentType": "application/json; charset=utf-8",
+    "events": [],
+    "request": "GET /delivery-state [auth:valid] — GET /delivery-state global (depois das escritas)",
+    "status": 200,
+  },
+]
+`;
+
+exports[`contrato — State Service HTTP (rotas × status × envelope × eventos) > bytes YAML que a API deixou em disco (golden — prova que SS2/SS3 não mudam a escrita) 1`] = `
+{
+  "delivery-state.yaml (global)": "phases:
+  business:
+    artifacts:
+      - path: ".github/artifacts/business-brief.md"
+    completed_at: "2025-04-11T10:00:00Z"
+    status: done
+    agent: "@business"
+    human_checklist:
+      kpi-defined: true
+  product:
+    status: pending
+",
+  "initiatives.yaml": "version: 1
+active: "loja-demo"
+initiatives:
+  - id: loja-demo
+    name: "Loja Demo"
+    status: in-progress
+    stream: upstream
+    current_phase: "product"
+    mode: greenfield
+    type: feature
+    created_at: "2025-03-01"
+  - id: "pedidos-mod"
+    name: "Modernização de Pedidos"
+    status: "planned"
+    stream: "foundation"
+    current_phase: "assessor"
+    mode: "brownfield"
+    type: "modernization"
+    owner: "time-plataforma"
+    priority: "P1"
+    created_at: "2025-04-02"
+    wave_status:
+      wave-1:
+        item-1.1:
+          status: "done"
+          repo: "pedidos-api"
+          completed_at: "2025-04-10"
+          artifacts:
+            - "docs/adr/0001-exemplo.md"
+          summary: "characterization tests do módulo de pedidos"
+          commit: "abc1234"
+          known_bugs_pinned:
+            - "BUG-SINTETICO-1"
+          merge_block: "aguardando revisão"
+          requires_approval: true
+    epic_status:
+      epic-1:
+        task-1.1:
+          status: "in-progress"
+  - id: "catalogo-hotfix"
+    name: "catalogo-hotfix"
+    status: "planned"
+    type: "hotfix"
+",
+  "initiatives/loja-demo/delivery-state.yaml": "initiative_id: loja-demo
+phases:
+  business:
+    status: in-progress
+    agent: "@business"
+  product:
+    status: in-progress
+    agent: "@product"
+    checklist:
+      prd-ok: false
+",
+}
+`;
+
+exports[`contrato — State Service HTTP (rotas × status × envelope × eventos) > distribuição de status da tabela (rede contra mudança silenciosa de código HTTP) 1`] = `
+{
+  "200": 26,
+  "400": 25,
+  "401": 8,
+  "404": 7,
+  "405": 3,
+}
+`;

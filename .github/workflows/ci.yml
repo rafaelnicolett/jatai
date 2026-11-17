@@ -1,0 +1,193 @@
+# CI da Jataí (F0.3, mod-missao-open-source).
+#
+# Dá sentido ao "verde" de todo passo seguinte: refactor só entra com golden
+# master e contratos verdes, e é este workflow que diz se eles estão verdes.
+# Os mesmos passos, na mesma ordem, rodam localmente com `npm run ci:local`
+# (scripts/ci-local.sh). Mude os dois juntos.
+#
+# Actions de terceiros fixadas pelo SHA completo do commit, com a versão no
+# comentário. Para atualizar uma delas:
+#   git ls-remote https://github.com/<dono>/<action> refs/tags/<versão>
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Vale para todo npm do job, inclusive o `npm ci` que o build:webview roda
+  # por dentro.
+  npm_config_audit: "false"
+  npm_config_fund: "false"
+  npm_config_update_notifier: "false"
+
+jobs:
+  verify:
+    name: verify (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      # Antes do checkout. Sem isto o runner Windows troca LF por CRLF: os
+      # testes que leem frontmatter com /^---\n/ quebram e o bundle do CLI
+      # regenerado deixa de bater com o versionado.
+      - name: Fim de linha LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Node 20
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            webview-ui/package-lock.json
+
+      # --ignore-scripts: o postinstall do keytar (dependência opcional do
+      # vsce) baixa um binário do GitHub, e nada deste job precisa dele.
+      - name: npm ci (raiz)
+        run: npm ci --ignore-scripts
+
+      - name: npm ci (webview-ui)
+        working-directory: webview-ui
+        run: npm ci --ignore-scripts
+
+      - name: Typecheck (host)
+        run: npx tsc --noEmit --incremental false
+
+      - name: Typecheck (webview)
+        run: npm run typecheck:webview
+
+      - name: Lint (host)
+        run: npm run lint
+
+      # Zero erro: a F3.9 zerou e apagou o baseline herdado do 0.9.10.
+      - name: Lint (webview)
+        run: npm run lint:webview
+
+      # Marca como dado (ADR-0013): nenhum literal de marca fora do
+      # src/data/brand.json, no código (src/, webview-ui/src/) e no kit, e todo
+      # placeholder {{brand.*}} do kit resolve.
+      - name: Lint de marca (F1.2)
+        run: node scripts/brand-lint.mjs
+
+      # Fitness functions da ADR-0016 (.dependency-cruiser.cjs). Reprova só o
+      # que está em error: hoje `core-is-pure` (src/core sem builtin do Node e
+      # sem vscode). As regras em warn aparecem no log e viram error na feature
+      # que as zera.
+      - name: Arquitetura (dependency-cruiser, ADR-0016)
+        run: npm run arch
+
+      - name: Testes (host)
+        run: npx vitest run --no-cache
+
+      - name: Testes (webview)
+        working-directory: webview-ui
+        run: npx vitest run --no-cache
+
+      - name: Build completo
+        run: npm run build
+
+      - name: Kit (validação)
+        run: node scripts/copy-templates.js
+
+      # O catálogo público de agentes e skills (docs/agentes/) é gerado do
+      # frontmatter de kit/ e não pode divergir dele (F7.2). Para gerar:
+      # npm run docs:agents.
+      - name: Catálogo de agentes (F7.2)
+        run: node scripts/gen-agent-catalog.mjs --check
+
+      # O build e os testes não podem apagar nem alterar arquivo versionado (o
+      # build do 0.9.10 apagava o kit), nem deixar lixo fora do .gitignore. Isto
+      # também pega os bundles versionados do CLI e do servidor MCP (kit/scripts/)
+      # quando eles não batem com o src/cli e o src/mcp atuais.
+      - name: Árvore limpa depois do build
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --porcelain
+            git --no-pager diff --stat
+            echo "::error::o build ou os testes alteraram ou criaram arquivo fora do .gitignore"
+            exit 1
+          fi
+
+      - name: Pacote (vsce package) e conteúdo do .vsix
+        run: node scripts/vsix-check.mjs --out "$RUNNER_TEMP/vsix"
+
+      - name: Artefato .vsix
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: jatai-vsix
+          path: ${{ runner.temp }}/vsix/*.vsix
+          if-no-files-found: error
+          retention-days: 14
+
+  security:
+    name: security
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      # O gitleaks-action lista os commits do PR pela API.
+      pull-requests: read
+    steps:
+      - name: Checkout (histórico completo, para o gitleaks)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # Conta pessoal: sem GITLEAKS_LICENSE. Se o repositório for para uma
+      # organização, a action passa a exigir a licença (gratuita) de gitleaks.io.
+      - name: Segredos (gitleaks)
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Comentar no PR exigiria pull-requests: write. O achado fica no
+          # resumo do job e no artefato SARIF, que sai com --redact.
+          GITLEAKS_ENABLE_COMMENTS: "false"
+
+      - name: Node 20
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 20
+          package-manager-cache: false
+
+      # Dado de cliente, conteúdo pago de terceiro e ids internos não voltam
+      # para o repositório. A lista guarda só o SHA-256 de cada termo
+      # (scripts/content-scan-terms.json); o achado sai como path:linha.
+      - name: Conteúdo proibido (F2.3)
+        run: node scripts/content-scan.mjs
+
+      - name: Licenças de terceiros (ADR-0014)
+        run: node scripts/license-check.mjs
+
+      - name: Instalar dependências (textos de licença para os notices)
+        run: |
+          npm ci --ignore-scripts
+          npm ci --ignore-scripts --prefix webview-ui
+
+      - name: THIRD_PARTY_NOTICES em dia (F2.4)
+        run: node scripts/third-party-notices.mjs --check

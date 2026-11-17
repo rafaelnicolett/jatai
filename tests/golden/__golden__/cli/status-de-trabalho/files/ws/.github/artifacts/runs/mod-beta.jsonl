@@ -1,0 +1,1 @@
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"mod-beta","task_id":"wave-1/item-1","artifact_path":".github/artifacts/initiatives.yaml","harness":"cli","message":"tarefa 'wave-1/item-1' → failed","metadata":{"reason":"suíte de integração quebrou","task":"wave-1/item-1"}}

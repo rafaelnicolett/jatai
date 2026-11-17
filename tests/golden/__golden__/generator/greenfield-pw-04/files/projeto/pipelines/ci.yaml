@@ -1,0 +1,38 @@
+name: CI — painel-ficticio
+# Gerado pela Helyx
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: cd code/services/painel-ficticio-api && dotnet restore
+
+      - name: Run tests
+        run: cd code/services/painel-ficticio-api && dotnet test --no-restore --logger trx
+
+      - name: Build
+        run: cd code/services/painel-ficticio-api && dotnet publish src/PainelFicticio.API/PainelFicticio.API.csproj -c Release -o publish
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t painel-ficticio:latest code/services/painel-ficticio-api
+
+# Este pipeline será expandido pelo @devops durante configuração de CI/CD

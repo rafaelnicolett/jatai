@@ -1,0 +1,1 @@
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","phase_id":"product","artifact_path":".github/artifacts/delivery-state.yaml","harness":"cli","message":"fase 'product' → done"}

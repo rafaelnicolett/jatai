@@ -1,0 +1,29 @@
+/* AppBar do DS v2 (§4.1): fundo surface, borda inferior line, padding 12/24, gap 12 entre grupos e 8 entre ações; fixa no topo. */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: var(--jt-z-sticky);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--jt-space-3);
+  padding: var(--jt-space-3) var(--jt-layout-gutter);
+  border-bottom: 1px solid var(--jt-line);
+  background: var(--jt-surface);
+  color: var(--jt-fg);
+}
+
+.brand { display: flex; align-items: center; color: var(--jt-mel); }
+.sep { width: 1px; height: var(--jt-size-icon-lg); background: var(--jt-line); }
+.project { font: var(--jt-type-body-strong); color: var(--jt-fg); }
+.spacer { flex: 1 1 0; }
+.actions { display: flex; align-items: center; gap: var(--jt-space-2); }
+
+/* Compact (< 600px do painel): só o glifo, sem o wordmark; o ⌘K só com o ícone. */
+@container (max-width: 599px) {
+  .bar { padding-inline: var(--jt-layout-gutter-compact); }
+}
+
+@media (forced-colors: active) {
+  .bar { border-bottom-color: CanvasText; }
+}

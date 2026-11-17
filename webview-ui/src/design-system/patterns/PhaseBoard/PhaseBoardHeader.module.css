@@ -1,0 +1,35 @@
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--jt-space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--jt-space-3);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-status-queue-line);
+  flex-shrink: 0;
+  align-self: center;
+}
+.dot[data-status="done"] { background: var(--jt-status-done-line); }
+.dot[data-status="running"] { background: var(--jt-status-working-line); }
+.dot[data-status="review"] { background: var(--jt-status-you-line); }
+.dot[data-status="blocked"] { background: var(--jt-status-blocked-line); }
+
+.title {
+  font-family: var(--jt-font-display);
+  font-weight: 400;
+  font-size: var(--jt-text-xl);
+  margin: 0;
+  color: var(--jt-fg);
+}
+
+.meta {
+  font-family: var(--jt-font-mono);
+  font-size: var(--jt-text-xs);
+  color: var(--jt-fg-3);
+  margin-left: auto;
+}

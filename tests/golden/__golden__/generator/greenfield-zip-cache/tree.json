@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "case": "greenfield-zip-cache",
+  "base": null,
+  "input": {
+    "projectName": "orbita",
+    "deliveryMode": "full-cycle",
+    "hostAdapter": "copilot",
+    "backendStack": "java-spring",
+    "backendArchitecture": "hexagonal",
+    "frontendStack": "none",
+    "database": "postgresql",
+    "cloud": "none",
+    "cicd": "github-actions",
+    "resolvedTemplate": {
+      "id": "template-sintetico",
+      "name": "Template sintético",
+      "stack": "java-spring",
+      "version": "2.0.0"
+    }
+  },
+  "outcome": {
+    "resolved": {
+      "isLocal": false
+    }
+  },
+  "calls": [
+    {
+      "fn": "templateSource.getZip",
+      "args": [
+        "helyx-template-java-spring",
+        "2.0.0"
+      ],
+      "result": "zip de 2184 bytes"
+    }
+  ],
+  "entries": {
+    "projeto/": "dir",
+    "projeto/.github/": "dir",
+    "projeto/.github/agents/": "dir",
+    "projeto/.github/agents/backend.agent.md": "file 100644 172 add73f58a930059409605f9afe1bac7669341db9d615a4cd1c08ff3dc8e0e039 text",
+    "projeto/.github/artifacts/": "dir",
+    "projeto/.github/artifacts/initiatives.yaml": "file 100644 111 c53291607151fcbc566cced407bd6598a31b1bc14075f1ed757e764833ad2bfd text",
+    "projeto/.github/chatmodes/": "dir",
+    "projeto/.github/chatmodes/maestro.chatmode.md": "file 100644 732 d9e33d0fb3cf4f839e80eef30892cf6feab0782cdee11a95204fd50d81451a6f text",
+    "projeto/.github/copilot-instructions.md": "file 100644 1385 21634d4c237c0b17ce992154f32a2492b8968fa3be8bdc7fed6888b0d8803ae8 text",
+    "projeto/.gitignore": "file 100644 227 32258190b2d3bb9dbe30275ef1b61fa299741c6ed1661d0cdf763ed369b74d04 text",
+    "projeto/CLAUDE.md": "file 100644 43 47c77bcf5e8a51bd90ee0270afb5a47e435f526cdc59b739bbfc35bfb54d780c text",
+    "projeto/README.md": "file 100644 187 50cf65dd00a763d72cd7a01feedc81f8757402a81afbaa8b482246fde25f71ab text",
+    "projeto/assets/": "dir",
+    "projeto/assets/logo.png": "file 100644 26 9bab6b1db6faa084e927392d4713b7401b332a56e206d21f43864f63fa4c71d8 binary",
+    "projeto/config/": "dir",
+    "projeto/config/app.yaml": "file 100644 12 a414fcf4a2dddc8afa619714e38f059c0b77bb793c8d790b8720c479758e9a9b text",
+    "projeto/fora-do-projeto.txt": "file 100644 16 b249955ab70f562dcb684622330b0d5166b350ad4699499f6e92c0140731b677 text",
+    "projeto/helyx.config.yaml": "file 100644 725 85ce9f025afbcedeaae1331fdd0814198b79b11a84c503dba6db9dbb9c68f29f text",
+    "projeto/scripts/": "dir",
+    "projeto/scripts/mvnw": "file 100644 30 dd23005aeb47491323bf2402911fbd7a2ca26a67d9606401c7bcc0c0f0a5a757 text",
+    "projeto/src/": "dir",
+    "projeto/src/{{svc_name_snake}}/": "dir",
+    "projeto/src/{{svc_name_snake}}/__init__.py": "file 100644 0 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 text"
+  }
+}

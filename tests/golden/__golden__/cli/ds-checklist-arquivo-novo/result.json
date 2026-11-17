@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "scenario": "ds-checklist-arquivo-novo",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "business",
+        "--item",
+        "problem-section",
+        "--checked",
+        "true"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "business",
+        "item": "problem-section",
+        "checked": true
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "business",
+        "--item",
+        "kpi-defined",
+        "--checked",
+        "false"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "business",
+        "item": "kpi-defined",
+        "checked": false
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "business",
+        "--item",
+        "lint-ok",
+        "--checked",
+        "true",
+        "--section",
+        "checklist"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "business",
+        "item": "lint-ok",
+        "checked": true
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "business",
+        "--item",
+        "kpi-defined",
+        "--checked",
+        "true"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "business",
+        "item": "kpi-defined",
+        "checked": true
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 153 9b10d22e82737dcfb802d73d3b545a669e969b69af06f6d6875b87b299d8ca50 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 947 0aa262fa5e9fe0841e23c38687120d27de7bcdd75e9c1a4353b5db4217795a77 text"
+  }
+}

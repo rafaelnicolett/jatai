@@ -1,0 +1,33 @@
+# Fixture SINTÉTICA (F0.4, lane B) — formato v2 (multi-repo)
+version: 2
+phases:
+  domain:
+    status: agent-done
+    agent: "@domain-extractor"
+    human_checklist:
+      contexts-reviewed: false
+  business-archeology:
+    status: pending
+repos:
+  pedidos-api:
+    phases:
+      tech-mapping:
+        status: done
+        agent: "@tech-mapper"
+        completed_at: "2025-02-01T09:00:00Z"
+      design-system:
+        status: done
+    findings_summary:
+      critical: 1
+      high: 2
+      medium: 3
+      low: 4
+    gate_d1:
+      status: pending
+  catalogo-web:
+    phases:
+      tech-mapping:
+        status: in-progress
+    gate_d1:
+      status: approved
+      approved_at: "2025-02-03T10:00:00Z"

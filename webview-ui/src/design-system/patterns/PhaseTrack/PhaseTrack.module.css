@@ -1,0 +1,194 @@
+/* PhaseTrack do DS v2 (§4.2): contêiner surface, raio 2xl, padding 16, borda line. */
+.track {
+  container-type: inline-size;
+  padding: var(--jt-space-4);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-2xl);
+  background: var(--jt-surface);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Segmentos: concluído (terra verde), atual (terra, borda de 2px) e depois (tracejado). */
+.segment {
+  flex: 1 1 120px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--jt-space-2) var(--jt-space-3);
+  border-radius: var(--jt-radius-xl);
+  color: var(--jt-fg);
+}
+.segment[data-status="done"] { background: var(--jt-status-done-bg); }
+.segment[data-status="current"] {
+  flex: 999 1 480px;
+  gap: var(--jt-space-0-5);
+  background: var(--jt-status-working-bg);
+  border: 2px solid var(--jt-status-working-line);
+}
+.segment[data-status="future"] {
+  flex: 1 1 110px;
+  border: 1px dashed var(--jt-status-future-line);
+  color: var(--jt-fg-2);
+}
+.segment[data-selected="true"] { outline: 2px solid var(--jt-selected); outline-offset: -2px; }
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--jt-space-2);
+}
+
+.title { font: var(--jt-type-display-sm); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  font: var(--jt-type-eyebrow);
+  letter-spacing: var(--jt-tracking-eyebrow);
+  text-transform: uppercase;
+}
+.eyebrow[data-tone="done"] { color: var(--jt-status-done-fg); }
+.eyebrow[data-tone="current"] { color: var(--jt-mel-ink); }
+.eyebrow[data-tone="future"] { color: var(--jt-status-future-fg); }
+
+/* Segmento que é botão (as ondas do hotfix, a Operação): sem moldura própria, herda o card. */
+.segmentButton {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jt-space-0-5);
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.segmentButton:focus-visible,
+.bridgeButton:focus-visible {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+}
+
+/* Pontes: barra de 5px e o rótulo mono. Aprovada sólida; depois pontilhada; espera você sólida azul; bloqueada tracejada. */
+.bridge {
+  flex: 0 0 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--jt-space-0-5);
+}
+.bar {
+  width: 100%;
+  height: var(--jt-size-bridge-bar);
+  border-radius: var(--jt-radius-xs);
+}
+.bridge[data-status="approved"] .bar { background: var(--jt-status-done-line); }
+.bridge[data-status="waiting"] .bar { background: var(--jt-status-you-line); }
+.bridge[data-status="future"] .bar { height: 0; border-top: var(--jt-size-bridge-bar) dotted var(--jt-status-future-line); border-radius: 0; }
+.bridge[data-status="blocked"] .bar { height: 0; border-top: var(--jt-size-bridge-bar) dashed var(--jt-status-blocked-line); border-radius: 0; }
+
+.bridgeLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-0-5);
+  font: var(--jt-type-eyebrow-strong);
+  white-space: nowrap;
+}
+.bridge[data-status="approved"] .bridgeLabel { color: var(--jt-status-done-fg); }
+.bridge[data-status="waiting"] .bridgeLabel { color: var(--jt-status-you-fg); }
+.bridge[data-status="future"] .bridgeLabel { color: var(--jt-fg-3); }
+.bridge[data-status="blocked"] .bridgeLabel { color: var(--jt-status-blocked-fg); }
+
+.bridgeButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--jt-space-0-5);
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--jt-radius-sm);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .bridgeButton:hover { background: var(--jt-status-you-bg); }
+}
+
+/* Paradas: uma coluna por parada, o caminho pontilhado atrás dos círculos. */
+.stops {
+  --stops: 1; /* o componente põe a contagem de paradas (CSSOM, que a CSP do webview aceita) */
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--stops), minmax(0, 1fr));
+  gap: var(--jt-space-0-5);
+  align-items: end;
+  padding-top: var(--jt-space-6);
+}
+.path {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: var(--jt-space-8);
+  border-top: 3px dotted var(--jt-cerume);
+}
+.stopCell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+.bee {
+  position: absolute;
+  top: calc(-1 * var(--jt-space-6));
+  color: var(--jt-mel);
+  animation: bob var(--jt-dur-bob) var(--jt-ease-sine) var(--jt-iterations-burst);
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(-1 * var(--jt-motion-distance-sm))); }
+}
+
+.stopsEmpty {
+  margin: var(--jt-space-2) 0 0;
+  font: var(--jt-type-body-sm);
+  color: var(--jt-fg-2);
+}
+
+/* Divisor (< 600px do próprio painel): as paradas ficam só com o número; o rótulo vem pelo nome acessível e pela dica. */
+@container (max-width: 599px) {
+  .stops :global(span[aria-hidden="true"]:last-child) { display: none; }
+  .segment[data-status="current"] { flex-basis: 100%; }
+}
+
+/* Alto contraste e cores forçadas: o fundo some, entra a borda no traço do status. */
+@media (forced-colors: active) {
+  .segment[data-status="done"],
+  .segment[data-status="current"] { border: 1px solid CanvasText; background: Canvas; }
+  .segment[data-status="current"] { border-width: 2px; }
+  .bridge[data-status="approved"] .bar,
+  .bridge[data-status="waiting"] .bar { background: CanvasText; }
+  .bridge[data-status="future"] .bar,
+  .bridge[data-status="blocked"] .bar { border-top-color: CanvasText; }
+  .bridgeButton:focus-visible,
+  .segmentButton:focus-visible { outline-color: Highlight; }
+}

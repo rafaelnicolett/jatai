@@ -1,0 +1,158 @@
+/* "Agora" do DS v2 (§4.3): dois cartões lado a lado (a partir de 300px cada), o "parado" embaixo. */
+.now {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-3);
+  container-type: inline-size;
+}
+
+.where {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--jt-space-2);
+  margin: 0;
+  font: var(--jt-type-body-sm);
+  color: var(--jt-fg-2);
+}
+.initiative { font: var(--jt-type-body-strong); color: var(--jt-fg); }
+.part { display: inline-flex; gap: var(--jt-space-2); }
+
+.viewing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jt-space-2);
+  padding: var(--jt-space-2) var(--jt-space-3);
+  border: 1px solid var(--jt-line-strong);
+  border-radius: var(--jt-radius-lg);
+  background: var(--jt-surface-2);
+  font: var(--jt-type-body-sm);
+  color: var(--jt-fg-2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--jt-layout-now-min), 1fr));
+  gap: var(--jt-space-4);
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--jt-space-4);
+  padding: var(--jt-space-4);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-surface);
+}
+.card[data-kind="decision"] { border-color: var(--jt-status-you-line); }
+.card[data-stale="true"] { border-color: var(--jt-feedback-warning-fg); }
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 200px;
+  min-width: 0;
+  gap: var(--jt-space-0-5);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  margin: 0;
+  font: var(--jt-type-eyebrow);
+  letter-spacing: var(--jt-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--jt-fg-3);
+}
+.eyebrow[data-tone="you"] { color: var(--jt-status-you-fg); }
+.eyebrow[data-tone="blocked"] { color: var(--jt-status-blocked-fg); }
+.card[data-stale="true"] .eyebrow { color: var(--jt-feedback-warning-fg); }
+
+.title { font: var(--jt-type-display-md); color: var(--jt-fg); }
+.detail { font: var(--jt-type-body-sm); color: var(--jt-fg-2); }
+
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--jt-space-2); }
+
+.all {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-2);
+  margin: 0;
+  padding: var(--jt-space-3) 0 0;
+  border-top: 1px solid var(--jt-line);
+  list-style: none;
+}
+.all li { display: flex; align-items: center; justify-content: space-between; gap: var(--jt-space-3); }
+.allText { display: flex; flex-direction: column; min-width: 0; }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* O que está parado: bloqueado e falhou, com o motivo em texto (ADR-0022). */
+.problems {
+  padding: var(--jt-space-3) var(--jt-space-4);
+  border: 1px solid var(--jt-status-blocked-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-surface);
+}
+.problemList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  margin: var(--jt-space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.problem { display: flex; align-items: baseline; gap: var(--jt-space-2); font: var(--jt-type-body-sm); color: var(--jt-fg); }
+.problem > svg { align-self: center; flex: none; color: var(--jt-status-blocked-fg); }
+.reason { color: var(--jt-status-blocked-fg); }
+
+/* Órbita: disco surface-2 com o anel Cerume e o satélite de mel. Só gira numa rajada de 2 voltas por evento. */
+.orbit {
+  position: relative;
+  flex: none;
+  width: var(--jt-size-orbit);
+  height: var(--jt-size-orbit);
+}
+.disc {
+  position: absolute;
+  inset: var(--jt-space-2);
+  border: 2px solid var(--jt-cerume);
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-surface-2);
+}
+.spin {
+  position: absolute;
+  inset: 0;
+  display: block;
+  animation: orbit var(--jt-dur-orbit) var(--jt-ease-linear) var(--jt-iterations-burst);
+}
+.satellite {
+  position: absolute;
+  top: 0;
+  left: calc(50% - var(--jt-size-dot) / 2);
+  width: var(--jt-size-dot);
+  height: var(--jt-size-dot);
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-mel);
+}
+@keyframes orbit { to { transform: rotate(360deg); } }
+
+@media (forced-colors: active) {
+  .card[data-kind="decision"],
+  .problems { border-color: CanvasText; }
+  .satellite { background: CanvasText; }
+  .disc { border-color: CanvasText; }
+}

@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "case": "greenfield-pw-12",
+  "base": "greenfield-copilot-padrao",
+  "input": {
+    "projectName": "orbita",
+    "startupIdea": "Plataforma fictícia de agendamento, usada só para validar o golden master.",
+    "deliveryMode": "code-first",
+    "hostAdapter": "copilot",
+    "backendStack": "python-api",
+    "backendArchitecture": "ddd-tactical",
+    "frontendStack": "ios-swiftui",
+    "frontendArchitecture": "feature-based",
+    "database": "mongodb",
+    "cloud": "azure",
+    "cicd": "jenkins"
+  },
+  "outcome": {
+    "resolved": {
+      "isLocal": true
+    }
+  },
+  "calls": [],
+  "entries": {
+    "projeto/.github/artifacts/gates/README.md": "file 100644 1431 7c39b2378ce72cd0eae2311ee719d489b2f5d16e49d6d49dc6f40006fbc7bb7e text",
+    "projeto/.github/copilot-instructions.md": "file 100644 1401 29e183ec7039a2d6d1c1709ed229ae8fa26553100f787d8611ddfcde9789140f text",
+    "projeto/AGENTS.md": "file 100644 1069 f9ec17bc7184d285d0f8e6be2eb4161638f7d40ec8cf3096e6804502e31d22d2 text",
+    "projeto/code/apps/": "dir",
+    "projeto/code/apps/orbita-web/": "dir",
+    "projeto/code/apps/orbita-web/.gitignore": "file 100644 46 6ba1be29a9d4967184a4e8517a52085c922a23e2dad4c9c56e92336cea5bc51e text",
+    "projeto/code/apps/orbita-web/Orbita/": "dir",
+    "projeto/code/apps/orbita-web/Orbita/Sources/": "dir",
+    "projeto/code/apps/orbita-web/Orbita/Sources/ContentView.swift": "file 100644 92 5ac1672cd4bb2a8fb7d5021fa137734376a81e84049c4c68a50532654cc513ab text",
+    "projeto/code/apps/orbita-web/Orbita/Sources/OrbitaApp.swift": "file 100644 121 fbd9f1752a4d1f1c039f88a068b277ec3bccdcd6a7d225a3425b120641d3f625 text",
+    "projeto/code/apps/orbita-web/OrbitaTests/": "dir",
+    "projeto/code/apps/orbita-web/Package.swift": "file 100644 470 1ae14a6c8a45bc2573686634f4da0629f52d53cfe98add094e11e790d7d3468e text",
+    "projeto/code/apps/orbita-web/README.md": "file 100644 322 c5130ca153b68a1c977000f4819bacf68459c615a17d9a04ac2af94cdfd8617e text",
+    "projeto/code/services/orbita-api/README.md": "file 100644 1236 6002c4294ecc36589bfd02d8a55d311c694a1159157985bf8e819a688c6214a5 text",
+    "projeto/code/services/orbita-api/pyproject.toml": "file 100644 638 a3b2cda0caf2294645ae7d9f97ca32e329658fdb9888326052f0845f5f9f2e0b text",
+    "projeto/code/services/orbita-api/src/application/commands/": "dir",
+    "projeto/code/services/orbita-api/src/application/queries/": "dir",
+    "projeto/code/services/orbita-api/src/application/use_cases/": "absent",
+    "projeto/code/services/orbita-api/src/domain/aggregates/": "dir",
+    "projeto/code/services/orbita-api/src/domain/entities/": "dir",
+    "projeto/code/services/orbita-api/src/domain/events/": "dir",
+    "projeto/code/services/orbita-api/src/domain/model/": "absent",
+    "projeto/code/services/orbita-api/src/domain/model/__init__.py": "absent",
+    "projeto/code/services/orbita-api/src/domain/ports/": "absent",
+    "projeto/code/services/orbita-api/src/domain/repositories/": "dir",
+    "projeto/code/services/orbita-api/src/domain/value_objects/": "dir",
+    "projeto/code/services/orbita-api/src/infrastructure/adapters/": "absent",
+    "projeto/code/services/orbita-api/src/infrastructure/config/": "absent",
+    "projeto/code/services/orbita-api/src/infrastructure/messaging/": "dir",
+    "projeto/code/services/orbita-api/src/infrastructure/persistence/": "dir",
+    "projeto/code/services/orbita-api/src/main.py": "file 100644 688 2e266e44b626ef7facf45a31f680d099e1b76bf228176f223e00f283a93260bb text",
+    "projeto/code/services/orbita-api/tests/unit/domain/": "dir",
+    "projeto/docs/domain/bounded-contexts.md": "file 100644 1718 f26afd20bdcfd5fcffe4ead8c3df9b3597fd43a3460e39adb571232bfb3e6f74 text",
+    "projeto/helyx.config.yaml": "file 100644 779 76c88d960692822659950dd04dfe545b92eeb820bf60cd1994e4222883d6111b text",
+    "projeto/infrastructure/docker-compose.local.yml": "file 100644 344 4c1ddb1d3ae36fdc327a7bdfe6d4e06734d9eb92c16c425adcd11a5ed6dd3be2 text"
+  }
+}

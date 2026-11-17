@@ -1,0 +1,138 @@
+/*
+ * As abelhas, as guardas e os brilhos (F5.3): uma camada HTML por cima da arte
+ * estática, para o voo rodar no compositor. Só `transform` e opacidade se
+ * movem (DS v2 §3.11); com movimento reduzido ou em pausa, tudo fica parado nos
+ * pontos de pouso e o estado continua visível pelos glifos, rótulos e painel.
+ */
+
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sprite {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* A abelha que chega aparece em opacidade; a que pousou some devagar. */
+.sprite[data-enter] {
+  animation: bee-in var(--jt-dur-base) var(--jt-ease-enter) both;
+}
+.sprite[data-leaving] {
+  opacity: 0;
+  transition: opacity var(--jt-dur-slow) var(--jt-ease-exit);
+}
+@keyframes bee-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.glyph {
+  display: block;
+  overflow: visible;
+}
+
+/* ── O desenho: o mesmo da marca, em tokens da cena ───────────────────── */
+.wing {
+  fill: var(--jt-scene-bee-wing);
+  stroke: color-mix(in srgb, var(--jt-propolis) 40%, transparent);
+  stroke-width: 0.55;
+}
+.abdomen { fill: var(--jt-scene-bee-body); }
+.stripe { fill: var(--jt-scene-bee-stripe); }
+.thorax { fill: var(--jt-scene-bee-thorax); }
+.head { fill: var(--jt-scene-bee-stripe); }
+
+.wings {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Voando: as asas batem em alternância (dur-flap), e só enquanto a cena anda. */
+.glyph[data-posture="fly"] .wings {
+  animation: flap var(--jt-dur-flap) ease-in-out var(--jt-iterations-ambient) alternate;
+  animation-play-state: var(--jt-anim-play);
+}
+@keyframes flap {
+  to { transform: scaleX(0.55); }
+}
+/* Muita abelha voando (mais de FLAP_LIMIT): as asas ficam abertas e o voo continua. */
+.layer[data-crowd="true"] .glyph[data-posture="fly"] .wings {
+  animation: none;
+}
+
+/* Pousada, parada, em descanso e dormindo: asas recolhidas. */
+.glyph[data-posture="perched"] .wings,
+.glyph[data-posture="landed"] .wings,
+.glyph[data-posture="parked"] .wings,
+.glyph[data-posture="rest"] .wings,
+.glyph[data-posture="asleep"] .wings {
+  transform: scaleX(0.55);
+}
+.glyph[data-posture="alert"] .wings {
+  transform: scaleX(0.8);
+}
+
+/* Bloqueada ou com falha: a abelha para e ganha a cor de ferrugem, com o rótulo ao lado. */
+.glyph[data-condition="blocked"] .abdomen,
+.glyph[data-condition="failed"] .abdomen {
+  fill: color-mix(in srgb, var(--jt-status-blocked-line) 78%, var(--jt-scene-bee-body));
+}
+.glyph[data-condition="blocked"] .wing,
+.glyph[data-condition="failed"] .wing {
+  fill-opacity: 0.55;
+}
+
+/* O guarda do gate: tranquilo na ponte aprovada, dormindo na que ainda não existe. */
+.sprite[data-guard="rest"] .glyph { transform: rotate(-14deg); }
+.sprite[data-guard="asleep"] { opacity: 0.5; }
+.sprite[data-guard="asleep"] .glyph { transform: rotate(-38deg); }
+.sprite[data-guard="alert"] .glyph {
+  filter: drop-shadow(0 0 5px var(--jt-scene-glow-you));
+}
+
+/* ── A guarda acesa: o halo azul acende 2 vezes (dur-light-up) e fica ─── */
+.glowPos {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+.glowYou {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--jt-radius-full);
+  background: radial-gradient(circle, var(--jt-scene-glow-you), transparent 70%);
+  animation: light-up var(--jt-dur-light-up) var(--jt-ease-sine) var(--jt-iterations-light-up) both;
+  animation-play-state: var(--jt-anim-play);
+  pointer-events: none;
+}
+@keyframes light-up {
+  0%, 100% { opacity: 0.55; transform: scale(0.88); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+/* Alto contraste: o halo vira anel de 3 px, e a abelha ganha contorno. */
+@container style(--jt-scene-mode: schematic) {
+  .glowYou {
+    background: transparent;
+    border: 3px solid var(--jt-status-you-line);
+    animation: none;
+  }
+  .wing, .abdomen, .thorax, .head {
+    stroke: var(--jt-scene-bee-outline);
+    stroke-width: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sprite[data-enter] { animation: none; }
+  .glyph[data-posture="fly"] .wings { animation: none; }
+  .glowYou { animation: none; }
+}

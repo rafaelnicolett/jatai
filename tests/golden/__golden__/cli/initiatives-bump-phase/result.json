@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-bump-phase",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "bump-phase",
+        "--id",
+        "mod-beta",
+        "--phase",
+        "discovery"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta",
+        "phase": "discovery"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "bump-phase",
+        "--id",
+        "mod-beta",
+        "--phase",
+        "discovery"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": false,
+        "id": "mod-beta",
+        "phase": "discovery"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "bump-phase",
+        "--id",
+        "nao-existe",
+        "--phase",
+        "product"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INITIATIVE_NOT_FOUND",
+          "message": "iniciativa 'nao-existe' não existe em initiatives.yaml",
+          "id": "nao-existe"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "bump-phase",
+        "--id",
+        "gf-alfa"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --phase",
+          "field": "phase"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 359 6c823040da2f714a0e9b90a4487829dd22215365fbd9bc8a80eeb26cfb34f106 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/mod-beta.jsonl": "file 100644 530 ebfc13a3129e889d4303ded41b739d91f491deb5fef7b1f61b8e00bcc3faae3d text"
+  }
+}

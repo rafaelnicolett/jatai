@@ -1,0 +1,10 @@
+
+# Repositórios materializados pelo @assessor — referência agêntica, nunca versionados.
+# Reconstrua com o inventário em .github/artifacts/repos.yaml
+/repos/
+
+# Estado local do State Service (token em server.json) — nunca versionar.
+/.github/artifacts/.state-service/
+
+# Eventos de atividade de agente (contrato agent-activity) — locais, nunca versionados.
+/.github/artifacts/runs/

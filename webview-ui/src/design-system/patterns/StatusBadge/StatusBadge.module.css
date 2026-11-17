@@ -1,0 +1,53 @@
+/* StatusChip do DS v2 (§4.10): glifo + rótulo, radius-full, padding 2/8,
+   meta 600, status-*-fg sobre status-*-bg. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-1);
+  max-width: 100%;
+  padding: var(--jt-space-0-5) var(--jt-space-2);
+  border: 1px solid transparent;
+  border-radius: var(--jt-radius-full);
+  font: var(--jt-type-meta);
+  font-weight: var(--jt-weight-semibold);
+  white-space: nowrap;
+  color: var(--badge-fg);
+  background: var(--badge-bg);
+}
+
+.badge[data-tone="done"] { --badge-fg: var(--jt-status-done-fg); --badge-bg: var(--jt-status-done-bg); --badge-line: var(--jt-status-done-line); }
+.badge[data-tone="working"] { --badge-fg: var(--jt-status-working-fg); --badge-bg: var(--jt-status-working-bg); --badge-line: var(--jt-status-working-line); }
+.badge[data-tone="you"] { --badge-fg: var(--jt-status-you-fg); --badge-bg: var(--jt-status-you-bg); --badge-line: var(--jt-status-you-line); }
+.badge[data-tone="queue"] { --badge-fg: var(--jt-status-queue-fg); --badge-bg: var(--jt-status-queue-bg); --badge-line: var(--jt-status-queue-line); }
+.badge[data-tone="blocked"] { --badge-fg: var(--jt-status-blocked-fg); --badge-bg: var(--jt-status-blocked-bg); --badge-line: var(--jt-status-blocked-line); }
+.badge[data-tone="future"] { --badge-fg: var(--jt-status-future-fg); --badge-bg: var(--jt-status-future-bg); --badge-line: var(--jt-status-future-line); }
+
+/* "futuro" e "cancelado" têm contorno tracejado: pista de forma além da cor. */
+.badge[data-tone="future"] { border-style: dashed; border-color: var(--badge-line); }
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reason {
+  font-weight: var(--jt-weight-regular);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ADR-0022 §7: cancelado vai riscado, com o motivo. */
+.badge[data-status="cancelled"] .label { text-decoration: line-through; }
+
+/* Alto contraste (§2.5): o fundo do status vira transparente pelo token, e o
+   chip ganha borda de 1px no traço do status. */
+:global(body.vscode-high-contrast) .badge,
+:global(:root[data-contrast="more"]) .badge {
+  border-color: var(--badge-line);
+}
+@media (prefers-contrast: more) {
+  .badge { border-color: var(--badge-line); }
+}
+@media (forced-colors: active) {
+  .badge { border-color: CanvasText; }
+}

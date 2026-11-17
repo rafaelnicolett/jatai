@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-switch-active",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "switch-active",
+        "--id",
+        "mod-beta"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "switch-active",
+        "--id",
+        "mod-beta"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": false,
+        "id": "mod-beta"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 309 f9ac34b1854104acbc6c4348375e2e09693f51409882c4ae9380ae02f9dfd640 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/mod-beta.jsonl": "file 100644 456 9505ab46a82fe4a83af7ce3a10e29ca8c2d07818a1532b4b21603df46a6e2f72 text"
+  }
+}

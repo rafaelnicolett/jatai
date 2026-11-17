@@ -1,0 +1,97 @@
+name: Sugerir uma feature
+description: Uma ideia nova para a extensão, o kit de agentes ou a metodologia.
+title: "[feature] "
+labels: ["tipo: feature", "triagem"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado pela ideia. Na Jataí, feature nova começa por cenários BDD (Dado / Quando / Então), combinados aqui na issue antes de qualquer código.
+        Você não precisa escrever Gherkin perfeito: conte o problema e, se puder, um exemplo de uso. A conversa ajuda a chegar nos cenários.
+
+        Lembre que a Jataí é 100% local: uma ideia que dependa de enviar dados para fora da máquina precisa de uma conversa maior, com ADR.
+
+  - type: textarea
+    id: problema
+    attributes:
+      label: Que problema isto resolve?
+      description: Quem passa por ele, e em que momento do trabalho.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposta
+    attributes:
+      label: Como você imagina a solução
+    validations:
+      required: true
+
+  - type: textarea
+    id: cenarios
+    attributes:
+      label: Exemplo de uso (opcional)
+      description: Se quiser, escreva em Dado / Quando / Então.
+      placeholder: |
+        Cenário: ...
+          Dado ...
+          Quando ...
+          Então ...
+      render: gherkin
+
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas que você considerou
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      multiple: true
+      options:
+        - Kit de agentes e skills
+        - Cockpit
+        - Wizard
+        - CLI de estado
+        - Mapa
+        - Chat
+        - Documentação
+        - Não sei
+
+  - type: dropdown
+    id: harness
+    attributes:
+      label: Harness
+      options:
+        - Os dois
+        - Claude Code
+        - GitHub Copilot
+        - Não se aplica
+
+  - type: dropdown
+    id: contrato
+    attributes:
+      label: Muda algo que outras ferramentas ou agentes leem?
+      description: Por exemplo, os artefatos em .github/artifacts/, o CLI de estado, as ferramentas do MCP, os comandos ou as settings.
+      options:
+        - Não
+        - Sim
+        - Não sei
+
+  - type: dropdown
+    id: contribuir
+    attributes:
+      label: Você quer implementar?
+      options:
+        - Sim, quero abrir o PR
+        - Talvez, com orientação
+        - Não, só estou sugerindo
+
+  - type: checkboxes
+    id: confirmacoes
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: Procurei nas issues abertas e não achei uma igual.
+        - label: Li e sigo o [código de conduta](https://github.com/rafaelnicolett/jatai/blob/main/CODE_OF_CONDUCT.md).
+          required: true

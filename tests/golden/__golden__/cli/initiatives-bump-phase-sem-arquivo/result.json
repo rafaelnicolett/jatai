@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-bump-phase-sem-arquivo",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "bump-phase",
+        "--id",
+        "gf-alfa",
+        "--phase",
+        "product"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INITIATIVE_NOT_FOUND",
+          "message": "iniciativa 'gf-alfa' não existe em initiatives.yaml",
+          "id": "gf-alfa"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir"
+  }
+}

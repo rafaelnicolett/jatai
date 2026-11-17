@@ -1,0 +1,3 @@
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"mod-beta","artifact_path":".github/artifacts/initiatives.yaml","harness":"cli","message":"iniciativa 'mod-beta' criada/atualizada"}
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"mod-beta","task_id":"E1/F1.1","artifact_path":".github/artifacts/initiatives.yaml","harness":"cli","message":"tarefa 'E1/F1.1' → done","metadata":{"task":"E1/F1.1"}}
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"mod-beta","task_id":"wave-1/item-1.1","artifact_path":".github/artifacts/initiatives.yaml","harness":"cli","message":"tarefa 'wave-1/item-1.1' → done","metadata":{"task":"wave-1/item-1.1"}}

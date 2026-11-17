@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "scenario": "ds-upsert-phase-global",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "business",
+        "--status",
+        "done",
+        "--agent",
+        "@business"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "business",
+        "status": "done"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "business",
+        "--status",
+        "done",
+        "--agent",
+        "@business"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": false,
+        "phase": "business",
+        "status": "done"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "product",
+        "--status",
+        "in-progress"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "product",
+        "status": "in-progress"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 95 fcdc5982a5c8902412b6096501370f0fc2323a93d6cff4227d2e0fe84217cffe text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 681 9d81d0ea00eb49f9fea9cdf67e86a6787fbbe0e4436c395e33c8fa7294a279c0 text"
+  }
+}

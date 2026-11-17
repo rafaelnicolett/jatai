@@ -1,0 +1,35 @@
+/* GateBadge do DS v2 (§4.11). */
+.badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--jt-size-gate-badge);
+  height: var(--jt-size-gate-badge);
+  border: 2px solid var(--jt-line-strong);
+  border-radius: var(--jt-radius-sm);
+  background: var(--jt-surface);
+  font: var(--jt-type-eyebrow-strong);
+}
+
+.key { line-height: 1; }
+
+.badge[data-status="approved"] { border-color: var(--jt-status-done-line); color: var(--jt-status-done-fg); }
+.badge[data-status="waiting"] { border-color: var(--jt-status-you-line); color: var(--jt-status-you-fg); }
+/* "depois": o tracejado é a pista de forma (o protótipo usava borda sólida). */
+.badge[data-status="future"] { border-style: dashed; border-color: var(--jt-status-future-line); color: var(--jt-fg-3); }
+.badge[data-status="blocked"] { border-color: var(--jt-status-blocked-line); color: var(--jt-status-blocked-fg); }
+
+/* Marca de canto (■ espera você, ⊘ bloqueado), com anel da superfície para descolar da borda. */
+.mark {
+  position: absolute;
+  top: calc(-1 * var(--jt-space-1));
+  right: calc(-1 * var(--jt-space-1));
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-surface);
+}
+
+@media (forced-colors: active) {
+  .badge { border-color: CanvasText; color: CanvasText; }
+}

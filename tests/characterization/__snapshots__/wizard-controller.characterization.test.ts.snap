@@ -1,0 +1,651 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`W0 host — ciclo de vida do painel (W1) > start(): cria UM WebviewPanel com as opções pinadas e renderiza o schema greenfield 1`] = `
+[
+  [
+    "helyxWizard",
+    "Helyx: Initialize Delivery Kit",
+    1,
+    {
+      "enableScripts": true,
+      "localResourceRoots": [
+        {
+          "fsPath": "/fake/ext/dist",
+          "scheme": "file",
+          "uri": "file:///fake/ext/dist",
+        },
+      ],
+      "retainContextWhenHidden": true,
+    },
+  ],
+]
+`;
+
+exports[`W0 host — instalação concluída com o painel aberto e abrir o Cockpit (aditivas da F4.3) > openCockpit → executeCommand('helyx.openCockpitNext') 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "type": "openCockpit",
+  },
+  "network": [],
+  "posted": [],
+  "rerenders": [],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "helyx.openCockpitNext",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`W0 host — instalação concluída com o painel aberto e abrir o Cockpit (aditivas da F4.3) > submit com keepOpen → executeCommand('helyx._generateStructure', …) → installed (painel aberto, sem dispose) 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "keepOpen": true,
+    "type": "submit",
+  },
+  "network": [],
+  "posted": [
+    {
+      "folder": "/sintetico/aberta/loja-demo",
+      "folderIsOpen": false,
+      "hostAdapter": "claude",
+      "mode": "greenfield",
+      "type": "installed",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "helyx._generateStructure",
+        {
+          "backendArchitecture": "hexagonal",
+          "backendStack": "python-api",
+          "cicd": "github-actions",
+          "cloud": "aws",
+          "database": "postgresql",
+          "deliveryMode": "full-cycle",
+          "domain": "ecommerce",
+          "frontendArchitecture": "feature-based",
+          "frontendStack": "react-vite",
+          "hostAdapter": "claude",
+          "projectName": "loja-demo",
+          "startupIdea": "Uma vitrine sintética para o teste de caracterização.",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`W0 host — submit brownfield (validação da pasta + barramento de instalação) > host claude + frameworks escolhidos são repassados; instalação lançando → generationError, painel aberto 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "type": "submit",
+  },
+  "network": [],
+  "posted": [
+    {
+      "message": "falha sintética da instalação",
+      "type": "generationError",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "helyx._installAgentStructure",
+        "<basename ROOT>",
+        "<ROOT>",
+        "claude",
+        [
+          "tech-radar",
+          "owasp-samm",
+        ],
+      ],
+    },
+  ],
+}
+`;
+
+exports[`W0 host — submit brownfield (validação da pasta + barramento de instalação) > pasta não vazia / pasta-repositório (.git) / pasta inexistente → validationError com o motivo de validateWorkspaceDir 1`] = `
+[
+  {
+    "disposed": false,
+    "in": {
+      "type": "submit",
+    },
+    "network": [],
+    "posted": [
+      {
+        "errors": {
+          "targetDirectory": [
+            "Pasta não está vazia (1 item). Escolha uma pasta vazia para o workspace.",
+          ],
+        },
+        "type": "validationError",
+      },
+    ],
+    "rerenders": [],
+    "vscode": [],
+  },
+  {
+    "disposed": false,
+    "in": {
+      "type": "submit",
+    },
+    "network": [],
+    "posted": [
+      {
+        "errors": {
+          "targetDirectory": [
+            "Esta pasta é um repositório. Escolha uma pasta vazia — os repositórios entram depois, em repos/, sem serem modificados.",
+          ],
+        },
+        "type": "validationError",
+      },
+    ],
+    "rerenders": [],
+    "vscode": [],
+  },
+  {
+    "disposed": false,
+    "in": {
+      "type": "submit",
+    },
+    "network": [],
+    "posted": [
+      {
+        "errors": {
+          "targetDirectory": [
+            "Não foi possível ler a pasta: ENOENT: no such file or directory, scandir '<ROOT3>/nao-existe'",
+          ],
+        },
+        "type": "validationError",
+      },
+    ],
+    "rerenders": [],
+    "vscode": [],
+  },
+]
+`;
+
+exports[`W0 host — submit brownfield (validação da pasta + barramento de instalação) > pasta vazia → executeCommand('helyx._installAgentStructure', basename, dir, 'copilot', ['dora-4keys']) → dispose 1`] = `
+{
+  "disposed": true,
+  "in": {
+    "type": "submit",
+  },
+  "network": [],
+  "posted": [],
+  "rerenders": [],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "helyx._installAgentStructure",
+        "<basename ROOT>",
+        "<ROOT>",
+        "copilot",
+        [
+          "dora-4keys",
+        ],
+      ],
+    },
+  ],
+}
+`;
+
+exports[`W0 host — submit brownfield (validação da pasta + barramento de instalação) > sem targetDirectory → validationError 'Selecione a pasta vazia do workspace' 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "type": "submit",
+  },
+  "network": [],
+  "posted": [
+    {
+      "errors": {
+        "targetDirectory": [
+          "Selecione a pasta vazia do workspace",
+        ],
+      },
+      "type": "validationError",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [],
+}
+`;
+
+exports[`W0 host — switchToGreenfield (aditiva da F4.3) > switchToGreenfield → re-render COMPLETO com o schema do projeto novo e estado zerado, depois de um switchToBrownfield 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "type": "switchToGreenfield",
+  },
+  "network": [],
+  "posted": [],
+  "rerenders": [
+    "re-render: brownfield=false passos=[intro,projectName,startupIdea,targetDirectory,domain,hostAdapter,backendStack,backendArchitecture,frontendStack,frontendArchitecture,database,cloud,cicd,resolvedTemplate] estado={}",
+  ],
+  "vscode": [],
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > @known-bug: projectName inválido ('Loja Demo') só é recusado no submit, com 'Invalid' (A14 / H-BUG-20) 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "type": "submit",
+  },
+  "network": [],
+  "posted": [
+    {
+      "errors": {
+        "projectName": [
+          "Invalid",
+        ],
+      },
+      "type": "validationError",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [],
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > REGRESSÃO: submit greenfield válido sem pasta aberta e sem lugar escolhido → validationError 'Escolha onde criar o projeto.'; nenhum comando roda 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "type": "submit",
+  },
+  "network": [],
+  "posted": [
+    {
+      "errors": {
+        "targetDirectory": [
+          "Escolha onde criar o projeto.",
+        ],
+      },
+      "type": "validationError",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [],
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > fetchTemplate offline com estado vazio → manifest local com os defaults (python-api, copilot, meu-projeto) 1`] = `
+{
+  "description": "FastAPI · Host: copilot · Preview gerado localmente.",
+  "generatedTree": [
+    ".github/",
+    ".github/agents/",
+    ".github/chatmodes/",
+    ".github/skills/",
+    ".github/artifacts/",
+    "helyx.config.yaml",
+    "code/",
+    "code/services/meu-projeto-api/",
+    "code/services/meu-projeto-api/src/",
+    "code/services/meu-projeto-api/tests/",
+    "code/services/Dockerfile",
+    "api/openapi.yaml",
+    "features/",
+    "docs/",
+    "docs/adr/",
+    "infrastructure/",
+    "infrastructure/docker-compose.local.yml",
+    "pipelines/",
+    "pipelines/ci.yaml",
+  ],
+  "id": "helyx-template-python-api",
+  "name": "helyx-template-python-api",
+  "rubricsAvailable": true,
+  "stack": "python-api",
+  "tags": [
+    "python-api",
+    "copilot",
+  ],
+  "version": "local",
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > fetchTemplate sem TemplateSource plugada (NullTemplateSource, padrão da edição aberta) → manifest LOCAL montado a partir do estado, sem rede (W3) 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "templateId": "helyx-template-python-api",
+    "type": "fetchTemplate",
+  },
+  "network": [],
+  "posted": [
+    {
+      "manifest": {
+        "description": "FastAPI + React + Vite · Host: claude · Preview gerado localmente.",
+        "generatedTree": [
+          ".claude/",
+          ".claude/agents/",
+          ".claude/skills/",
+          ".github/artifacts/",
+          "helyx.config.yaml",
+          "code/",
+          "code/services/loja-demo-api/",
+          "code/services/loja-demo-api/src/",
+          "code/services/loja-demo-api/tests/",
+          "code/services/Dockerfile",
+          "code/apps/loja-demo-web/",
+          "code/apps/loja-demo-web/src/",
+          "api/openapi.yaml",
+          "features/",
+          "docs/",
+          "docs/adr/",
+          "infrastructure/",
+          "infrastructure/docker-compose.local.yml",
+          "pipelines/",
+          "pipelines/ci.yaml",
+        ],
+        "id": "helyx-template-python-api",
+        "name": "helyx-template-python-api",
+        "rubricsAvailable": true,
+        "stack": "python-api",
+        "tags": [
+          "python-api",
+          "react-vite",
+          "claude",
+          "aws",
+        ],
+        "version": "local",
+      },
+      "source": "local",
+      "type": "templateManifest",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [],
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > fetchTemplate: TemplateSource plugada com source 'registry' → repassa manifest e badge, sem rede no host 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "templateId": "helyx-template-java-spring",
+    "type": "fetchTemplate",
+  },
+  "network": [],
+  "posted": [
+    {
+      "manifest": {
+        "description": "d",
+        "generatedTree": [],
+        "id": "helyx-template-java-spring",
+        "name": "Spring sintético",
+        "rubricsAvailable": false,
+        "stack": "java-spring",
+        "tags": [
+          "x",
+        ],
+        "version": "1.2.3",
+      },
+      "source": "registry",
+      "type": "templateManifest",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [],
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > fetchTemplate: ramo cache → source 'cache' 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "templateId": "helyx-template-python-api",
+    "type": "fetchTemplate",
+  },
+  "network": [],
+  "posted": [
+    {
+      "manifest": {
+        "description": "manifest sintético em cache",
+        "generatedTree": [
+          "a/",
+        ],
+        "id": "helyx-template-python-api",
+        "name": "cacheado",
+        "rubricsAvailable": false,
+        "stack": "python-api",
+        "tags": [],
+        "version": "9.9.9",
+      },
+      "source": "cache",
+      "type": "templateManifest",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [],
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > pickFolder: diálogo com pasta escolhida → folderPicked; diálogo cancelado → nada 1`] = `
+[
+  {
+    "disposed": false,
+    "in": {
+      "type": "pickFolder",
+    },
+    "network": [],
+    "posted": [
+      {
+        "folder": "/sintetico/workspaces/loja-demo",
+        "type": "folderPicked",
+      },
+    ],
+    "rerenders": [],
+    "vscode": [
+      {
+        "window.showOpenDialog": [
+          {
+            "canSelectFiles": false,
+            "canSelectFolders": true,
+            "canSelectMany": false,
+            "openLabel": "Selecionar pasta",
+            "title": "Escolha onde criar o projeto Helyx",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    "disposed": false,
+    "in": {
+      "type": "pickFolder",
+    },
+    "network": [],
+    "posted": [],
+    "rerenders": [],
+    "vscode": [
+      {
+        "window.showOpenDialog": [
+          {
+            "canSelectFiles": false,
+            "canSelectFolders": true,
+            "canSelectMany": false,
+            "openLabel": "Selecionar pasta",
+            "title": "Escolha onde criar o projeto Helyx",
+          },
+        ],
+      },
+    ],
+  },
+]
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > stepUpdate / cancel / importRepo / tipo desconhecido 1`] = `
+[
+  {
+    "disposed": false,
+    "in": {
+      "payload": {
+        "projectName": "loja-demo",
+      },
+      "type": "stepUpdate",
+    },
+    "network": [],
+    "posted": [],
+    "rerenders": [],
+    "vscode": [],
+  },
+  {
+    "disposed": false,
+    "in": {
+      "type": "importRepo",
+    },
+    "network": [],
+    "posted": [],
+    "rerenders": [],
+    "vscode": [],
+  },
+  {
+    "disposed": false,
+    "in": {
+      "type": "tipo-que-nao-existe",
+    },
+    "network": [],
+    "posted": [],
+    "rerenders": [],
+    "vscode": [],
+  },
+  {
+    "disposed": true,
+    "in": {
+      "type": "cancel",
+    },
+    "network": [],
+    "posted": [],
+    "rerenders": [],
+    "vscode": [],
+  },
+]
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > submit greenfield com estado vazio → validationError com os fieldErrors do zod; nenhum comando 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "type": "submit",
+  },
+  "network": [],
+  "posted": [
+    {
+      "errors": {
+        "backendStack": [
+          "Required",
+        ],
+        "hostAdapter": [
+          "Required",
+        ],
+        "projectName": [
+          "Required",
+        ],
+      },
+      "type": "validationError",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [],
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > submit greenfield com o gerador lançando → generationError com a mensagem; painel continua aberto 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "type": "submit",
+  },
+  "network": [],
+  "posted": [
+    {
+      "message": "falha sintética do gerador",
+      "type": "generationError",
+    },
+  ],
+  "rerenders": [],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "helyx._generateStructure",
+        {
+          "backendArchitecture": "hexagonal",
+          "backendStack": "python-api",
+          "cicd": "github-actions",
+          "cloud": "aws",
+          "database": "postgresql",
+          "deliveryMode": "full-cycle",
+          "domain": "ecommerce",
+          "frontendArchitecture": "feature-based",
+          "frontendStack": "react-vite",
+          "hostAdapter": "claude",
+          "projectName": "loja-demo",
+          "startupIdea": "Uma vitrine sintética para o teste de caracterização.",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > submit greenfield válido → executeCommand('helyx._generateStructure', estado com defaults do zod) → dispose 1`] = `
+{
+  "disposed": true,
+  "in": {
+    "type": "submit",
+  },
+  "network": [],
+  "posted": [],
+  "rerenders": [],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "helyx._generateStructure",
+        {
+          "backendArchitecture": "hexagonal",
+          "backendStack": "python-api",
+          "cicd": "github-actions",
+          "cloud": "aws",
+          "database": "postgresql",
+          "deliveryMode": "full-cycle",
+          "domain": "ecommerce",
+          "frontendArchitecture": "feature-based",
+          "frontendStack": "react-vite",
+          "hostAdapter": "claude",
+          "projectName": "loja-demo",
+          "startupIdea": "Uma vitrine sintética para o teste de caracterização.",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`W0 host — tabela message-in → effect-out (§3.2) > switchToBrownfield → re-render COMPLETO com o schema brownfield e estado zerado 1`] = `
+{
+  "disposed": false,
+  "in": {
+    "type": "switchToBrownfield",
+  },
+  "network": [],
+  "posted": [],
+  "rerenders": [
+    "re-render: brownfield=true passos=[targetDirectory,hostAdapter,maturityFrameworks] estado={}",
+  ],
+  "vscode": [],
+}
+`;

@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "case": "migrate-claude-projeto-greenfield",
+  "base": "greenfield-claude-padrao",
+  "input": {
+    "hostAdapter": "claude",
+    "projectName": "orbita",
+    "fixture": "greenfield"
+  },
+  "outcome": {
+    "resolved": true
+  },
+  "calls": null,
+  "entries": {}
+}

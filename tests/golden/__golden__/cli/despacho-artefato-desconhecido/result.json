@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "scenario": "despacho-artefato-desconhecido",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "sprint-backlog",
+        "create"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "UNKNOWN_ARTIFACT",
+          "message": "artefato desconhecido: 'sprint-backlog'. Esperado: delivery-state, initiatives, gates, runs.",
+          "artifact": "sprint-backlog",
+          "artifacts": [
+            "delivery-state",
+            "initiatives",
+            "gates",
+            "runs"
+          ]
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir"
+  }
+}

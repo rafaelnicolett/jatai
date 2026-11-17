@@ -1,0 +1,56 @@
+/* O aviso de falha do mapa (G9): ocupa o lugar do mapa, com o mesmo fundo do Cockpit. */
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  min-height: 240px;
+  background: var(--jt-bg);
+  color: var(--jt-fg);
+  font: var(--jt-type-body);
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jt-space-3);
+  margin: var(--jt-layout-gap) var(--jt-layout-gutter);
+  padding: var(--jt-space-6);
+  border: 1px solid var(--jt-status-blocked-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-status-blocked-bg);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--jt-space-2);
+  margin: 0;
+  font: var(--jt-type-display-sm);
+  color: var(--jt-status-blocked-fg);
+}
+
+.message {
+  margin: 0;
+  font: var(--jt-type-body);
+  color: var(--jt-fg);
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--jt-space-2);
+}
+
+/* O aviso recebe o foco quando o mapa falha (componentDidCatch): o anel é o
+   mesmo dos títulos e botões do mapa, para quem chegou pelo teclado. */
+.box:focus-visible {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+}
+
+@media (forced-colors: active) {
+  .box { border-color: CanvasText; background: Canvas; }
+}

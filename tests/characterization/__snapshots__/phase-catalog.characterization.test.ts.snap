@@ -1,0 +1,2899 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`catálogo de fases — aliases de chave no delivery-state.yaml > PHASE_KEY_VARIANTS (writers): id canônico → chaves aceitas 1`] = `
+{
+  "domain": [
+    "domain",
+    "domain-modeler",
+  ],
+  "reviewer": [
+    "reviewer",
+    "review",
+  ],
+  "sprint-plan": [
+    "sprint-plan",
+    "sprint-planner",
+  ],
+  "sprint-run": [
+    "sprint-run",
+    "sprint-runner",
+  ],
+  "ux-design": [
+    "ux-design",
+    "ux-designer",
+  ],
+}
+`;
+
+exports[`catálogo de fases — aliases de chave no delivery-state.yaml > findPhaseHeaderIdx (writers): para cada id, qual cabeçalho é achado num arquivo só com aliases 1`] = `
+{
+  "architecture": null,
+  "backend": null,
+  "bdd": null,
+  "business": null,
+  "devops": null,
+  "domain": "  domain-modeler:",
+  "domain-modeler": "  domain-modeler:",
+  "fase-inexistente": null,
+  "frontend": null,
+  "incident": null,
+  "observability": null,
+  "product": null,
+  "release": null,
+  "review": "  review:",
+  "reviewer": "  review:",
+  "sprint-plan": "  sprint-planner:",
+  "sprint-planner": "  sprint-planner:",
+  "sprint-run": "  sprint-runner:",
+  "sprint-runner": "  sprint-runner:",
+  "sustain": null,
+  "ux-design": "  ux-designer:",
+  "ux-designer": "  ux-designer:",
+}
+`;
+
+exports[`catálogo de fases — aliases de chave no delivery-state.yaml > parseDeliveryState (reader): chave escrita → fase canônica, alias nunca sobrescreve canônica 1`] = `
+{
+  "soAliases": {
+    "domain": {
+      "human_checklist": {},
+      "status": "done",
+    },
+    "reviewer": {
+      "human_checklist": {},
+      "status": "done",
+    },
+    "sprint-plan": {
+      "human_checklist": {},
+      "status": "done",
+    },
+    "sprint-run": {
+      "human_checklist": {},
+      "status": "done",
+    },
+    "ux-design": {
+      "human_checklist": {},
+      "status": "done",
+    },
+  },
+  "todasAsChaves": [
+    "business",
+    "product",
+    "ux-design",
+    "domain",
+    "bdd",
+    "architecture",
+    "sprint-plan",
+    "sprint-run",
+    "backend",
+    "frontend",
+    "reviewer",
+    "devops",
+    "release",
+    "observability",
+    "incident",
+    "sustain",
+    "fase-inexistente",
+  ],
+}
+`;
+
+exports[`catálogo de fases — aliases de chave no delivery-state.yaml > readChecklistState (aprovação): num arquivo só com aliases, qual id acha qual checklist 1`] = `
+{
+  "architecture": {},
+  "backend": {},
+  "bdd": {},
+  "business": {},
+  "devops": {},
+  "domain": {
+    "lido-de-domain-modeler": true,
+  },
+  "domain-modeler": {
+    "lido-de-domain-modeler": true,
+  },
+  "fase-inexistente": {},
+  "frontend": {},
+  "incident": {},
+  "observability": {},
+  "product": {},
+  "release": {},
+  "review": {
+    "lido-de-review": true,
+  },
+  "reviewer": {
+    "lido-de-review": true,
+  },
+  "sprint-plan": {
+    "lido-de-sprint-planner": true,
+  },
+  "sprint-planner": {
+    "lido-de-sprint-planner": true,
+  },
+  "sprint-run": {
+    "lido-de-sprint-runner": true,
+  },
+  "sprint-runner": {
+    "lido-de-sprint-runner": true,
+  },
+  "sustain": {},
+  "ux-design": {
+    "lido-de-ux-designer": true,
+  },
+  "ux-designer": {
+    "lido-de-ux-designer": true,
+  },
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > claude · aprova frontend (o path do agente troca .github/ por .claude/) 1`] = `
+{
+  "currentPhaseDepois": "reviewer",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  frontend:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      sdk-not-raw: true
+      wireframes-followed: true
+      component-tests: true
+      no-api-hardcode: true
+      typescript-strict: true
+      lint-clean: true
+      human-ok: true
+  reviewer:
+    status: in-progress
+    agent: "@reviewer"
+",
+  "vscode": [
+    {
+      "env.clipboard.writeText": [
+        "Leia o arquivo \`.claude/agents/downstream/reviewer.agent.md\` usando suas ferramentas de leitura antes de prosseguir.
+
+Você é o agente **@reviewer** — execute a fase **Review** seguindo as instruções do arquivo lido.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Review concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+      ],
+    },
+    {
+      "commands.executeCommand": [
+        "claude-code.focus",
+      ],
+    },
+    {
+      "commands.executeCommand": [
+        "workbench.panel.chat.view.claude-code.focus",
+      ],
+    },
+    {
+      "commands.executeCommand": [
+        "claude.focus",
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "Prompt copiado — cole no Claude Code com ⌘V (ou Ctrl+V).",
+        "OK",
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`frontend\` aprovada. Próxima fase: \`reviewer\` (@reviewer).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova architecture 1`] = `
+{
+  "currentPhaseDepois": "sprint-plan",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  architecture:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      c4-context: true
+      c4-container: true
+      c4-component: true
+      c4-deployment: true
+      sequence-diagrams: true
+      seq-async: true
+      data-model: true
+      openapi-valid: true
+      openapi-per-bc: true
+      openapi-ul: true
+      error-envelope: true
+      auth-defined: true
+      adr-stack: true
+      adr-arch-pattern: true
+      adr-persistence: true
+      otel-plan: true
+      hex-structure: true
+      human-ok: true
+  sprint-plan:
+    status: in-progress
+    agent: "@sprint-planner"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/upstream/sprint-planner.agent.md
+
+Você é o agente **@sprint-planner** — execute a fase **Sprint Plan** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Sprint Plan concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`architecture\` aprovada. Próxima fase: \`sprint-plan\` (@sprint-planner).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova backend 1`] = `
+{
+  "currentPhaseDepois": "frontend",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  backend:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      hex-domain-pure: true
+      hex-ports-defined: true
+      hex-adapters: true
+      composition-root: true
+      openapi-contract: true
+      error-envelope: true
+      unit-domain: true
+      unit-coverage: true
+      integration-tests: true
+      otel-spans: true
+      structured-logs: true
+      no-secrets: true
+      input-validation: true
+      no-pii-logs: true
+      no-sql-concat: true
+      lint-clean: true
+      no-circular-deps: true
+      human-ok: true
+  frontend:
+    status: in-progress
+    agent: "@frontend"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/downstream/frontend-react.agent.md
+
+Você é o agente **@frontend** — execute a fase **Frontend** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Frontend concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`backend\` aprovada. Próxima fase: \`frontend\` (@frontend).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova bdd 1`] = `
+{
+  "currentPhaseDepois": "architecture",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  bdd:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      feature-per-bc: true
+      tags-present: true
+      happy-path: true
+      edge-cases: true
+      ul-terms: true
+      declarative-steps: true
+      one-behavior: true
+      no-step-defs: true
+      human-ok: true
+  architecture:
+    status: in-progress
+    agent: "@architecture"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/upstream/architecture.agent.md
+
+Você é o agente **@architecture** — execute a fase **Arquitetura** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Arquitetura concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`bdd\` aprovada. Próxima fase: \`architecture\` (@architecture).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova business 1`] = `
+{
+  "currentPhaseDepois": "product",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  business:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      brief-exists: true
+      problem-section: true
+      audience-defined: true
+      value-hypothesis: true
+      kpi-defined: true
+      no-tech-decisions: true
+      human-ok: true
+  product:
+    status: in-progress
+    agent: "@product"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/upstream/product.agent.md
+
+Você é o agente **@product** — execute a fase **PRD** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **PRD concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`business\` aprovada. Próxima fase: \`product\` (@product).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova devops 1`] = `
+{
+  "currentPhaseDepois": "release",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  devops:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      ci-build-test: true
+      cd-staging: true
+      iac-versioned: true
+      no-hardcoded-secrets: true
+      12factor: true
+      human-ok: true
+  release:
+    status: in-progress
+    agent: "@release"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/operation/release.agent.md
+
+Você é o agente **@release** — execute a fase **Release** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Release concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`devops\` aprovada. Próxima fase: \`release\` (@release).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova domain 1`] = `
+{
+  "currentPhaseDepois": "bdd",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  domain:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      bc-exists: true
+      bc-classified: true
+      event-storming: true
+      ubiquitous-lang: true
+      no-tech-terms: true
+      ul-consistent: true
+      human-ok: true
+  bdd:
+    status: in-progress
+    agent: "@bdd"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/upstream/bdd.agent.md
+
+Você é o agente **@bdd** — execute a fase **BDD** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **BDD concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`domain\` aprovada. Próxima fase: \`bdd\` (@bdd).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova domain-modeler 1`] = `
+{
+  "currentPhaseDepois": "domain-modeler",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  domain-modeler:
+    status: done
+    agent: "@quem-fez"
+",
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`domain\`: 6 item(ns) obrigatório(s) pendente(s).
+
+• bounded-contexts.md criado com BCs classificados
+• Cada BC classificado: Core / Supporting / Generic
+• event-storming.md com ≥5 Domain Events por BC core
+• ubiquitous-language.md com glossário por BC
+• Zero termos técnicos (DTO, tabela, endpoint) no domínio
+• Linguagem ubíqua consistente com PRD e business-brief",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova fase-inexistente 1`] = `
+{
+  "currentPhaseDepois": "fase-inexistente",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  fase-inexistente:
+    status: done
+    agent: "@quem-fez"
+",
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Sem contrato definido para a fase \`fase-inexistente\`.",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova frontend 1`] = `
+{
+  "currentPhaseDepois": "reviewer",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  frontend:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      sdk-not-raw: true
+      wireframes-followed: true
+      component-tests: true
+      no-api-hardcode: true
+      typescript-strict: true
+      lint-clean: true
+      human-ok: true
+  reviewer:
+    status: in-progress
+    agent: "@reviewer"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/downstream/reviewer.agent.md
+
+Você é o agente **@reviewer** — execute a fase **Review** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Review concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`frontend\` aprovada. Próxima fase: \`reviewer\` (@reviewer).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova incident 1`] = `
+{
+  "currentPhaseDepois": "sustain",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  incident:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      root-cause: true
+      runbook-updated: true
+      postmortem: true
+      action-items: true
+      human-ok: true
+  sustain:
+    status: in-progress
+    agent: "@sustain"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/operation/sustain.agent.md
+
+Você é o agente **@sustain** — execute a fase **Sustentação** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Sustentação concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`incident\` aprovada. Próxima fase: \`sustain\` (@sustain).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova observability 1`] = `
+{
+  "currentPhaseDepois": "incident",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  observability:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      slos-defined: true
+      golden-signals: true
+      alerts-with-runbooks: true
+      otel-native: true
+      human-ok: true
+  incident:
+    status: in-progress
+    agent: "@incident"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/operation/incident.agent.md
+
+Você é o agente **@incident** — execute a fase **Incidente** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Incidente concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`observability\` aprovada. Próxima fase: \`incident\` (@incident).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova product 1`] = `
+{
+  "currentPhaseDepois": "ux-design",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  product:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      prd-exists: true
+      feature-list-exists: true
+      prd-references-brief: true
+      features-prioritized: true
+      acceptance-criteria: true
+      no-gherkin: true
+      no-tech-stack: true
+      human-ok: true
+  ux-design:
+    status: in-progress
+    agent: "@ux-designer"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/upstream/ux-designer.agent.md
+
+Você é o agente **@ux-designer** — execute a fase **UX Design** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **UX Design concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`product\` aprovada. Próxima fase: \`ux-design\` (@ux-designer).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova release 1`] = `
+{
+  "currentPhaseDepois": "observability",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  release:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      pipeline-green: true
+      semver-tag: true
+      changelog-updated: true
+      release-notes: true
+      human-ok: true
+  observability:
+    status: in-progress
+    agent: "@observability"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/operation/observability.agent.md
+
+Você é o agente **@observability** — execute a fase **Observability** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Observability concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`release\` aprovada. Próxima fase: \`observability\` (@observability).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova review 1`] = `
+{
+  "currentPhaseDepois": "review",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  review:
+    status: done
+    agent: "@quem-fez"
+",
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`reviewer\`: 7 item(ns) obrigatório(s) pendente(s).
+
+• Aderência à arquitetura hexagonal verificada
+• Código implementa 100% do contrato OpenAPI do sprint
+• OWASP A01 — Broken Access Control: auth em todos endpoints
+• OWASP A02 — Cryptographic Failures: sem dados sensíveis em plain
+• OWASP A03 — Injection: sem SQL/NoSQL/command injection
+• OWASP A07 — Identificação e autenticação validadas
+• Cobertura de testes ≥ 80% (domínio) e ≥ 60% (integração)",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova reviewer 1`] = `
+{
+  "currentPhaseDepois": "devops",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  reviewer:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      arch-compliance: true
+      openapi-compliance: true
+      owasp-a01: true
+      owasp-a02: true
+      owasp-a03: true
+      owasp-a07: true
+      test-coverage-met: true
+      human-ok: true
+  devops:
+    status: in-progress
+    agent: "@devops"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/operation/devops.agent.md
+
+Você é o agente **@devops** — execute a fase **DevOps** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **DevOps concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`reviewer\` aprovada. Próxima fase: \`devops\` (@devops).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova sprint-plan 1`] = `
+{
+  "currentPhaseDepois": "sprint-run",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  sprint-plan:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      backlog-exists: true
+      stories-dod: true
+      stories-estimated: true
+      stories-traceable: true
+      human-ok: true
+  sprint-run:
+    status: in-progress
+    agent: "@sprint-runner"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/downstream/sprint-runner.agent.md
+
+Você é o agente **@sprint-runner** — execute a fase **Sprint Runner** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Sprint Runner concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`sprint-plan\` aprovada. Próxima fase: \`sprint-run\` (@sprint-runner).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova sprint-planner 1`] = `
+{
+  "currentPhaseDepois": "sprint-planner",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  sprint-planner:
+    status: done
+    agent: "@quem-fez"
+",
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`sprint-plan\`: 4 item(ns) obrigatório(s) pendente(s).
+
+• sprint-backlog.yaml criado com sprint name e objetivo
+• Todas as histórias têm critério de aceite (DoD)
+• Histórias estimadas em story points (Fibonacci)
+• Cada história rastreável a uma feature do feature-list.md",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova sprint-run 1`] = `
+{
+  "currentPhaseDepois": "backend",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  sprint-run:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      g1-passed: true
+      stack-dispatched: true
+      context-injected: true
+      human-ok: true
+  backend:
+    status: in-progress
+    agent: "@backend"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/downstream/backend-python-api.agent.md
+
+Você é o agente **@backend** — execute a fase **Backend** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Backend concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`sprint-run\` aprovada. Próxima fase: \`backend\` (@backend).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova sprint-runner 1`] = `
+{
+  "currentPhaseDepois": "sprint-runner",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  sprint-runner:
+    status: done
+    agent: "@quem-fez"
+",
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`sprint-run\`: 3 item(ns) obrigatório(s) pendente(s).
+
+• Gate G1 validado: upstream completo e aprovado
+• Histórias despachadas para os agentes de stack corretos
+• Contexto (OpenAPI + BDD + domain) injetado para cada agente",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova sustain 1`] = `
+{
+  "currentPhaseDepois": "sustain",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  sustain:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      cves-resolved: true
+      tests-passing: true
+      human-ok: true
+",
+  "vscode": [
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`sustain\` finalizada — fim do pipeline.",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova ux-design 1`] = `
+{
+  "currentPhaseDepois": "domain",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  ux-design:
+    status: done
+    completed_at: "<agora>"
+    agent: "@quem-fez"
+    human_checklist:
+      user-flows-exists: true
+      all-personas: true
+      happy-sad-paths: true
+      no-code: true
+      human-ok: true
+  domain:
+    status: in-progress
+    agent: "@domain-modeler"
+",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "isPartialQuery": false,
+          "query": "#file:.github/agents/upstream/domain-modeler.agent.md
+
+Você é o agente **@domain-modeler** — execute a fase **Domínio** seguindo as instruções do arquivo acima.
+
+## 🛑 REGRA HITL (inviolável)
+Ao concluir todos os artefatos do \`exit_contract\`, escreva exatamente:
+> ✅ **Domínio concluída.** Volte ao Helyx Cockpit e clique em "Aprovar fase e abrir próxima".
+Não chame outro agente. Não edite \`delivery-state.yaml\` ou \`initiatives.yaml\`. A aprovação é sempre humana via cockpit.",
+        },
+      ],
+    },
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`ux-design\` aprovada. Próxima fase: \`domain\` (@domain-modeler).",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — aprovação greenfield (approveAndAdvancePhase) > copilot · aprova ux-designer 1`] = `
+{
+  "currentPhaseDepois": "ux-designer",
+  "deliveryState": "initiative_id: loja-demo
+phases:
+  ux-designer:
+    status: done
+    agent: "@quem-fez"
+",
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`ux-design\`: 4 item(ns) obrigatório(s) pendente(s).
+
+• docs/design/user-flows.md criado
+• Jornadas mapeadas para todas as personas do PRD
+• Fluxos incluem happy path e caminhos de erro
+• Sem código de produção (apenas wireframes/protótipos)",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — arquivo do agente (PhaseAgentLoader) > load(id) para cada id: qual arquivo \`.github/agents/<pasta>/<nome>.agent.md\` é lido (ou null) 1`] = `
+{
+  "architecture": "@upstream/architecture",
+  "backend": "@downstream/backend-python-api",
+  "bdd": "@upstream/bdd",
+  "business": "@upstream/business",
+  "devops": "@operation/devops",
+  "domain": "@upstream/domain-modeler",
+  "domain-modeler": "@upstream/domain-modeler",
+  "fase-inexistente": null,
+  "frontend": "@downstream/frontend-react",
+  "incident": "@operation/incident",
+  "observability": "@operation/observability",
+  "product": "@upstream/product",
+  "release": "@operation/release",
+  "review": "@downstream/reviewer",
+  "reviewer": "@downstream/reviewer",
+  "sprint-plan": "@upstream/sprint-planner",
+  "sprint-planner": "@upstream/sprint-planner",
+  "sprint-run": "@downstream/sprint-runner",
+  "sprint-runner": "@downstream/sprint-runner",
+  "sustain": "@operation/sustain",
+  "ux-design": "@upstream/ux-designer",
+  "ux-designer": "@upstream/ux-designer",
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(architecture) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "architecture",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "architecture",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`architecture\` validada pelo humano (todos itens mandatory ✓). Roteie para @sprint-planner (próxima fase: sprint-plan).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(backend) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "backend",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "backend",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`backend\` validada pelo humano (todos itens mandatory ✓). Roteie para @frontend (próxima fase: frontend).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(bdd) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "bdd",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "bdd",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`bdd\` validada pelo humano (todos itens mandatory ✓). Roteie para @architecture (próxima fase: architecture).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(business) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "business",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "business",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`business\` validada pelo humano (todos itens mandatory ✓). Roteie para @product (próxima fase: product).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(devops) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "devops",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "devops",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`devops\` validada pelo humano (todos itens mandatory ✓). Roteie para @release (próxima fase: release).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(domain) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "domain",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "domain",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`domain\` validada pelo humano (todos itens mandatory ✓). Roteie para @bdd (próxima fase: bdd).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(domain-modeler) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [],
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`domain\`: 6 item(ns) mandatory pendente(s).
+
+• bounded-contexts.md criado com BCs classificados
+• Cada BC classificado: Core / Supporting / Generic
+• event-storming.md com ≥5 Domain Events por BC core
+• ubiquitous-language.md com glossário por BC
+• Zero termos técnicos (DTO, tabela, endpoint) no domínio
+• Linguagem ubíqua consistente com PRD e business-brief",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(fase-inexistente) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [],
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Sem contrato definido para a fase \`fase-inexistente\`.",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(frontend) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "frontend",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "frontend",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`frontend\` validada pelo humano (todos itens mandatory ✓). Roteie para @reviewer (próxima fase: reviewer).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(incident) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "incident",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "incident",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`incident\` validada pelo humano (todos itens mandatory ✓). Roteie para @sustain (próxima fase: sustain).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(observability) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "observability",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "observability",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`observability\` validada pelo humano (todos itens mandatory ✓). Roteie para @incident (próxima fase: incident).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(product) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "product",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "product",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`product\` validada pelo humano (todos itens mandatory ✓). Roteie para @ux-designer (próxima fase: ux-design).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(release) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "release",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "release",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`release\` validada pelo humano (todos itens mandatory ✓). Roteie para @observability (próxima fase: observability).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(review) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [],
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`reviewer\`: 7 item(ns) mandatory pendente(s).
+
+• Aderência à arquitetura hexagonal verificada
+• Código implementa 100% do contrato OpenAPI do sprint
+• OWASP A01 — Broken Access Control: auth em todos endpoints
+• OWASP A02 — Cryptographic Failures: sem dados sensíveis em plain
+• OWASP A03 — Injection: sem SQL/NoSQL/command injection
+• OWASP A07 — Identificação e autenticação validadas
+• Cobertura de testes ≥ 80% (domínio) e ≥ 60% (integração)",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(reviewer) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "reviewer",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "reviewer",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`reviewer\` validada pelo humano (todos itens mandatory ✓). Roteie para @devops (próxima fase: devops).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(sprint-plan) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "sprint-plan",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "sprint-plan",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`sprint-plan\` validada pelo humano (todos itens mandatory ✓). Roteie para @sprint-runner (próxima fase: sprint-run).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(sprint-planner) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [],
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`sprint-plan\`: 4 item(ns) mandatory pendente(s).
+
+• sprint-backlog.yaml criado com sprint name e objetivo
+• Todas as histórias têm critério de aceite (DoD)
+• Histórias estimadas em story points (Fibonacci)
+• Cada história rastreável a uma feature do feature-list.md",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(sprint-run) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "sprint-run",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "sprint-run",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`sprint-run\` validada pelo humano (todos itens mandatory ✓). Roteie para @backend (próxima fase: backend).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(sprint-runner) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [],
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`sprint-run\`: 3 item(ns) mandatory pendente(s).
+
+• Gate G1 validado: upstream completo e aprovado
+• Histórias despachadas para os agentes de stack corretos
+• Contexto (OpenAPI + BDD + domain) injetado para cada agente",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(sustain) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "sustain",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "sustain",
+    ],
+  ],
+  "vscode": [
+    {
+      "window.showInformationMessage": [
+        "✅ Fase \`sustain\` finalizada — fim do mapa de fases conhecido.",
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(ux-design) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "ux-design",
+      "human-ok",
+      true,
+    ],
+    [
+      "markPhaseDoneFromChat",
+      "ux-design",
+    ],
+  ],
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "mode": "helyx",
+          "query": "Fase \`ux-design\` validada pelo humano (todos itens mandatory ✓). Roteie para @domain-modeler (próxima fase: domain).",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > advancePhase(ux-designer) com todo mandatory ✓: rota para a próxima fase ou fim do mapa 1`] = `
+{
+  "access": [],
+  "vscode": [
+    {
+      "window.showWarningMessage": [
+        "Não posso avançar a fase \`ux-design\`: 4 item(ns) mandatory pendente(s).
+
+• docs/design/user-flows.md criado
+• Jornadas mapeadas para todas as personas do PRD
+• Fluxos incluem happy path e caminhos de erro
+• Sem código de produção (apenas wireframes/protótipos)",
+        {
+          "modal": true,
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em architecture: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+    {
+      "fsPath": "<ROOT>/api/openapi.yaml",
+      "title": "openapi.yaml",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.startWithTemplate · $(edit) Preencher template → @architecture · ["architecture"]",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@architecture"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🏗 **Fase**     | \`architecture\` — Arquitetura |
+| 🤖 **Agente**   | \`@architecture\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@sprint-planner\` — Sprint Plan |
+
+---
+",
+  "checklists": [
+    "architecture",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Arquitetura?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Arquitetura ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em backend: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@backend"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| ⚙ **Fase**     | \`backend\` — Backend |
+| 🤖 **Agente**   | \`@backend\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@frontend\` — Frontend |
+
+---
+",
+  "checklists": [
+    "backend",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Backend?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Backend ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em bdd: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.startWithTemplate · $(edit) Preencher template → @bdd · ["bdd"]",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@bdd"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🔮 **Fase**     | \`bdd\` — BDD |
+| 🤖 **Agente**   | \`@bdd\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@architecture\` — Arquitetura |
+
+---
+",
+  "checklists": [
+    "bdd",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase BDD?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase BDD ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em business: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+    {
+      "fsPath": "<ROOT>/business-brief.md",
+      "title": "business-brief.md",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.startWithTemplate · $(edit) Preencher template → @business · ["business"]",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@business"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 💡 **Fase**     | \`business\` — Business Brief |
+| 🤖 **Agente**   | \`@business\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@product\` — PRD |
+
+---
+",
+  "checklists": [
+    "business",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Business Brief?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Business Brief ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em devops: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@devops"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🐳 **Fase**     | \`devops\` — DevOps |
+| 🤖 **Agente**   | \`@devops\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@release\` — Release |
+
+---
+",
+  "checklists": [
+    "devops",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase DevOps?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase DevOps ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em domain: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@domain-modeler"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🗺 **Fase**     | \`domain\` — Domínio |
+| 🤖 **Agente**   | \`@domain-modeler\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@bdd\` — BDD |
+
+---
+",
+  "checklists": [
+    "domain",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Domínio?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Domínio ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em domain-modeler: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@domain-modeler"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🗺 **Fase**     | \`domain-modeler\` — Domínio |
+| 🤖 **Agente**   | \`@domain-modeler\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@bdd\` — BDD |
+
+---
+",
+  "checklists": [
+    "domain",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Domínio?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Domínio ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em fase-inexistente: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 📌 **Fase**     | \`fase-inexistente\` — fase-inexistente |
+| 🤖 **Agente**   | \`—\` |
+| 📊 **Status**   | ⏳ em andamento |
+
+---
+",
+  "checklists": [],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em frontend: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@frontend"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| ⬡ **Fase**     | \`frontend\` — Frontend |
+| 🤖 **Agente**   | \`@frontend\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@reviewer\` — Review |
+
+---
+",
+  "checklists": [
+    "frontend",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Frontend?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Frontend ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em incident: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@incident"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🚨 **Fase**     | \`incident\` — Incidente |
+| 🤖 **Agente**   | \`@incident\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@sustain\` — Sustentação |
+
+---
+",
+  "checklists": [
+    "incident",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Incidente?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Incidente ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em observability: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@observability"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 📊 **Fase**     | \`observability\` — Observability |
+| 🤖 **Agente**   | \`@observability\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@incident\` — Incidente |
+
+---
+",
+  "checklists": [
+    "observability",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Observability?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Observability ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em product: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+    {
+      "fsPath": "<ROOT>/prd.md",
+      "title": "prd.md",
+    },
+    {
+      "fsPath": "<ROOT>/feature-list.md",
+      "title": "feature-list.md",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.startWithTemplate · $(edit) Preencher template → @product · ["product"]",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@product"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 📋 **Fase**     | \`product\` — PRD |
+| 🤖 **Agente**   | \`@product\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@ux-designer\` — UX Design |
+
+---
+",
+  "checklists": [
+    "product",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase PRD?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase PRD ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em release: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@release"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🏷 **Fase**     | \`release\` — Release |
+| 🤖 **Agente**   | \`@release\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@observability\` — Observability |
+
+---
+",
+  "checklists": [
+    "release",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Release?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Release ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em review: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@reviewer"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🔍 **Fase**     | \`review\` — Review |
+| 🤖 **Agente**   | \`@reviewer\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@devops\` — DevOps |
+
+---
+",
+  "checklists": [
+    "reviewer",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Review?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Review ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em reviewer: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@reviewer"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🔍 **Fase**     | \`reviewer\` — Review |
+| 🤖 **Agente**   | \`@reviewer\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@devops\` — DevOps |
+
+---
+",
+  "checklists": [
+    "reviewer",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Review?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Review ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em sprint-plan: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+    {
+      "fsPath": "<ROOT>/sprint-backlog.yaml",
+      "title": "sprint-backlog.yaml",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@sprint-planner"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 📅 **Fase**     | \`sprint-plan\` — Sprint Plan |
+| 🤖 **Agente**   | \`@sprint-planner\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@sprint-runner\` — Sprint Runner |
+
+---
+",
+  "checklists": [
+    "sprint-plan",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Sprint Plan?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Sprint Plan ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em sprint-planner: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+    {
+      "fsPath": "<ROOT>/sprint-backlog.yaml",
+      "title": "sprint-backlog.yaml",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@sprint-planner"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 📅 **Fase**     | \`sprint-planner\` — Sprint Plan |
+| 🤖 **Agente**   | \`@sprint-planner\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@sprint-runner\` — Sprint Runner |
+
+---
+",
+  "checklists": [
+    "sprint-plan",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Sprint Plan?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Sprint Plan ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em sprint-run: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@sprint-runner"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| ▶ **Fase**     | \`sprint-run\` — Sprint Runner |
+| 🤖 **Agente**   | \`@sprint-runner\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@backend\` — Backend |
+
+---
+",
+  "checklists": [
+    "sprint-run",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Sprint Runner?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Sprint Runner ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em sprint-runner: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@sprint-runner"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| ▶ **Fase**     | \`sprint-runner\` — Sprint Runner |
+| 🤖 **Agente**   | \`@sprint-runner\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@backend\` — Backend |
+
+---
+",
+  "checklists": [
+    "sprint-run",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Sprint Runner?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Sprint Runner ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em sustain: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@sustain"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🔧 **Fase**     | \`sustain\` — Sustentação |
+| 🤖 **Agente**   | \`@sustain\` |
+| 📊 **Status**   | ⏳ em andamento |
+
+---
+",
+  "checklists": [
+    "sustain",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Sustentação?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Sustentação ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em ux-design: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.startWithTemplate · $(edit) Preencher template → @ux-designer · ["ux-design"]",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@ux-designer"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🎨 **Fase**     | \`ux-design\` — UX Design |
+| 🤖 **Agente**   | \`@ux-designer\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@domain-modeler\` — Domínio |
+
+---
+",
+  "checklists": [
+    "ux-design",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase UX Design?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase UX Design ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > card da iniciativa ativa em ux-designer: rótulo, ícone, agente, próximo, botões, âncoras e followups 1`] = `
+{
+  "anchors": [
+    {
+      "fsPath": "<ROOT>/.github/artifacts/initiatives/loja-demo",
+      "title": "📂 loja-demo/",
+    },
+  ],
+  "buttons": [
+    "helyx.openCockpitNext · $(rocket) Cockpit",
+    "helyx.concierge.startWithTemplate · $(edit) Preencher template → @ux-designer · ["ux-design"]",
+    "helyx.concierge.continuePhase · $(arrow-right) Continuar com o agente helyx · ["@ux-designer"]",
+  ],
+  "card": "---
+### 🧭 \`loja-demo\`  
+> Loja Demo
+
+| | |
+|:---|:---|
+| 🔵 **Stream**  | \`upstream\` |
+| 🎨 **Fase**     | \`ux-designer\` — UX Design |
+| 🤖 **Agente**   | \`@ux-designer\` |
+| 📊 **Status**   | ⏳ em andamento |
+| ⏩ **Próximo**  | \`@domain-modeler\` — Domínio |
+
+---
+",
+  "checklists": [
+    "ux-design",
+  ],
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase UX Design?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase UX Design ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: architecture done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🏗 \`architecture\`** *(Arquitetura)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: backend done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **⚙ \`backend\`** *(Backend)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: bdd done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🔮 \`bdd\`** *(BDD)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: business done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **💡 \`business\`** *(Business Brief)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: com várias fases pendentes, a escolhida segue a ordem do catálogo de fases (e o fallback, a ordem do arquivo) 1`] = `
+{
+  "incident → reviewer → sustain": "reviewer",
+  "review → devops": "reviewer",
+  "sprint-runner → sprint-planner": "sprint-plan",
+  "sustain → reviewer": "reviewer",
+}
+`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: devops done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🐳 \`devops\`** *(DevOps)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: domain done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🗺 \`domain\`** *(Domínio)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: domain-modeler done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🗺 \`domain\`** *(Domínio)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: fase-inexistente done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"(sem gate)"`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: frontend done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **⬡ \`frontend\`** *(Frontend)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: incident done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🚨 \`incident\`** *(Incidente)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: observability done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **📊 \`observability\`** *(Observability)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: product done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **📋 \`product\`** *(PRD)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: release done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🏷 \`release\`** *(Release)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: review done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🔍 \`reviewer\`** *(Review)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: reviewer done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🔍 \`reviewer\`** *(Review)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: sprint-plan done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **📅 \`sprint-plan\`** *(Sprint Plan)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: sprint-planner done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **📅 \`sprint-plan\`** *(Sprint Plan)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: sprint-run done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **▶ \`sprint-run\`** *(Sprint Runner)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: sprint-runner done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **▶ \`sprint-run\`** *(Sprint Runner)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: sustain done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🔧 \`sustain\`** *(Sustentação)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: ux-design done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🎨 \`ux-design\`** *(UX Design)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > gate HITL: ux-designer done sem human-ok (ícone e rótulo do card de gate, ou nenhum gate) 1`] = `"> A fase **🎨 \`ux-design\`** *(UX Design)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**."`;
+
+exports[`catálogo de fases — chat (ConciergeParticipant) > startWithTemplate: a query de cada fase (template próprio ou 'continuar com <agente>', para o agente orquestrador) 1`] = `
+{
+  "architecture": "(template próprio)",
+  "backend": "continuar com @backend",
+  "bdd": "(template próprio)",
+  "business": "(template próprio)",
+  "devops": "continuar com @devops",
+  "domain": "continuar com @domain-modeler",
+  "domain-modeler": "continuar com @domain-modeler",
+  "fase-inexistente": "continuar com fase-inexistente",
+  "frontend": "continuar com @frontend",
+  "incident": "continuar com @incident",
+  "observability": "continuar com @observability",
+  "product": "(template próprio)",
+  "release": "continuar com @release",
+  "review": "continuar com @reviewer",
+  "reviewer": "continuar com @reviewer",
+  "sprint-plan": "continuar com @sprint-planner",
+  "sprint-planner": "continuar com @sprint-planner",
+  "sprint-run": "continuar com @sprint-runner",
+  "sprint-runner": "continuar com @sprint-runner",
+  "sustain": "continuar com @sustain",
+  "ux-design": "(template próprio)",
+  "ux-designer": "(template próprio)",
+}
+`;

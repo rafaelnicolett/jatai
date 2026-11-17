@@ -1,0 +1,285 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`contrato — IDs de comando (package.json × registerCommand × executeCommand) > snapshot de todo id helyx.* REFERENCIADO (registrado? quantas referências?) 1`] = `
+[
+  {
+    "id": "helyx._generateStructure",
+    "references": 1,
+    "registered": true,
+  },
+  {
+    "id": "helyx._installAgentStructure",
+    "references": 1,
+    "registered": true,
+  },
+  {
+    "id": "helyx.concierge.advancePhase",
+    "references": 1,
+    "registered": true,
+  },
+  {
+    "id": "helyx.concierge.continuePhase",
+    "references": 1,
+    "registered": true,
+  },
+  {
+    "id": "helyx.concierge.runRawPrompt",
+    "references": 5,
+    "registered": true,
+  },
+  {
+    "id": "helyx.concierge.startWithTemplate",
+    "references": 2,
+    "registered": true,
+  },
+  {
+    "id": "helyx.concierge.toggleGuardRail",
+    "references": 1,
+    "registered": true,
+  },
+  {
+    "id": "helyx.initializeDeliveryKit",
+    "references": 4,
+    "registered": true,
+  },
+  {
+    "id": "helyx.migrateKit",
+    "references": 3,
+    "registered": true,
+  },
+  {
+    "id": "helyx.openCockpitNext",
+    "references": 7,
+    "registered": true,
+  },
+  {
+    "id": "helyx.revealArtifacts",
+    "references": 1,
+    "registered": true,
+  },
+  {
+    "id": "helyx.syncRepos",
+    "references": 1,
+    "registered": true,
+  },
+  {
+    "id": "helyx.validateArtifactSection",
+    "references": 2,
+    "registered": true,
+  },
+  {
+    "id": "helyx.validateRemainingItems",
+    "references": 1,
+    "registered": true,
+  },
+]
+`;
+
+exports[`contrato — IDs de comando (package.json × registerCommand × executeCommand) > snapshot dos 11 comandos declarados em contributes.commands (id + título + categoria + ícone) 1`] = `
+[
+  {
+    "category": "Helyx",
+    "command": "helyx.startStack",
+    "icon": "$(play)",
+    "title": "Helyx: Start Local Stack",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.stopStack",
+    "icon": "$(debug-stop)",
+    "title": "Helyx: Stop Local Stack",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.initializeDeliveryKit",
+    "title": "Helyx: Initialize Delivery Kit",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.openCockpitNext",
+    "icon": "$(rocket)",
+    "title": "Helyx: Open Cockpit (Preview)",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.refreshTreeView",
+    "icon": "$(refresh)",
+    "title": "Helyx: Refresh All Views",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.concierge.continuePhase",
+    "title": "Helyx: Continuar Fase",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.concierge.startWithTemplate",
+    "title": "Helyx: Preencher Template de Fase",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.concierge.revealArtifact",
+    "title": "Helyx: Revelar Artefato",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.syncRepos",
+    "icon": "$(cloud-download)",
+    "title": "Helyx: Sincronizar Repositórios (repos.yaml)",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.migrateKit",
+    "icon": "$(arrow-up)",
+    "title": "Helyx: Migrar Estrutura do Kit",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.revealArtifacts",
+    "icon": "$(folder-opened)",
+    "title": "Helyx: Abrir Artefatos",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.connectedExtensions",
+    "icon": "$(plug)",
+    "title": "Helyx: Extensões Conectadas",
+  },
+  {
+    "category": "Helyx",
+    "command": "helyx.sendArtifacts",
+    "icon": "$(cloud-upload)",
+    "title": "Helyx: Enviar Artefatos…",
+  },
+]
+`;
+
+exports[`contrato — IDs de comando (package.json × registerCommand × executeCommand) > snapshot dos ids registrados via registerCommand em src/ (ordenado) 1`] = `
+[
+  "helyx._generateStructure",
+  "helyx._installAgentStructure",
+  "helyx.concierge.advancePhase",
+  "helyx.concierge.continuePhase",
+  "helyx.concierge.revealArtifact",
+  "helyx.concierge.runRawPrompt",
+  "helyx.concierge.startWithTemplate",
+  "helyx.concierge.toggleGuardRail",
+  "helyx.connectedExtensions",
+  "helyx.initializeDeliveryKit",
+  "helyx.migrateKit",
+  "helyx.openCockpitNext",
+  "helyx.refreshTreeView",
+  "helyx.revealArtifacts",
+  "helyx.sendArtifacts",
+  "helyx.startStack",
+  "helyx.stopStack",
+  "helyx.syncRepos",
+  "helyx.validateArtifactSection",
+  "helyx.validateRemainingItems",
+]
+`;
+
+exports[`contrato — identificadores de contributes (marca, participante de chat, views, settings) > snapshot dos identificadores públicos de package.json (activationEvents, chatParticipants, views, viewsWelcome, viewsContainers, menus, icons, configuration) 1`] = `
+{
+  "activationEvents": [
+    "workspaceContains:helyx.config.yaml",
+    "workspaceContains:helyx.config.yaml",
+    "workspaceContains:ai-sdk.config.yaml",
+    "onChatParticipant:helyx.concierge",
+  ],
+  "chatParticipants": [
+    {
+      "commands": [
+        {
+          "description": "Estado atual das iniciativas e fases",
+          "name": "status",
+        },
+        {
+          "description": "Criar uma nova iniciativa de delivery",
+          "name": "nova",
+        },
+        {
+          "description": "Continuar a fase ativa da iniciativa",
+          "name": "continuar",
+        },
+      ],
+      "description": "Mostra onde a iniciativa está e o próximo passo, e encaminha para o agente helyx. Não aciona agentes nem grava arquivos.",
+      "fullName": "Guia da Helyx",
+      "id": "helyx.concierge",
+      "isSticky": true,
+      "name": "guia",
+    },
+  ],
+  "configuration": {
+    "helyx.approvalFriction.riskFields": {
+      "default": [
+        "merge_block",
+        "known_bugs_pinned",
+      ],
+      "type": "array",
+    },
+    "helyx.deliveryHierarchy": {
+      "default": "legacy",
+      "enum": [
+        "legacy",
+        "epic-feature-backlog-task",
+      ],
+      "type": "string",
+    },
+  },
+  "icons": [
+    "helyx-mark",
+  ],
+  "menus": {
+    "view/item/context": [],
+    "view/title": [],
+  },
+  "views": {
+    "helyx-container": [
+      {
+        "id": "helyx.welcome",
+        "name": "Começar",
+        "when": "!helyx.isWorkspace",
+      },
+      {
+        "id": "helyx.mainPanel",
+        "name": "Helyx",
+        "type": "webview",
+        "visibility": "visible",
+        "when": "helyx.isWorkspace",
+      },
+    ],
+  },
+  "viewsContainers": {
+    "activitybar": [
+      {
+        "icon": "media/helyx-icon.svg",
+        "id": "helyx-container",
+        "title": "Helyx",
+      },
+    ],
+  },
+  "viewsWelcome": [
+    {
+      "contents": "A Helyx trabalha com uma pasta por vez.
+Abra uma pasta para começar, ou crie um projeto novo: a Helyx pergunta onde ele fica.
+[Abrir uma pasta](command:workbench.action.files.openFolder)
+[Criar um projeto novo](command:helyx.initializeDeliveryKit)",
+      "view": "helyx.welcome",
+      "when": "workspaceFolderCount == 0",
+    },
+    {
+      "contents": "Esta pasta ainda não é um workspace da Helyx.
+A Helyx instala agentes e instruções nela, e só depois de você conferir o que será escrito.
+[Começar com a Helyx](command:helyx.initializeDeliveryKit)",
+      "view": "helyx.welcome",
+      "when": "workspaceFolderCount > 0 && !helyx.isWorkspace",
+    },
+    {
+      "contents": "Esta janela tem mais de uma pasta. A v1 da Helyx trabalha com uma pasta por janela e usa a primeira.",
+      "view": "helyx.welcome",
+      "when": "workspaceFolderCount > 1 && !helyx.isWorkspace",
+    },
+  ],
+}
+`;

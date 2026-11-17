@@ -1,0 +1,25 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jt-space-3);
+  /* Fora da `.page` da tela (que é quem põe a margem da página), então a caixa traz a dela. */
+  margin: var(--jt-layout-gap) var(--jt-layout-gutter);
+  padding: var(--jt-space-6);
+  border: 1px solid var(--jt-status-blocked-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-status-blocked-bg);
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--jt-space-2);
+  margin: 0;
+  font: var(--jt-type-display-sm);
+  color: var(--jt-status-blocked-fg);
+}
+.message { margin: 0; font: var(--jt-type-body); color: var(--jt-fg); overflow-wrap: anywhere; }
+
+@media (forced-colors: active) {
+  .box { border-color: CanvasText; background: Canvas; }
+}

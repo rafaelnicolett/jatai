@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "scenario": "ds-bug06-bloco-sombra-alias",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "sprint-planner",
+        "--status",
+        "done"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "sprint-planner",
+        "status": "done"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 87 b7f6a5535ce45d89b2566730b7e203666917d6312cadf9e09ed4b5677162cb9f text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 222 87c911b48f644d45b2b3f1d1dce6b3e32ee19924f4feeccf7b6e6d1d4718b382 text"
+  }
+}

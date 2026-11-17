@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-create-completo",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "mod-beta",
+        "--name",
+        "Modernização Beta",
+        "--status",
+        "in-progress",
+        "--stream",
+        "execution",
+        "--current-phase",
+        "test-backfill",
+        "--mode",
+        "brownfield",
+        "--type",
+        "modernization",
+        "--owner",
+        "Pessoa Fictícia",
+        "--priority",
+        "alta",
+        "--created-at",
+        "2026-01-02",
+        "--active"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 297 04b2d3423958c2bf84ba28040bac5ff9a90f03b2151aff4b0d9964063dd1f770 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/mod-beta.jsonl": "file 100644 241 c6076457c8e18f8a4255ce9edcdf05fcdee4fb8e36cc5d74992e9cd68e15cc0e text"
+  }
+}

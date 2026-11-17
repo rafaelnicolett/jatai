@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "scenario": "status-de-trabalho",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "product",
+        "--status",
+        "blocked"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --reason (o status 'blocked' exige motivo)",
+          "field": "reason",
+          "status": "blocked"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "product",
+        "--status",
+        "blocked",
+        "--reason",
+        "falta o PRD revisado"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "product",
+        "status": "blocked"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "product",
+        "--status",
+        "in-progress"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "product",
+        "status": "in-progress"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "mod-beta",
+        "--wave",
+        "wave-1",
+        "--item",
+        "item-1",
+        "--status",
+        "finished"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --status: 'finished'",
+          "field": "status",
+          "value": "finished",
+          "allowed": [
+            "pending",
+            "in-progress",
+            "blocked",
+            "failed",
+            "done",
+            "skipped",
+            "cancelled"
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "mod-beta",
+        "--wave",
+        "wave-1",
+        "--item",
+        "item-1",
+        "--status",
+        "failed",
+        "--reason",
+        "suíte de integração quebrou"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta",
+        "wave": "wave-1",
+        "item": "item-1",
+        "status": "failed"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "mod-beta",
+        "--wave",
+        "wave-1",
+        "--item",
+        "item-2",
+        "--status",
+        "cancelled"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --reason (o status 'cancelled' exige motivo)",
+          "field": "reason",
+          "status": "cancelled"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa",
+        "--status",
+        "cancelled"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --reason (o status 'cancelled' exige motivo)",
+          "field": "reason",
+          "status": "cancelled"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa",
+        "--status",
+        "cancelled",
+        "--reason",
+        "a prioridade mudou"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "gf-alfa"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 95 d62ab40a37518b27f62e977fc3f4788800185d0bfddb074a6025bcfe8a2809eb text",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 491 dcbb731687540a451883118c756fc09756c47bfe416ebda9e061872c16afaf42 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 280 2c8fb017cc1ec510ff5a2a9b42fce58039596138468a1a744502f1fe658443a9 text",
+    "ws/.github/artifacts/runs/mod-beta.jsonl": "file 100644 325 82d165215be85472ff553259a13219e328a4988ae6c828a16557b990d988cafa text",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 471 412bc12d1a53e65873998b71f936bc2dc405592b5ff42b866c91dad079e16483 text"
+  }
+}

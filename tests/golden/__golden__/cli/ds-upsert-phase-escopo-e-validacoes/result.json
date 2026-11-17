@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "scenario": "ds-upsert-phase-escopo-e-validacoes",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--phase",
+        "business",
+        "--status",
+        "done"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_SCOPE",
+          "message": "informe --global ou --initiative <id>"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--initiative",
+        "gf-alfa",
+        "--phase",
+        "business",
+        "--status",
+        "done"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "business",
+        "status": "done"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--status",
+        "done"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --phase",
+          "field": "phase"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "business"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --status",
+          "field": "status"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "business",
+        "--status",
+        "feito"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --status: 'feito'",
+          "field": "status",
+          "value": "feito",
+          "allowed": [
+            "pending",
+            "in-progress",
+            "blocked",
+            "failed",
+            "done",
+            "skipped",
+            "cancelled"
+          ]
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 37 44fc32ebde054147be9f9bf8944bbc6405c7b47a58c21eee81aa877d0db70ce7 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 210 59c577a511f3b2080fd2ae99b0392d5943ff66577cb61d9662de1d2d62f92184 text"
+  }
+}

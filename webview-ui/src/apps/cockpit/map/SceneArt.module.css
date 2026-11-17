@@ -1,0 +1,140 @@
+/*
+ * A arte estática da cena do mapa (F5.3). Só tokens `--jt-*`: a cena troca de
+ * crepúsculo para dia pela variante da raiz, e de ilustrada para esquemática no
+ * alto contraste (--jt-scene-mode). Os tons de sombra e de brilho saem dos
+ * próprios tokens da cena por `color-mix`, sem cor nova.
+ */
+
+.art {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  overflow: visible;
+}
+
+/* ── Gradientes: as cores vêm dos tokens por stop-color ───────────────── */
+.grass0 { stop-color: var(--jt-scene-grass-0); }
+.grass1 { stop-color: var(--jt-scene-grass-1); }
+.fog0 { stop-color: var(--jt-scene-fog-0); }
+.fog1 { stop-color: var(--jt-scene-fog-1); }
+.soilLTop { stop-color: color-mix(in srgb, var(--jt-scene-soil-l) 88%, var(--jt-asa)); }
+.soilLBottom { stop-color: color-mix(in srgb, var(--jt-scene-soil-l) 70%, var(--jt-scene-strata)); }
+.soilRTop { stop-color: color-mix(in srgb, var(--jt-scene-soil-r) 90%, var(--jt-asa)); }
+.soilRBottom { stop-color: color-mix(in srgb, var(--jt-scene-soil-r) 62%, var(--jt-scene-strata)); }
+.sheen0 { stop-color: var(--jt-asa); stop-opacity: 0.26; }
+.sheen1 { stop-color: var(--jt-asa); stop-opacity: 0; }
+.warm0 { stop-color: var(--jt-scene-warm); }
+.warm1 { stop-color: var(--jt-scene-warm); stop-opacity: 0; }
+.combGlow0 { stop-color: var(--jt-scene-comb); stop-opacity: 0.55; }
+.combGlow1 { stop-color: var(--jt-scene-comb); stop-opacity: 0; }
+.glowDone0 { stop-color: var(--jt-scene-glow-done); }
+.glowDone1 { stop-color: var(--jt-scene-glow-done); stop-opacity: 0; }
+
+/* ── Céu ──────────────────────────────────────────────────────────────── */
+.wind {
+  fill: none;
+  stroke: var(--jt-cerume);
+  stroke-opacity: 0.1;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.warm { pointer-events: none; }
+
+/* ── Ilha ─────────────────────────────────────────────────────────────── */
+.island { shape-rendering: geometricPrecision; }
+.shadow { fill: var(--jt-propolis); opacity: 0.4; }
+.strata { fill: none; stroke: var(--jt-scene-strata); }
+.soilEdge { fill: none; stroke: var(--jt-asa); stroke-opacity: 0.16; stroke-width: 1.5; stroke-linejoin: round; }
+.lip { fill: none; stroke: var(--jt-scene-grass-edge); stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+.lipFog { fill: none; stroke: var(--jt-scene-fog-edge); stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+.tuft { fill: none; stroke: var(--jt-scene-grass-edge); stroke-linecap: round; stroke-opacity: 0.75; }
+.haze { fill: var(--jt-asa); opacity: 0.1; pointer-events: none; filter: url(#jt-map-soft); }
+
+/* Estrelas e vaga-lumes: pontos parados no alto do céu, só na textura (a cena de dia os apaga pelo tom). */
+.star { fill: var(--jt-cerume); }
+
+/* De dia o céu é claro: a sombra no chão fica mais leve, e as estrelas somem. */
+:global([data-scene-variant="day"]) .shadow { opacity: 0.2; }
+:global([data-scene-variant="day"]) .star { display: none; }
+
+/* ── O ipê ────────────────────────────────────────────────────────────── */
+.treeShadow { fill: var(--jt-propolis); opacity: 0.2; }
+.trunk { fill: var(--jt-scene-soil-r); }
+.canopy[data-tree="roxo"], .petal[data-tree="roxo"] { fill: var(--jt-scene-ipe-roxo); }
+.canopy[data-tree="rosa"], .petal[data-tree="rosa"] { fill: var(--jt-scene-ipe-rosa); }
+.canopy[data-tree="amarelo"], .petal[data-tree="amarelo"] { fill: var(--jt-scene-ipe-amarelo); }
+.canopy[data-tree="branco"], .petal[data-tree="branco"] { fill: var(--jt-scene-ipe-branco); }
+.petal { opacity: 0.85; }
+.canopyShade[data-tree="roxo"] { fill: color-mix(in srgb, var(--jt-scene-ipe-roxo) 45%, var(--jt-propolis)); }
+.canopyShade[data-tree="rosa"] { fill: color-mix(in srgb, var(--jt-scene-ipe-rosa) 45%, var(--jt-propolis)); }
+.canopyShade[data-tree="amarelo"] { fill: color-mix(in srgb, var(--jt-scene-ipe-amarelo) 45%, var(--jt-propolis)); }
+.canopyShade[data-tree="branco"] { fill: color-mix(in srgb, var(--jt-scene-ipe-branco) 45%, var(--jt-propolis)); }
+.canopyShade { opacity: 0.38; }
+.canopyHi[data-tree="roxo"] { fill: color-mix(in srgb, var(--jt-scene-ipe-roxo) 60%, var(--jt-asa)); }
+.canopyHi[data-tree="rosa"] { fill: color-mix(in srgb, var(--jt-scene-ipe-rosa) 60%, var(--jt-asa)); }
+.canopyHi[data-tree="amarelo"] { fill: color-mix(in srgb, var(--jt-scene-ipe-amarelo) 62%, var(--jt-asa)); }
+.canopyHi[data-tree="branco"] { fill: var(--jt-asa); }
+.canopyHi { opacity: 0.7; }
+
+/* ── A caixa da colônia ───────────────────────────────────────────────── */
+.woodL { fill: var(--jt-scene-wood-l); }
+.woodR { fill: var(--jt-scene-wood-r); }
+.roofTop { fill: var(--jt-scene-wood-top); }
+.roofRim { fill: var(--jt-scene-wood-rim); }
+.plank { fill: none; stroke: var(--jt-scene-wood-r); stroke-opacity: 0.6; stroke-width: 1.5; }
+.entranceRing { fill: var(--jt-cerume); }
+.entrance { fill: var(--jt-scene-entrance); }
+
+/* O anexo em obra: a mesma madeira, mais clara, com o andaime tracejado. */
+.annexL { fill: color-mix(in srgb, var(--jt-scene-wood-l) 82%, var(--jt-asa)); }
+.annexR { fill: color-mix(in srgb, var(--jt-scene-wood-r) 82%, var(--jt-asa)); }
+.annexRoof { fill: color-mix(in srgb, var(--jt-scene-wood-top) 80%, var(--jt-asa)); }
+.annexRim { fill: color-mix(in srgb, var(--jt-scene-wood-rim) 82%, var(--jt-asa)); }
+.scaffold { fill: none; stroke: var(--jt-cerume); stroke-opacity: 0.7; stroke-width: 2; stroke-dasharray: 3 4; }
+
+/* ── O favo ───────────────────────────────────────────────────────────── */
+.combGlow { pointer-events: none; }
+.comb { fill: var(--jt-scene-comb); stroke: color-mix(in srgb, var(--jt-scene-comb) 55%, var(--jt-propolis)); stroke-width: 1.5; }
+.combHi { fill: var(--jt-scene-comb-hi); opacity: 0.85; }
+.combEmpty { fill: none; stroke: var(--jt-scene-comb-empty); stroke-width: 2; stroke-dasharray: 3 3; }
+
+/* O favo que acabou de encher cresce uma vez (--jt-dur-fill) e fica. */
+.potFill { animation: pot-fill var(--jt-dur-fill) var(--jt-ease-standard) 1 both; }
+@keyframes pot-fill {
+  from { transform: scale(0.2); opacity: 0; }
+  60% { transform: scale(1.18); opacity: 1; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ── Ponte ────────────────────────────────────────────────────────────── */
+.deck { fill: var(--jt-scene-deck); }
+.deckPlank { fill: none; stroke: var(--jt-scene-plank); stroke-width: 18; stroke-dasharray: 2 7; }
+.rail { fill: none; stroke: var(--jt-scene-rail); stroke-opacity: 0.85; stroke-width: 2; stroke-linecap: round; }
+.post { fill: none; stroke: var(--jt-scene-post); stroke-width: 3; stroke-linecap: round; }
+.unbuilt { fill: none; stroke: var(--jt-cerume); stroke-opacity: 0.45; stroke-width: 2; stroke-dasharray: 5 6; stroke-linejoin: round; }
+.bridgeGlow { pointer-events: none; }
+
+/* ── Modo esquemático (alto contraste): contorno, sem ilustração ──────── */
+@container style(--jt-scene-mode: schematic) {
+  .shadow, .sheen, .tuft, .wind, .warm, .haze, .soilEdge, .treeShadow, .petal, .canopyShade, .canopyHi, .combGlow, .bridgeGlow, .plank, .star { display: none; }
+  /* Sem transparência no esquemático (DS v2 §2.5): a ilha adormecida se distingue pelo tracejado. */
+  .island { opacity: 1; }
+  .soilL, .soilR, .grass, .fog { fill: var(--jt-scene-bg); stroke: var(--jt-line-strong); stroke-width: 2; }
+  .strata { stroke: var(--jt-line-strong); stroke-opacity: 1; }
+  .lip, .lipFog { stroke: var(--jt-line-strong); stroke-width: 2; }
+  .island[data-state="current"] .lip { stroke: var(--jt-mel-line); stroke-width: 3; }
+  .island[data-state="sleeping"] .lipFog { stroke-dasharray: 6 4; }
+  .canopy, .woodL, .woodR, .roofTop, .roofRim, .annexL, .annexR, .annexRoof, .annexRim, .trunk { fill: var(--jt-scene-bg); stroke: var(--jt-fg); stroke-width: 1.5; }
+  .entranceRing { fill: var(--jt-scene-bg); stroke: var(--jt-fg); stroke-width: 1.5; }
+  .comb { fill: var(--jt-scene-comb); stroke: var(--jt-fg); }
+  .combHi { display: none; }
+  .deck { fill: none; stroke: var(--jt-scene-plank); stroke-width: 3; }
+  .deckPlank, .rail, .post { display: none; }
+  .unbuilt { stroke: var(--jt-line-strong); stroke-opacity: 1; stroke-width: 3; }
+}
+
+@media (forced-colors: active) {
+  .soilL, .soilR, .grass, .fog { fill: Canvas; stroke: CanvasText; }
+  .shadow, .sheen, .tuft, .wind, .warm, .haze { display: none; }
+}

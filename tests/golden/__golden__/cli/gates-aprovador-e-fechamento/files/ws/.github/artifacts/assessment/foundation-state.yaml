@@ -1,0 +1,34 @@
+version: 2
+phases: {}
+repos:
+  web:
+    phases:
+      tech-stack:
+        status: done
+      arch:
+        status: done
+      coding-archaeology:
+        status: done
+      design:
+        status: done
+      quality:
+        status: agent-done
+    gate_d1:
+      status: pending
+  worker:
+    phases:
+      tech-stack:
+        status: done
+      arch:
+        status: done
+      coding-archaeology:
+        status: done
+      quality:
+        status: done
+      debt:
+        status: done
+    gate_d1:
+      status: approved
+      approved_at: "2026-11-15T15:00:00.000Z"
+      human_approved_at: "2026-11-15T15:00:00.000Z"
+      by: "Pessoa Fictícia"

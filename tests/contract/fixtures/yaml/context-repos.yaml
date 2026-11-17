@@ -1,0 +1,20 @@
+# Fixture SINTÉTICA (F0.4, lane B)
+version: 1
+contexts:
+  - slug: pedidos
+    name: "Pedidos"
+    status: accepted
+    description: "Ciclo de vida do pedido"
+    lives_in:
+      - repo: pedidos-api
+        paths: ["src/orders/**", "src/checkout/**"]
+      - repo: catalogo-web
+  - slug: catalogo
+    lives_in:
+      - repo: catalogo-web
+        paths: []
+  - slug: Slug_Invalido
+    lives_in:
+      - repo: pedidos-api
+  - slug: sem-lugar
+    lives_in: []

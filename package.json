@@ -1,0 +1,286 @@
+{
+  "name": "jatai",
+  "displayName": "Jataí",
+  "description": "Agentic delivery platform: wizard, generator, and delivery dashboard for GitHub Copilot & Claude.",
+  "version": "1.0.0",
+  "publisher": "jatai",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Rafael Nicoleti",
+    "url": "https://github.com/rafaelnicolett"
+  },
+  "homepage": "https://jatai.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafaelnicolett/jatai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rafaelnicolett/jatai/issues"
+  },
+  "icon": "media/jatai-icon-color.png",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "delivery",
+    "copilot",
+    "claude",
+    "fastapi",
+    "react"
+  ],
+  "activationEvents": [
+    "workspaceContains:jatai.config.yaml",
+    "workspaceContains:helyx.config.yaml",
+    "workspaceContains:ai-sdk.config.yaml",
+    "onChatParticipant:jatai.concierge"
+  ],
+  "main": "./dist/extension.js",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Jataí grava estado em .github/artifacts/, sobe um servidor local (127.0.0.1) e executa git. Por isso só roda em workspace confiável."
+    }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "jatai.startStack",
+        "title": "Jataí: Start Local Stack",
+        "category": "Jataí",
+        "icon": "$(play)"
+      },
+      {
+        "command": "jatai.stopStack",
+        "title": "Jataí: Stop Local Stack",
+        "category": "Jataí",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "jatai.initializeDeliveryKit",
+        "title": "Jataí: Initialize Delivery Kit",
+        "category": "Jataí"
+      },
+      {
+        "command": "jatai.openCockpitNext",
+        "title": "Jataí: Open Cockpit (Preview)",
+        "category": "Jataí",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "jatai.refreshTreeView",
+        "title": "Jataí: Refresh All Views",
+        "category": "Jataí",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "jatai.concierge.continuePhase",
+        "title": "Jataí: Continuar Fase",
+        "category": "Jataí"
+      },
+      {
+        "command": "jatai.concierge.startWithTemplate",
+        "title": "Jataí: Preencher Template de Fase",
+        "category": "Jataí"
+      },
+      {
+        "command": "jatai.concierge.revealArtifact",
+        "title": "Jataí: Revelar Artefato",
+        "category": "Jataí"
+      },
+      {
+        "command": "jatai.syncRepos",
+        "title": "Jataí: Sincronizar Repositórios (repos.yaml)",
+        "category": "Jataí",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "jatai.migrateKit",
+        "title": "Jataí: Migrar Estrutura do Kit",
+        "category": "Jataí",
+        "icon": "$(arrow-up)"
+      },
+      {
+        "command": "jatai.revealArtifacts",
+        "title": "Jataí: Abrir Artefatos",
+        "category": "Jataí",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "jatai.connectedExtensions",
+        "title": "Jataí: Extensões Conectadas",
+        "category": "Jataí",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "jatai.sendArtifacts",
+        "title": "Jataí: Enviar Artefatos…",
+        "category": "Jataí",
+        "icon": "$(cloud-upload)"
+      }
+    ],
+    "icons": {
+      "jatai-mark": {
+        "description": "Símbolo Guarda da Jataí (glifo de 16 px gerado de media/fonts/jatai-mark.svg)",
+        "default": {
+          "fontPath": "media/fonts/jatai-icons.woff",
+          "fontCharacter": "\\e900"
+        }
+      }
+    },
+    "chatParticipants": [
+      {
+        "id": "jatai.concierge",
+        "name": "guia",
+        "fullName": "Guia da Jataí",
+        "description": "Mostra onde a iniciativa está e o próximo passo, e encaminha para o agente jatai. Não aciona agentes nem grava arquivos.",
+        "isSticky": true,
+        "commands": [
+          {
+            "name": "status",
+            "description": "Estado atual das iniciativas e fases"
+          },
+          {
+            "name": "nova",
+            "description": "Criar uma nova iniciativa de delivery"
+          },
+          {
+            "name": "continuar",
+            "description": "Continuar a fase ativa da iniciativa"
+          }
+        ]
+      }
+    ],
+    "views": {
+      "jatai-container": [
+        {
+          "id": "jatai.welcome",
+          "name": "Começar",
+          "when": "!jatai.isWorkspace"
+        },
+        {
+          "type": "webview",
+          "id": "jatai.mainPanel",
+          "name": "Jataí",
+          "visibility": "visible",
+          "when": "jatai.isWorkspace"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "jatai-container",
+          "title": "Jataí",
+          "icon": "media/jatai-icon.svg"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [],
+      "view/item/context": []
+    },
+    "configuration": {
+      "title": "Jataí",
+      "properties": {
+        "jatai.approvalFriction.riskFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "merge_block",
+            "known_bugs_pinned"
+          ],
+          "description": "Campos de um item de wave_status cuja presença exige confirmação extra (checkbox) antes de habilitar 'Aprovar' no Cockpit."
+        },
+        "jatai.deliveryHierarchy": {
+          "type": "string",
+          "enum": [
+            "legacy",
+            "epic-feature-backlog-task"
+          ],
+          "default": "legacy",
+          "markdownDescription": "Vocabulário de backlog exibido no Cockpit. `legacy` (default) mantém Wave/Item exatamente como hoje — nenhum workspace é afetado ao atualizar a extensão. `epic-feature-backlog-task` liga a hierarquia Epic/Feature/Backlog/Task (ADR-0006/ADR-0007) para iniciativas novas; iniciativas já `done` nunca são reescritas."
+        }
+      }
+    },
+    "viewsWelcome": [
+      {
+        "view": "jatai.welcome",
+        "when": "workspaceFolderCount == 0",
+        "contents": "A Jataí trabalha com uma pasta por vez.\nAbra uma pasta para começar, ou crie um projeto novo: a Jataí pergunta onde ele fica.\n[Abrir uma pasta](command:workbench.action.files.openFolder)\n[Criar um projeto novo](command:jatai.initializeDeliveryKit)"
+      },
+      {
+        "view": "jatai.welcome",
+        "when": "workspaceFolderCount > 0 && !jatai.isWorkspace",
+        "contents": "Esta pasta ainda não é um workspace da Jataí.\nA Jataí instala agentes e instruções nela, e só depois de você conferir o que será escrito.\n[Começar com a Jataí](command:jatai.initializeDeliveryKit)"
+      },
+      {
+        "view": "jatai.welcome",
+        "when": "workspaceFolderCount > 1 && !jatai.isWorkspace",
+        "contents": "Esta janela tem mais de uma pasta. A v1 da Jataí trabalha com uma pasta por janela e usa a primeira."
+      }
+    ]
+  },
+  "scripts": {
+    "copy-templates": "node scripts/copy-templates.js",
+    "build:kit": "node scripts/kit.js --write",
+    "build:webview": "npm --prefix webview-ui ci && npm --prefix webview-ui run build",
+    "build:cli": "esbuild src/cli/helyx-state.ts --bundle --outfile=kit/scripts/jatai-state.cjs --format=cjs --platform=node --target=node18 --sourcemap",
+    "build:mcp": "esbuild src/mcp/server.ts --bundle --outfile=kit/scripts/jatai-mcp.cjs --format=cjs --platform=node --target=node18",
+    "build": "npm run build:cli && npm run build:mcp && npm run copy-templates && npm run build:webview && tsc --noEmit && esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
+    "build:watch": "npm run build -- --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "lint:webview": "npm --prefix webview-ui run lint",
+    "arch": "depcruise src --config .dependency-cruiser.cjs && depcruise webview-ui/src --config .dependency-cruiser.cjs --ts-config webview-ui/tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "typecheck:webview": "npm --prefix webview-ui run typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:webview": "npm --prefix webview-ui run test",
+    "mcp-server": "node kit/scripts/jatai-mcp.cjs",
+    "package": "npm run build:cli && npm run build:mcp && npm run copy-templates && npm run build:webview && esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --sourcemap && vsce package --no-dependencies",
+    "clean": "rimraf dist",
+    "ci:local": "sh scripts/ci-local.sh",
+    "demo": "node scripts/demo-build.mjs",
+    "demo:play": "node scripts/demo-play.mjs",
+    "docs:agents": "node scripts/gen-agent-catalog.mjs",
+    "docs:agents:check": "node scripts/gen-agent-catalog.mjs --check",
+    "notices": "node scripts/third-party-notices.mjs",
+    "notices:check": "node scripts/third-party-notices.mjs --check",
+    "release:check": "node scripts/release-check.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "js-yaml": "^4.1.0",
+    "jszip": "^3.10.1",
+    "zod": "^3.23.4"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/jszip": "^3.4.1",
+    "@types/node": "^20.12.0",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vscode/vsce": "^2.26.0",
+    "dependency-cruiser": "17.4.3",
+    "esbuild": "^0.21.0",
+    "eslint": "^8.57.0",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0",
+    "yaml": "^2.9.0"
+  }
+}

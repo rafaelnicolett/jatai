@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "case": "greenfield-pw-01",
+  "base": "greenfield-claude-padrao",
+  "input": {
+    "projectName": "orbita",
+    "deliveryMode": "agentic-only",
+    "hostAdapter": "claude",
+    "backendStack": "python-api",
+    "backendArchitecture": "hexagonal",
+    "frontendStack": "none",
+    "database": "mongodb",
+    "cloud": "none",
+    "cicd": "github-actions"
+  },
+  "outcome": {
+    "resolved": {
+      "isLocal": true
+    }
+  },
+  "calls": [],
+  "entries": {
+    "projeto/CLAUDE.md": "file 100644 1580 8d7b1eafcc563a6922a2adf1a6c71aa0f79d5ac378cf6232c9de6fbef4927dc8 text",
+    "projeto/helyx.config.yaml": "file 100644 723 e7b68c3e1de3c126d0e16b1e779d6d10029c8b7f1a53e71c7d931fbed9a99991 text",
+    "projeto/infrastructure/docker-compose.local.yml": "file 100644 344 4c1ddb1d3ae36fdc327a7bdfe6d4e06734d9eb92c16c425adcd11a5ed6dd3be2 text"
+  }
+}

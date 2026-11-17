@@ -1,0 +1,149 @@
+# kit.manifest.yaml — o que cada edição do kit recebe (ADR-0018, F3.5).
+#
+# `kit/` é a fonte única do kit de agentes, e é ela que vai para o git. Cada
+# edição é materializada em `dist/kit/<out>/`, fora do git (ADR-0018), que o
+# gerador lê em runtime e o .vsix leva:
+#   greenfield → dist/kit/templates/   brownfield → dist/kit/brownfield-templates/
+# Quem materializa é o build (`scripts/copy-templates.js`, também
+# `npm run build:kit`) e, antes dos testes, o globalSetup do Vitest.
+#
+# `kit/scripts/` guarda os bundles versionados do CLI de estado e do servidor
+# MCP (`npm run build:cli`, `npm run build:mcp`), que a edição greenfield leva
+# em `scripts/` e o gerador instala nos dois fluxos.
+#
+# Unidades (`units`), sempre relativas à pasta da edição:
+#   - "<caminho>"              → kit/content/<caminho> (arquivo ou pasta inteira)
+#   - { from: <k>, to: <c> }   → kit/<k> para <c> (variante de uma edição)
+# `skills`: cada id copia kit/content/skills/<id>/ para skills/<id>/.
+# Duas unidades que escrevem o mesmo arquivo são erro.
+#
+# A adaptação a cada harness (Claude Code, Copilot) é feita na instalação, pelo
+# HarnessAdapter (src/generator/harness/): o kit é um só para os dois.
+
+schema: 1
+
+editions:
+  greenfield:
+    out: templates
+    keep: []
+    units:
+      # Bundles do CLI de estado e do servidor MCP (ADR-0025).
+      - { from: scripts, to: scripts }
+      # O roster brownfield (agents/discovery, planning, execution) não entra:
+      # é da edição brownfield, que empacota as skills dele (F3.5; era o
+      # @known-bug F0.2 §7.1 / GAP-10).
+      - agents/downstream
+      - agents/guardian
+      - agents/operation/release.agent.md
+      - agents/sidecar
+      - agents/upstream
+      - docs/adr
+      - docs/delivery-flow.md
+      - docs/hierarchy.md
+      - docs/routing-rules.md
+      - features/support
+      - skills/README.md
+      - skills/registry.yaml
+      - { from: variants/greenfield/agents/maestro.agent.md, to: agents/maestro.agent.md }
+      - { from: variants/greenfield/agents/operation/devops.agent.md, to: agents/operation/devops.agent.md }
+      - { from: variants/greenfield/agents/operation/incident.agent.md, to: agents/operation/incident.agent.md }
+      - { from: variants/greenfield/agents/operation/observability.agent.md, to: agents/operation/observability.agent.md }
+      - { from: variants/greenfield/agents/operation/sustain.agent.md, to: agents/operation/sustain.agent.md }
+      - { from: variants/greenfield/chatmodes/maestro.chatmode.md, to: chatmodes/maestro.chatmode.md }
+    skills:
+      - ai-agent-author
+      - arch-clean-frontend
+      - arch-ddd-tactical
+      - arch-diagrams-drawio
+      - arch-feature-based
+      - arch-hexagonal
+      - arch-layered
+      - arch-mvc
+      - arch-mvvm
+      - arch-vertical-slice
+      - bdd-gherkin
+      - codebase-enrichment
+      - coding-guidelines
+      - commit-assistant
+      - docs-writer
+      - domain-driven-design
+      - integration-testing
+      - lang-android
+      - lang-dotnet
+      - lang-flutter
+      - lang-ios
+      - lang-java-spring
+      - lang-python-agentic
+      - lang-python-api
+      - lang-react
+      - openapi-governance
+      - pipeline-adapter
+      - qa-strategy
+      - security-best-practices
+      - security-cve-checker
+      - task-manager
+      - ui-ux-design-system
+      - ux-prototyping
+      - workflow-memory
+      - workspace-tools
+
+  brownfield:
+    out: brownfield-templates
+    keep: []
+    units:
+      - AGENTS.md
+      - agents/discovery
+      - agents/execution
+      - agents/planning
+      - claude-instructions.md
+      - copilot-instructions.md
+      - { from: variants/brownfield/agents/maestro.agent.md, to: agents/maestro.agent.md }
+      - { from: variants/brownfield/agents/operation/devops.agent.md, to: agents/operation/devops.agent.md }
+      - { from: variants/brownfield/agents/operation/incident.agent.md, to: agents/operation/incident.agent.md }
+      - { from: variants/brownfield/agents/operation/observability.agent.md, to: agents/operation/observability.agent.md }
+      - { from: variants/brownfield/agents/operation/sustain.agent.md, to: agents/operation/sustain.agent.md }
+      - { from: variants/brownfield/chatmodes/maestro.chatmode.md, to: chatmodes/maestro.chatmode.md }
+    skills:
+      - arch-clean-frontend
+      - arch-ddd-tactical
+      - arch-diagrams-drawio
+      - arch-diagrams-likec4
+      - arch-feature-based
+      - arch-hexagonal
+      - arch-layered
+      - arch-mvc
+      - arch-mvvm
+      - arch-pattern-detection
+      - arch-vertical-slice
+      - bdd-gherkin
+      - characterization-testing
+      - code-quality-audit
+      - codebase-enrichment
+      - coding-guidelines
+      - commit-assistant
+      - docs-writer
+      - domain-driven-design
+      - domain-extraction-from-code
+      - integration-testing
+      - legacy-modernization-patterns
+      - maturity-bsimm
+      - maturity-cmmi
+      - maturity-dora-4keys
+      - maturity-dora-capabilities
+      - maturity-iso-25010
+      - maturity-owasp-asvs
+      - maturity-owasp-samm
+      - maturity-space-devex
+      - maturity-spotify-health
+      - maturity-tech-radar
+      - qa-strategy
+      - safe-refactoring-recipes
+      - security-best-practices
+      - security-cve-checker
+      - task-manager
+      - tech-debt-mapping
+      - tech-stack-detection
+      - ui-ux-design-system
+      - ux-prototyping
+      - version-migration-playbook
+      - workflow-memory

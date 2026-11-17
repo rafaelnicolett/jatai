@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "case": "brownfield-copilot-maturidade-tres",
+  "base": "brownfield-copilot-padrao",
+  "input": {
+    "hostAdapter": "copilot",
+    "projectName": "orbita-ws",
+    "maturityFrameworks": [
+      "dora-4keys",
+      "space-devex",
+      "owasp-samm"
+    ],
+    "preexisting": []
+  },
+  "outcome": {
+    "resolved": true
+  },
+  "calls": null,
+  "entries": {
+    "workspace/helyx.config.yaml": "file 100644 292 3c2bbb35e6b469641cf188fdf971e12d736b128bf4ad2414fde38d9722d1cdac text"
+  }
+}

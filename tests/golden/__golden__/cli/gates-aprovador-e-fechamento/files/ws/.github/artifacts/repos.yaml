@@ -1,0 +1,9 @@
+version: 1
+repos:
+  - id: web
+    source: local-path
+    path: repos/web
+  - id: worker
+    source: local-path
+    path: repos/worker
+    has_frontend: false

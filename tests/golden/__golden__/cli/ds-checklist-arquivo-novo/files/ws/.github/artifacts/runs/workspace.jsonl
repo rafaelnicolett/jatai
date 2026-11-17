@@ -1,0 +1,4 @@
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","phase_id":"business","artifact_path":".github/artifacts/delivery-state.yaml","harness":"cli","message":"checklist 'problem-section' da fase 'business' marcado"}
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","phase_id":"business","artifact_path":".github/artifacts/delivery-state.yaml","harness":"cli","message":"checklist 'kpi-defined' da fase 'business' desmarcado"}
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","phase_id":"business","artifact_path":".github/artifacts/delivery-state.yaml","harness":"cli","message":"checklist 'lint-ok' da fase 'business' marcado"}
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","phase_id":"business","artifact_path":".github/artifacts/delivery-state.yaml","harness":"cli","message":"checklist 'kpi-defined' da fase 'business' marcado"}

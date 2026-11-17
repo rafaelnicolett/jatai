@@ -1,0 +1,21 @@
+# Contextos delimitados do workspace demo (@domain-extractor), todos aceitos no gate.
+version: 1
+contexts:
+  - slug: emprestimos
+    name: "Empréstimos"
+    status: accepted
+    description: "Retirada, prazo e devolução de exemplares. O prazo é contado no fuso da biblioteca."
+    lives_in:
+      - repo: biblioteca-api
+        paths: ["app/services/emprestimo_service.py", "app/services/prazo.py", "app/repositories/emprestimo_repository.py"]
+      - repo: biblioteca-web
+        paths: ["src/features/emprestimos/**"]
+  - slug: reservas
+    name: "Reservas"
+    status: accepted
+    description: "Fila de espera de um livro sem exemplar disponível. A fila anda por ordem de pedido."
+    lives_in:
+      - repo: biblioteca-api
+        paths: ["app/services/reserva_service.py", "app/repositories/reserva_repository.py"]
+      - repo: biblioteca-web
+        paths: ["src/features/reservas/**"]

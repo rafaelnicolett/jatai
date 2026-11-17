@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "helyx": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${CLAUDE_PROJECT_DIR:-.}/.github/scripts/helyx-mcp.cjs"
+      ]
+    }
+  }
+}

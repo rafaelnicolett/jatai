@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "case": "brownfield-copilot-nome-com-aspas",
+  "base": "brownfield-copilot-padrao",
+  "input": {
+    "hostAdapter": "copilot",
+    "projectName": "Workspace \"Fictício\" 2",
+    "maturityFrameworks": null,
+    "preexisting": []
+  },
+  "outcome": {
+    "resolved": true
+  },
+  "calls": null,
+  "entries": {
+    "workspace/helyx.config.yaml": "file 100644 285 7d9d639d2c2a4be5b4c3276aa89de319af534268fed789cf00d5d7ea68b607b5 text"
+  }
+}

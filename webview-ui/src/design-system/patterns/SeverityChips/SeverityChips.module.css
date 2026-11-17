@@ -1,0 +1,10 @@
+.row {
+  display: flex;
+  gap: var(--jt-space-1);
+  flex-wrap: wrap;
+}
+
+.empty {
+  font-size: var(--jt-text-sm);
+  color: var(--jt-fg-3);
+}

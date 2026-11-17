@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-wave-item-erros",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "nao-existe",
+        "--wave",
+        "w",
+        "--item",
+        "i",
+        "--status",
+        "done"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INITIATIVE_NOT_FOUND",
+          "message": "iniciativa 'nao-existe' não existe em initiatives.yaml",
+          "id": "nao-existe"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "gf-alfa",
+        "--item",
+        "i",
+        "--status",
+        "done"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --wave",
+          "field": "wave"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "gf-alfa",
+        "--wave",
+        "w",
+        "--status",
+        "done"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --item",
+          "field": "item"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "gf-alfa",
+        "--wave",
+        "w",
+        "--item",
+        "i"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --status",
+          "field": "status"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "gf-alfa",
+        "--wave",
+        "w",
+        "--item",
+        "i",
+        "--status",
+        "qualquer-coisa"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --status: 'qualquer-coisa'",
+          "field": "status",
+          "value": "qualquer-coisa",
+          "allowed": [
+            "pending",
+            "in-progress",
+            "blocked",
+            "failed",
+            "done",
+            "skipped",
+            "cancelled"
+          ]
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 299 e0360edde4c8379f29d619ac12de18f44b7a1151d147d102191438f7b4bd4a31 text"
+  }
+}

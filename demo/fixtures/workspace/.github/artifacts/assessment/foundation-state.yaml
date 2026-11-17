@@ -1,0 +1,165 @@
+# Estado do Foundation (Discovery) do workspace demo. Tudo concluído; o D1 de cada
+# repositório foi aprovado por "Pessoa Exemplo" depois da revisão dos relatórios.
+version: 2
+phases:
+  dependency-graph:
+    status: done
+    agent: "@dependency-mapper"
+    completed_at: "2026-10-05T12:36:00Z"
+    human_checklist:
+      edges-verified: true
+  domain:
+    status: done
+    agent: "@domain-extractor"
+    completed_at: "2026-10-05T12:29:20Z"
+    human_checklist:
+      bcs-extracted: true
+      ubiquitous-lang: true
+  business-context:
+    status: done
+    agent: "@business-archeologist"
+    completed_at: "2026-10-05T12:33:40Z"
+    human_checklist:
+      jtbd-mapped: true
+      personas-validated: true
+      value-stream-clear: true
+  baseline:
+    status: done
+    agent: "@business-archeologist"
+    completed_at: "2026-10-05T12:38:10Z"
+    human_checklist:
+      baseline-json-generated: true
+      score-calculated: true
+      report-consolidated: true
+  skill-linking:
+    status: done
+    agent: "@assessor"
+    completed_at: "2026-10-05T12:40:00Z"
+    human_checklist:
+      backend-skills-confirmed: true
+      frontend-skills-confirmed: true
+      config-written: true
+      coding-guidelines-generated: true
+repos:
+  biblioteca-api:
+    phases:
+      tech-stack:
+        status: done
+        agent: "@tech-mapper"
+        completed_at: "2026-10-05T12:03:55Z"
+        human_checklist:
+          stack-identified: true
+          deps-listed: true
+          runtime-versions: true
+      arch:
+        status: done
+        agent: "@arch-discoverer"
+        completed_at: "2026-10-05T12:11:40Z"
+        human_checklist:
+          arch-pattern: true
+          layers-mapped: true
+          drawio-generated: true
+          c4-container-inferred: true
+          arch-debt: true
+      coding-archaeology:
+        status: done
+        agent: "@coding-archaeologist"
+        completed_at: "2026-10-05T12:15:20Z"
+        human_checklist:
+          naming: true
+          module-structure: true
+          error-handling: true
+          test-patterns: true
+          logging: true
+          anti-patterns: true
+      quality:
+        status: done
+        agent: "@quality-auditor"
+        completed_at: "2026-10-05T12:17:30Z"
+        human_checklist:
+          coverage-measured: true
+          hotspots-identified: true
+      debt:
+        status: done
+        agent: "@debt-analyst"
+        completed_at: "2026-10-05T12:23:30Z"
+        human_checklist:
+          quick-wins-listed: true
+          prioritized-by-impact: true
+          critical-flagged: true
+    findings_summary:
+      critical: 0
+      high: 1
+      medium: 3
+      low: 4
+    gate_d1:
+      status: approved
+      approved_at: "2026-10-05T13:02:30Z"
+      human_approved_at: "2026-10-05T13:02:30Z"
+      by: "Pessoa Exemplo"
+      note: "relatórios de tecnologia, arquitetura, qualidade e dívida revisados"
+  biblioteca-web:
+    phases:
+      tech-stack:
+        status: done
+        agent: "@tech-mapper"
+        completed_at: "2026-10-05T12:04:30Z"
+        human_checklist:
+          stack-identified: true
+          deps-listed: true
+          runtime-versions: true
+      arch:
+        status: done
+        agent: "@arch-discoverer"
+        completed_at: "2026-10-05T12:12:20Z"
+        human_checklist:
+          arch-pattern: true
+          layers-mapped: true
+          drawio-generated: true
+          c4-container-inferred: true
+          arch-debt: true
+      coding-archaeology:
+        status: done
+        agent: "@coding-archaeologist"
+        completed_at: "2026-10-05T12:16:40Z"
+        human_checklist:
+          naming: true
+          module-structure: true
+          error-handling: true
+          test-patterns: true
+          logging: true
+          anti-patterns: true
+      design:
+        status: done
+        agent: "@design-archaeologist"
+        completed_at: "2026-10-05T12:20:10Z"
+        human_checklist:
+          tokens-extracted: true
+          components-cataloged: true
+          design-debt-quantified: true
+      quality:
+        status: done
+        agent: "@quality-auditor"
+        completed_at: "2026-10-05T12:18:10Z"
+        human_checklist:
+          coverage-measured: true
+          hotspots-identified: true
+      debt:
+        status: done
+        agent: "@debt-analyst"
+        completed_at: "2026-10-05T12:24:10Z"
+        human_checklist:
+          quick-wins-listed: true
+          prioritized-by-impact: true
+          critical-flagged: true
+    findings_summary:
+      critical: 0
+      high: 0
+      medium: 2
+      low: 3
+    gate_d1:
+      status: approved
+      approved_at: "2026-10-05T13:04:10Z"
+      human_approved_at: "2026-10-05T13:04:10Z"
+      by: "Pessoa Exemplo"
+      note: "relatórios de tecnologia, arquitetura, design e dívida revisados"

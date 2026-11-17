@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "case": "greenfield-pw-25",
+  "base": "greenfield-claude-padrao",
+  "input": {
+    "projectName": "orbita",
+    "deliveryMode": "full-cycle",
+    "hostAdapter": "claude",
+    "backendStack": "python-api",
+    "backendArchitecture": "ddd-tactical",
+    "frontendStack": "none",
+    "frontendArchitecture": "clean-frontend",
+    "database": "mysql",
+    "cloud": "none",
+    "cicd": "github-actions"
+  },
+  "outcome": {
+    "resolved": {
+      "isLocal": true
+    }
+  },
+  "calls": [],
+  "entries": {
+    "projeto/.github/artifacts/gates/README.md": "file 100644 1432 56ff1e77ec937ecc78d96d4e47af48dd65b771dc0879e5cf89bc8f3853dc2b36 text",
+    "projeto/CLAUDE.md": "file 100644 1578 0112a2a5a45fee6942e9077c48c168189a055908db8b3f1f3e01d6d39b510b67 text",
+    "projeto/code/services/orbita-api/README.md": "file 100644 1236 6002c4294ecc36589bfd02d8a55d311c694a1159157985bf8e819a688c6214a5 text",
+    "projeto/code/services/orbita-api/src/application/commands/": "dir",
+    "projeto/code/services/orbita-api/src/application/queries/": "dir",
+    "projeto/code/services/orbita-api/src/application/use_cases/": "absent",
+    "projeto/code/services/orbita-api/src/domain/aggregates/": "dir",
+    "projeto/code/services/orbita-api/src/domain/entities/": "dir",
+    "projeto/code/services/orbita-api/src/domain/events/": "dir",
+    "projeto/code/services/orbita-api/src/domain/model/": "absent",
+    "projeto/code/services/orbita-api/src/domain/model/__init__.py": "absent",
+    "projeto/code/services/orbita-api/src/domain/ports/": "absent",
+    "projeto/code/services/orbita-api/src/domain/repositories/": "dir",
+    "projeto/code/services/orbita-api/src/domain/value_objects/": "dir",
+    "projeto/code/services/orbita-api/src/infrastructure/adapters/": "absent",
+    "projeto/code/services/orbita-api/src/infrastructure/config/": "absent",
+    "projeto/code/services/orbita-api/src/infrastructure/messaging/": "dir",
+    "projeto/code/services/orbita-api/src/infrastructure/persistence/": "dir",
+    "projeto/code/services/orbita-api/tests/unit/domain/": "dir",
+    "projeto/helyx.config.yaml": "file 100644 753 c9c0e40e92cec674cf25f4ba5d317d9c6f1fa0805a3f8d86d065a1ec013ab8dc text",
+    "projeto/infrastructure/docker-compose.local.yml": "file 100644 477 84d52e6b52e92156c6cbafb3bdcc0738338d0d9d6221cf2a37162aa4f0041aba text"
+  }
+}

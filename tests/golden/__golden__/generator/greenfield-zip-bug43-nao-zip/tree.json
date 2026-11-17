@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "case": "greenfield-zip-bug43-nao-zip",
+  "base": null,
+  "input": {
+    "projectName": "orbita",
+    "deliveryMode": "full-cycle",
+    "hostAdapter": "claude",
+    "backendStack": "python-api",
+    "backendArchitecture": "hexagonal",
+    "frontendStack": "none",
+    "database": "postgresql",
+    "cloud": "none",
+    "cicd": "github-actions"
+  },
+  "outcome": {
+    "rejected": "Can't find end of central directory : is this a zip file ? If it is, see https://stuk.github.io/jszip/documentation/howto/read_zip.html"
+  },
+  "calls": [
+    {
+      "fn": "templateSource.getZip",
+      "args": [
+        "helyx-template-python-api",
+        null
+      ],
+      "result": "50 bytes que não são zip"
+    }
+  ],
+  "entries": {}
+}

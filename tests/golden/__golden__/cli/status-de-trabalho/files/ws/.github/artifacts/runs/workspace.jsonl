@@ -1,0 +1,2 @@
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","phase_id":"product","artifact_path":".github/artifacts/delivery-state.yaml","harness":"cli","message":"fase 'product' → blocked","metadata":{"reason":"falta o PRD revisado"}}
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","phase_id":"product","artifact_path":".github/artifacts/delivery-state.yaml","harness":"cli","message":"fase 'product' → in-progress"}

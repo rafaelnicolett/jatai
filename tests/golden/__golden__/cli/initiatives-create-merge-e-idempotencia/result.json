@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-create-merge-e-idempotencia",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa",
+        "--name",
+        "Projeto Alfa",
+        "--active"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "gf-alfa"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa",
+        "--status",
+        "done",
+        "--name",
+        "Alfa renomeado"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "gf-alfa"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa",
+        "--status",
+        "done",
+        "--name",
+        "Alfa renomeado"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": false,
+        "id": "gf-alfa"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "mod-beta",
+        "--type",
+        "modernization",
+        "--mode",
+        "brownfield"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "mod-beta"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 206 483f349c74470998c2e098df26ef97e46eed476af573ce935639ab23810843a9 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 689 506cfa7df9c2d5bc633c0e125329b49e131a6e02a298bd38ddf67509502b49da text",
+    "ws/.github/artifacts/runs/mod-beta.jsonl": "file 100644 227 c0cadd37f61c6eda0d8f3e3c00cd38604f3f0a489a06afe642061776c27639f0 text"
+  }
+}

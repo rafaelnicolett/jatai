@@ -1,0 +1,20 @@
+initiatives:
+  - id: "mod-beta"
+    name: "mod-beta"
+    status: "planned"
+    type: "modernization"
+    wave_status:
+      wave-1:
+        item-1.1:
+          status: "in-progress"
+          repo: "app-ficticio"
+          completed_at: "2026-01-03"
+          artifacts:
+            - "relatorio-a.md"
+            - "relatorio-b.md"
+          summary: "Resumo novo"
+          commit: "abc1234"
+          known_bugs_pinned:
+            - "BUG-X: comportamento fictício"
+          merge_block: "aguardando revisão"
+          requires_approval: true

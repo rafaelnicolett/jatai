@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "case": "greenfield-stack-divergente",
+  "base": null,
+  "input": {
+    "projectName": "orbita",
+    "deliveryMode": "full-cycle",
+    "hostAdapter": "claude",
+    "backendStack": "java-spring",
+    "backendArchitecture": "hexagonal",
+    "frontendStack": "none",
+    "database": "postgresql",
+    "cloud": "none",
+    "cicd": "github-actions",
+    "resolvedTemplate": {
+      "id": "template-sintetico",
+      "name": "Template sintético",
+      "stack": "python-api",
+      "version": "1.0.0"
+    }
+  },
+  "outcome": {
+    "rejected": "Stack mismatch: wizard selected \"java-spring\" but resolved template reports \"python-api\". Clear the template cache and try again."
+  },
+  "calls": [],
+  "entries": {}
+}

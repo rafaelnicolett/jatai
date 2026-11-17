@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "scenario": "ds-bug27-indentacao-4-espacos",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "business",
+        "--status",
+        "done"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "business",
+        "status": "done"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 43 8ae7d8e0b81dc723b639a11a84c07c73251d873ff9fe7b2b6d2d1f4f61efa450 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 210 59c577a511f3b2080fd2ae99b0392d5943ff66577cb61d9662de1d2d62f92184 text"
+  }
+}

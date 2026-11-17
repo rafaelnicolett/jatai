@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-create-validacoes",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--name",
+        "Sem id"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --id",
+          "field": "id"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        ""
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --id",
+          "field": "id"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa",
+        "--status",
+        "bogus"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --status: 'bogus'",
+          "field": "status",
+          "value": "bogus",
+          "allowed": [
+            "planned",
+            "in-progress",
+            "done",
+            "paused",
+            "cancelled"
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa",
+        "--mode",
+        "hibrido"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --mode: 'hibrido'",
+          "field": "mode",
+          "value": "hibrido",
+          "allowed": [
+            "greenfield",
+            "brownfield"
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa",
+        "--type",
+        "epico"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --type: 'epico'",
+          "field": "type",
+          "value": "epico",
+          "allowed": [
+            "feature",
+            "modernization",
+            "hotfix",
+            "foundation"
+          ]
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir"
+  }
+}

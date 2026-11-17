@@ -1,0 +1,8 @@
+kit_version: "<KIT_VERSION>"
+repos:
+  app-a:
+    skills:
+      - coding-guidelines-app-a
+  app-b:
+    skills:
+      - coding-guidelines-app-b

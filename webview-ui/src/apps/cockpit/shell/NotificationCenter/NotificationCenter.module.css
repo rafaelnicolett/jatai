@@ -1,0 +1,88 @@
+.wrap {
+  position: relative;
+  display: flex;
+}
+
+/* O sino é um Button icon; o contador fica no canto. */
+.bell { position: relative; }
+
+/* NotificationDot (DS v2 §4.11): ponto de 9px you-line no canto, com anel de 2px surface-2. Ponto, não número: a contagem vai no nome do botão. */
+.dot {
+  position: absolute;
+  top: var(--jt-space-1);
+  right: var(--jt-space-1);
+  width: var(--jt-size-notification-dot);
+  height: var(--jt-size-notification-dot);
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-status-you-line);
+  box-shadow: 0 0 0 2px var(--jt-surface-2);
+}
+
+/* Aviso do kit desatualizado (vive aqui desde que o rodapé saiu): linha fixa no topo da central. */
+.kit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jt-space-2);
+  padding: var(--jt-space-2) var(--jt-space-3);
+  border-bottom: 1px solid var(--jt-line);
+  font: var(--jt-type-body-sm);
+  color: var(--jt-feedback-warning-fg);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + var(--jt-space-2));
+  right: 0;
+  width: 320px;
+  max-height: 380px;
+  display: flex;
+  flex-direction: column;
+  background: var(--jt-surface-2);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-sm);
+  box-shadow: var(--jt-elevation-2);
+  z-index: var(--jt-z-dropdown);
+  overflow: hidden;
+}
+
+.panelHeader {
+  padding: var(--jt-space-2) var(--jt-space-3);
+  font-size: var(--jt-text-sm);
+  font-weight: var(--jt-weight-semibold);
+  color: var(--jt-fg);
+  border-bottom: 1px solid var(--jt-line);
+}
+
+.empty {
+  padding: var(--jt-space-4) var(--jt-space-3);
+  font-size: var(--jt-text-sm);
+  color: var(--jt-fg-3);
+  text-align: center;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--jt-space-2);
+  padding: var(--jt-space-2) var(--jt-space-3);
+  border-bottom: 1px solid var(--jt-line);
+  font-size: var(--jt-text-sm);
+}
+.row:last-child { border-bottom: none; }
+
+.row[data-kind="blocked"] .icon { color: var(--jt-status-blocked-fg); }
+.row[data-kind="gate-approved"] .icon { color: var(--jt-status-done-fg); }
+.row[data-kind="item-approved"] .icon { color: var(--jt-status-done-fg); }
+.row[data-kind="agent-done"] .icon { color: var(--jt-status-you-fg); }
+
+.icon { flex-shrink: 0; }
+.text { flex: 1; color: var(--jt-fg); }
+.time { flex-shrink: 0; color: var(--jt-fg-3); font-size: var(--jt-text-xs); white-space: nowrap; }

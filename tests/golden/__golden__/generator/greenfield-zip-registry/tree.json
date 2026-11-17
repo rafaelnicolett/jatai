@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "case": "greenfield-zip-registry",
+  "base": null,
+  "input": {
+    "projectName": "painel-ficticio",
+    "deliveryMode": "full-cycle",
+    "hostAdapter": "claude",
+    "backendStack": "python-api",
+    "backendArchitecture": "hexagonal",
+    "frontendStack": "none",
+    "database": "postgresql",
+    "cloud": "none",
+    "cicd": "github-actions",
+    "resolvedTemplate": {
+      "id": "template-sintetico",
+      "name": "Template sintético",
+      "stack": "python-api",
+      "version": "1.2.3"
+    }
+  },
+  "outcome": {
+    "resolved": {
+      "isLocal": false
+    }
+  },
+  "calls": [
+    {
+      "fn": "templateSource.getZip",
+      "args": [
+        "helyx-template-python-api",
+        "1.2.3"
+      ],
+      "result": "zip de 2184 bytes"
+    }
+  ],
+  "entries": {
+    "projeto/": "dir",
+    "projeto/.claude/": "dir",
+    "projeto/.claude/agents/": "dir",
+    "projeto/.claude/agents/backend-python-api.agent.md": "file 100644 123 ec36880e951e0961a4829c93b6c3ad391be0f310f5337fcbf518549df94561ee text",
+    "projeto/.claude/commands/": "dir",
+    "projeto/.claude/commands/helyx.md": "file 100644 822 8c49d232a87b0cf2f33d73201efc5be99fe8814494192221c51dabd0478ed67d text",
+    "projeto/.github/": "dir",
+    "projeto/.github/artifacts/": "dir",
+    "projeto/.github/artifacts/initiatives.yaml": "file 100644 138 2085e3b3d2d081aa148a2d2ea9b502ba521d6979c67b707060d7349fa01dc496 text",
+    "projeto/.github/copilot-instructions.md": "file 100644 46 3257384cc9d4a20415c66c443c9084818b37879a02b2597dacfc91284c35c76f text",
+    "projeto/.gitignore": "file 100644 227 32258190b2d3bb9dbe30275ef1b61fa299741c6ed1661d0cdf763ed369b74d04 text",
+    "projeto/CLAUDE.md": "file 100644 1601 4b061af92930d423d16fc32018f6150c1a0feea0d3422b6a8c9d72113d149013 text",
+    "projeto/README.md": "file 100644 249 5f867c714416836aa709f5245e01a7f30921d28f93bf8c9df5871ad8f6c99a6b text",
+    "projeto/assets/": "dir",
+    "projeto/assets/logo.png": "file 100644 26 9bab6b1db6faa084e927392d4713b7401b332a56e206d21f43864f63fa4c71d8 binary",
+    "projeto/config/": "dir",
+    "projeto/config/app.yaml": "file 100644 21 4405fcb2ccef387bcb51c6b34542ba2ee470d02085c6c37523162eda3e5d9946 text",
+    "projeto/fora-do-projeto.txt": "file 100644 25 e0e965e113bad31b15c6255deb6fe9669f9d7f8db8e19b0354c09a0f5863a9a2 text",
+    "projeto/helyx.config.yaml": "file 100644 739 68c9672373982e7f43bf037c0479dabb9331252816ef6fe53b761140707f0d4f text",
+    "projeto/scripts/": "dir",
+    "projeto/scripts/mvnw": "file 100644 30 dd23005aeb47491323bf2402911fbd7a2ca26a67d9606401c7bcc0c0f0a5a757 text",
+    "projeto/src/": "dir",
+    "projeto/src/{{svc_name_snake}}/": "dir",
+    "projeto/src/{{svc_name_snake}}/__init__.py": "file 100644 0 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 text"
+  }
+}

@@ -1,0 +1,101 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--jt-scrim);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 12vh;
+  z-index: var(--jt-z-dialog);
+}
+
+.panel {
+  width: min(560px, 90vw);
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--jt-surface-2);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-lg);
+  box-shadow: var(--jt-elevation-4);
+  overflow: hidden;
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: var(--jt-space-2);
+  padding: var(--jt-space-3);
+  border-bottom: 1px solid var(--jt-line);
+}
+
+.searchIcon { color: var(--jt-fg-3); flex-shrink: 0; }
+
+.input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font: inherit;
+  font-size: var(--jt-text-md);
+  color: var(--jt-fg);
+}
+.input::placeholder { color: var(--jt-fg-3); }
+
+.kbd {
+  font-size: var(--jt-text-xs);
+  color: var(--jt-fg-3);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-xs);
+  padding: var(--jt-space-0-5) var(--jt-space-1);
+  font-family: inherit;
+}
+
+.list {
+  overflow-y: auto;
+  padding: var(--jt-space-1);
+}
+
+.empty {
+  padding: var(--jt-space-4);
+  text-align: center;
+  font-size: var(--jt-text-sm);
+  color: var(--jt-fg-3);
+}
+
+.group { margin-bottom: var(--jt-space-1); }
+
+.groupLabel {
+  display: block;
+  padding: var(--jt-space-1) var(--jt-space-2);
+  font-size: var(--jt-text-xs);
+  font-weight: var(--jt-weight-semibold);
+  color: var(--jt-fg-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--jt-space-2);
+  border: none;
+  background: none;
+  padding: var(--jt-space-2);
+  border-radius: var(--jt-radius-sm);
+  text-align: left;
+  cursor: pointer;
+  color: var(--jt-fg);
+}
+.row[data-active="true"] { background: var(--jt-status-you-bg); }
+
+.rowIcon { flex-shrink: 0; color: var(--jt-mel-ink); }
+.rowLabel { font-size: var(--jt-text-sm); flex-shrink: 0; }
+.rowHint {
+  font-size: var(--jt-text-xs);
+  color: var(--jt-fg-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

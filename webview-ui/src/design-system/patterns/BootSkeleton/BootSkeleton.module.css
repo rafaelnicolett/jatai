@@ -1,0 +1,20 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-3);
+  padding: var(--jt-space-6);
+}
+
+.line, .block {
+  background: var(--jt-surface-2);
+  border-radius: var(--jt-radius-sm);
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.line { height: 14px; }
+.block { height: 120px; width: 100%; }
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}

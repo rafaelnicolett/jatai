@@ -1,0 +1,72 @@
+# Labels do repositório (F7.3). Fonte da verdade declarativa: nome, cor (hex
+# sem #) e descrição (até 100 caracteres, limite do GitHub).
+#
+# Não há workflow de sincronia: ele precisaria de permissão de escrita em
+# issues e de mais uma action de terceiro. Quem mantém aplica à mão, com o
+# GitHub CLI autenticado, a partir da raiz do repositório e depois do `npm ci`
+# (o js-yaml é dependência do projeto):
+#
+#   node -e 'const {execFileSync}=require("child_process");for(const l of require("js-yaml").load(require("fs").readFileSync(".github/labels.yml","utf8")))execFileSync("gh",["label","create",l.name,"--color",l.color,"--description",l.description,"--force"],{stdio:"inherit"})'
+#
+# O `--force` atualiza cor e descrição de label que já existe. Labels que não
+# estão aqui (como as que o GitHub cria por padrão num repositório novo) não
+# são apagadas: remova à mão as que não forem usadas.
+#
+# Os templates de issue (.github/ISSUE_TEMPLATE/) aplicam "triagem" e um
+# "tipo: ..." automaticamente. Renomear uma label aqui exige atualizar os
+# templates no mesmo PR.
+
+# ── Para quem está chegando ──────────────────────────────────────────────────
+- name: "boa primeira issue"
+  color: "7057ff"
+  description: "Boa para a primeira contribuição: escopo pequeno e caminho claro"
+- name: "ajuda bem-vinda"
+  color: "008672"
+  description: "Quem mantém aceita e quer ajuda aqui"
+
+# ── Fluxo ────────────────────────────────────────────────────────────────────
+- name: "triagem"
+  color: "ededed"
+  description: "Issue nova, ainda não avaliada por quem mantém"
+
+# ── Tipo: um por issue ou PR ─────────────────────────────────────────────────
+- name: "tipo: bug"
+  color: "d73a4a"
+  description: "Algo não funciona como deveria"
+- name: "tipo: feature"
+  color: "a2eeef"
+  description: "Comportamento novo; começa por cenários BDD"
+- name: "tipo: refactor"
+  color: "c5def5"
+  description: "Estrutura nova com o mesmo comportamento; golden e contratos iguais"
+- name: "tipo: docs"
+  color: "0075ca"
+  description: "Documentação"
+- name: "tipo: pergunta"
+  color: "d876e3"
+  description: "Dúvida sobre uso, metodologia ou contribuição"
+
+# ── Área ─────────────────────────────────────────────────────────────────────
+- name: "área: kit"
+  color: "fbca04"
+  description: "Agentes e skills que a Jataí instala no workspace"
+- name: "área: Cockpit"
+  color: "1d76db"
+  description: "Painel de acompanhamento do delivery"
+- name: "área: Wizard"
+  color: "5319e7"
+  description: "Jornada de criação e instalação do workspace"
+- name: "área: CLI"
+  color: "0e8a16"
+  description: "CLI de estado usado pelos agentes"
+- name: "área: mapa"
+  color: "f9d0c4"
+  description: "Mapa interativo dos streams e agentes"
+
+# ── Harness ──────────────────────────────────────────────────────────────────
+- name: "harness: Claude Code"
+  color: "d4c5f9"
+  description: "Específico do Claude Code"
+- name: "harness: Copilot"
+  color: "bfdadc"
+  description: "Específico do GitHub Copilot"

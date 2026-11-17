@@ -1,0 +1,20 @@
+.shell {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--jt-bg);
+  color: var(--jt-fg);
+  font-family: var(--jt-font-body);
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Respeita o movimento reduzido: a rolagem não anima. */
+@media (prefers-reduced-motion: reduce) {
+  .content { scroll-behavior: auto; }
+}

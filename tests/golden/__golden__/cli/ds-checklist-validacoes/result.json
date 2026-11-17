@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "scenario": "ds-checklist-validacoes",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "business",
+        "--item",
+        "x",
+        "--checked",
+        "True"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_BOOLEAN",
+          "message": "valor inválido para --checked: 'True' — esperado 'true' ou 'false'",
+          "field": "checked",
+          "value": "True"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "business",
+        "--item",
+        "x",
+        "--checked",
+        "yes"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_BOOLEAN",
+          "message": "valor inválido para --checked: 'yes' — esperado 'true' ou 'false'",
+          "field": "checked",
+          "value": "yes"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "business",
+        "--item",
+        "x"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --checked",
+          "field": "checked"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "business",
+        "--checked",
+        "true"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --item",
+          "field": "item"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--phase",
+        "business",
+        "--item",
+        "x",
+        "--checked",
+        "true"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_SCOPE",
+          "message": "informe --global ou --initiative <id>"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir"
+  }
+}

@@ -1,0 +1,16 @@
+/* BrandMark do DS v2 (§4.13): glifo Guarda em mel + wordmark em fg. */
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-2);
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.glyph { color: var(--jt-mel); }
+.wordmark { color: var(--jt-fg); }
+
+@media (forced-colors: active) {
+  .glyph,
+  .wordmark { color: CanvasText; }
+}

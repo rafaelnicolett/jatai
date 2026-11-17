@@ -1,0 +1,31 @@
+# Agents — orbita
+
+> Estrutura agêntica gerada pela Helyx.
+> Conteúdo dos agentes em [`.claude/agents/`](.claude/agents/).
+
+## Ponto de entrada
+
+Comece sempre pelo agente orquestrador `helyx`, nos dois harnesses:
+
+- **Claude Code:** chame `@helyx` (`.claude/agents/helyx.agent.md`);
+- **GitHub Copilot:** escolha o agente `helyx` no seletor de agentes do chat (`.github/agents/helyx.agent.md`).
+
+## Fluxo
+
+```
+@helyx (agente orquestrador, único ponto de entrada)
+   │
+   ├── UPSTREAM   (descobrir & definir)
+   │     business → product → domain-modeler → bdd → architecture → sprint-planner
+   │
+   ├── DOWNSTREAM (construir & validar)
+   │     sprint-runner → (backend-java-spring ∥ frontend-flutter) → reviewer
+   │
+   └── OPERATION  (rodar & sustentar)
+         devops → release → observability → incident → sustain
+
+Guardians: @stream-align · @arch-cross
+Side-cars: @qa-tester · @quality · @security · @docs · @integration-tests
+```
+
+Ver [docs/delivery-flow.md](docs/delivery-flow.md) para detalhes.

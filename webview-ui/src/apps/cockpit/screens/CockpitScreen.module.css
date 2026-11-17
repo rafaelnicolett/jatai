@@ -1,0 +1,35 @@
+/* A tela do Cockpit (DS v2 §3.12): largura máxima 1360px, gutter 24px (16 em compact), gap de 16 entre painéis.
+   O painel decide pela própria largura: wide (≥ 1080px) em 3 colunas; split e compact empilham, e os potes viram prateleira. */
+.page {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-layout-gap);
+  max-width: var(--jt-layout-content-max);
+  margin: 0 auto;
+  padding: var(--jt-layout-gap) var(--jt-layout-gutter) var(--jt-space-8);
+}
+
+.cols {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--jt-layout-gap);
+}
+.pots { flex: 1 1 var(--jt-layout-col-pots-min); max-width: var(--jt-layout-col-pots-max); min-width: 0; }
+.board { flex: 999 1 var(--jt-layout-col-board-min); min-width: 0; }
+.gates { flex: 1 1 var(--jt-layout-col-gates-min); max-width: var(--jt-layout-col-gates-max); min-width: 0; }
+
+/* Split (600–1079px) e compact: tudo em uma coluna; os potes viram prateleira acima do quadro e os gates ficam abaixo. */
+@container (max-width: 1079px) {
+  .cols { flex-direction: column; align-items: stretch; }
+  .pots, .board, .gates { flex: 0 0 auto; max-width: none; width: 100%; }
+  .pots ul { flex-direction: row; overflow-x: auto; scroll-snap-type: x proximity; }
+  .pots li { flex: 0 0 auto; scroll-snap-align: start; }
+  .pots button { width: auto; }
+}
+@container (max-width: 599px) {
+  .page { padding-inline: var(--jt-layout-gutter-compact); }
+}
+
+.empty { padding: var(--jt-space-8) var(--jt-layout-gutter); }

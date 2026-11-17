@@ -1,0 +1,4 @@
+repos:
+  - id: app-ficticio
+    source: local-path
+    path: repos/app-ficticio

@@ -1,0 +1,79 @@
+# Fixture sintética (F2.3): sprint-backlog.yaml na Forma D (stories soltas, sem
+# sprint, com um status improvisado fora do enum e estimate 0).
+# Conteúdo fictício; só a forma importa para os testes.
+
+
+initiative: feat-relatorios
+created_at: "2026-02-16"
+pre_requisito: feat-notificacoes concluído
+
+objetivo: |
+  Relatórios de vendas por loja para o painel da Acme.
+  Texto sintético de exemplo.
+
+stories:
+
+  - id: REL-01
+    title: "Aviso de relatório pronto (já coberto por NTF-09)"
+    description: Dependência direta da iniciativa anterior. Não retrabalhar.
+    estimate: 0
+    depends_on: [NTF-09]
+    status: covered_by_NTF
+
+  - id: REL-02
+    title: "Relatório diário de vendas por loja"
+    description: |
+      Texto sintético de exemplo para REL-02.
+        - linha indentada dentro do bloco literal
+
+      Parágrafo final do bloco.
+    estimate: 3
+    priority: P0
+
+  - id: REL-03
+    title: "Filtro por período e por loja"
+    description: |
+      Texto sintético de exemplo para REL-03.
+        - linha indentada dentro do bloco literal
+
+      Parágrafo final do bloco.
+    estimate: 2
+    priority: P0
+
+  - id: REL-04
+    title: "Exportação em CSV"
+    description: |
+      Texto sintético de exemplo para REL-04.
+        - linha indentada dentro do bloco literal
+
+      Parágrafo final do bloco.
+    estimate: 2
+    priority: P1
+
+  - id: REL-05
+    title: "Gráfico de tendência semanal"
+    description: |
+      Texto sintético de exemplo para REL-05.
+        - linha indentada dentro do bloco literal
+
+      Parágrafo final do bloco.
+    estimate: 5
+    priority: P1
+
+  - id: REL-06
+    title: "Agendamento de envio do relatório"
+    description: |
+      Texto sintético de exemplo para REL-06.
+        - linha indentada dentro do bloco literal
+
+      Parágrafo final do bloco.
+    estimate: 4
+    priority: P1
+
+summary:
+  total_points: 16
+  sequencia: |
+    Depois de feat-notificacoes concluído:
+    Passo 1: REL-02 + REL-03
+    Passo 2: REL-04 + REL-06
+    Passo 3: REL-05

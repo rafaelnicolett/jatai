@@ -1,0 +1,214 @@
+# Release da Jataí (F7.5, mod-missao-open-source).
+#
+# COMO LANÇAR (quem mantém o projeto):
+#   1. No CHANGELOG.md, troque "[Não lançado]" por "[X.Y.Z] - AAAA-MM-DD" e suba a
+#      versão: `npm version X.Y.Z --no-git-tag-version`.
+#   2. Abra o PR, espere o CI verde nos três sistemas e faça o merge na main.
+#   3. Marque a tag na ponta da main e envie: `git tag -s vX.Y.Z && git push origin vX.Y.Z`.
+#   4. O job "publicar" espera a sua aprovação no environment "release".
+#
+# TAGS COM SUFIXO (v1.0.0-rc.1): viram só uma GitHub Release marcada como
+# pré-lançamento. Nada é enviado para as lojas.
+#
+# ENSAIO (nada é publicado): Actions → Release → Run workflow, com "publicar"
+# desmarcado. Verifica, empacota e, se os tokens existirem, confere que eles têm
+# direito de publicar (vsce verify-pat e ovsx verify-pat).
+#
+# CONFIGURAÇÃO ÚNICA, no GitHub (Settings → Environments → release):
+#   - Required reviewers: quem pode autorizar a publicação;
+#   - segredo VSCE_PAT: token do Marketplace para o publisher da extensão;
+#   - segredo OVSX_PAT: token do Open VSX para o namespace da extensão
+#     (o namespace é criado uma vez, com `ovsx create-namespace`).
+# Quem não tiver um dos dois segredos fica sem aquela loja, e o resumo do job avisa.
+#
+# SEGURANÇA: os segredos só existem no job "publicar" e só nos passos que os usam.
+# Actions de terceiros fixadas pelo SHA do commit, com a versão no comentário;
+# vsce e ovsx fixados por versão. Para atualizar uma action:
+#   git ls-remote https://github.com/<dono>/<action> refs/tags/<versão>
+name: Release
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+-*"
+  workflow_dispatch:
+    inputs:
+      publicar:
+        description: "Publicar nas lojas e no GitHub (só vale numa tag). Desmarcado = ensaio."
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  npm_config_audit: "false"
+  npm_config_fund: "false"
+  npm_config_update_notifier: "false"
+
+jobs:
+  verificar:
+    name: verificar e empacotar
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      # Antes do checkout, como no ci.yml: o .vsix e os testes dependem de LF.
+      - name: Fim de linha LF
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
+      - name: Checkout (histórico completo, para conferir a main)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # Release só sai de um commit que está na main.
+      - name: A tag aponta para um commit da main
+        if: ${{ github.ref_type == 'tag' }}
+        run: |
+          git fetch --no-tags origin main
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "::error::a tag $GITHUB_REF_NAME não aponta para um commit da main"
+            exit 1
+          fi
+
+      - name: Node 20
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            webview-ui/package-lock.json
+
+      - name: npm ci (raiz)
+        run: npm ci --ignore-scripts
+
+      - name: npm ci (webview-ui)
+        working-directory: webview-ui
+        run: npm ci --ignore-scripts
+
+      - name: Versão, tag e CHANGELOG
+        run: |
+          mkdir -p "$RUNNER_TEMP/release"
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            node scripts/release-check.mjs --tag "$GITHUB_REF_NAME" --notes-out "$RUNNER_TEMP/release/notes.md"
+          else
+            node scripts/release-check.mjs --notes-out "$RUNNER_TEMP/release/notes.md"
+          fi
+
+      # Os mesmos passos do CI, na mesma ordem. O gitleaks e o DCO rodam no CI do PR.
+      - name: Verificações do CI
+        run: npm run ci:local -- --skip-install
+
+      - name: Pacote .vsix
+        run: node scripts/vsix-check.mjs --out "$RUNNER_TEMP/release"
+
+      - name: Artefato da release
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: jatai-release
+          path: |
+            ${{ runner.temp }}/release/*.vsix
+            ${{ runner.temp }}/release/notes.md
+          if-no-files-found: error
+          retention-days: 30
+
+  conferir-tokens:
+    name: conferir tokens (ensaio)
+    needs: verificar
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.publicar }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Node 20
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 20
+          package-manager-cache: false
+
+      - name: Marketplace do VS Code
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: |
+          if [ -z "$VSCE_PAT" ]; then echo "VSCE_PAT não configurado: sem Marketplace." >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
+          publisher=$(jq -r .publisher package.json)
+          npx --yes @vscode/vsce@2.32.0 verify-pat "$publisher"
+          echo "VSCE_PAT tem direito de publicar como $publisher." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open VSX
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: |
+          if [ -z "$OVSX_PAT" ]; then echo "OVSX_PAT não configurado: sem Open VSX." >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
+          namespace=$(jq -r .publisher package.json)
+          npx --yes ovsx@1.4.0 verify-pat "$namespace"
+          echo "OVSX_PAT tem direito de publicar no namespace $namespace." >> "$GITHUB_STEP_SUMMARY"
+
+  publicar:
+    name: publicar
+    needs: verificar
+    if: ${{ github.ref_type == 'tag' && (github.event_name == 'push' || inputs.publicar) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Esta é a trava: o job só começa depois da aprovação de quem está em "Required reviewers".
+    environment: release
+    permissions:
+      contents: write # criar a GitHub Release
+      actions: read # baixar o artefato desta mesma execução
+    steps:
+      - name: Node 20
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 20
+          package-manager-cache: false
+
+      # O mesmo .vsix que passou nas verificações, não um reempacotado.
+      - name: Baixar o pacote verificado
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --name jatai-release --dir release
+
+      - name: Marketplace do VS Code
+        if: ${{ !contains(github.ref_name, '-') }}
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: |
+          if [ -z "$VSCE_PAT" ]; then echo "- Marketplace: pulado (VSCE_PAT não configurado)" >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
+          npx --yes @vscode/vsce@2.32.0 publish --packagePath release/*.vsix --skip-duplicate
+          echo "- Marketplace: publicado" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open VSX
+        if: ${{ !contains(github.ref_name, '-') }}
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: |
+          if [ -z "$OVSX_PAT" ]; then echo "- Open VSX: pulado (OVSX_PAT não configurado)" >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
+          npx --yes ovsx@1.4.0 publish release/*.vsix --skip-duplicate
+          echo "- Open VSX: publicado" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          flag=""
+          case "$GITHUB_REF_NAME" in *-*) flag="--prerelease" ;; esac
+          gh release create "$GITHUB_REF_NAME" release/*.vsix \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Jataí ${GITHUB_REF_NAME#v}" \
+            --notes-file release/notes.md \
+            --verify-tag $flag
+          echo "- GitHub Release: criada${flag:+ (pré-lançamento)}" >> "$GITHUB_STEP_SUMMARY"

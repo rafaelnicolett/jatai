@@ -1,0 +1,30 @@
+.glyph {
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Glifo na cor do traço do status (≥ 3:1 para objeto gráfico). */
+.glyph[data-tone="done"] { color: var(--jt-status-done-line); }
+.glyph[data-tone="working"] { color: var(--jt-status-working-line); }
+.glyph[data-tone="you"] { color: var(--jt-status-you-line); }
+.glyph[data-tone="queue"] { color: var(--jt-status-queue-line); }
+.glyph[data-tone="blocked"] { color: var(--jt-status-blocked-line); }
+.glyph[data-tone="future"] { color: var(--jt-status-future-line); }
+
+/* Rajada do "● trabalhando" (DS v2 §3.11): 2 ciclos e para; 0 com movimento reduzido. */
+@keyframes breath {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.pulse {
+  animation: breath var(--jt-dur-breath) var(--jt-ease-sine) var(--jt-iterations-burst);
+  animation-play-state: var(--jt-anim-play);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; }
+}
+
+@media (forced-colors: active) {
+  .glyph { color: CanvasText; forced-color-adjust: auto; }
+}

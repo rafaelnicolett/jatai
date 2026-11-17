@@ -1,0 +1,27 @@
+# Dependências: sem barra final de propósito, para casar também com symlink.
+node_modules
+
+# Saídas de build. O .vsix é publicado como artefato de release, nunca versionado.
+/dist/
+*.vsix
+*.tsbuildinfo
+webview-ui/mock-dist/
+# `tsc -b` (tsconfig.node.json) compila o vite.config.ts para estes dois a
+# cada build do webview, e o Vite prefere o .js ao .ts.
+webview-ui/vite.config.js
+webview-ui/vite.config.d.ts
+
+# Testes e ferramentas locais
+coverage/
+.vscode-test/
+
+# Workspace demo gerado por `npm run demo` (F7.4). As fixtures versionadas ficam em demo/.
+/.demo/
+
+# Lixo de sistema e de editor
+.DS_Store
+*.bak
+
+# Golden do gerador: o migrateKit guarda o orquestrador antigo como .bak (A7/BUG-11),
+# e a cópia legível desse arquivo faz parte do golden.
+!tests/golden/__golden__/**/*.bak

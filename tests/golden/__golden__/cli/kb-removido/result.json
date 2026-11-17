@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "scenario": "kb-removido",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "kb",
+        "push",
+        "--path",
+        "docs/adr/0001-ficticio.md",
+        "--initiative",
+        "gf-alfa",
+        "--epic",
+        "E1",
+        "--wave",
+        "W1"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "UNKNOWN_ARTIFACT",
+          "message": "artefato desconhecido: 'kb'. Esperado: delivery-state, initiatives, gates, runs.",
+          "artifact": "kb",
+          "artifacts": [
+            "delivery-state",
+            "initiatives",
+            "gates",
+            "runs"
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "kb",
+        "push",
+        "--path",
+        "../fora-do-workspace.txt",
+        "--initiative",
+        "gf-alfa"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "UNKNOWN_ARTIFACT",
+          "message": "artefato desconhecido: 'kb'. Esperado: delivery-state, initiatives, gates, runs.",
+          "artifact": "kb",
+          "artifacts": [
+            "delivery-state",
+            "initiatives",
+            "gates",
+            "runs"
+          ]
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "fora-do-workspace.txt": "file 100644 28 cd99a0afabaa4f908a6fab6621f76779a34cd646bcfe3c5ce5df8a94a5a89ce6 text",
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/docs/": "dir",
+    "ws/docs/adr/": "dir",
+    "ws/docs/adr/0001-ficticio.md": "file 100644 16 ce20f04a8e815e6a39f8c02ee570e458377970556a2282c1f78153a69960407f text"
+  }
+}

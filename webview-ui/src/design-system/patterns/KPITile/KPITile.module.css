@@ -1,0 +1,75 @@
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  padding: var(--jt-space-4);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-lg);
+  background: var(--jt-surface);
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: default;
+  overflow: hidden;
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--tile-accent, var(--jt-mel));
+}
+
+.tile[data-tone="accent"] { --tile-accent: var(--jt-mel-line); }
+.tile[data-tone="success"] { --tile-accent: var(--jt-status-done-line); }
+.tile[data-tone="warning"] { --tile-accent: var(--jt-feedback-warning-fg); }
+.tile[data-tone="danger"] { --tile-accent: var(--jt-status-blocked-line); }
+.tile[data-tone="info"] { --tile-accent: var(--jt-status-working-line); }
+.tile[data-tone="violet"] { --tile-accent: var(--jt-line-strong); }
+
+.tile[data-clickable="true"] { cursor: pointer; transition: border-color 120ms ease, transform 120ms ease; }
+.tile[data-clickable="true"]:hover { border-color: var(--jt-line-strong); transform: translateY(-1px); }
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--jt-radius-sm);
+  background: color-mix(in srgb, var(--tile-accent, var(--jt-mel)) 16%, transparent);
+  color: var(--tile-accent, var(--jt-mel-ink));
+}
+
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jt-space-0-5);
+  font-size: var(--jt-text-xs);
+  font-weight: var(--jt-weight-semibold);
+  padding: var(--jt-space-0-5) var(--jt-space-1);
+  border-radius: var(--jt-radius-full);
+}
+.trend[data-direction="up"] { color: var(--jt-status-done-fg); background: var(--jt-status-done-bg); }
+.trend[data-direction="down"] { color: var(--jt-status-blocked-fg); background: var(--jt-status-blocked-bg); }
+
+.value {
+  font-size: var(--jt-text-3xl);
+  font-weight: var(--jt-weight-bold);
+  color: var(--jt-fg);
+  line-height: var(--jt-leading-tight);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: var(--jt-text-sm);
+  color: var(--jt-fg-2);
+}

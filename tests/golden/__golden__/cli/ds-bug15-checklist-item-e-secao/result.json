@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "scenario": "ds-bug15-checklist-item-e-secao",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "qa",
+        "--item",
+        "testes: ok",
+        "--checked",
+        "true"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "qa",
+        "item": "testes: ok",
+        "checked": true
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--initiative",
+        "gf-alfa",
+        "--phase",
+        "qa",
+        "--item",
+        "x",
+        "--checked",
+        "true",
+        "--section",
+        "status"
+      ],
+      "exit": 2,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INTERNAL",
+          "message": "a escrita deixaria delivery-state.yaml com YAML inválido (duplicated mapping key na linha 4); nada foi gravado"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 85 c5b3dc815e86f9db0a353c9196ebae1a6ffeaa8be63a391fa5b05e6f415f1540 text",
+    "ws/.github/artifacts/initiatives/": "dir",
+    "ws/.github/artifacts/initiatives/gf-alfa/": "dir",
+    "ws/.github/artifacts/initiatives/gf-alfa/delivery-state.yaml": "file 100644 38 0d78494bf71d057966189fef81e6bceb7531b01503b98d7a1b36ea3bf9d0ad16 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 223 ce236fbc937a324af98e61cf5d3a828f57162f532e9b412657bc0efe738dd8fd text"
+  }
+}

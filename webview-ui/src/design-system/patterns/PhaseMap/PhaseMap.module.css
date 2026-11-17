@@ -1,0 +1,70 @@
+.wrap {
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding: var(--jt-space-3) var(--jt-space-1) var(--jt-space-2);
+  gap: 0;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.line {
+  width: 22px;
+  height: 2px;
+  background: var(--jt-line);
+  margin-top: var(--jt-space-3);
+  flex-shrink: 0;
+}
+.line--done { background: var(--jt-status-done-line); }
+
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 62px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dot {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--jt-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--jt-line-strong);
+  background: var(--jt-surface);
+  color: var(--jt-fg-3);
+  font-size: var(--jt-text-xs);
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+.node:hover .dot { transform: scale(1.08); }
+
+.node--done .dot { border-color: var(--jt-status-done-line); background: var(--jt-status-done-bg); color: var(--jt-status-done-fg); }
+.node--running .dot { border-color: var(--jt-status-working-line); color: var(--jt-status-working-fg); box-shadow: 0 0 0 4px var(--jt-status-working-bg); }
+.node--review .dot { border-color: var(--jt-status-you-line); color: var(--jt-status-you-fg); box-shadow: 0 0 0 4px var(--jt-status-you-bg); }
+.node--blocked .dot { border-color: var(--jt-status-blocked-line); color: var(--jt-status-blocked-fg); }
+.node--pending .dot { border-color: var(--jt-line-strong); }
+
+.node--selected .dot { outline: 2px solid var(--jt-fg); outline-offset: 3px; }
+.node--gate .dot { border-radius: var(--jt-radius-sm); }
+
+.label {
+  font-family: var(--jt-font-mono);
+  font-size: var(--jt-text-xs);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--jt-fg-3);
+  margin-top: var(--jt-space-2);
+  text-align: center;
+  line-height: 1.3;
+  max-width: 62px;
+}
+.label--selected { color: var(--jt-fg); }

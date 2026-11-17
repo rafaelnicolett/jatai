@@ -1,0 +1,49 @@
+# Estado de entrega da feature ativa do workspace demo.
+# Cobre seis dos sete estados de trabalho (ADR-0022): done, skipped, in-progress,
+# failed, blocked e pending. O cancelled aparece nas tarefas, em initiatives.yaml.
+version: 1
+initiative_id: feat-reserva-com-fila
+phases:
+  ux-design:
+    status: skipped
+    agent: "@ux-designer"
+  architecture:
+    status: done
+    agent: "@adr-recorder"
+    completed_at: "2026-10-05T13:42:00Z"
+    artifacts:
+      - path: docs/adr/0001-fila-de-reservas-por-ordem-de-pedido.md
+        note: "ordem da fila decidida por Pessoa Exemplo"
+    human_checklist:
+      adr-registrada: true
+      alternativas-descritas: true
+  bdd:
+    status: done
+    agent: "@feature-adder"
+    completed_at: "2026-10-05T15:58:00Z"
+    artifacts:
+      - path: features/epic-1/reservar-livro.feature
+      - path: features/epic-2/fila-de-espera.feature
+      - path: features/epic-3/tela-de-reservas.feature
+    human_checklist:
+      cenarios-em-linguagem-de-dominio: true
+      cenarios-antes-do-codigo: true
+  backend:
+    status: in-progress
+    agent: "@feature-adder"
+    human_checklist:
+      testes-verdes: false
+  frontend:
+    status: failed
+    agent: "@feature-adder"
+    reason: "2 testes de componente da FilaDeReservas falharam"
+    human_checklist: {}
+  reviewer:
+    status: blocked
+    agent: "@reviewer"
+    reason: "aguarda o frontend e a aprovação do contrato da API de reservas (task-1.3)"
+    human_checklist: {}
+  devops:
+    status: pending
+    agent: "@devops"
+    human_checklist: {}

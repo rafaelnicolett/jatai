@@ -1,0 +1,560 @@
+# Mapa agente ↔ skill ↔ artefato
+# Fonte da verdade legível por humano e por máquina.
+# Mantém ligações dinâmicas entre quem produz, quem valida e o quê.
+#
+# <host-dir> nos paths abaixo é .github (Copilot) ou .claude (Claude) —
+# resolva pelo diretório que existe neste projeto.
+
+version: 1
+gates:
+  - id: gate.upstream_to_downstream
+    short: G1
+    trigger: "@sprint-planner declara exit_contract verde"
+    validators: [stream-align, arch-cross]
+    artifacts_in:
+      - .github/artifacts/business-brief.md
+      - .github/artifacts/prd.md
+      - .github/artifacts/feature-list.md
+      - docs/design/user-flows.md
+      - docs/design/prototype/
+      - docs/domain/**
+      - features/**/*.feature
+      - api/openapi.yaml
+      - docs/adr/*.md
+      - .github/artifacts/sprint-backlog.yaml
+    artifacts_out:
+      - .github/artifacts/gates/G1-stream-align.md
+      - .github/artifacts/gates/G1-arch-cross.md
+
+  - id: gate.downstream_to_operation
+    short: G2
+    trigger: "@sprint-runner confirma merge da sprint"
+    validators: [stream-align, arch-cross]
+    artifacts_in:
+      - PRs mergeados da sprint
+      - test reports (unit, integration, contract, e2e)
+      - .github/artifacts/security/*.md
+      - .github/artifacts/quality/*.md
+    artifacts_out:
+      - .github/artifacts/gates/G2-stream-align.md
+      - .github/artifacts/gates/G2-arch-cross.md
+
+agents:
+  # ---------- L0 ----------
+  - id: maestro
+    layer: L0
+    file: <host-dir>/agents/maestro.agent.md
+    user_invocable: true
+    routes_to: [business, product, domain-modeler, bdd, architecture, sprint-planner,
+                sprint-runner, reviewer, devops, release, observability, incident, sustain]
+    skills: []  # Maestro não carrega skills; só roteia
+
+  # ---------- Upstream ----------
+  - id: business
+    layer: L2-phase
+    stream: upstream
+    file: <host-dir>/agents/upstream/business.agent.md
+    receives_from: [maestro]
+    delivers_to: [product]
+    produces: [.github/artifacts/business-brief.md]
+    skills: [docs-writer]
+
+  - id: product
+    layer: L2-phase
+    stream: upstream
+    file: <host-dir>/agents/upstream/product.agent.md
+    receives_from: [business]
+    delivers_to: [ux-designer]
+    produces: [.github/artifacts/prd.md, .github/artifacts/feature-list.md]
+    skills: [docs-writer]
+
+  - id: ux-designer
+    layer: L2-phase
+    stream: upstream
+    file: <host-dir>/agents/upstream/ux-designer.agent.md
+    receives_from: [product]
+    delivers_to: [domain-modeler, bdd]
+    produces: [docs/design/user-flows.md, docs/design/wireframes/, docs/design/prototype/, docs/design/design-tokens.yaml]
+    skills: [ui-ux-design-system, ux-prototyping]
+
+  - id: domain-modeler
+    layer: L2-phase
+    stream: upstream
+    file: <host-dir>/agents/upstream/domain-modeler.agent.md
+    receives_from: [product]
+    delivers_to: [bdd, architecture]
+    produces: [docs/domain/**]
+    skills: [domain-driven-design]
+
+  - id: bdd
+    layer: L2-phase
+    stream: upstream
+    file: <host-dir>/agents/upstream/bdd.agent.md
+    receives_from: [domain-modeler]
+    delivers_to: [architecture, sprint-planner, qa-tester]
+    produces: [features/**/*.feature]
+    skills: [bdd-gherkin, domain-driven-design]
+
+  - id: architecture
+    layer: L2-phase
+    stream: upstream
+    file: <host-dir>/agents/upstream/architecture.agent.md
+    receives_from: [domain-modeler, bdd]
+    delivers_to: [sprint-planner]
+    produces: [api/openapi.yaml, docs/adr/*.md, docs/architecture/c4/*.md]
+    skills: [openapi-governance, domain-driven-design]
+
+  - id: sprint-planner
+    layer: L2-phase
+    stream: upstream
+    file: <host-dir>/agents/upstream/sprint-planner.agent.md
+    receives_from: [bdd, architecture]
+    delivers_to: [sprint-runner]   # via gate G1
+    produces: [.github/artifacts/sprint-backlog.yaml]
+    skills: [task-manager]
+    gate_after: gate.upstream_to_downstream
+
+  # ---------- Downstream ----------
+  - id: sprint-runner
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/sprint-runner.agent.md
+    receives_from: [sprint-planner]
+    delivers_to: [backend-*, frontend-*, reviewer]
+    produces: [.github/artifacts/sprint-status.md, .github/artifacts/runs/*.jsonl, .github/artifacts/initiatives/<id>/memory/SHARED.md]
+    skills: [task-manager, workflow-memory]
+
+  - id: backend-java
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/backend-java.agent.md
+    receives_from: [sprint-runner]
+    delivers_to: [reviewer, qa-tester, integration-tests, security]
+    produces: [code/services/**, .github/artifacts/initiatives/<id>/memory/task-backend.md]
+    # lang-* fixo por stack; arch-* selecionado pelo wizard (backendArchitecture)
+    skills: [lang-java-spring, arch-hexagonal, openapi-governance, domain-driven-design, integration-testing, qa-strategy, workflow-memory, codebase-enrichment]
+    skill_dynamic:
+      arch: {field: backendArchitecture, options: [arch-hexagonal, arch-vertical-slice, arch-layered, arch-ddd-tactical]}
+
+  - id: backend-dotnet
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/backend-dotnet.agent.md
+    receives_from: [sprint-runner]
+    delivers_to: [reviewer, qa-tester, integration-tests, security]
+    produces: [code/services/**, .github/artifacts/initiatives/<id>/memory/task-backend.md]
+    skills: [lang-dotnet, arch-hexagonal, openapi-governance, domain-driven-design, integration-testing, qa-strategy, workflow-memory, codebase-enrichment]
+    skill_dynamic:
+      arch: {field: backendArchitecture, options: [arch-hexagonal, arch-vertical-slice, arch-layered, arch-ddd-tactical]}
+
+  - id: backend-python-api
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/backend-python-api.agent.md
+    receives_from: [sprint-runner]
+    delivers_to: [reviewer, qa-tester, integration-tests, security]
+    produces: [code/services/**, .github/artifacts/initiatives/<id>/memory/task-backend.md]
+    skills: [lang-python-api, arch-hexagonal, openapi-governance, domain-driven-design, integration-testing, qa-strategy, workflow-memory, codebase-enrichment]
+    skill_dynamic:
+      arch: {field: backendArchitecture, options: [arch-hexagonal, arch-vertical-slice, arch-layered, arch-ddd-tactical]}
+
+  - id: backend-python-agentic
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/backend-python-agentic.agent.md
+    receives_from: [sprint-runner]
+    delivers_to: [reviewer, qa-tester, integration-tests, security]
+    produces: [code/services/**, .github/artifacts/initiatives/<id>/memory/task-backend.md]
+    skills: [ai-agent-author, lang-python-agentic, arch-hexagonal, openapi-governance, qa-strategy, workflow-memory, codebase-enrichment]
+    skill_dynamic:
+      arch: {field: backendArchitecture, options: [arch-hexagonal, arch-vertical-slice, arch-layered, arch-ddd-tactical]}
+
+  - id: frontend-react
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/frontend-react.agent.md
+    receives_from: [sprint-runner]
+    delivers_to: [reviewer, qa-tester, integration-tests, security]
+    produces: [code/apps/**, .github/artifacts/initiatives/<id>/memory/task-frontend.md]
+    skills: [lang-react, arch-feature-based, openapi-governance, qa-strategy, ui-ux-design-system, workflow-memory, codebase-enrichment]
+    skill_dynamic:
+      arch: {field: frontendArchitecture, options: [arch-feature-based, arch-clean-frontend]}
+
+  - id: frontend-flutter
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/frontend-flutter.agent.md
+    receives_from: [sprint-runner]
+    delivers_to: [reviewer, qa-tester, integration-tests, security]
+    produces: [code/apps/**, .github/artifacts/initiatives/<id>/memory/task-frontend.md]
+    skills: [lang-flutter, arch-clean-frontend, qa-strategy, ui-ux-design-system, workflow-memory, codebase-enrichment]
+    skill_dynamic:
+      arch: {field: frontendArchitecture, options: [arch-feature-based, arch-clean-frontend, arch-mvvm]}
+
+  - id: frontend-android
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/frontend-android.agent.md
+    receives_from: [sprint-runner]
+    delivers_to: [reviewer, qa-tester, integration-tests, security]
+    produces: [code/apps/**, .github/artifacts/initiatives/<id>/memory/task-frontend.md]
+    skills: [lang-android, arch-mvvm, qa-strategy, ui-ux-design-system, workflow-memory, codebase-enrichment]
+    skill_dynamic:
+      arch: {field: frontendArchitecture, options: [arch-mvvm, arch-mvc, arch-clean-frontend]}
+
+  - id: frontend-ios
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/frontend-ios.agent.md
+    receives_from: [sprint-runner]
+    delivers_to: [reviewer, qa-tester, integration-tests, security]
+    produces: [code/apps/**, .github/artifacts/initiatives/<id>/memory/task-frontend.md]
+    skills: [lang-ios, arch-mvvm, qa-strategy, ui-ux-design-system, workflow-memory, codebase-enrichment]
+    skill_dynamic:
+      arch: {field: frontendArchitecture, options: [arch-mvvm, arch-mvc, arch-clean-frontend]}
+
+  - id: reviewer
+    layer: L2-phase
+    stream: downstream
+    file: <host-dir>/agents/downstream/reviewer.agent.md
+    receives_from: [backend-*, frontend-*]
+    delivers_to: [sprint-runner]   # eventualmente gate G2 via maestro
+    produces:
+      - .github/artifacts/reviews/<pr_number>-review.md
+      - .github/artifacts/initiatives/<id>/memory/task-review.md
+    # coding-guidelines atua como índice que mapeia (stack, arch) → [lang-*, arch-*]
+    skills: [coding-guidelines, qa-strategy, workflow-memory]
+    gate_after: gate.downstream_to_operation
+
+  # ---------- Operation ----------
+  - id: devops
+    layer: L2-phase
+    stream: operation
+    file: <host-dir>/agents/operation/devops.agent.md
+    receives_from: [maestro]
+    delivers_to: [release]
+    produces: [pipelines/**, infrastructure/**]
+    skills: [pipeline-adapter, security-best-practices]
+
+  - id: release
+    layer: L2-phase
+    stream: operation
+    file: <host-dir>/agents/operation/release.agent.md
+    receives_from: [devops]
+    delivers_to: [observability]
+    produces: [tag, release-notes]
+    skills: [commit-assistant]
+
+  - id: observability
+    layer: L2-phase
+    stream: operation
+    file: <host-dir>/agents/operation/observability.agent.md
+    receives_from: [release]
+    delivers_to: [incident, sustain]
+    produces: [infrastructure/observability/**]
+    skills: []
+
+  - id: incident
+    layer: L2-phase
+    stream: operation
+    file: <host-dir>/agents/operation/incident.agent.md
+    receives_from: [observability]
+    delivers_to: [sustain]
+    produces: [.github/artifacts/incidents/**]
+    skills: []
+
+  - id: sustain
+    layer: L2-phase
+    stream: operation
+    file: <host-dir>/agents/operation/sustain.agent.md
+    receives_from: [observability, incident]
+    delivers_to: []
+    produces: [PRs de patch/upgrade]
+    skills: [security-cve-checker]
+
+  # ---------- Side-cars ----------
+  - id: qa-tester
+    layer: L2-sidecar
+    file: <host-dir>/agents/sidecar/qa-tester.agent.md
+    invoked_by: [backend-*, frontend-*, reviewer]
+    skills: [bdd-gherkin, qa-strategy]
+
+  - id: integration-tests
+    layer: L2-sidecar
+    file: <host-dir>/agents/sidecar/integration-tests.agent.md
+    invoked_by: [sprint-runner, reviewer]
+    skills: [integration-testing, qa-strategy]
+
+  - id: quality
+    layer: L2-sidecar
+    file: <host-dir>/agents/sidecar/quality.agent.md
+    invoked_by: [maestro, reviewer]
+    skills: [qa-strategy]
+
+  - id: security
+    layer: L2-sidecar
+    file: <host-dir>/agents/sidecar/security.agent.md
+    invoked_by: [backend-*, frontend-*, reviewer, devops, sustain]
+    skills: [security-best-practices, security-cve-checker]
+
+  - id: docs
+    layer: L2-sidecar
+    file: <host-dir>/agents/sidecar/docs.agent.md
+    invoked_by: ["*"]
+    skills: [docs-writer]
+
+  # ---------- Guardians ----------
+  - id: stream-align
+    layer: L2-guardian
+    file: <host-dir>/agents/guardian/stream-align.agent.md
+    invoke_on: [gate.upstream_to_downstream, gate.downstream_to_operation]
+    skills: [bdd-gherkin]
+
+  - id: arch-cross
+    layer: L2-guardian
+    file: <host-dir>/agents/guardian/arch-cross.agent.md
+    invoke_on: [gate.upstream_to_downstream, gate.downstream_to_operation]
+    skills: [openapi-governance, coding-guidelines, domain-driven-design, integration-testing]
+
+skills:
+  - id: ai-agent-author
+    file: <host-dir>/skills/ai-agent-author/SKILL.md
+    used_by: [backend-python-agentic]
+    artifacts: [agents/<id>/**, eval/**]
+
+  - id: domain-driven-design
+    file: <host-dir>/skills/domain-driven-design/SKILL.md
+    used_by: [domain-modeler, bdd, architecture, backend-java, backend-dotnet, backend-python-api, arch-cross]
+    artifacts: [docs/domain/**]
+
+  - id: bdd-gherkin
+    file: <host-dir>/skills/bdd-gherkin/SKILL.md
+    used_by: [bdd, qa-tester, stream-align]
+    artifacts: [features/**/*.feature, features/support/steps/**]
+
+  - id: qa-strategy
+    file: <host-dir>/skills/qa-strategy/SKILL.md
+    used_by: [qa-tester, quality, reviewer, integration-tests,
+              backend-java, backend-dotnet, backend-python-api, backend-python-agentic,
+              frontend-react, frontend-flutter, frontend-android, frontend-ios]
+    artifacts: [tests/**, test reports]
+
+  - id: integration-testing
+    file: <host-dir>/skills/integration-testing/SKILL.md
+    used_by: [integration-tests, backend-java, backend-dotnet, backend-python-api, arch-cross]
+    artifacts: [tests/integration/**, tests/contract/**, tests/e2e/**]
+
+  - id: openapi-governance
+    file: <host-dir>/skills/openapi-governance/SKILL.md
+    used_by: [architecture, arch-cross, backend-java, backend-dotnet, backend-python-api, backend-python-agentic, frontend-react]
+    artifacts: [api/openapi.yaml]
+
+  - id: arch-diagrams-drawio
+    file: <host-dir>/skills/arch-diagrams-drawio/SKILL.md
+    used_by: [architecture]
+    artifacts: [docs/architecture/c4/*.drawio, docs/architecture/sequences/*.drawio]
+
+  # coding-guidelines atua como skill-índice/roteador.
+  # Para cada (stack, arch), direciona para o par [lang-*, arch-*] correto.
+  - id: coding-guidelines
+    file: <host-dir>/skills/coding-guidelines/SKILL.md
+    used_by: [reviewer, arch-cross]
+    artifacts: [code/**]
+
+  # --- Skills de linguagem (lang-*) — idiomas, libs, naming, testes por stack ---
+  - id: lang-python-api
+    file: <host-dir>/skills/lang-python-api/SKILL.md
+    used_by: [backend-python-api, reviewer, arch-cross]
+    artifacts: [code/services/**]
+
+  - id: lang-python-agentic
+    file: <host-dir>/skills/lang-python-agentic/SKILL.md
+    used_by: [backend-python-agentic, reviewer, arch-cross]
+    artifacts: [code/services/**]
+
+  - id: lang-java-spring
+    file: <host-dir>/skills/lang-java-spring/SKILL.md
+    used_by: [backend-java, reviewer, arch-cross]
+    artifacts: [code/services/**]
+
+  - id: lang-dotnet
+    file: <host-dir>/skills/lang-dotnet/SKILL.md
+    used_by: [backend-dotnet, reviewer, arch-cross]
+    artifacts: [code/services/**]
+
+  - id: lang-react
+    file: <host-dir>/skills/lang-react/SKILL.md
+    used_by: [frontend-react, reviewer, arch-cross]
+    artifacts: [code/apps/**]
+
+  - id: lang-flutter
+    file: <host-dir>/skills/lang-flutter/SKILL.md
+    used_by: [frontend-flutter, reviewer, arch-cross]
+    artifacts: [code/apps/**]
+
+  - id: lang-android
+    file: <host-dir>/skills/lang-android/SKILL.md
+    used_by: [frontend-android, reviewer, arch-cross]
+    artifacts: [code/apps/**]
+
+  - id: lang-ios
+    file: <host-dir>/skills/lang-ios/SKILL.md
+    used_by: [frontend-ios, reviewer, arch-cross]
+    artifacts: [code/apps/**]
+
+  # --- Skills de arquitetura (arch-*) — estrutura, camadas, fitness functions ---
+  - id: arch-hexagonal
+    file: <host-dir>/skills/arch-hexagonal/SKILL.md
+    used_by: [backend-python-api, backend-java, backend-dotnet, reviewer, arch-cross]
+    artifacts: [code/services/**]
+    wizard_option: {field: backendArchitecture, value: hexagonal}
+
+  - id: arch-vertical-slice
+    file: <host-dir>/skills/arch-vertical-slice/SKILL.md
+    used_by: [backend-dotnet, backend-python-api, reviewer, arch-cross]
+    artifacts: [code/services/**]
+    wizard_option: {field: backendArchitecture, value: vertical-slice}
+
+  - id: arch-layered
+    file: <host-dir>/skills/arch-layered/SKILL.md
+    used_by: [backend-python-api, backend-java, backend-dotnet, reviewer, arch-cross]
+    artifacts: [code/services/**]
+    wizard_option: {field: backendArchitecture, value: layered}
+
+  - id: arch-ddd-tactical
+    file: <host-dir>/skills/arch-ddd-tactical/SKILL.md
+    used_by: [backend-python-api, backend-java, backend-dotnet, domain-modeler, reviewer, arch-cross]
+    artifacts: [code/services/**]
+    wizard_option: {field: backendArchitecture, value: ddd-tactical}
+
+  - id: arch-feature-based
+    file: <host-dir>/skills/arch-feature-based/SKILL.md
+    used_by: [frontend-react, frontend-flutter, frontend-android, frontend-ios, reviewer, arch-cross]
+    artifacts: [code/apps/**]
+    wizard_option: {field: frontendArchitecture, value: feature-based}
+
+  - id: arch-clean-frontend
+    file: <host-dir>/skills/arch-clean-frontend/SKILL.md
+    used_by: [frontend-flutter, frontend-ios, frontend-android, frontend-react, reviewer, arch-cross]
+    artifacts: [code/apps/**]
+    wizard_option: {field: frontendArchitecture, value: clean-frontend}
+
+  - id: arch-mvvm
+    file: <host-dir>/skills/arch-mvvm/SKILL.md
+    used_by: [frontend-ios, frontend-android, frontend-react, frontend-flutter, reviewer, arch-cross]
+    artifacts: [code/apps/**]
+    wizard_option: {field: frontendArchitecture, value: mvvm}
+
+  - id: arch-mvc
+    file: <host-dir>/skills/arch-mvc/SKILL.md
+    used_by: [frontend-ios, frontend-android, reviewer, arch-cross]
+    artifacts: [code/apps/**]
+    wizard_option: {field: frontendArchitecture, value: mvc}
+
+  - id: workspace-tools
+    file: <host-dir>/skills/workspace-tools/SKILL.md
+    used_by: [maestro, sprint-runner, devops, release, sustain]
+    description: >
+      Operações de filesystem no workspace — deleção, reorganização, scripts,
+      estrutura canônica de diretórios, artefatos file-as-state.
+    artifacts: [scripts/**]
+
+  - id: ui-ux-design-system
+    file: <host-dir>/skills/ui-ux-design-system/SKILL.md
+    used_by: [frontend-react, frontend-flutter, frontend-android, frontend-ios, reviewer, quality]
+    description: >
+      Design tokens, grid, catálogo de componentes, motion/loaders, iconografia
+      e A11y agnósticos de framework. Não escolhe stack de styling (ADR).
+    artifacts: [code/apps/**/design-system/**, code/apps/**/design_system/**, code/apps/**/ui/theme/**, code/apps/**/DesignSystem/**]
+
+  - id: ux-prototyping
+    file: <host-dir>/skills/ux-prototyping/SKILL.md
+    used_by: [ux-designer]
+    description: >
+      Protótipos HTML navegáveis e wireframes ASCII a partir de fluxos de
+      usuário, sem framework JS — validáveis por stakeholder antes do downstream.
+    artifacts: [docs/design/user-flows.md, docs/design/wireframes/*.md, docs/design/prototype/**]
+
+  - id: workflow-memory
+    file: <host-dir>/skills/workflow-memory/SKILL.md
+    used_by: [sprint-runner, reviewer,
+              backend-java, backend-dotnet, backend-python-api, backend-python-agentic,
+              frontend-react, frontend-flutter, frontend-android, frontend-ios]
+    description: >
+      Sistema de memória cross-task para agentes downstream. Persiste contexto entre
+      runs — decisões, padrões descobertos, erros, handoffs. Resolve amnésia entre
+      execuções. Dois níveis: SHARED.md (cross-task) + task-<phase>.md (por fase).
+      Compactação automática quando soft caps são atingidos.
+    artifacts:
+      - .github/artifacts/initiatives/<id>/memory/SHARED.md
+      - .github/artifacts/initiatives/<id>/memory/task-backend.md
+      - .github/artifacts/initiatives/<id>/memory/task-frontend.md
+      - .github/artifacts/initiatives/<id>/memory/task-review.md
+      - .github/artifacts/initiatives/<id>/memory/_compacted/
+
+  - id: codebase-enrichment
+    file: <host-dir>/skills/codebase-enrichment/SKILL.md
+    used_by: [backend-java, backend-dotnet, backend-python-api, backend-python-agentic,
+              frontend-react, frontend-flutter, frontend-android, frontend-ios]
+    description: >
+      Protocolo de exploração do codebase antes de qualquer execução de task.
+      Agentes scaniam estrutura, dependências, padrões e testes existentes antes
+      de implementar. Produz bloco "Codebase Context" injetado no contexto do agente.
+      Elimina cegueira de codebase: o agente conhece o terreno antes de agir.
+    artifacts: []   # sem artefato próprio — saída é injetada no contexto do agente
+
+  - id: task-manager
+    file: <host-dir>/skills/task-manager/SKILL.md
+    used_by: [sprint-planner, sprint-runner]
+    description: >
+      Gerenciamento de tarefas de sprint. Define schema canônico do sprint-backlog.yaml,
+      ciclo de vida de status (backlog→in-progress→review→done|blocked|descoped),
+      DoR/DoD, sizing Fibonacci, protocolo de dispatch e estrutura do sprint-status.md.
+    artifacts:
+      - .github/artifacts/sprint-backlog.yaml
+      - .github/artifacts/sprint-status.md
+
+  - id: security-best-practices
+    file: <host-dir>/skills/security-best-practices/SKILL.md
+    used_by: [security, devops]
+    description: >
+      OWASP Top 10, detecção de secrets, threat modeling STRIDE lite e hardening
+      de pipelines/infra. Produz relatório estruturado em artifacts/security/.
+      Bloqueia PR quando severity Crítico ou Alto está presente.
+    artifacts: [.github/artifacts/security/<scan-id>.md]
+
+  - id: security-cve-checker
+    file: <host-dir>/skills/security-cve-checker/SKILL.md
+    used_by: [security, sustain]
+    description: >
+      Auditoria de CVEs por stack (pip-audit, npm audit, trivy, etc.), triagem
+      por CVSS, decisão fix vs. accept-risk e geração de PRs de patch.
+      SLA: crítico 72h, alto 7 dias, médio 30 dias.
+    artifacts: [.github/artifacts/security/<scan-id>.md, .github/artifacts/security/dependency-snapshot.md]
+
+  - id: docs-writer
+    file: <host-dir>/skills/docs-writer/SKILL.md
+    used_by: [docs, product, business]
+    description: >
+      Padrões de escrita de documentação: ADRs, CHANGELOG (Keep a Changelog),
+      business-brief.md, prd.md, feature-list.md e docs técnicos gerais.
+      Garante rastreabilidade entre artefatos e linguagem orientada ao usuário final.
+    artifacts: [docs/**, CHANGELOG.md, .github/artifacts/business-brief.md, .github/artifacts/prd.md, .github/artifacts/feature-list.md]
+
+  - id: pipeline-adapter
+    file: <host-dir>/skills/pipeline-adapter/SKILL.md
+    used_by: [devops]
+    description: >
+      Padrão Port & Adapter para CI/CD (GitHub Actions, Azure DevOps, GitLab CI)
+      e IaC (Terraform). Define stages.yaml agnóstico como Port e adapters por
+      provedor. Permite troca de CI/CD sem reescrever pipelines do zero.
+    artifacts: [pipelines/**, infrastructure/terraform/**]
+
+  - id: commit-assistant
+    file: <host-dir>/skills/commit-assistant/SKILL.md
+    used_by: [release]
+    description: >
+      Conventional Commits, Semantic Versioning e Release Notes. Define regras
+      de bump (feat→minor, fix→patch, BREAKING CHANGE→major), formato de commits,
+      template de release notes e protocolo de publicação de artefato.
+    artifacts: [CHANGELOG.md, tag vX.Y.Z, release-notes]

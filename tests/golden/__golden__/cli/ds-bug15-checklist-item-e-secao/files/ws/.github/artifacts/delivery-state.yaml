@@ -1,0 +1,6 @@
+
+phases:
+  qa:
+    status: in-progress
+    human_checklist:
+      "testes: ok": true

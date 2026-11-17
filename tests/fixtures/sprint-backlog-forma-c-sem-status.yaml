@@ -1,0 +1,214 @@
+# Fixture sintética (F2.3): sprint-backlog.yaml na Forma C (stories soltas, sem
+# status), sprint numérico, estimate, depends_on e summary com listas aninhadas.
+# Conteúdo fictício; só a forma importa para os testes.
+
+
+initiative: feat-notificacoes
+sprint: 1
+created_at: "2026-02-02"
+velocity_points: 21
+
+stories:
+
+  # ── Bloco 1: Domínio e banco ────────────────────────────────────────
+
+  - id: NTF-01
+    title: "Modelo de preferência de notificação por cliente"
+    description: |
+      Texto sintético de exemplo para NTF-01.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_01_1.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-01
+      - Critério sintético 2 de NTF-01
+      - Critério sintético 3 de NTF-01
+      - Critério sintético 4 de NTF-01
+      - Critério sintético 5 de NTF-01
+    estimate: 3
+    priority: P0
+    depends_on: []
+
+  - id: NTF-02
+    title: "Migração: colunas de canal e horário de silêncio"
+    description: |
+      Texto sintético de exemplo para NTF-02.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_02_1.py
+      - app/notificacoes/modulo_02_2.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-02
+      - Critério sintético 2 de NTF-02
+      - Critério sintético 3 de NTF-02
+      - Critério sintético 4 de NTF-02
+    estimate: 2
+    priority: P0
+    depends_on: [NTF-01]
+
+  - id: NTF-03
+    title: "Repositório: busca de preferências por cliente e por canal"
+    description: |
+      Texto sintético de exemplo para NTF-03.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_03_1.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-03
+      - Critério sintético 2 de NTF-03
+      - Critério sintético 3 de NTF-03
+    estimate: 1
+    priority: P0
+    depends_on: [NTF-02]
+
+  # ── Bloco 2: Fila de envio ────────────────────────────────────────
+
+  - id: NTF-04
+    title: "Configuração do provedor de e-mail de exemplo"
+    description: |
+      Texto sintético de exemplo para NTF-04.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_04_1.py
+      - app/notificacoes/modulo_04_2.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-04
+      - Critério sintético 2 de NTF-04
+      - Critério sintético 3 de NTF-04
+    estimate: 1
+    priority: P0
+    depends_on: []
+
+  - id: NTF-05
+    title: "Fila de envio com reprocessamento"
+    description: |
+      Texto sintético de exemplo para NTF-05.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_05_1.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-05
+      - Critério sintético 2 de NTF-05
+      - Critério sintético 3 de NTF-05
+      - Critério sintético 4 de NTF-05
+      - Critério sintético 5 de NTF-05
+      - Critério sintético 6 de NTF-05
+      - Critério sintético 7 de NTF-05
+    estimate: 5
+    priority: P0
+    depends_on: [NTF-03, NTF-04]
+
+  # ── Bloco 3: API ────────────────────────────────────────
+
+  - id: NTF-06
+    title: "Endpoint de preferências do cliente"
+    description: |
+      Texto sintético de exemplo para NTF-06.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_06_1.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-06
+      - Critério sintético 2 de NTF-06
+      - Critério sintético 3 de NTF-06
+      - Critério sintético 4 de NTF-06
+      - Critério sintético 5 de NTF-06
+    estimate: 2
+    priority: P0
+    depends_on: [NTF-03]
+
+  # ── Bloco 4: Mensagens ────────────────────────────────────────
+
+  - id: NTF-07
+    title: "Modelos de mensagem por evento"
+    description: |
+      Texto sintético de exemplo para NTF-07.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_07_1.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-07
+      - Critério sintético 2 de NTF-07
+      - Critério sintético 3 de NTF-07
+      - Critério sintético 4 de NTF-07
+      - Critério sintético 5 de NTF-07
+    estimate: 2
+    priority: P1
+    depends_on: [NTF-05]
+
+  # ── Bloco 5: Operação ────────────────────────────────────────
+
+  - id: NTF-08
+    title: "Painel de envios com falha"
+    description: |
+      Texto sintético de exemplo para NTF-08.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_08_1.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-08
+      - Critério sintético 2 de NTF-08
+      - Critério sintético 3 de NTF-08
+    estimate: 2
+    priority: P1
+    depends_on: [NTF-05]
+
+  # ── Bloco 6: App ────────────────────────────────────────
+
+  - id: NTF-09
+    title: "Tela de preferências no app"
+    description: |
+      Texto sintético de exemplo para NTF-09.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_09_1.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-09
+      - Critério sintético 2 de NTF-09
+      - Critério sintético 3 de NTF-09
+      - Critério sintético 4 de NTF-09
+      - Critério sintético 5 de NTF-09
+      - Critério sintético 6 de NTF-09
+    estimate: 3
+    priority: P0
+    depends_on: [NTF-06]
+
+  # ── Bloco 7: Conteúdo ────────────────────────────────────────
+
+  - id: NTF-10
+    title: "Texto de ajuda sobre notificações"
+    description: |
+      Texto sintético de exemplo para NTF-10.
+      Segunda linha do bloco, para exercitar o escalar literal.
+    files:
+      - app/notificacoes/modulo_10_1.py
+    acceptance_criteria:
+      - Critério sintético 1 de NTF-10
+      - Critério sintético 2 de NTF-10
+      - Critério sintético 3 de NTF-10
+      - Critério sintético 4 de NTF-10
+    estimate: 1
+    priority: P1
+    depends_on: []
+
+# ── Resumo ────────────────────────────────────────────────────────────
+
+summary:
+  total_points: 22
+  critical_path: [NTF-01, NTF-02, NTF-03, NTF-05, NTF-06, NTF-09]
+  parallel_tracks:
+    - track_dados: [NTF-01, NTF-02, NTF-03]
+    - track_envio: [NTF-04, NTF-05]
+    - track_conteudo: [NTF-10]   # independente, pode rodar em paralelo
+
+  sequencia_recomendada: |
+    Passo 1: NTF-01 + NTF-04
+    Passo 2: NTF-02 + NTF-03
+    Passo 3: NTF-05
+    Passo 4: NTF-06 + NTF-10
+    Passo 5: NTF-09
+    Passo 6: NTF-07 + NTF-08
+
+  pre_requisitos_externos:
+    - Conta de teste no provedor de e-mail de exemplo
+    - Variáveis de ambiente de exemplo definidas no .env local

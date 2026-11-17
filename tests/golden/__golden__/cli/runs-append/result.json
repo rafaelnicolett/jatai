@@ -1,0 +1,294 @@
+{
+  "schema": 1,
+  "scenario": "runs-append",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "append",
+        "--event_type",
+        "agent-started",
+        "--agent_id",
+        "@migration-agent",
+        "--phase_id",
+        "execution",
+        "--initiative_id",
+        "gf-alfa",
+        "--harness",
+        "claude-code",
+        "--run_id",
+        "r-golden",
+        "--timestamp",
+        "2026-11-15T12:00:00.000Z"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/runs/gf-alfa.jsonl",
+        "event": {
+          "run_id": "r-golden",
+          "event_type": "agent-started",
+          "timestamp": "<TS>",
+          "initiative_id": "gf-alfa",
+          "phase_id": "execution",
+          "agent_id": "@migration-agent",
+          "harness": "claude-code"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "append",
+        "--event-type",
+        "artifact-written",
+        "--artifact-path",
+        ".github/artifacts/execution/relatorio.md",
+        "--initiative-id",
+        "gf-alfa",
+        "--agent-id",
+        "@migration-agent",
+        "--run-id",
+        "r-golden",
+        "--timestamp",
+        "2026-11-15T12:01:00.000Z"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/runs/gf-alfa.jsonl",
+        "event": {
+          "run_id": "r-golden",
+          "event_type": "artifact-written",
+          "timestamp": "<TS>",
+          "initiative_id": "gf-alfa",
+          "agent_id": "@migration-agent",
+          "artifact_path": ".github/artifacts/execution/relatorio.md",
+          "harness": "cli"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "append",
+        "--event_type",
+        "decision-requested",
+        "--initiative_id",
+        "gf-alfa",
+        "--task_id",
+        "epic-0/task-0.1",
+        "--actor",
+        "human",
+        "--message",
+        "titularidade do código",
+        "--reason",
+        "titularidade",
+        "--run_id",
+        "r-golden",
+        "--timestamp",
+        "2026-11-15T12:02:00.000Z"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/runs/gf-alfa.jsonl",
+        "event": {
+          "run_id": "r-golden",
+          "event_type": "decision-requested",
+          "timestamp": "<TS>",
+          "initiative_id": "gf-alfa",
+          "task_id": "epic-0/task-0.1",
+          "actor": "human",
+          "harness": "cli",
+          "message": "titularidade do código",
+          "metadata": {
+            "reason": "titularidade"
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "append",
+        "--event_type",
+        "blocked",
+        "--agent_id",
+        "@ws",
+        "--run_id",
+        "r-golden",
+        "--timestamp",
+        "2026-11-15T12:03:00.000Z"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/runs/workspace.jsonl",
+        "event": {
+          "run_id": "r-golden",
+          "event_type": "blocked",
+          "timestamp": "<TS>",
+          "agent_id": "@ws",
+          "harness": "cli"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "append",
+        "--event_type",
+        "gate-approved",
+        "--initiative_id",
+        "gf-alfa"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --event_type: 'gate-approved'",
+          "field": "event_type",
+          "value": "gate-approved",
+          "allowed": [
+            "agent-started",
+            "agent-progress",
+            "agent-done",
+            "artifact-written",
+            "blocked",
+            "decision-requested"
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "append",
+        "--event_type",
+        "artifact-written",
+        "--artifact_path",
+        "../fora/segredo.txt"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --artifact_path: '../fora/segredo.txt' — caminho relativo à raiz do workspace, sem '..'",
+          "field": "artifact_path",
+          "value": "../fora/segredo.txt"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "append",
+        "--event_type",
+        "agent-started",
+        "--initiative_id",
+        "../fora"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "valor inválido para --initiative_id: '../fora' — o id vira nome de arquivo: letras, números, '.', '-' e '_'",
+          "field": "initiative_id",
+          "value": "../fora"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "append",
+        "--event_type",
+        "agent-started",
+        "--harness",
+        "cursor"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --harness: 'cursor'",
+          "field": "harness",
+          "value": "cursor",
+          "allowed": [
+            "claude-code",
+            "copilot",
+            "cli",
+            "mcp",
+            "watcher"
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "append",
+        "--agent_id",
+        "@sem-tipo"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --event_type",
+          "field": "event_type"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "runs",
+        "remove"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "UNKNOWN_VERB",
+          "message": "verbo desconhecido para 'runs': 'remove'. Esperado: append.",
+          "verb": "remove"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 611 696308fedd92eb9f3d36535010a4d1b9accc2cf5e523734e2603c9a2b313b6d8 text",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 97 cfed88dfe64abe60987d6eccfe287325d4bfa4a596f52c52e17682312d023fb6 text"
+  }
+}

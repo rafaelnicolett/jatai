@@ -1,0 +1,1280 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CH1 — comandos do participante (K2/K4) > advancePhase: sem contrato / mandatory pendente (modal) / tudo ok → human-ok + done + roteia / última fase 1`] = `
+[
+  {
+    "access": [],
+    "call": "helyx.concierge.advancePhase("fase-inexistente")",
+    "vscode": [
+      {
+        "window.showWarningMessage": [
+          "Sem contrato definido para a fase \`fase-inexistente\`.",
+        ],
+      },
+    ],
+  },
+  {
+    "access": [],
+    "call": "helyx.concierge.advancePhase("business")",
+    "vscode": [
+      {
+        "window.showWarningMessage": [
+          "Não posso avançar a fase \`business\`: 5 item(ns) mandatory pendente(s).
+
+• Seção 'Problema' descreve a dor do cliente com evidência
+• Público-alvo com pelo menos uma persona identificada
+• Hipótese de valor clara e testável
+• Pelo menos 1 KPI ou OKR quantificável definido
+• Sem decisões de tecnologia ou arquitetura no brief",
+          {
+            "modal": true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    "access": [
+      [
+        "toggleChecklistFromChat",
+        "business",
+        "human-ok",
+        true,
+      ],
+      [
+        "markPhaseDoneFromChat",
+        "business",
+      ],
+    ],
+    "call": "helyx.concierge.advancePhase("business")",
+    "vscode": [
+      {
+        "commands.executeCommand": [
+          "workbench.action.chat.open",
+          {
+            "mode": "helyx",
+            "query": "Fase \`business\` validada pelo humano (todos itens mandatory ✓). Roteie para @product (próxima fase: product).",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    "access": [
+      [
+        "toggleChecklistFromChat",
+        "sustain",
+        "human-ok",
+        true,
+      ],
+      [
+        "markPhaseDoneFromChat",
+        "sustain",
+      ],
+    ],
+    "call": "helyx.concierge.advancePhase("sustain")",
+    "vscode": [
+      {
+        "window.showInformationMessage": [
+          "✅ Fase \`sustain\` finalizada — fim do mapa de fases conhecido.",
+        ],
+      },
+    ],
+  },
+]
+`;
+
+exports[`CH1 — comandos do participante (K2/K4) > continuePhase / runRawPrompt / startWithTemplate (template, sem template, fase desconhecida) 1`] = `
+[
+  {
+    "access": [],
+    "call": "helyx.concierge.continuePhase("@product")",
+    "vscode": [
+      {
+        "commands.executeCommand": [
+          "workbench.action.chat.open",
+          {
+            "mode": "helyx",
+            "query": "continuar com @product",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    "access": [],
+    "call": "helyx.concierge.runRawPrompt("@helyx prompt cru sintético")",
+    "vscode": [
+      {
+        "commands.executeCommand": [
+          "workbench.action.chat.open",
+          {
+            "mode": "helyx",
+            "query": "prompt cru sintético",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    "access": [],
+    "call": "helyx.concierge.startWithTemplate("architecture")",
+    "vscode": [
+      {
+        "commands.executeCommand": [
+          "workbench.action.chat.open",
+          {
+            "isPartialQuery": true,
+            "mode": "helyx",
+            "query": "Quero definir a arquitetura do sistema.
+
+## 🏗 Stack e Infra
+- **Backend**: <ex: Python FastAPI, Java Spring, .NET Core>
+- **Frontend**: <ex: React Vite, Flutter, iOS SwiftUI>
+- **Banco de dados**: <ex: PostgreSQL, MongoDB, Redis>
+- **Infra / Cloud**: <ex: AWS, GCP, Azure, on-premise, Kubernetes>
+
+## 🔌 Integrações externas
+- <Sistema/API 1>: <finalidade>
+- <Sistema/API 2>: <finalidade>
+
+## 📐 Padrão arquitetural preferido
+- <ex: Clean Architecture, Hexagonal, Layered CRUD, Vertical Slice>
+
+## ⚠️ Requisitos não-funcionais críticos
+- **Escala esperada**: <ex: 1k usuários/dia, picos de X req/s>
+- **Segurança**: <autenticação, dados sensíveis, compliance>
+- **Disponibilidade**: <SLA, tolerância a falha>",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    "access": [],
+    "call": "helyx.concierge.startWithTemplate("sprint-run")",
+    "vscode": [
+      {
+        "commands.executeCommand": [
+          "workbench.action.chat.open",
+          {
+            "isPartialQuery": true,
+            "mode": "helyx",
+            "query": "continuar com @sprint-runner",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    "access": [],
+    "call": "helyx.concierge.startWithTemplate("fase-inexistente")",
+    "vscode": [
+      {
+        "commands.executeCommand": [
+          "workbench.action.chat.open",
+          {
+            "isPartialQuery": true,
+            "mode": "helyx",
+            "query": "continuar com fase-inexistente",
+          },
+        ],
+      },
+    ],
+  },
+]
+`;
+
+exports[`CH1 — comandos do participante (K2/K4) > revealArtifact: pasta → revealFileInOS; arquivo → showTextDocument; inexistente/sem workspace → nada 1`] = `
+[
+  {
+    "access": [],
+    "call": "helyx.concierge.revealArtifact("docs")",
+    "vscode": [
+      {
+        "commands.executeCommand": [
+          "revealFileInOS",
+          {
+            "_raw": undefined,
+            "fsPath": "<ROOT>/docs",
+            "scheme": "file",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    "access": [],
+    "call": "helyx.concierge.revealArtifact("docs/a.md")",
+    "vscode": [
+      {
+        "window.showTextDocument": [
+          {
+            "_raw": undefined,
+            "fsPath": "<ROOT>/docs/a.md",
+            "scheme": "file",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    "access": [],
+    "call": "helyx.concierge.revealArtifact("docs/nao-existe.md")",
+    "vscode": [],
+  },
+  {
+    "access": [],
+    "call": "helyx.concierge.revealArtifact("docs/a.md")",
+    "vscode": [],
+  },
+]
+`;
+
+exports[`CH1 — comandos do participante (K2/K4) > toggleGuardRail → porta DeliveryStateAccess + reabre o chat com '@helyx status' 1`] = `
+{
+  "access": [
+    [
+      "toggleChecklistFromChat",
+      "business",
+      "kpi-defined",
+      true,
+    ],
+  ],
+  "call": "helyx.concierge.toggleGuardRail("business", "kpi-defined", true)",
+  "vscode": [
+    {
+      "commands.executeCommand": [
+        "workbench.action.chat.open",
+        {
+          "query": "@guia status",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > HITL pendente: business done sem human-ok (LM não é chamado) 1`] = `
+{
+  "lmSelectors": [],
+  "promptTail": "(LM não foi chamado)",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Business Brief?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Business Brief ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🛑 Gate HITL — Aprovação necessária
+  │ 
+  │ > A fase **💡 \`business\`** *(Business Brief)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**.
+  │ > ⚠️ **O fluxo está pausado.** Valide cada item abaixo antes de avançar para a próxima fase.
+  │ 
+  │ **1/6** itens obrigatórios validados — valide os itens 🟥 abaixo
+  │ 
+  │ ---
+  │ 
+markdown:
+  │ 
+  │ #### ☑️ Checklist da fase \`business\`
+  │ > **1/6** mandatory ✓ · **1/8** total ✓
+  │ 
+  │ - 🟥 📄 **business-brief.md criado em .github/artifacts/**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>O arquivo deve existir e ter conteúdo substantivo</sub>
+  │ - ✅ ✨ **Seção 'Problema' descreve a dor do cliente com evidência**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Evitar problema vago. Ideal: dado qualitativo ou quantitativo</sub>
+  │ - 🟥 ✨ **Público-alvo com pelo menos uma persona identificada**
+  │ - 🟥 ✨ **Hipótese de valor clara e testável**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Formato: 'Acreditamos que [solução] para [quem] resultará em [métrica]'</sub>
+  │ - 🟥 ✨ **Pelo menos 1 KPI ou OKR quantificável definido**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Ex: 'Reduzir churn em 15% em 90 dias'</sub>
+  │ - ⬜ ✨ **Stakeholders identificados com papéis** *(opcional)*
+  │ - ⬜ ✨ **Principais riscos de negócio listados** *(opcional)*
+  │ - 🟥 🚫 **Sem decisões de tecnologia ou arquitetura no brief**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Nomes de frameworks, linguagens ou ferramentas não devem aparecer</sub>
+  │ 
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) business-brief.md criado em .github/artifacts/" · args=["business","brief-exists",true]
+button: helyx.concierge.toggleGuardRail · "$(check) Seção 'Problema' descreve a dor do cliente com …" · args=["business","problem-section",false]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Público-alvo com pelo menos uma persona identif…" · args=["business","audience-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Hipótese de valor clara e testável" · args=["business","value-hypothesis",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Pelo menos 1 KPI ou OKR quantificável definido" · args=["business","kpi-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Stakeholders identificados com papéis" · args=["business","stakeholders",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Principais riscos de negócio listados" · args=["business","risks-listed",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Sem decisões de tecnologia ou arquitetura no br…" · args=["business","no-tech-decisions",true]",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > LM lançando no sendRequest → markdown '⚠️ Erro ao consultar o modelo: …' e o turno continua 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+## Workspace state
+
+No initiatives configured yet.
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "📊 Status geral",
+          "prompt": "@guia qual o estado do projeto?",
+        },
+        {
+          "label": "❓ Como funciona",
+          "prompt": "@guia como funciona a Helyx?",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🧭 Guia da Helyx
+  │ 
+  │ > Ainda não há iniciativa. Quem abre a iniciativa e conduz o Business Brief é o agente **helyx**: preencha o template abaixo e envie para ele.
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Abrir Cockpit"
+button: helyx.concierge.startWithTemplate · "$(edit) Preencher Business Brief" · args=["business"]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ > ⚠️ Erro ao consultar o modelo: Error: cota sintética excedida",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > REGRESSÃO: sem modelo de linguagem o guia responde com o determinístico, sem o aviso de Copilot (H-BUG-24) 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+    {
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "(LM não foi chamado)",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Business Brief?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Business Brief ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🧭 \`loja-demo\`  🟡 \`P1\`
+  │ > Loja Demo
+  │ 
+  │ | | |
+  │ |:---|:---|
+  │ | 🔵 **Stream**  | \`upstream\` |
+  │ | 💡 **Fase**     | \`business\` — Business Brief |
+  │ | 🤖 **Agente**   | \`@business\` |
+  │ | 📊 **Status**   | ⏳ em andamento |
+  │ | ⏩ **Próximo**  | \`@product\` — PRD |
+  │ | 👤 **Owner**    | \`time-produto\` |
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Cockpit"
+button: helyx.concierge.startWithTemplate · "$(edit) Preencher template → @business" · args=["business"]
+anchor: <ROOT>/.github/artifacts/initiatives/loja-demo · "📂 loja-demo/"
+anchor: <ROOT>/.github/artifacts/initiatives/loja-demo/business-brief.md · "business-brief.md"
+markdown:
+  │ 
+  │ #### ☑️ Checklist da fase \`business\`
+  │ > **1/6** mandatory ✓ · **1/8** total ✓
+  │ 
+  │ - ✅ 📄 **business-brief.md criado em .github/artifacts/**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>O arquivo deve existir e ter conteúdo substantivo</sub>
+  │ - 🟥 ✨ **Seção 'Problema' descreve a dor do cliente com evidência**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Evitar problema vago. Ideal: dado qualitativo ou quantitativo</sub>
+  │ - 🟥 ✨ **Público-alvo com pelo menos uma persona identificada**
+  │ - 🟥 ✨ **Hipótese de valor clara e testável**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Formato: 'Acreditamos que [solução] para [quem] resultará em [métrica]'</sub>
+  │ - 🟥 ✨ **Pelo menos 1 KPI ou OKR quantificável definido**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Ex: 'Reduzir churn em 15% em 90 dias'</sub>
+  │ - ⬜ ✨ **Stakeholders identificados com papéis** *(opcional)*
+  │ - ⬜ ✨ **Principais riscos de negócio listados** *(opcional)*
+  │ - 🟥 🚫 **Sem decisões de tecnologia ou arquitetura no brief**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Nomes de frameworks, linguagens ou ferramentas não devem aparecer</sub>
+  │ 
+button: helyx.concierge.toggleGuardRail · "$(check) business-brief.md criado em .github/artifacts/" · args=["business","brief-exists",false]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Seção 'Problema' descreve a dor do cliente com …" · args=["business","problem-section",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Público-alvo com pelo menos uma persona identif…" · args=["business","audience-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Hipótese de valor clara e testável" · args=["business","value-hypothesis",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Pelo menos 1 KPI ou OKR quantificável definido" · args=["business","kpi-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Stakeholders identificados com papéis" · args=["business","stakeholders",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Principais riscos de negócio listados" · args=["business","risks-listed",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Sem decisões de tecnologia ou arquitetura no br…" · args=["business","no-tech-decisions",true]
+markdown:
+  │ 
+  │ #### ➡️ Próximo passo
+  │ A fase **Business Brief** está com o agente \`@business\`.
+  │ - **O que ele entrega:** \`.github/artifacts/initiatives/<id>/business-brief.md\`
+  │ - **Para a fase ser aprovada:** Problema e persona descritos; e você marca os itens obrigatórios do checklist.
+  │ 
+  │ Quem aciona o \`@business\` é o agente **helyx**. Eu sou o guia: mostro o caminho, não aciono agentes nem gravo arquivos.
+  │ 
+button: helyx.concierge.continuePhase · "$(arrow-right) Continuar com o agente helyx" · args=["@business"]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ > ℹ️ O editor está sem modelo de linguagem, então o guia mostra o estado e o próximo passo, sem conversa. O trabalho segue com o agente **helyx**.",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > alias: bloco sprint-planner done sem human-ok → gate de sprint-plan 1`] = `
+{
+  "lmSelectors": [],
+  "promptTail": "(LM não foi chamado)",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Sprint Plan?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Sprint Plan ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🛑 Gate HITL — Aprovação necessária
+  │ 
+  │ > A fase **📅 \`sprint-plan\`** *(Sprint Plan)* foi concluída pelo agente mas **ainda não foi aprovada pelo humano**.
+  │ > ⚠️ **O fluxo está pausado.** Valide cada item abaixo antes de avançar para a próxima fase.
+  │ 
+  │ **0/4** itens obrigatórios validados — valide os itens 🟥 abaixo
+  │ 
+  │ ---
+  │ 
+markdown:
+  │ 
+  │ #### ☑️ Checklist da fase \`sprint-plan\`
+  │ > **0/4** mandatory ✓ · **0/6** total ✓
+  │ 
+  │ - 🟥 📄 **sprint-backlog.yaml criado com sprint name e objetivo**
+  │ - 🟥 ✨ **Todas as histórias têm critério de aceite (DoD)**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>DoD vago (ex: 'funcionar') é inválido</sub>
+  │ - 🟥 ✨ **Histórias estimadas em story points (Fibonacci)**
+  │ - 🟥 📜 **Cada história rastreável a uma feature do feature-list.md**
+  │ - ⬜ ✨ **Velocity de referência documentado no backlog** *(opcional)*
+  │ - ⬜ ✨ **Capacidade do sprint (total SP) dentro de 70-80% da velocity** *(opcional)*<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Buffer para imprevistos</sub>
+  │ 
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) sprint-backlog.yaml criado com sprint name e ob…" · args=["sprint-plan","backlog-exists",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Todas as histórias têm critério de aceite (DoD)" · args=["sprint-plan","stories-dod",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Histórias estimadas em story points (Fibonacci)" · args=["sprint-plan","stories-estimated",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Cada história rastreável a uma feature do featu…" · args=["sprint-plan","stories-traceable",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Velocity de referência documentado no backlog" · args=["sprint-plan","velocity-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Capacidade do sprint (total SP) dentro de 70-80…" · args=["sprint-plan","sprint-capacity",true]",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > as regras HITL fixas do system prompt são idênticas em toda fixture que chama o LM (golden único — alvo do CH5) 1`] = `
+"Você é o **Guia da Helyx**, o guia de chat da metodologia Helyx.
+
+## O que você faz
+- Mostra onde a iniciativa está: stream, fase, agente da fase e status, a partir do estado do workspace abaixo.
+- Explica o próximo passo: o que o agente da fase entrega e o que o humano aprova para a fase avançar.
+- Encaminha todo trabalho para o agente orquestrador **helyx**: é ele que abre iniciativas, aciona os agentes especialistas e grava os artefatos. No Claude Code, \`@helyx\` (ou \`/helyx\`); no Copilot, o agente \`helyx\` no seletor de agentes.
+
+## O que você nunca faz
+- Você não aciona agentes nem executa fases.
+- Você não cria nem edita arquivos, e não escreve o conteúdo de artefatos (brief, PRD, código).
+- Você não assume a persona de um agente especialista.
+- Você não aprova gate nem marca checklist: a aprovação é humana, no checklist do chat ou no Cockpit.
+- Se o pedido for trabalho, diga em uma frase que quem faz é o agente **helyx** e que o botão "Continuar com o agente helyx" leva o pedido até ele.
+
+## Mapa de fases (para explicar o caminho)
+- UPSTREAM: @business → @product → @ux-designer → @domain-modeler → @bdd → @architecture → @sprint-planner
+- DOWNSTREAM: @sprint-runner → @backend-*/frontend-* → @reviewer
+- OPERATION: @devops → @release → @observability → @incident → @sustain
+- BROWNFIELD: começa no Foundation, com o @assessor; depois ramifica em feature, modernização ou hotfix.
+
+## Como responder
+- Respostas curtas (≤ 8 linhas). Sem repetir o que o card já mostrou.
+- Português brasileiro.
+"
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > brownfield não pronto (config em .github/ai-sdk.config.yaml) 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+## Workspace state
+
+Project mode: **brownfield**
+Maturity frameworks configured: dora-4keys, tech-radar
+Foundation status: not started — needs @assessor (Foundation stream is mandatory before any initiative)
+
+No initiatives yet — brownfield mode begins with the Foundation stream via @assessor (orchestrates technical sub-agents + @business-archeologist). Gate F1 is mandatory before any initiative.
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "▶ Iniciar Foundation",
+          "prompt": "@guia rodar @assessor agora",
+        },
+        {
+          "label": "❓ O que é Foundation",
+          "prompt": "@guia como funciona o stream Foundation?",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🏛 Guia da Helyx — modo **brownfield**
+  │ 
+  │ > Estrutura agêntica instalada. Brownfield começa pelo stream **Foundation** — \`@assessor\` orquestra a engenharia reversa técnica + de negócio (\`@business-archeologist\`) para gerar o baseline imutável que toda gate posterior vai validar.
+  │ 
+  │ **Frameworks de maturidade configurados:** \`dora-4keys\`, \`tech-radar\`
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Abrir Cockpit"
+button: helyx.concierge.runRawPrompt · "$(law) Iniciar Foundation (@assessor)" · args=["@helyx Rode o @assessor neste repositório (stream Foundation). Orquestre @tech-mapper, @arch-discoverer, @domain-extractor, @quality-auditor, @debt-analyst, @maturity-assessor, @business-archeologist em paralelo. Produza .github/artifacts/assessment/{report.md, business-context.md, stakeholder-interview.md, baseline-metrics.json}."]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ 
+  │ 
+markdown:
+  │ Resposta sintética do modelo. 
+markdown:
+  │ ⏸ Fase pausada — aguardando validação humana no checklist abaixo.",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > brownfield pronto (report.md + business-context.md) 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+## Workspace state
+
+Project mode: **brownfield**
+Maturity frameworks configured: dora-4keys
+Foundation status: ready (gate F1 ✓ — report.md + business-context.md present)
+
+No initiatives yet — Foundation gate F1 ✓. Ready to spawn initiatives of type \`feature\` / \`modernization\` / \`hotfix\`.
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "📦 Nova Feature",
+          "prompt": "@guia quero abrir uma nova feature",
+        },
+        {
+          "label": "🔧 Modernização",
+          "prompt": "@guia quero refatorar / modernizar",
+        },
+        {
+          "label": "🚨 Hotfix",
+          "prompt": "@guia tenho um incidente em produção",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🏛 Guia da Helyx — modo **brownfield**
+  │ 
+  │ > **Foundation concluída** (gate F1 ✓). O projeto agora pode receber iniciativas de 3 tipos: nova feature, modernização ou hotfix. Escolha abaixo ou descreva o que quer fazer.
+  │ 
+  │ **Frameworks de maturidade configurados:** \`dora-4keys\`
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Abrir Cockpit"
+button: helyx.concierge.runRawPrompt · "$(plus) Nova Feature" · args=["@helyx Quero abrir uma iniciativa do tipo \`feature\`. Lê o business-context.md e me ajude a definir um PRD-delta com @product (sem passar por @business — o produto já existe)."]
+button: helyx.concierge.runRawPrompt · "$(tools) Modernização" · args=["@helyx Quero abrir uma iniciativa do tipo \`modernization\`. Rode o @modernization-planner usando report.md + baseline-metrics.json para gerar roadmap incremental (Strangler Fig, Expand-Contract)."]
+button: helyx.concierge.runRawPrompt · "$(flame) Hotfix / Incident" · args=["@helyx Tenho um incidente em produção. Abre iniciativa do tipo \`hotfix\` e roteie para @incident."]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ 
+  │ 
+markdown:
+  │ Resposta sintética do modelo. 
+markdown:
+  │ ⏸ Fase pausada — aguardando validação humana no checklist abaixo.",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > iniciativa ativa em business, checklist parcial, persona carregada 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+## Workspace state
+
+Initiatives (1):
+- loja-demo | Loja Demo | in-progress | phase: business | stream: upstream | type: feature | priority: P1 ← ACTIVE
+
+## Delivery state for loja-demo
+- business: in-progress
+
+## Existing artifacts
+- .github/artifacts/initiatives/loja-demo/business-brief.md
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Business Brief?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Business Brief ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🧭 \`loja-demo\`  🟡 \`P1\`
+  │ > Loja Demo
+  │ 
+  │ | | |
+  │ |:---|:---|
+  │ | 🔵 **Stream**  | \`upstream\` |
+  │ | 💡 **Fase**     | \`business\` — Business Brief |
+  │ | 🤖 **Agente**   | \`@business\` |
+  │ | 📊 **Status**   | ⏳ em andamento |
+  │ | ⏩ **Próximo**  | \`@product\` — PRD |
+  │ | 👤 **Owner**    | \`time-produto\` |
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Cockpit"
+button: helyx.concierge.startWithTemplate · "$(edit) Preencher template → @business" · args=["business"]
+anchor: <ROOT>/.github/artifacts/initiatives/loja-demo · "📂 loja-demo/"
+anchor: <ROOT>/.github/artifacts/initiatives/loja-demo/business-brief.md · "business-brief.md"
+markdown:
+  │ 
+  │ #### ☑️ Checklist da fase \`business\`
+  │ > **1/6** mandatory ✓ · **1/8** total ✓
+  │ 
+  │ - ✅ 📄 **business-brief.md criado em .github/artifacts/**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>O arquivo deve existir e ter conteúdo substantivo</sub>
+  │ - 🟥 ✨ **Seção 'Problema' descreve a dor do cliente com evidência**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Evitar problema vago. Ideal: dado qualitativo ou quantitativo</sub>
+  │ - 🟥 ✨ **Público-alvo com pelo menos uma persona identificada**
+  │ - 🟥 ✨ **Hipótese de valor clara e testável**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Formato: 'Acreditamos que [solução] para [quem] resultará em [métrica]'</sub>
+  │ - 🟥 ✨ **Pelo menos 1 KPI ou OKR quantificável definido**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Ex: 'Reduzir churn em 15% em 90 dias'</sub>
+  │ - ⬜ ✨ **Stakeholders identificados com papéis** *(opcional)*
+  │ - ⬜ ✨ **Principais riscos de negócio listados** *(opcional)*
+  │ - 🟥 🚫 **Sem decisões de tecnologia ou arquitetura no brief**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Nomes de frameworks, linguagens ou ferramentas não devem aparecer</sub>
+  │ 
+button: helyx.concierge.toggleGuardRail · "$(check) business-brief.md criado em .github/artifacts/" · args=["business","brief-exists",false]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Seção 'Problema' descreve a dor do cliente com …" · args=["business","problem-section",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Público-alvo com pelo menos uma persona identif…" · args=["business","audience-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Hipótese de valor clara e testável" · args=["business","value-hypothesis",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Pelo menos 1 KPI ou OKR quantificável definido" · args=["business","kpi-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Stakeholders identificados com papéis" · args=["business","stakeholders",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Principais riscos de negócio listados" · args=["business","risks-listed",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Sem decisões de tecnologia ou arquitetura no br…" · args=["business","no-tech-decisions",true]
+markdown:
+  │ 
+  │ #### ➡️ Próximo passo
+  │ A fase **Business Brief** está com o agente \`@business\`.
+  │ - **O que ele entrega:** \`.github/artifacts/initiatives/<id>/business-brief.md\`
+  │ - **Para a fase ser aprovada:** Problema e persona descritos; e você marca os itens obrigatórios do checklist.
+  │ 
+  │ Quem aciona o \`@business\` é o agente **helyx**. Eu sou o guia: mostro o caminho, não aciono agentes nem gravo arquivos.
+  │ 
+button: helyx.concierge.continuePhase · "$(arrow-right) Continuar com o agente helyx" · args=["@business"]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ 
+  │ 
+markdown:
+  │ Resposta sintética do modelo. 
+markdown:
+  │ ⏸ Fase pausada — aguardando validação humana no checklist abaixo.",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > o guia não relê o estado depois do modelo: uma escrita externa durante a resposta só aparece no turno seguinte (ADR-0025) 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+## Workspace state
+
+Initiatives (1):
+- loja-demo | Loja Demo | in-progress | phase: business | stream: upstream | type: feature | priority: P1 ← ACTIVE
+
+## Delivery state for loja-demo
+- business: in-progress
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Business Brief?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Business Brief ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🧭 \`loja-demo\`  🟡 \`P1\`
+  │ > Loja Demo
+  │ 
+  │ | | |
+  │ |:---|:---|
+  │ | 🔵 **Stream**  | \`upstream\` |
+  │ | 💡 **Fase**     | \`business\` — Business Brief |
+  │ | 🤖 **Agente**   | \`@business\` |
+  │ | 📊 **Status**   | ⏳ em andamento |
+  │ | ⏩ **Próximo**  | \`@product\` — PRD |
+  │ | 👤 **Owner**    | \`time-produto\` |
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Cockpit"
+button: helyx.concierge.startWithTemplate · "$(edit) Preencher template → @business" · args=["business"]
+anchor: <ROOT>/.github/artifacts/initiatives/loja-demo · "📂 loja-demo/"
+markdown:
+  │ 
+  │ #### ☑️ Checklist da fase \`business\`
+  │ > **0/6** mandatory ✓ · **0/8** total ✓
+  │ 
+  │ - 🟥 📄 **business-brief.md criado em .github/artifacts/**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>O arquivo deve existir e ter conteúdo substantivo</sub>
+  │ - 🟥 ✨ **Seção 'Problema' descreve a dor do cliente com evidência**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Evitar problema vago. Ideal: dado qualitativo ou quantitativo</sub>
+  │ - 🟥 ✨ **Público-alvo com pelo menos uma persona identificada**
+  │ - 🟥 ✨ **Hipótese de valor clara e testável**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Formato: 'Acreditamos que [solução] para [quem] resultará em [métrica]'</sub>
+  │ - 🟥 ✨ **Pelo menos 1 KPI ou OKR quantificável definido**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Ex: 'Reduzir churn em 15% em 90 dias'</sub>
+  │ - ⬜ ✨ **Stakeholders identificados com papéis** *(opcional)*
+  │ - ⬜ ✨ **Principais riscos de negócio listados** *(opcional)*
+  │ - 🟥 🚫 **Sem decisões de tecnologia ou arquitetura no brief**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Nomes de frameworks, linguagens ou ferramentas não devem aparecer</sub>
+  │ 
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) business-brief.md criado em .github/artifacts/" · args=["business","brief-exists",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Seção 'Problema' descreve a dor do cliente com …" · args=["business","problem-section",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Público-alvo com pelo menos uma persona identif…" · args=["business","audience-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Hipótese de valor clara e testável" · args=["business","value-hypothesis",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Pelo menos 1 KPI ou OKR quantificável definido" · args=["business","kpi-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Stakeholders identificados com papéis" · args=["business","stakeholders",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Principais riscos de negócio listados" · args=["business","risks-listed",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Sem decisões de tecnologia ou arquitetura no br…" · args=["business","no-tech-decisions",true]
+markdown:
+  │ 
+  │ #### ➡️ Próximo passo
+  │ A fase **Business Brief** está com o agente \`@business\`.
+  │ - **O que ele entrega:** \`business-brief.md\`
+  │ - **Para a fase ser aprovada:** você marca os 6 itens obrigatórios do checklist acima.
+  │ 
+  │ Quem aciona o \`@business\` é o agente **helyx**. Eu sou o guia: mostro o caminho, não aciono agentes nem gravo arquivos.
+  │ 
+button: helyx.concierge.continuePhase · "$(arrow-right) Continuar com o agente helyx" · args=["@business"]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ 
+  │ 
+markdown:
+  │ Resposta sintética do modelo. 
+markdown:
+  │ ⏸ Fase pausada — aguardando validação humana no checklist abaixo.",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > sem pasta aberta 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+Workspace sem configuração Helyx.
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "📊 Status geral",
+          "prompt": "@guia qual o estado do projeto?",
+        },
+        {
+          "label": "❓ Como funciona",
+          "prompt": "@guia como funciona a Helyx?",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🧭 Guia da Helyx
+  │ 
+  │ > Ainda não há iniciativa. Quem abre a iniciativa e conduz o Business Brief é o agente **helyx**: preencha o template abaixo e envie para ele.
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Abrir Cockpit"
+button: helyx.concierge.startWithTemplate · "$(edit) Preencher Business Brief" · args=["business"]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ 
+  │ 
+markdown:
+  │ Resposta sintética do modelo. 
+markdown:
+  │ ⏸ Fase pausada — aguardando validação humana no checklist abaixo.",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > todos os mandatory ✓ em business, sem human-ok → botão 'Aprovar e avançar fase' 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+## Workspace state
+
+Initiatives (1):
+- loja-demo | Loja Demo | in-progress | phase: business | stream: upstream | type: feature | priority: P1 ← ACTIVE
+
+## Delivery state for loja-demo
+- business: in-progress
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Business Brief?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Business Brief ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🧭 \`loja-demo\`  🟡 \`P1\`
+  │ > Loja Demo
+  │ 
+  │ | | |
+  │ |:---|:---|
+  │ | 🔵 **Stream**  | \`upstream\` |
+  │ | 💡 **Fase**     | \`business\` — Business Brief |
+  │ | 🤖 **Agente**   | \`@business\` |
+  │ | 📊 **Status**   | ⏳ em andamento |
+  │ | ⏩ **Próximo**  | \`@product\` — PRD |
+  │ | 👤 **Owner**    | \`time-produto\` |
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Cockpit"
+button: helyx.concierge.startWithTemplate · "$(edit) Preencher template → @business" · args=["business"]
+anchor: <ROOT>/.github/artifacts/initiatives/loja-demo · "📂 loja-demo/"
+markdown:
+  │ 
+  │ #### 🎯 Checklist da fase \`business\`
+  │ > **6/6** mandatory ✓ · **6/8** total ✓
+  │ 
+  │ - ✅ 📄 **business-brief.md criado em .github/artifacts/**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>O arquivo deve existir e ter conteúdo substantivo</sub>
+  │ - ✅ ✨ **Seção 'Problema' descreve a dor do cliente com evidência**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Evitar problema vago. Ideal: dado qualitativo ou quantitativo</sub>
+  │ - ✅ ✨ **Público-alvo com pelo menos uma persona identificada**
+  │ - ✅ ✨ **Hipótese de valor clara e testável**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Formato: 'Acreditamos que [solução] para [quem] resultará em [métrica]'</sub>
+  │ - ✅ ✨ **Pelo menos 1 KPI ou OKR quantificável definido**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Ex: 'Reduzir churn em 15% em 90 dias'</sub>
+  │ - ⬜ ✨ **Stakeholders identificados com papéis** *(opcional)*
+  │ - ⬜ ✨ **Principais riscos de negócio listados** *(opcional)*
+  │ - ✅ 🚫 **Sem decisões de tecnologia ou arquitetura no brief**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Nomes de frameworks, linguagens ou ferramentas não devem aparecer</sub>
+  │ 
+button: helyx.concierge.toggleGuardRail · "$(check) business-brief.md criado em .github/artifacts/" · args=["business","brief-exists",false]
+button: helyx.concierge.toggleGuardRail · "$(check) Seção 'Problema' descreve a dor do cliente com …" · args=["business","problem-section",false]
+button: helyx.concierge.toggleGuardRail · "$(check) Público-alvo com pelo menos uma persona identif…" · args=["business","audience-defined",false]
+button: helyx.concierge.toggleGuardRail · "$(check) Hipótese de valor clara e testável" · args=["business","value-hypothesis",false]
+button: helyx.concierge.toggleGuardRail · "$(check) Pelo menos 1 KPI ou OKR quantificável definido" · args=["business","kpi-defined",false]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Stakeholders identificados com papéis" · args=["business","stakeholders",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Principais riscos de negócio listados" · args=["business","risks-listed",true]
+button: helyx.concierge.toggleGuardRail · "$(check) Sem decisões de tecnologia ou arquitetura no br…" · args=["business","no-tech-decisions",false]
+markdown:
+  │ 
+  │ > 🎯 **Todos os itens mandatory estão ✓.** Pronto para o humano aprovar a fase.
+  │ 
+  │ 
+button: helyx.concierge.advancePhase · "$(check-all) Aprovar e avançar fase" · args=["business"]
+markdown:
+  │ 
+  │ #### ➡️ Próximo passo
+  │ A fase **Business Brief** está com o agente \`@business\`.
+  │ - **O que ele entrega:** \`business-brief.md\`
+  │ - **Para a fase ser aprovada:** você marca os 6 itens obrigatórios do checklist acima.
+  │ 
+  │ Quem aciona o \`@business\` é o agente **helyx**. Eu sou o guia: mostro o caminho, não aciono agentes nem gravo arquivos.
+  │ 
+button: helyx.concierge.continuePhase · "$(arrow-right) Continuar com o agente helyx" · args=["@business"]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ 
+  │ 
+markdown:
+  │ Resposta sintética do modelo. 
+markdown:
+  │ ⏸ Fase pausada — aguardando validação humana no checklist abaixo.",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > várias iniciativas com active de um id que não existe (card de lista + fallback pós-LLM) 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+## Workspace state
+
+Initiatives (2):
+- loja-demo | Loja Demo | planned | phase: business | stream: upstream | priority: P0
+- catalogo-hotfix | Correção do Catálogo | planned | phase: incident | stream: operation | priority: —
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "📊 Status geral",
+          "prompt": "@guia qual o estado do projeto?",
+        },
+        {
+          "label": "❓ Como funciona",
+          "prompt": "@guia como funciona a Helyx?",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🧭 Guia da Helyx — Iniciativas
+  │ 
+  │ | ID | Nome | Stream | Fase atual | Prioridade |
+  │ |:---|:---|:---|:---|:---|
+  │ | \`loja-demo\` | Loja Demo | 🔵 \`upstream\` | \`business\` | 🔴 \`P0\` |
+  │ | \`catalogo-hotfix\` | Correção do Catálogo | 🟢 \`operation\` | \`incident\` | — |
+  │ 
+  │ > Nenhuma iniciativa marcada como \`active\`. Defina \`active: <id>\` em \`initiatives.yaml\`.
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Cockpit"
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ 
+  │ 
+markdown:
+  │ Resposta sintética do modelo. 
+markdown:
+  │ ⏸ Fase pausada — aguardando validação humana no checklist abaixo.",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > várias iniciativas sem active: a primeira listada assume, como no Cockpit 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+## Workspace state
+
+Initiatives (2):
+- loja-demo | Loja Demo | planned | phase: business | stream: upstream | priority: P0 ← ACTIVE
+- catalogo-hotfix | Correção do Catálogo | planned | phase: incident | stream: operation | priority: —
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "➡️ Próximo passo",
+          "prompt": "qual o próximo passo na fase Business Brief?",
+        },
+        {
+          "label": "☑ Ver checklist",
+          "prompt": "quais itens do checklist da fase Business Brief ainda faltam?",
+        },
+        {
+          "label": "📊 Status geral",
+          "prompt": "status de todas as iniciativas",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🧭 \`loja-demo\`  🔴 \`P0\`
+  │ > Loja Demo
+  │ 
+  │ | | |
+  │ |:---|:---|
+  │ | 🔵 **Stream**  | \`upstream\` |
+  │ | 💡 **Fase**     | \`business\` — Business Brief |
+  │ | 🤖 **Agente**   | \`@business\` |
+  │ | 📊 **Status**   | ⬜ pendente |
+  │ | ⏩ **Próximo**  | \`@product\` — PRD |
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Cockpit"
+button: helyx.concierge.startWithTemplate · "$(edit) Preencher template → @business" · args=["business"]
+markdown:
+  │ 
+  │ #### ☑️ Checklist da fase \`business\`
+  │ > **0/6** mandatory ✓ · **0/8** total ✓
+  │ 
+  │ - 🟥 📄 **business-brief.md criado em .github/artifacts/**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>O arquivo deve existir e ter conteúdo substantivo</sub>
+  │ - 🟥 ✨ **Seção 'Problema' descreve a dor do cliente com evidência**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Evitar problema vago. Ideal: dado qualitativo ou quantitativo</sub>
+  │ - 🟥 ✨ **Público-alvo com pelo menos uma persona identificada**
+  │ - 🟥 ✨ **Hipótese de valor clara e testável**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Formato: 'Acreditamos que [solução] para [quem] resultará em [métrica]'</sub>
+  │ - 🟥 ✨ **Pelo menos 1 KPI ou OKR quantificável definido**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Ex: 'Reduzir churn em 15% em 90 dias'</sub>
+  │ - ⬜ ✨ **Stakeholders identificados com papéis** *(opcional)*
+  │ - ⬜ ✨ **Principais riscos de negócio listados** *(opcional)*
+  │ - 🟥 🚫 **Sem decisões de tecnologia ou arquitetura no brief**<br/>&nbsp;&nbsp;&nbsp;&nbsp;<sub>Nomes de frameworks, linguagens ou ferramentas não devem aparecer</sub>
+  │ 
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) business-brief.md criado em .github/artifacts/" · args=["business","brief-exists",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Seção 'Problema' descreve a dor do cliente com …" · args=["business","problem-section",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Público-alvo com pelo menos uma persona identif…" · args=["business","audience-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Hipótese de valor clara e testável" · args=["business","value-hypothesis",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Pelo menos 1 KPI ou OKR quantificável definido" · args=["business","kpi-defined",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Stakeholders identificados com papéis" · args=["business","stakeholders",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Principais riscos de negócio listados" · args=["business","risks-listed",true]
+button: helyx.concierge.toggleGuardRail · "$(circle-outline) Sem decisões de tecnologia ou arquitetura no br…" · args=["business","no-tech-decisions",true]
+markdown:
+  │ 
+  │ #### ➡️ Próximo passo
+  │ A fase **Business Brief** está com o agente \`@business\`.
+  │ - **O que ele entrega:** \`business-brief.md\`
+  │ - **Para a fase ser aprovada:** você marca os 6 itens obrigatórios do checklist acima.
+  │ 
+  │ Quem aciona o \`@business\` é o agente **helyx**. Eu sou o guia: mostro o caminho, não aciono agentes nem gravo arquivos.
+  │ 
+button: helyx.concierge.continuePhase · "$(arrow-right) Continuar com o agente helyx" · args=["@business"]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ 
+  │ 
+markdown:
+  │ Resposta sintética do modelo. 
+markdown:
+  │ ⏸ Fase pausada — aguardando validação humana no checklist abaixo.",
+}
+`;
+
+exports[`CH1 — golden da transcrição por fixture (K3/K5/K6/K7) > workspace vazio 1`] = `
+{
+  "lmSelectors": [
+    {
+      "family": "gpt-4o",
+      "vendor": "copilot",
+    },
+  ],
+  "promptTail": "
+## Workspace state
+
+No initiatives configured yet.
+
+## Pedido do usuário
+quero começar
+",
+  "result": {
+    "metadata": {
+      "followups": [
+        {
+          "label": "📊 Status geral",
+          "prompt": "@guia qual o estado do projeto?",
+        },
+        {
+          "label": "❓ Como funciona",
+          "prompt": "@guia como funciona a Helyx?",
+        },
+      ],
+    },
+  },
+  "transcript": "progress: Lendo estado do workspace…
+markdown:
+  │ ---
+  │ ### 🧭 Guia da Helyx
+  │ 
+  │ > Ainda não há iniciativa. Quem abre a iniciativa e conduz o Business Brief é o agente **helyx**: preencha o template abaixo e envie para ele.
+  │ 
+  │ ---
+  │ 
+button: helyx.openCockpitNext · "$(rocket) Abrir Cockpit"
+button: helyx.concierge.startWithTemplate · "$(edit) Preencher Business Brief" · args=["business"]
+markdown:
+  │ 
+  │ 
+  │ 
+progress: Consultando o guia…
+markdown:
+  │ 
+  │ 
+  │ 
+markdown:
+  │ Resposta sintética do modelo. 
+markdown:
+  │ ⏸ Fase pausada — aguardando validação humana no checklist abaixo.",
+}
+`;

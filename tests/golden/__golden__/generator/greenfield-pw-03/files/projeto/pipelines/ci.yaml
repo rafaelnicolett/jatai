@@ -1,0 +1,37 @@
+name: CI — orbita
+# Gerado pela Helyx
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+          cache: maven
+
+      - name: Run tests
+        run: cd code/services/orbita-api && mvn -B verify
+
+      - name: Build JAR
+        run: cd code/services/orbita-api && mvn -B package -DskipTests
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t orbita:latest code/services/orbita-api
+
+# Este pipeline será expandido pelo @devops durante configuração de CI/CD

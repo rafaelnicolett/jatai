@@ -1,0 +1,247 @@
+{
+  "schema": 1,
+  "scenario": "gates-get-e-approve",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "get",
+        "--gate",
+        "d2",
+        "--initiative",
+        "gf-alfa"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "gate": "d2",
+        "initiative": "gf-alfa",
+        "record": null
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d2",
+        "--initiative",
+        "gf-alfa",
+        "--approved-at",
+        "2026-11-15T12:00:00.000Z",
+        "--by",
+        "Outra Pessoa",
+        "--note",
+        "roadmap revisado"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "gate": "d2",
+        "initiative": "gf-alfa",
+        "human_approved_at": "2026-11-15T12:00:00.000Z",
+        "by": "Outra Pessoa"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d3",
+        "--initiative",
+        "mod-beta",
+        "--approved-at",
+        "2026-11-15T13:00:00.000Z"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "gate": "d3",
+        "initiative": "mod-beta",
+        "human_approved_at": "2026-11-15T13:00:00.000Z",
+        "by": "Pessoa Fictícia",
+        "cancelled": []
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d1",
+        "--repo",
+        "api",
+        "--approved-at",
+        "2026-11-15T14:00:00.000Z"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/assessment/foundation-state.yaml",
+        "changed": true,
+        "gate": "d1",
+        "repo": "api",
+        "human_approved_at": "2026-11-15T14:00:00.000Z",
+        "by": "Pessoa Fictícia"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "get",
+        "--gate",
+        "d1",
+        "--repo",
+        "api"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/assessment/foundation-state.yaml",
+        "gate": "d1",
+        "repo": "api",
+        "record": {
+          "status": "approved",
+          "approved_at": "2026-11-15T14:00:00.000Z",
+          "human_approved_at": "2026-11-15T14:00:00.000Z",
+          "by": "Pessoa Fictícia"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d4",
+        "--initiative",
+        "gf-alfa"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_ENUM",
+          "message": "valor inválido para --gate: 'd4'",
+          "field": "gate",
+          "value": "d4",
+          "allowed": [
+            "d1",
+            "d2",
+            "d3"
+          ]
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d1"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --repo",
+          "field": "repo"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d1",
+        "--repo",
+        "web"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "REPO_NOT_FOUND",
+          "message": "repositório 'web' não existe em assessment/foundation-state.yaml",
+          "repo": "web"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "approve",
+        "--gate",
+        "d3",
+        "--initiative",
+        "nao-existe"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "INITIATIVE_NOT_FOUND",
+          "message": "iniciativa 'nao-existe' não existe em initiatives.yaml",
+          "id": "nao-existe"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "gates",
+        "remove"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "UNKNOWN_VERB",
+          "message": "verbo desconhecido para 'gates': 'remove'. Esperado: get, approve.",
+          "verb": "remove"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "home/.gitconfig": "file 100644 73 639b718d466207f05ddb5ba8fd6f64f8d2d0be2361a63bacfcbcc0de09147a70 text",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/assessment/": "dir",
+    "ws/.github/artifacts/assessment/foundation-state.yaml": "file 100644 434 c162e38a4dd712cccec87f033f9acadcacd0a115c4b32d3f5220acff7c008ada text",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 693 a4a30c21ca53b1bfe6e407aa56128b8ec22c2ab14e8458d6908151bd5f40c4a7 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 270 a157f313e17a92c8bf725d05f952855f18320df169e183d6b5a613e6f39cd4c2 text",
+    "ws/.github/artifacts/runs/mod-beta.jsonl": "file 100644 276 68c0a38ea30a961003e9f06e73787cc1cfd57fa92c80e73f593f784e0c6c7a02 text",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 276 4f380f48bd5dd702d98d4f75b4ce9923830e176771817440f878a598f9769e3c text"
+  }
+}

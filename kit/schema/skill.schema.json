@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kit/schema/skill.schema.json",
+  "title": "Frontmatter de skill do kit",
+  "description": "Frontmatter de todo SKILL.md do kit (ADR-0018). Validado por scripts/kit-lint.js no build e no CI, sobre o arquivo renderizado. O name tem de ser igual à pasta da skill.",
+  "type": "object",
+  "required": ["id", "name", "type", "description"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "type": { "type": "string", "enum": ["skill"] },
+    "description": { "type": "string", "minLength": 20 },
+    "applicable_to": { "type": "array", "items": { "type": "string" } },
+    "inputs": { "type": "array" },
+    "outputs": { "type": "array" }
+  },
+  "additionalProperties": true
+}

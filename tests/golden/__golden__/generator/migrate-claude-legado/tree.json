@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "case": "migrate-claude-legado",
+  "base": "brownfield-claude-padrao",
+  "input": {
+    "hostAdapter": "claude",
+    "projectName": "ws-legado",
+    "fixture": "legado"
+  },
+  "outcome": {
+    "resolved": true
+  },
+  "calls": null,
+  "entries": {
+    "workspace/.claude/agents/domain/": "dir",
+    "workspace/.claude/agents/domain/agendamento.agent.md": "file 100644 104 3dc099a2a4ef22d5b2ab036cd46a950e72b6be95acfc558357454020f73a0793 text",
+    "workspace/.claude/skills/coding-guidelines-app-ficticio/": "dir",
+    "workspace/.claude/skills/coding-guidelines-app-ficticio/SKILL.md": "file 100644 37 e4af0395d39275ebfe21a0c673842084f60de95ffc08351a669b04f466b8f21d text",
+    "workspace/.claude/skills/skill-removida-do-kit/": "dir",
+    "workspace/.claude/skills/skill-removida-do-kit/SKILL.md": "file 100644 33 fd567ec153b36ffc87433befa725ef9db3ded25f1e850e234b6c6c47eefa78a3 text",
+    "workspace/.github/artifacts/assessment/.gitkeep": "absent",
+    "workspace/.github/artifacts/assessment/foundation-state.yaml": "file 100644 35 fcc7e78ecb023c1e09881be38e8d201a384952bf1d9a9cafd564fe492fe421f9 text",
+    "workspace/.github/artifacts/repos.yaml": "file 100644 80 b3ff7b81fd08dfc02a417d214621c36423213454f2d05f37ec4ff3d55766f615 text",
+    "workspace/.github/artifacts/runs/": "absent",
+    "workspace/docs/input/README.md": "absent",
+    "workspace/docs/input/contrato-ficticio.md": "file 100644 21 e14b0c0ff1a3a9b5ddf6a7e6921d3072d7c2221bb24b06ba98638fcbc85f7e5a text",
+    "workspace/helyx.config.yaml": "file 100644 221 417eea2f6539c2f6b69525fd0b890db8f3adfe0f9d2b65f73c604e8f75105dc8 text"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "note": "Workspace demo fictício: todos os números são inventados.",
+  "measured_at": "2026-10-05T12:38:10Z",
+  "repos": {
+    "biblioteca-api": { "coverage_pct": 58, "tests": 9, "open_findings": 8 },
+    "biblioteca-web": { "coverage_pct": 24, "tests": 5, "open_findings": 5 }
+  },
+  "dora": {
+    "deployment_frequency": "sem medição: o snapshot não traz histórico git",
+    "lead_time_for_changes": "sem medição",
+    "change_failure_rate": "sem medição",
+    "time_to_restore": "sem medição"
+  }
+}

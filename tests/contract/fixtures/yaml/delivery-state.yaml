@@ -1,0 +1,27 @@
+# Fixture SINTÉTICA (F0.4, lane B)
+initiative_id: loja-demo
+version: 2
+phases:
+  business:
+    status: done
+    agent: "@business"
+    completed_at: "2025-03-05T12:00:00Z"
+    artifacts:
+      - path: ".github/artifacts/business-brief.md"
+        exists: true
+        note: "versão 1"
+    human_checklist:
+      problem-section: true
+      kpi-defined: false
+  product:
+    status: in-progress
+    agent: "@product"
+    human_checklist:
+      prd-references-brief: true
+  sprint-planner:
+    status: done
+    agent: "@sprint-planner"
+    human_checklist:
+      backlog-ok: true
+  domain:
+    status: round_2_done

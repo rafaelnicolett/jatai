@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-create-sobre-arquivo-com-comentarios",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-gama",
+        "--name",
+        "Projeto Gama",
+        "--active"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "gf-gama"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 373 fd97f7866c928a68fa683e46eaa041339da1686109696c3b3203b5692b532142 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-gama.jsonl": "file 100644 225 06d21bc227851ffe9b461f3f9854a3cc1321ce6cacd6a3b4de4e5323a029d314 text"
+  }
+}

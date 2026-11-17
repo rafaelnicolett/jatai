@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Jataí</title>
+  <!-- Símbolo Guarda: a jataí vista de cima. As quatro faixas de mel do abdômen são
+       os quatro streams; a ponta redonda é o "sem ferrão". Paleta: Mel #F39A1D,
+       Própolis #2C1708, Olho #5B6B2C, Asa #FFF6E2. -->
+  <defs>
+    <clipPath id="jatai-guarda-abdomen"><ellipse cx="0" cy="96" rx="56" ry="84"/></clipPath>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="#F39A1D"/>
+  <circle cx="256" cy="262" r="198" fill="none" stroke="#FFF6E2" stroke-opacity=".5" stroke-width="10" stroke-dasharray="2 26" stroke-linecap="round"/>
+  <g transform="translate(256 236) scale(1.08)">
+    <!-- asas: dianteira e traseira de cada lado -->
+    <g fill="#FFF6E2" stroke="#2C1708" stroke-width="7" stroke-linejoin="round">
+      <ellipse cx="-96" cy="-34" rx="94" ry="44" transform="rotate(-24 -96 -34)"/>
+      <ellipse cx="-76" cy="20" rx="66" ry="30" transform="rotate(16 -76 20)"/>
+      <ellipse cx="96" cy="-34" rx="94" ry="44" transform="rotate(24 96 -34)"/>
+      <ellipse cx="76" cy="20" rx="66" ry="30" transform="rotate(-16 76 20)"/>
+    </g>
+    <path d="M-40 -18Q-100 -50 -158 -66M40 -18Q100 -50 158 -66" fill="none" stroke="#2C1708" stroke-opacity=".55" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- antenas -->
+    <path d="M-12 -86Q-22 -118 -50 -128M12 -86Q22 -118 50 -128" fill="none" stroke="#2C1708" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="-50" cy="-128" r="8" fill="#2C1708"/>
+    <circle cx="50" cy="-128" r="8" fill="#2C1708"/>
+    <!-- abdômen: quatro faixas de mel entre três de própolis, ponta redonda -->
+    <ellipse cx="0" cy="96" rx="56" ry="84" fill="#F39A1D" stroke="#2C1708" stroke-width="7"/>
+    <g clip-path="url(#jatai-guarda-abdomen)" fill="#2C1708">
+      <rect x="-70" y="44" width="140" height="20"/>
+      <rect x="-70" y="88" width="140" height="20"/>
+      <rect x="-70" y="132" width="140" height="20"/>
+    </g>
+    <!-- tórax e cabeça -->
+    <circle cx="0" cy="-8" r="44" fill="#2C1708"/>
+    <ellipse cx="0" cy="-70" rx="36" ry="31" fill="#2C1708"/>
+    <ellipse cx="-21" cy="-74" rx="11" ry="16" fill="#5B6B2C" transform="rotate(-14 -21 -74)"/>
+    <ellipse cx="21" cy="-74" rx="11" ry="16" fill="#5B6B2C" transform="rotate(14 21 -74)"/>
+    <circle cx="-24" cy="-80" r="3.4" fill="#FFF6E2" fill-opacity=".85"/>
+    <circle cx="18" cy="-80" r="3.4" fill="#FFF6E2" fill-opacity=".85"/>
+  </g>
+</svg>

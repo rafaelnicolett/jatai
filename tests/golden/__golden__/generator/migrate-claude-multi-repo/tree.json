@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "case": "migrate-claude-multi-repo",
+  "base": "brownfield-claude-padrao",
+  "input": {
+    "hostAdapter": "claude",
+    "projectName": "orbita-ws",
+    "fixture": "multi-repo"
+  },
+  "outcome": {
+    "resolved": true
+  },
+  "calls": null,
+  "entries": {
+    "workspace/.claude/agents/domain/": "dir",
+    "workspace/.claude/agents/domain/faturamento-ficticio.agent.md": "file 100644 48 58b3a2d538a0bd863ac5ed423c787ce52aee4a9e9d57fdfb0f5d5c242f106430 text",
+    "workspace/.claude/skills/coding-guidelines-app-a/": "dir",
+    "workspace/.claude/skills/coding-guidelines-app-a/SKILL.md": "file 100644 19 a8a0fc582723816f6b93e1854f3d314620d9fd116047fd85921b90de2ab15855 text",
+    "workspace/.claude/skills/coding-guidelines-app-b/": "dir",
+    "workspace/.claude/skills/coding-guidelines-app-b/SKILL.md": "file 100644 19 e1980d0ecfdc41c171166b36fb18bb314ae8e5db4109432e2ca9d21bdcc1c6ef text",
+    "workspace/.github/artifacts/assessment/.gitkeep": "absent",
+    "workspace/.github/artifacts/assessment/foundation-state.yaml": "file 100644 96 04b45465d3a465eec8968e74dc4d8572512ca6f7dcc025c73f836ab54a874991 text",
+    "workspace/.github/artifacts/repos.yaml": "file 100644 125 f41b31e22264174ca174deae588ec2d98e1cbac014ecfcff1ffd457d8bcd36ec text",
+    "workspace/.github/artifacts/runs/": "absent",
+    "workspace/.gitignore": "file 100644 279 20b9e747c5664f8cd1bccf168fd34409ef44c598f4fc0c04805ac052678d474c text",
+    "workspace/docs/input/README.md": "absent",
+    "workspace/helyx.config.yaml": "file 100644 142 2d0b7e3764264323aae7f27f1cc8bb5ba8d5f4b4ad905ca4578c134b691a4734 text",
+    "workspace/repos/app-a/": "dir",
+    "workspace/repos/app-a/README.md": "file 100644 18 ad178f8a1fc77ea7227679e6d8c0fc006e2e71de9a7492588dd6afa0ab6f0a88 text",
+    "workspace/repos/app-b/": "dir",
+    "workspace/repos/app-b/src/": "dir",
+    "workspace/repos/app-b/src/index.js": "file 100644 20 6e66e366f0aefb84ad8110afcd9b2245702c643c831edf8316ff048fec739d2e text"
+  }
+}

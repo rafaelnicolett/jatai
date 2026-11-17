@@ -1,0 +1,6 @@
+initiatives:
+  - id: "orbita"
+    name: "orbita"
+    status: "planned"
+    mode: "greenfield"
+active: "orbita"

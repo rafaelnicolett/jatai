@@ -1,0 +1,1 @@
+{"run_id":"state-commands","event_type":"gate-approved","timestamp":"<TS>","phase_id":"gate-d1","repo_id":"api","artifact_path":".github/artifacts/assessment/foundation-state.yaml","actor":"human","by":"Pessoa Fictícia","harness":"cli","message":"Gate D1 de 'api' aprovado"}

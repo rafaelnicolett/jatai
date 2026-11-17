@@ -1,0 +1,10 @@
+# Quem revisa o quê (F7.3). Mantenha em sincronia com o MAINTAINERS.md.
+#
+# Hoje o projeto tem um mantenedor, então uma linha cobre tudo. Quando houver
+# mais gente, acrescente linhas por área (a última que casar vence).
+#
+# Atenção especial: os gates do CI rodam código do próprio PR. Mudanças em
+# .github/workflows/, scripts/, webview-ui/eslint-baseline.json, na política
+# de licenças e na lista do scanner de conteúdo proibido sempre passam por
+# quem mantém.
+*  @rafaelnicolett

@@ -1,0 +1,102 @@
+# Fixture sintética (F2.3): sprint-backlog.yaml na Forma A (meta: + sprints[].items[])
+# com um erro de sintaxe YAML de verdade: um item de dod: que começa com crase
+# (indicador reservado) e um dois-pontos dentro. O js-yaml lança no load.
+# Conteúdo fictício; só a forma importa para os testes.
+
+meta:
+  product: Acme Loja
+  code_name: acme-loja
+  total_sprints: 2
+  sprint_duration_weeks: 2
+  team_composition:
+    - role: backend
+      count: 1
+    - role: frontend
+      count: 1
+  gate_before_downstream: G1
+  gate_before_operation: G2
+
+sprints:
+  - id: S1
+    name: "Fundação"
+    goal: >
+      Texto sintético do objetivo do sprint 1,
+      dobrado em duas linhas.
+    priority: P0
+    items:
+
+      # ── BACKEND ─────────────────────────────
+
+      - id: S1-BKD-01
+        title: "Esqueleto do serviço de catálogo"
+        status: done
+        component: backend
+        feature: null
+        size: S
+        dor:
+          - ADR-0001 lido
+        dod:
+          - Serviço sobe com health check em /health
+          - Testes configurados no CI
+        openapi_endpoints: []
+        tags: [infra, setup]
+
+      - id: S1-BKD-02
+        title: "Banco e migrações"
+        status: done
+        component: backend
+        feature: F-01
+        size: S
+        depends_on: [S1-BKD-01]
+        dor:
+          - S1-BKD-01 concluído
+        dod:
+          - Migração inicial aplicada
+        openapi_endpoints: []
+        tags: [infra, db]
+
+      # ── CLIENTE DESKTOP ─────────────────────
+
+      - id: S1-EXT-01
+        title: "Projeto do cliente desktop"
+        status: done
+        component: extension
+        feature: null
+        size: S
+        dor:
+          - Estrutura de pastas definida
+        dod:
+          - Compila sem erros
+          - `Acme: Abrir catálogo` registrado na paleta de comandos
+          - CI com build e testes
+        openapi_endpoints: []
+        tags: [infra, setup]
+
+  - id: S2
+    name: "Catálogo"
+    goal: "Texto sintético do objetivo do sprint 2"
+    priority: P0
+    items:
+      - id: S2-WEB-01
+        title: "Tela de cadastro de produto"
+        status: in-progress
+        component: frontend
+        feature: F-02
+        size: M
+        depends_on: [S1-BKD-02]
+        dod:
+          - Formulário valida campos obrigatórios
+        tags: [catalogo]
+
+dependency_graph:
+  critical_path:
+    - S1-BKD-01 → S1-BKD-02 → S2-WEB-01
+  parallelizable:
+    - S1: Backend (S1-BKD-01…02) || Cliente desktop (S1-EXT-01)
+
+gate_g1:
+  trigger: sprint-backlog.yaml com exit_contract declarado por @sprint-planner
+  validators: [stream-align, arch-cross]
+  artifacts:
+    report_path: .github/artifacts/gates/G1-{run-id}.md
+    sprint_backlog: .github/artifacts/sprint-backlog.yaml

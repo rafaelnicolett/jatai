@@ -1,0 +1,241 @@
+{
+  "schema": 1,
+  "scenario": "bug04-parseargs-sem-envelope",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--help"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "o helyx-state não tem --help: a saída é sempre uma linha JSON (flag desconhecida para 'initiatives create')",
+          "artifact": "initiatives",
+          "verb": "create",
+          "reason": "ERR_PARSE_ARGS_UNKNOWN_OPTION",
+          "detail": "Unknown option '--help'"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "flag sem valor, ou com valor numa flag booleana, em 'initiatives create'",
+          "artifact": "initiatives",
+          "verb": "create",
+          "reason": "ERR_PARSE_ARGS_INVALID_OPTION_VALUE",
+          "detail": "Option '--id <value>' argument missing"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "x",
+        "--active=true"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "flag sem valor, ou com valor numa flag booleana, em 'initiatives create'",
+          "artifact": "initiatives",
+          "verb": "create",
+          "reason": "ERR_PARSE_ARGS_INVALID_OPTION_VALUE",
+          "detail": "Option '--active' does not take an argument"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "x",
+        "extra"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "argumento posicional não aceito por 'initiatives create'",
+          "artifact": "initiatives",
+          "verb": "create",
+          "reason": "ERR_PARSE_ARGS_UNEXPECTED_POSITIONAL",
+          "detail": "Unexpected argument 'extra'. This command does not take positional arguments"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "switch-active",
+        "--help"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "o helyx-state não tem --help: a saída é sempre uma linha JSON (flag desconhecida para 'initiatives switch-active')",
+          "artifact": "initiatives",
+          "verb": "switch-active",
+          "reason": "ERR_PARSE_ARGS_UNKNOWN_OPTION",
+          "detail": "Unknown option '--help'"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "bump-phase",
+        "--id",
+        "x",
+        "--phase",
+        "y",
+        "--bogus"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "flag desconhecida para 'initiatives bump-phase'",
+          "artifact": "initiatives",
+          "verb": "bump-phase",
+          "reason": "ERR_PARSE_ARGS_UNKNOWN_OPTION",
+          "detail": "Unknown option '--bogus'"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--help"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "o helyx-state não tem --help: a saída é sempre uma linha JSON (flag desconhecida para 'initiatives upsert-wave-item')",
+          "artifact": "initiatives",
+          "verb": "upsert-wave-item",
+          "reason": "ERR_PARSE_ARGS_UNKNOWN_OPTION",
+          "detail": "Unknown option '--help'"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "upsert-wave-item",
+        "--id",
+        "x",
+        "--wave",
+        "w",
+        "--item",
+        "i",
+        "--status",
+        "s",
+        "--requires-approval=true"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "flag sem valor, ou com valor numa flag booleana, em 'initiatives upsert-wave-item'",
+          "artifact": "initiatives",
+          "verb": "upsert-wave-item",
+          "reason": "ERR_PARSE_ARGS_INVALID_OPTION_VALUE",
+          "detail": "Option '--requires-approval' does not take an argument"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--help"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "o helyx-state não tem --help: a saída é sempre uma linha JSON (flag desconhecida para 'delivery-state upsert-phase')",
+          "artifact": "delivery-state",
+          "verb": "upsert-phase",
+          "reason": "ERR_PARSE_ARGS_UNKNOWN_OPTION",
+          "detail": "Unknown option '--help'"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-checklist",
+        "--global",
+        "--phase",
+        "p",
+        "--item",
+        "i",
+        "--checked"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "flag sem valor, ou com valor numa flag booleana, em 'delivery-state upsert-checklist'",
+          "artifact": "delivery-state",
+          "verb": "upsert-checklist",
+          "reason": "ERR_PARSE_ARGS_INVALID_OPTION_VALUE",
+          "detail": "Option '--checked <value>' argument missing"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir"
+  }
+}

@@ -1,0 +1,38 @@
+name: CI — orbita
+# Gerado pela Helyx
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: cd code/services/orbita-api && dotnet restore
+
+      - name: Run tests
+        run: cd code/services/orbita-api && dotnet test --no-restore --logger trx
+
+      - name: Build
+        run: cd code/services/orbita-api && dotnet publish src/Orbita.API/Orbita.API.csproj -c Release -o publish
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t orbita:latest code/services/orbita-api
+
+# Este pipeline será expandido pelo @devops durante configuração de CI/CD

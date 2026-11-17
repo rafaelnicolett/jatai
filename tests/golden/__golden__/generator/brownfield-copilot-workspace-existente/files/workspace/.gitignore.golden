@@ -1,0 +1,8 @@
+# decisão explícita do usuário
+helyx:repos-versionado-por-decisao-explicita
+
+# Estado local do State Service (token em server.json) — nunca versionar.
+/.github/artifacts/.state-service/
+
+# Eventos de atividade de agente (contrato agent-activity) — locais, nunca versionados.
+/.github/artifacts/runs/

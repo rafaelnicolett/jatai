@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "scenario": "despacho-sem-argumentos",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "USAGE",
+          "message": "uso: helyx-state <artefato> <verbo> [--flags]. Artefatos disponíveis: delivery-state, initiatives, gates, runs",
+          "artifacts": [
+            "delivery-state",
+            "initiatives",
+            "gates",
+            "runs"
+          ]
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir"
+  }
+}

@@ -1,0 +1,51 @@
+/* Linha do tempo de gates do DS v2 (§4.6): painel surface, raio 16, padding 16, gap 12. */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-3);
+  min-width: 0;
+  padding: var(--jt-space-4);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-surface);
+}
+
+.eyebrow {
+  font: var(--jt-type-eyebrow);
+  letter-spacing: var(--jt-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--jt-fg-3);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--jt-space-3);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jt-space-0-5);
+  min-width: 0;
+}
+.title { font: var(--jt-type-body-strong); color: var(--jt-fg); }
+.meta { font: var(--jt-type-meta); color: var(--jt-fg-3); }
+.item[data-status="approved"] .meta { color: var(--jt-status-done-fg); }
+.item[data-status="waiting"] .meta { color: var(--jt-status-you-fg); font-weight: var(--jt-weight-semibold); }
+.item[data-status="blocked"] .meta { color: var(--jt-status-blocked-fg); }
+.text > button { margin-top: var(--jt-space-1); }
+
+@media (forced-colors: active) {
+  .timeline { border-color: CanvasText; }
+}

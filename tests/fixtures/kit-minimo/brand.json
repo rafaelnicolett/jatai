@@ -1,0 +1,6 @@
+{
+  "name": "demo",
+  "displayName": "Demo",
+  "files": { "config": "demo.config.yaml" },
+  "legacy": { "names": ["velho"], "displayNames": ["Velho"] }
+}

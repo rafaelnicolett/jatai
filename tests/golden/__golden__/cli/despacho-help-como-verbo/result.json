@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "scenario": "despacho-help-como-verbo",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "--help"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "UNKNOWN_VERB",
+          "message": "verbo desconhecido para 'initiatives': '--help'. Esperado: create, switch-active, bump-phase, upsert-wave-item, get.",
+          "verb": "--help"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir"
+  }
+}

@@ -1,0 +1,96 @@
+/* EpicStop do DS v2 (§4.2): círculo com borda de 3px; 32px, ou 40px onde a missão está. */
+.stop {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--jt-space-1);
+  min-width: var(--jt-size-stop-here);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--jt-fg-2);
+  font: inherit;
+  cursor: pointer;
+}
+
+.circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--jt-size-stop);
+  height: var(--jt-size-stop);
+  border: 3px solid var(--jt-line-strong);
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-surface);
+  color: var(--jt-fg-2);
+  font: var(--jt-type-eyebrow-strong);
+  font-size: var(--jt-text-sm);
+  font-variant-numeric: tabular-nums;
+  transition: border-color var(--jt-dur-fast) var(--jt-ease-standard);
+}
+
+/* A missão está aqui: preenchimento mel, número Própolis, anel working-line. */
+.stop[data-here="true"] .circle {
+  width: var(--jt-size-stop-here);
+  height: var(--jt-size-stop-here);
+  border-color: var(--jt-status-working-line);
+  background: var(--jt-mel);
+  color: var(--jt-fg-on-mel);
+}
+
+/* Concluído: fundo done-bg, anel done-line e ✓ no lugar do número. */
+.stop[data-status="done"] .circle {
+  border-color: var(--jt-status-done-line);
+  background: var(--jt-status-done-bg);
+  color: var(--jt-status-done-fg);
+}
+
+/* Depois: anel tracejado. */
+.stop[data-status="future"] .circle { border-style: dashed; border-color: var(--jt-status-future-line); }
+
+/* Selecionada (épico no quadro): anel --jt-selected colado (o foco é o
+   contorno afastado), rótulo fg em 600. */
+.stop[aria-selected="true"] .circle { border-color: var(--jt-selected); }
+.stop[aria-selected="true"] .label { color: var(--jt-fg); font-weight: var(--jt-weight-semibold); }
+
+.mark {
+  position: absolute;
+  top: calc(-1 * var(--jt-space-1));
+  right: calc(-1 * var(--jt-space-1));
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-surface);
+}
+
+.label {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 12ch;
+  min-height: var(--jt-size-gate-badge);
+  font: var(--jt-type-caption);
+  color: var(--jt-fg-2);
+  text-align: center;
+}
+
+@media (hover: hover) {
+  .stop:hover:not([aria-selected="true"]):not([data-here="true"]) .circle { border-color: var(--jt-fg-2); }
+  .stop:hover .label { color: var(--jt-fg); }
+}
+
+/* Foco no círculo: 3px --jt-focus afastado 2px (o botão não desenha contorno próprio). */
+.stop:focus-visible { outline: none; }
+.stop:focus-visible .circle {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+}
+
+@media (forced-colors: active) {
+  .circle { border-color: CanvasText; }
+  .stop[aria-selected="true"] .circle { border-color: Highlight; }
+  .stop:focus-visible .circle { outline-color: Highlight; }
+  /* Onde a missão está: preenchimento ButtonText com o número em ButtonFace. Sem o ajuste, o
+     Chromium pinta um Canvas atrás do número e ele some; assim vale o par dos tokens. */
+  .stop[data-here="true"] .circle { forced-color-adjust: none; }
+}

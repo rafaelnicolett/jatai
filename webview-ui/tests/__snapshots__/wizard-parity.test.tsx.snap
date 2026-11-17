@@ -1,0 +1,829 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`paridade de protocolo — Wizard legado × Wizard em React (W4) > brownfield completo: pasta, host, frameworks, envio e erro de validação (H-BUG-52, H-BUG-20) > protocolo 1`] = `
+[
+  {
+    "action": "abertura",
+    "posted": [],
+  },
+  {
+    "action": "choose:claude",
+    "posted": [
+      {
+        "payload": {
+          "hostAdapter": "claude",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "pickFolder",
+    "posted": [
+      {
+        "type": "pickFolder",
+      },
+    ],
+  },
+  {
+    "action": "host:folderPicked",
+    "posted": [
+      {
+        "payload": {
+          "targetDirectory": "/sintetico/workspaces/loja-demo",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "payload": {
+          "maturityFrameworks": [
+            "dora-4keys",
+          ],
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "toggle:tech-radar",
+    "posted": [
+      {
+        "payload": {
+          "maturityFrameworks": [
+            "dora-4keys",
+            "tech-radar",
+          ],
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "toggle:dora-4keys",
+    "posted": [
+      {
+        "payload": {
+          "maturityFrameworks": [
+            "tech-radar",
+          ],
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "keepOpen": true,
+        "type": "submit",
+      },
+    ],
+  },
+  {
+    "action": "host:validationError",
+    "posted": [],
+  },
+  {
+    "action": "back",
+    "posted": [],
+  },
+  {
+    "action": "cancel",
+    "posted": [
+      {
+        "type": "cancel",
+      },
+    ],
+  },
+]
+`;
+
+exports[`paridade de protocolo — Wizard legado × Wizard em React (W4) > greenfield completo: manifest local, envio, erro de geração e novo envio > protocolo 1`] = `
+[
+  {
+    "action": "abertura",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "mode:greenfield",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:claude",
+    "posted": [
+      {
+        "payload": {
+          "hostAdapter": "claude",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "type:"loja-demo"",
+    "posted": [
+      {
+        "payload": {
+          "projectName": "loja-demo",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "idea:"Uma vitrine sintética para o teste de paridade."",
+    "posted": [
+      {
+        "payload": {
+          "startupIdea": "Uma vitrine sintética para o teste de paridade.",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:ecommerce",
+    "posted": [
+      {
+        "payload": {
+          "domain": "ecommerce",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:python-api",
+    "posted": [
+      {
+        "payload": {
+          "backendStack": "python-api",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "choose:hexagonal",
+    "posted": [
+      {
+        "payload": {
+          "backendArchitecture": "hexagonal",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:react-vite",
+    "posted": [
+      {
+        "payload": {
+          "frontendStack": "react-vite",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "choose:feature-based",
+    "posted": [
+      {
+        "payload": {
+          "frontendArchitecture": "feature-based",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:postgresql",
+    "posted": [
+      {
+        "payload": {
+          "database": "postgresql",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "choose:aws",
+    "posted": [
+      {
+        "payload": {
+          "cloud": "aws",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "choose:github-actions",
+    "posted": [
+      {
+        "payload": {
+          "cicd": "github-actions",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "templateId": "helyx-template-python-api",
+        "type": "fetchTemplate",
+      },
+    ],
+  },
+  {
+    "action": "host:templateManifest",
+    "posted": [
+      {
+        "payload": {
+          "resolvedTemplate": {
+            "description": "FastAPI + React + Vite · Host: claude · Preview gerado localmente.",
+            "generatedTree": [
+              ".claude/",
+              ".claude/agents/",
+              "code/",
+              "docs/",
+            ],
+            "id": "helyx-template-python-api",
+            "name": "helyx-template-python-api",
+            "rubricsAvailable": true,
+            "stack": "python-api",
+            "tags": [
+              "python-api",
+              "react-vite",
+              "claude",
+              "aws",
+            ],
+            "version": "local",
+          },
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "keepOpen": true,
+        "type": "submit",
+      },
+    ],
+  },
+  {
+    "action": "host:generationError",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "keepOpen": true,
+        "type": "submit",
+      },
+    ],
+  },
+  {
+    "action": "host:validationError",
+    "posted": [],
+  },
+]
+`;
+
+exports[`paridade de protocolo — Wizard legado × Wizard em React (W4) > intro: 'Projeto Existente' + Continuar pede switchToBrownfield sem avançar (L6) > protocolo 1`] = `
+[
+  {
+    "action": "abertura",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "mode:brownfield",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "type": "switchToBrownfield",
+      },
+    ],
+  },
+]
+`;
+
+exports[`paridade de protocolo — Wizard legado × Wizard em React (W4) > intro: 'Projeto Existente' e depois 'Novo Projeto' segue no greenfield (L5) > protocolo 1`] = `
+[
+  {
+    "action": "abertura",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "mode:brownfield",
+    "posted": [],
+  },
+  {
+    "action": "mode:greenfield",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+]
+`;
+
+exports[`paridade de protocolo — Wizard legado × Wizard em React (W4) > navegação: voltar e avançar mantém o que foi digitado; texto em branco desabilita > protocolo 1`] = `
+[
+  {
+    "action": "abertura",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "mode:greenfield",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:claude",
+    "posted": [
+      {
+        "payload": {
+          "hostAdapter": "claude",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "type:"  loja  "",
+    "posted": [
+      {
+        "payload": {
+          "projectName": "loja",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "idea:"uma vitrine"",
+    "posted": [
+      {
+        "payload": {
+          "startupIdea": "uma vitrine",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "back",
+    "posted": [],
+  },
+  {
+    "action": "type:"   "",
+    "posted": [
+      {
+        "payload": {
+          "projectName": "",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "cancel",
+    "posted": [
+      {
+        "type": "cancel",
+      },
+    ],
+  },
+]
+`;
+
+exports[`paridade de protocolo — Wizard legado × Wizard em React (W4) > preview reaproveitado depois de trocar o backend (H-BUG-25) > protocolo 1`] = `
+[
+  {
+    "action": "abertura",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "mode:greenfield",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:claude",
+    "posted": [
+      {
+        "payload": {
+          "hostAdapter": "claude",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "type:"loja-demo"",
+    "posted": [
+      {
+        "payload": {
+          "projectName": "loja-demo",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "idea:"Uma vitrine sintética para o teste de paridade."",
+    "posted": [
+      {
+        "payload": {
+          "startupIdea": "Uma vitrine sintética para o teste de paridade.",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:ecommerce",
+    "posted": [
+      {
+        "payload": {
+          "domain": "ecommerce",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:python-api",
+    "posted": [
+      {
+        "payload": {
+          "backendStack": "python-api",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "choose:hexagonal",
+    "posted": [
+      {
+        "payload": {
+          "backendArchitecture": "hexagonal",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:react-vite",
+    "posted": [
+      {
+        "payload": {
+          "frontendStack": "react-vite",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "choose:feature-based",
+    "posted": [
+      {
+        "payload": {
+          "frontendArchitecture": "feature-based",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "choose:postgresql",
+    "posted": [
+      {
+        "payload": {
+          "database": "postgresql",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "choose:aws",
+    "posted": [
+      {
+        "payload": {
+          "cloud": "aws",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "choose:github-actions",
+    "posted": [
+      {
+        "payload": {
+          "cicd": "github-actions",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "templateId": "helyx-template-python-api",
+        "type": "fetchTemplate",
+      },
+    ],
+  },
+  {
+    "action": "host:templateManifest",
+    "posted": [
+      {
+        "payload": {
+          "resolvedTemplate": {
+            "description": "FastAPI + React + Vite · Host: claude · Preview gerado localmente.",
+            "generatedTree": [
+              ".claude/",
+              ".claude/agents/",
+              "code/",
+              "docs/",
+            ],
+            "id": "helyx-template-python-api",
+            "name": "helyx-template-python-api",
+            "rubricsAvailable": true,
+            "stack": "python-api",
+            "tags": [
+              "python-api",
+              "react-vite",
+              "claude",
+              "aws",
+            ],
+            "version": "local",
+          },
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "back",
+    "posted": [],
+  },
+  {
+    "action": "back",
+    "posted": [],
+  },
+  {
+    "action": "back",
+    "posted": [],
+  },
+  {
+    "action": "back",
+    "posted": [],
+  },
+  {
+    "action": "choose:java-spring",
+    "posted": [
+      {
+        "payload": {
+          "backendStack": "java-spring",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "templateId": "helyx-template-java-spring",
+        "type": "fetchTemplate",
+      },
+    ],
+  },
+]
+`;
+
+exports[`paridade de protocolo — Wizard legado × Wizard em React (W4) > pronto: a instalação termina, abre o Cockpit e fecha (passo 'Pronto') > protocolo 1`] = `
+[
+  {
+    "action": "abertura",
+    "posted": [],
+  },
+  {
+    "action": "choose:claude",
+    "posted": [
+      {
+        "payload": {
+          "hostAdapter": "claude",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "host:folderPicked",
+    "posted": [
+      {
+        "payload": {
+          "targetDirectory": "/sintetico/aberta",
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "payload": {
+          "maturityFrameworks": [
+            "dora-4keys",
+          ],
+        },
+        "type": "stepUpdate",
+      },
+    ],
+  },
+  {
+    "action": "next",
+    "posted": [],
+  },
+  {
+    "action": "next",
+    "posted": [
+      {
+        "keepOpen": true,
+        "type": "submit",
+      },
+    ],
+  },
+  {
+    "action": "host:installed",
+    "posted": [],
+  },
+  {
+    "action": "cockpit",
+    "posted": [
+      {
+        "type": "openCockpit",
+      },
+    ],
+  },
+  {
+    "action": "cancel",
+    "posted": [
+      {
+        "type": "cancel",
+      },
+    ],
+  },
+]
+`;

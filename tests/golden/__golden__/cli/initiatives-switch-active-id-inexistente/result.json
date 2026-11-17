@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-switch-active-id-inexistente",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "switch-active",
+        "--id",
+        "nao-existe"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "nao-existe"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 311 36985a69a4212a2bf4d0ca56972a6504036b772a482ff161a2050f9f685a7308 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/nao-existe.jsonl": "file 100644 232 9b651a2a71a799e8602bbf9a47e32a39b43a46ad934bf2efe5b983611cab3b33 text"
+  }
+}

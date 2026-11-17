@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "scenario": "ds-crlf-mistura-eol",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "delivery-state",
+        "upsert-phase",
+        "--global",
+        "--phase",
+        "business",
+        "--status",
+        "done"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/delivery-state.yaml",
+        "changed": true,
+        "phase": "business",
+        "status": "done"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/delivery-state.yaml": "file 100644 39 d6c946d4e02ccde06a8a071be96e5cc635857bdb88f2799e18219973a7d8b5f9 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/workspace.jsonl": "file 100644 210 59c577a511f3b2080fd2ae99b0392d5943ff66577cb61d9662de1d2d62f92184 text"
+  }
+}

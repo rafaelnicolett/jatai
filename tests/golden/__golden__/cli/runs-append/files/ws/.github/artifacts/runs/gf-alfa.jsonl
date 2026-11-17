@@ -1,0 +1,3 @@
+{"run_id":"r-golden","event_type":"agent-started","timestamp":"<TS>","initiative_id":"gf-alfa","phase_id":"execution","agent_id":"@migration-agent","harness":"claude-code"}
+{"run_id":"r-golden","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"gf-alfa","agent_id":"@migration-agent","artifact_path":".github/artifacts/execution/relatorio.md","harness":"cli"}
+{"run_id":"r-golden","event_type":"decision-requested","timestamp":"<TS>","initiative_id":"gf-alfa","task_id":"epic-0/task-0.1","actor":"human","harness":"cli","message":"titularidade do código","metadata":{"reason":"titularidade"}}

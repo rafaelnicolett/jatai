@@ -1,0 +1,7 @@
+repos:
+  app-a:
+    gate_d1:
+      status: approved
+  app-b:
+    gate_d1:
+      status: pending

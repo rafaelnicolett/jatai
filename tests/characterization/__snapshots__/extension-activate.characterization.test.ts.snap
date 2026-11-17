@@ -1,0 +1,281 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`X1 — activate() num workspace greenfield configurado (host Copilot) > snapshot: setContext helyx.projectInitialized + Cockpit agendado para 800 ms (sem Wizard) 1`] = `
+{
+  "chatParticipants": [
+    "helyx.concierge",
+  ],
+  "codeLensSelectors": [
+    [
+      {
+        "language": "markdown",
+      },
+      {
+        "language": "yaml",
+      },
+    ],
+  ],
+  "commandsRegistered": [
+    "helyx._generateStructure",
+    "helyx._installAgentStructure",
+    "helyx.concierge.advancePhase",
+    "helyx.concierge.continuePhase",
+    "helyx.concierge.revealArtifact",
+    "helyx.concierge.runRawPrompt",
+    "helyx.concierge.startWithTemplate",
+    "helyx.concierge.toggleGuardRail",
+    "helyx.connectedExtensions",
+    "helyx.initializeDeliveryKit",
+    "helyx.migrateKit",
+    "helyx.openCockpitNext",
+    "helyx.refreshTreeView",
+    "helyx.revealArtifacts",
+    "helyx.sendArtifacts",
+    "helyx.startStack",
+    "helyx.stopStack",
+    "helyx.syncRepos",
+    "helyx.validateArtifactSection",
+    "helyx.validateRemainingItems",
+  ],
+  "environmentVariableCollection": [
+    "environmentVariableCollection.clear",
+  ],
+  "executeCommand": [
+    [
+      "setContext",
+      "helyx.isWorkspace",
+      true,
+    ],
+    [
+      "setContext",
+      "helyx.projectInitialized",
+      true,
+    ],
+  ],
+  "fileWatchers": [
+    {
+      "base": "<ROOT>/.github/artifacts/runs",
+      "pattern": "*.jsonl",
+    },
+    {
+      "base": "<ROOT>/.github/artifacts",
+      "pattern": "**/*",
+    },
+  ],
+  "filesInWorkspace": [
+    ".github/",
+    ".github/artifacts/",
+    ".github/artifacts/.state-service/",
+    ".github/artifacts/.state-service/server.json",
+    "ai-sdk.config.yaml",
+  ],
+  "globalStateUpdates": [
+    [
+      "helyx.stateServicePort",
+      "<port>",
+    ],
+  ],
+  "messages": [],
+  "network": [],
+  "secretsStored": [
+    "helyx.stateServiceToken",
+  ],
+  "statusBar": [
+    {
+      "alignment": 1,
+      "command": "helyx.openCockpitNext",
+      "priority": 100,
+      "shown": true,
+      "text": "$(helyx-mark) Helyx",
+      "tooltip": "Helyx — clique para abrir o Cockpit",
+    },
+  ],
+  "subscriptions": 27,
+  "uxTimers": [
+    800,
+  ],
+  "webviewPanels": [],
+  "webviewViewProviders": [
+    {
+      "options": {
+        "webviewOptions": {
+          "retainContextWhenHidden": true,
+        },
+      },
+      "viewType": "helyx.mainPanel",
+    },
+  ],
+}
+`;
+
+exports[`X1 — activate() numa pasta vazia qualquer (não-Helyx) > snapshot do que é registrado e dos efeitos colaterais 1`] = `
+{
+  "chatParticipants": [
+    "helyx.concierge",
+  ],
+  "codeLensSelectors": [
+    [
+      {
+        "language": "markdown",
+      },
+      {
+        "language": "yaml",
+      },
+    ],
+  ],
+  "commandsRegistered": [
+    "helyx._generateStructure",
+    "helyx._installAgentStructure",
+    "helyx.concierge.advancePhase",
+    "helyx.concierge.continuePhase",
+    "helyx.concierge.revealArtifact",
+    "helyx.concierge.runRawPrompt",
+    "helyx.concierge.startWithTemplate",
+    "helyx.concierge.toggleGuardRail",
+    "helyx.connectedExtensions",
+    "helyx.initializeDeliveryKit",
+    "helyx.migrateKit",
+    "helyx.openCockpitNext",
+    "helyx.refreshTreeView",
+    "helyx.revealArtifacts",
+    "helyx.sendArtifacts",
+    "helyx.startStack",
+    "helyx.stopStack",
+    "helyx.syncRepos",
+    "helyx.validateArtifactSection",
+    "helyx.validateRemainingItems",
+  ],
+  "environmentVariableCollection": [
+    "environmentVariableCollection.clear",
+  ],
+  "executeCommand": [
+    [
+      "setContext",
+      "helyx.isWorkspace",
+      false,
+    ],
+  ],
+  "fileWatchers": [],
+  "filesInWorkspace": [],
+  "globalStateUpdates": [
+    [
+      "helyx.wizardSeen",
+      true,
+    ],
+  ],
+  "messages": [],
+  "network": [],
+  "secretsStored": [],
+  "statusBar": [
+    {
+      "alignment": 1,
+      "command": "helyx.openCockpitNext",
+      "priority": 100,
+      "shown": true,
+      "text": "$(helyx-mark) Helyx",
+      "tooltip": "Helyx — clique para abrir o Cockpit",
+    },
+  ],
+  "subscriptions": 27,
+  "uxTimers": [
+    1200,
+  ],
+  "webviewPanels": [],
+  "webviewViewProviders": [
+    {
+      "options": {
+        "webviewOptions": {
+          "retainContextWhenHidden": true,
+        },
+      },
+      "viewType": "helyx.mainPanel",
+    },
+  ],
+}
+`;
+
+exports[`X1 — activate() sem pasta aberta > snapshot: registra tudo, mas não sobe State Service, não grava arquivo e agenda o Wizard 1`] = `
+{
+  "chatParticipants": [
+    "helyx.concierge",
+  ],
+  "codeLensSelectors": [
+    [
+      {
+        "language": "markdown",
+      },
+      {
+        "language": "yaml",
+      },
+    ],
+  ],
+  "commandsRegistered": [
+    "helyx._generateStructure",
+    "helyx._installAgentStructure",
+    "helyx.concierge.advancePhase",
+    "helyx.concierge.continuePhase",
+    "helyx.concierge.revealArtifact",
+    "helyx.concierge.runRawPrompt",
+    "helyx.concierge.startWithTemplate",
+    "helyx.concierge.toggleGuardRail",
+    "helyx.connectedExtensions",
+    "helyx.initializeDeliveryKit",
+    "helyx.migrateKit",
+    "helyx.openCockpitNext",
+    "helyx.refreshTreeView",
+    "helyx.revealArtifacts",
+    "helyx.sendArtifacts",
+    "helyx.startStack",
+    "helyx.stopStack",
+    "helyx.syncRepos",
+    "helyx.validateArtifactSection",
+    "helyx.validateRemainingItems",
+  ],
+  "environmentVariableCollection": [
+    "environmentVariableCollection.clear",
+  ],
+  "executeCommand": [
+    [
+      "setContext",
+      "helyx.isWorkspace",
+      false,
+    ],
+  ],
+  "fileWatchers": [],
+  "filesInWorkspace": "(sem pasta)",
+  "globalStateUpdates": [
+    [
+      "helyx.wizardSeen",
+      true,
+    ],
+  ],
+  "messages": [],
+  "network": [],
+  "secretsStored": [],
+  "statusBar": [
+    {
+      "alignment": 1,
+      "command": "helyx.openCockpitNext",
+      "priority": 100,
+      "shown": true,
+      "text": "$(helyx-mark) Helyx",
+      "tooltip": "Helyx — clique para abrir o Cockpit",
+    },
+  ],
+  "subscriptions": 27,
+  "uxTimers": [
+    1200,
+  ],
+  "webviewPanels": [],
+  "webviewViewProviders": [
+    {
+      "options": {
+        "webviewOptions": {
+          "retainContextWhenHidden": true,
+        },
+      },
+      "viewType": "helyx.mainPanel",
+    },
+  ],
+}
+`;

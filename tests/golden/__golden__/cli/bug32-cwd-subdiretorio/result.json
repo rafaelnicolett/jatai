@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "scenario": "bug32-cwd-subdiretorio",
+  "steps": [
+    {
+      "cwd": "ws/repos/app-ficticio",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/repos/app-ficticio/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "gf-alfa"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/repos/": "dir",
+    "ws/repos/app-ficticio/": "dir",
+    "ws/repos/app-ficticio/.github/": "dir",
+    "ws/repos/app-ficticio/.github/artifacts/": "dir",
+    "ws/repos/app-ficticio/.github/artifacts/initiatives.yaml": "file 100644 73 bf7e4fbfbcb839a40e5395f5790f9d79c475a29991708a95fd1e0a96d8f554b9 text",
+    "ws/repos/app-ficticio/.github/artifacts/runs/": "dir",
+    "ws/repos/app-ficticio/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 225 8dc6d1a9450dfc60e9663011cdc73b8df67034a92a7b054b90854a5e121037c1 text",
+    "ws/repos/app-ficticio/README.md": "file 100644 17 0359cf865b65e49dd172efad9b4c46331d84d76b6e13b99b2024bfe32c5e0889 text"
+  }
+}

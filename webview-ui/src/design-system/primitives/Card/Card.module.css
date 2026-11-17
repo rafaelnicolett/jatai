@@ -1,0 +1,19 @@
+/* Panel (Card) do DS v2 (§4.13): surface, borda line, radius-xl, padding 16.
+   Os protótipos não têm sombra em cartão (elevation-1 = só a borda). */
+.card {
+  background: var(--jt-surface);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-xl);
+  padding: var(--jt-space-4);
+  box-shadow: var(--jt-elevation-1);
+}
+
+/* Popover e diálogo. No alto contraste a cor da sombra é transparente (token)
+   e a borda já é a de contraste do tema. */
+.card--raised {
+  box-shadow: var(--jt-elevation-2);
+}
+
+@media (forced-colors: active) {
+  .card { border-color: CanvasText; }
+}

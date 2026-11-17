@@ -1,0 +1,120 @@
+/*
+ * A vista do mapa (F5.3). O céu é o fundo da seção inteira (gradiente radial
+ * do crepúsculo ou do dia, pelos tokens da cena); a cena se escala dentro do
+ * canvas; o HUD (cabeçalho, feed, legenda, painel) fica por cima, em escala
+ * 1:1, e o texto não encolhe com o painel (DS v2 §3.12).
+ */
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 480px;
+  overflow: hidden;
+  /* O gradiente do protótipo: centro em 60%/62%, raio de 80%, paradas em 0, 38% e 100%. */
+  background: radial-gradient(ellipse 80% 80% at 60% 62%, var(--jt-scene-sky-0) 0%, var(--jt-scene-sky-1) 38%, var(--jt-scene-sky-2) 100%);
+  background-color: var(--jt-scene-bg);
+  color: var(--jt-fg);
+  font: var(--jt-type-body);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Com o painel da ilha aberto no painel largo, a cena se reencaixa na área que sobra (a câmera se afasta), e nenhuma ilha fica escondida atrás dele. */
+.root[data-panel="open"][data-size="wide"] .canvas {
+  right: calc(380px + 2 * var(--jt-space-6));
+}
+
+.hud {
+  position: relative;
+  z-index: var(--jt-z-hud);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+  pointer-events: none;
+}
+.hud > * { pointer-events: auto; }
+.hud > header { pointer-events: none; }
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* ── HUD sobre a cena ─────────────────────────────────────────────────── */
+.feedSlot,
+.legendSlot,
+.panelSlot {
+  position: absolute;
+  z-index: var(--jt-z-hud);
+}
+.feedSlot { left: var(--jt-space-6); bottom: var(--jt-space-6); width: 440px; }
+.legendSlot { right: var(--jt-space-6); bottom: var(--jt-space-6); width: 300px; }
+.panelSlot {
+  right: var(--jt-space-6);
+  top: 96px;
+  bottom: var(--jt-space-6);
+  width: 380px;
+  z-index: var(--jt-z-panel);
+  display: flex;
+  flex-direction: column;
+  animation: panel-in var(--jt-dur-slow) var(--jt-ease-enter) both;
+}
+.panelSlot > * { flex: 1; min-height: 0; }
+@keyframes panel-in {
+  from { opacity: 0; transform: translateX(var(--jt-motion-distance-md)); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Abaixo de 1080 px: o painel vira folha inferior, o feed uma linha e a legenda um botão (§3.12). */
+.root[data-size="split"] .feedSlot,
+.root[data-size="compact"] .feedSlot { left: var(--jt-space-4); right: var(--jt-space-4); bottom: var(--jt-space-4); width: auto; }
+.root[data-size="split"] .legendSlot,
+.root[data-size="compact"] .legendSlot { right: var(--jt-space-4); bottom: 112px; width: 300px; }
+.root[data-size="split"] .panelSlot,
+.root[data-size="compact"] .panelSlot {
+  left: var(--jt-space-4);
+  right: var(--jt-space-4);
+  top: auto;
+  bottom: var(--jt-space-4);
+  width: auto;
+  height: 55%;
+  animation-name: sheet-in;
+}
+@keyframes sheet-in {
+  from { opacity: 0; transform: translateY(var(--jt-motion-distance-md)); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Sem iniciativa ativa, e carregando ───────────────────────────────── */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--jt-space-3);
+  max-width: 420px;
+  margin: auto;
+  padding: var(--jt-space-6);
+  border: 1px solid var(--jt-scene-hud-line);
+  border-radius: var(--jt-radius-2xl);
+  background: var(--jt-scene-hud-bg);
+  text-align: center;
+}
+.emptyMark { color: var(--jt-mel); display: inline-flex; }
+.emptyTitle { margin: 0; font: var(--jt-type-display-md); }
+.emptyText { margin: 0; color: var(--jt-fg-2); font: var(--jt-type-body); }
+.notice { margin: auto; padding: var(--jt-space-4); color: var(--jt-fg-2); }
+
+/* ── O aviso ao leitor de tela: só para quem ouve ─────────────────────── */
+.announcer { position: absolute; width: 1px; height: 1px; overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .panelSlot { animation: none; }
+}

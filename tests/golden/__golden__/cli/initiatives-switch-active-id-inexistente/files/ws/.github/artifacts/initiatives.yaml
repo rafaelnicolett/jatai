@@ -1,0 +1,14 @@
+# Registro de iniciativas do workspace fictício
+active: "nao-existe"
+initiatives:
+  - id: gf-alfa
+    name: Projeto Alfa
+    status: in-progress
+    mode: greenfield
+    current_phase: business
+  - {
+      id: mod-beta,
+      name: "Modernização Beta",
+      status: planned,
+      type: modernization
+    }

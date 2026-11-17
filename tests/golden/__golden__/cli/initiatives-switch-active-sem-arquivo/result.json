@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-switch-active-sem-arquivo",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "switch-active",
+        "--id",
+        "gf-alfa"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "gf-alfa"
+      },
+      "stderr": ""
+    },
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "switch-active"
+      ],
+      "exit": 1,
+      "stdout": {
+        "ok": false,
+        "error": {
+          "code": "MISSING_FLAG",
+          "message": "flag obrigatória ausente: --id",
+          "field": "id"
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 18 7a3779dd4d39b13233fe0c5a8829ed9c67abc7e2c811d9fd632f84aa3ba676d2 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 226 8ed65ba706f6830240a6a822737bec366e5c268246737dc0c50edd2b3a0c395f text"
+  }
+}

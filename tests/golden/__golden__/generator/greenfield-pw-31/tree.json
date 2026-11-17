@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "case": "greenfield-pw-31",
+  "base": "greenfield-claude-padrao",
+  "input": {
+    "projectName": "orbita",
+    "deliveryMode": "full-cycle",
+    "hostAdapter": "claude",
+    "backendStack": "python-api",
+    "backendArchitecture": "vertical-slice",
+    "frontendStack": "none",
+    "frontendArchitecture": "mvvm",
+    "database": "postgresql",
+    "cloud": "azure",
+    "cicd": "gitlab-ci"
+  },
+  "outcome": {
+    "resolved": {
+      "isLocal": true
+    }
+  },
+  "calls": [],
+  "entries": {
+    "projeto/.github/artifacts/gates/README.md": "file 100644 1426 e4dab376e8346c0d7d9e1190a4c3861e12978f650791a5fcd455cbd5899ff778 text",
+    "projeto/CLAUDE.md": "file 100644 1579 117a319f2bc319f0213d52b3a7d488c95d04bc35bd8a47fae567825f121bd484 text",
+    "projeto/code/services/orbita-api/README.md": "file 100644 1019 7f9bd1eb6b099b0bd4b53d2c449c2e228ed00388641005d59f3ef22c1433a358 text",
+    "projeto/code/services/orbita-api/src/api/routes/": "absent",
+    "projeto/code/services/orbita-api/src/application/": "absent",
+    "projeto/code/services/orbita-api/src/application/use_cases/": "absent",
+    "projeto/code/services/orbita-api/src/domain/": "absent",
+    "projeto/code/services/orbita-api/src/domain/__init__.py": "absent",
+    "projeto/code/services/orbita-api/src/domain/model/": "absent",
+    "projeto/code/services/orbita-api/src/domain/model/__init__.py": "absent",
+    "projeto/code/services/orbita-api/src/domain/ports/": "absent",
+    "projeto/code/services/orbita-api/src/features/": "dir",
+    "projeto/code/services/orbita-api/src/features/__init__.py": "file 100644 0 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 text",
+    "projeto/code/services/orbita-api/src/features/health/": "dir",
+    "projeto/code/services/orbita-api/src/infrastructure/": "absent",
+    "projeto/code/services/orbita-api/src/infrastructure/adapters/": "absent",
+    "projeto/code/services/orbita-api/src/infrastructure/config/": "absent",
+    "projeto/code/services/orbita-api/src/shared/": "dir",
+    "projeto/code/services/orbita-api/src/shared/database/": "dir",
+    "projeto/code/services/orbita-api/src/shared/observability/": "dir",
+    "projeto/code/services/orbita-api/tests/features/": "dir",
+    "projeto/code/services/orbita-api/tests/integration/": "absent",
+    "projeto/code/services/orbita-api/tests/unit/": "absent",
+    "projeto/helyx.config.yaml": "file 100644 745 6b9a20235e3eb6e24b294c3db909f9c2ce7f8cbfdbaddbeeea63ed89a8a91471 text"
+  }
+}

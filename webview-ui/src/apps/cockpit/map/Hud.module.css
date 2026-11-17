@@ -1,0 +1,100 @@
+/* O HUD do mapa (F5.3): o feed, a legenda e as peças de texto que ficam fora do palco e não encolhem. */
+
+.eyebrow {
+  color: var(--jt-fg-3);
+  font: var(--jt-type-eyebrow);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.quiet {
+  margin: 0;
+  color: var(--jt-fg-3);
+  font: var(--jt-type-body-sm);
+}
+
+/* ── Feed ─────────────────────────────────────────────────────────────── */
+.feed,
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-2);
+  padding: var(--jt-space-4);
+  border: 1px solid var(--jt-scene-hud-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-scene-hud-bg);
+  color: var(--jt-fg);
+}
+
+.feedList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feedLine {
+  display: flex;
+  align-items: baseline;
+  gap: var(--jt-space-3);
+}
+.when {
+  flex: none;
+  width: 64px;
+  color: var(--jt-fg-3);
+  font: var(--jt-type-data-xs);
+  font-variant-numeric: tabular-nums;
+}
+.what {
+  min-width: 0;
+  font: var(--jt-type-body-sm);
+  overflow-wrap: anywhere;
+}
+.glyph { display: inline-flex; margin-right: var(--jt-space-1); vertical-align: -2px; }
+.glyph[data-tone="working"] { color: var(--jt-status-working-fg); }
+.glyph[data-tone="you"] { color: var(--jt-status-you-fg); }
+.glyph[data-tone="done"] { color: var(--jt-status-done-fg); }
+.glyph[data-tone="blocked"] { color: var(--jt-status-blocked-fg); }
+.glyph[data-tone="queue"] { color: var(--jt-status-queue-fg); }
+.who { font-weight: 600; }
+.who[data-tone="working"] { color: var(--jt-status-working-fg); }
+.who[data-tone="you"] { color: var(--jt-status-you-fg); }
+.who[data-tone="done"] { color: var(--jt-status-done-fg); }
+.who[data-tone="blocked"] { color: var(--jt-status-blocked-fg); }
+.who[data-tone="queue"] { color: var(--jt-status-queue-fg); }
+
+/* ── Legenda ──────────────────────────────────────────────────────────── */
+.terms {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  margin: 0;
+  color: var(--jt-fg-2);
+  font: var(--jt-type-body-sm);
+}
+.term { display: flex; gap: var(--jt-space-2); align-items: baseline; }
+.term dt { display: inline-flex; align-items: center; gap: var(--jt-space-2); font-weight: 600; }
+.term dd { margin: 0; }
+.term dt[data-tone="working"] { color: var(--jt-status-working-fg); }
+.term dt[data-tone="done"] { color: var(--jt-status-done-fg); }
+.term dt[data-tone="you"] { color: var(--jt-status-you-fg); }
+
+.mini { display: inline-flex; width: 18px; height: 18px; }
+.miniBridge {
+  width: 18px;
+  height: 6px;
+  border-radius: var(--jt-radius-xs);
+  background: var(--jt-status-done-line);
+}
+.miniComb {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--jt-scene-comb);
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-scene-comb);
+}
+
+/* O miniglifo da guarda azul usa a mesma abelha da cena. */
+.mini :global(svg) { width: 100%; height: 100%; }

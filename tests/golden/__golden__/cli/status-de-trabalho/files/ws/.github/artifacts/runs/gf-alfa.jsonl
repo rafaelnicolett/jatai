@@ -1,0 +1,1 @@
+{"run_id":"state-commands","event_type":"artifact-written","timestamp":"<TS>","initiative_id":"gf-alfa","artifact_path":".github/artifacts/initiatives.yaml","harness":"cli","message":"iniciativa 'gf-alfa' criada/atualizada (cancelled)","metadata":{"reason":"a prioridade mudou"}}

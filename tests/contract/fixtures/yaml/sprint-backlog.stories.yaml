@@ -1,0 +1,9 @@
+# Fixture SINTÉTICA (F0.4, lane B) — formato plano de stories
+initiative: "loja-demo"
+sprint: 3
+stories:
+  - id: ST-1
+    title: "Busca"
+    status: review
+  - id: ST-2
+    title: "Filtros"

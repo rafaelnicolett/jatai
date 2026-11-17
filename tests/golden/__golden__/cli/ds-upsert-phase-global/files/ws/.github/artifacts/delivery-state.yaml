@@ -1,0 +1,6 @@
+phases:
+  business:
+    status: done
+    agent: "@business"
+  product:
+    status: in-progress

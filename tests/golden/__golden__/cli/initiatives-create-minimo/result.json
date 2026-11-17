@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "scenario": "initiatives-create-minimo",
+  "steps": [
+    {
+      "cwd": "ws",
+      "argv": [
+        "initiatives",
+        "create",
+        "--id",
+        "gf-alfa"
+      ],
+      "exit": 0,
+      "stdout": {
+        "ok": true,
+        "path": "<SANDBOX>/ws/.github/artifacts/initiatives.yaml",
+        "changed": true,
+        "id": "gf-alfa"
+      },
+      "stderr": ""
+    }
+  ],
+  "entries": {
+    "home/": "dir",
+    "ws/": "dir",
+    "ws/.github/": "dir",
+    "ws/.github/artifacts/": "dir",
+    "ws/.github/artifacts/initiatives.yaml": "file 100644 73 bf7e4fbfbcb839a40e5395f5790f9d79c475a29991708a95fd1e0a96d8f554b9 text",
+    "ws/.github/artifacts/runs/": "dir",
+    "ws/.github/artifacts/runs/gf-alfa.jsonl": "file 100644 225 8dc6d1a9450dfc60e9663011cdc73b8df67034a92a7b054b90854a5e121037c1 text"
+  }
+}

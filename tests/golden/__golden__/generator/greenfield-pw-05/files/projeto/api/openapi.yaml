@@ -1,0 +1,41 @@
+openapi: "3.1.0"
+info:
+  title: orbita API
+  version: "0.1.0"
+  description: |
+    API gerada pela Helyx.
+    Stack: python-agentic
+    Padrão: Clean/Hexagonal Architecture
+
+servers:
+  - url: http://localhost:8000
+    description: Desenvolvimento local
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: getHealth
+      responses:
+        '200':
+          description: Sistema operacional
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [ok]
+                  version:
+                    type: string
+
+components:
+  schemas: {}
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+# Este contrato será expandido pelo @architecture durante design da API

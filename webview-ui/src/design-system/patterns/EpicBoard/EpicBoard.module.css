@@ -1,0 +1,39 @@
+/* Quadro do épico do DS v2 (§4.5): painel surface, raio 16, padding 16, gap 16. */
+.board {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-4);
+  min-width: 0;
+  padding: var(--jt-space-4);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-xl);
+  background: var(--jt-surface);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--jt-space-2);
+}
+.title { margin: 0; font: var(--jt-type-display-lg); color: var(--jt-fg); }
+.description { margin: 0; font: var(--jt-type-body-sm); color: var(--jt-fg-2); }
+
+/* As colunas decidem pela largura do próprio quadro: 1 abaixo de 420px, 2 × 2 até 759px, 4 a partir de 760px. */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--jt-space-3);
+}
+@container (min-width: 420px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (min-width: 760px) {
+  .grid { grid-template-columns: repeat(4, minmax(var(--jt-layout-status-col-min), 1fr)); }
+}
+
+@media (forced-colors: active) {
+  .board { border-color: CanvasText; }
+}
