@@ -39,7 +39,8 @@
   <a href="#o-que-você-vê">O que você vê</a> ·
   <a href="#comece-em-5-minutos">Comece em 5 minutos</a> ·
   <a href="#um-harness-para-testar-modelos">Um harness</a> ·
-  <a href="#o-nome">O nome</a>
+  <a href="#o-nome">O nome</a> ·
+  <a href="#comunidade">Comunidade</a>
 </p>
 
 ---
@@ -69,7 +70,7 @@ A Jataí é uma extensão de VS Code com um kit de agentes, skills e regras. Ela
 - **Execução:** teste de caracterização, refactor e feature em PRs que dá para revisar.
 - **Operação:** CI/CD, observabilidade, incidentes e o próximo ciclo.
 
-O produto não é o chat. É o que fica escrito: o estado em `.github/artifacts/`, a decisão no gate e a prova no teste.
+O produto é o que fica escrito: o estado em `.github/artifacts/`, a decisão no gate e a prova no teste.
 
 ## O que eu acredito
 
@@ -77,7 +78,7 @@ O produto não é o chat. É o que fica escrito: o estado em `.github/artifacts/
 - **Sem teste que fixe o comportamento atual, refactor é aposta.** A Execução prova antes de trocar.
 - **Gate é gente.** Nenhum agente aprova o próprio trabalho. A decisão tem nome e data.
 - **Estado no chat é estado perdido.** O progresso, a decisão e a evidência ficam em arquivos no repositório.
-- **Aberto de verdade.** MIT, local, sem telemetria, sem conta. O método não pode depender de uma empresa.
+- **Aberto sem asterisco.** MIT, local, sem telemetria, sem conta. O método não pode depender de uma empresa.
 
 ## Como funciona
 
@@ -210,6 +211,17 @@ Nenhum agente passa da guarda sem você.
 - **Dois harnesses hoje:** Claude Code e GitHub Copilot. O suporte a outros harnesses entra por adaptador, com testes de paridade — OpenCode está no backlog.
 - **Sem serviço hospedado.** A Jataí é local; não há conta, nuvem ou painel web na 1.0.0.
 - **Windows no CI:** a suíte roda em Linux e macOS na 1.0.0; o job do Windows está em portabilidade experimental. A extensão funciona no Windows; o que falta é a suíte no runner, não o produto.
+
+## Comunidade
+
+A Jataí é mantida por uma pessoa, [Rafael Nicoleti](https://github.com/rafaelnicolett), e aberta a quem quiser usar, criticar e contribuir.
+
+- **Dúvida ou ideia:** abra uma [issue](https://github.com/rafaelnicolett/jatai/issues) com o template de pergunta.
+- **Bug:** issue com o template de bug e o passo a passo.
+- **Vulnerabilidade:** siga o [SECURITY.md](https://github.com/rafaelnicolett/jatai/blob/main/SECURITY.md); nunca em issue pública.
+- **PR:** leia o [CONTRIBUTING.md](https://github.com/rafaelnicolett/jatai/blob/main/CONTRIBUTING.md). Um PR por assunto, com o teste que prova a mudança.
+
+Se você publica um modelo, um agente ou um harness, a seção [Um harness para testar modelos](#um-harness-para-testar-modelos) é o lugar de comparar. A Jataí é o meu harness; quero que ela seja útil para os seus também.
 
 ## Documentação
 
