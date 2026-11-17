@@ -41,8 +41,6 @@ function replyForScenario(scenario: CockpitScenario, seq: number): void {
 }
 
 function installMockVsCodeApi(): void {
-  if (typeof window.acquireVsCodeApi === "function") return; // já é um webview real — não faz nada
-
   applyThemeFromSearch(window.location.search);
   const scenario = scenarioFromSearch(window.location.search);
   let seq = 0;
@@ -70,6 +68,9 @@ function installMockVsCodeApi(): void {
     setState: (s: unknown) => { state = s; return s; },
   };
 
+  // O app já adquiriu uma API delegadora; esta é a implementação por trás dela.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (window as any).__jataiMockApi = mockApi;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).acquireVsCodeApi = () => mockApi;
 }

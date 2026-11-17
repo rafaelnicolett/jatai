@@ -1,8 +1,6 @@
-// Efeito colateral: instala window.acquireVsCodeApi ANTES de qualquer outro
-// import avaliar store/vscodeApi.ts. Import estático de módulos ES roda em
-// ordem de aparição — por isso este import vem literalmente primeiro.
+// O polyfill de `acquireVsCodeApi` está no `mock.html` (script clássico, antes
+// deste módulo); este import instala o "host" de mentira que o preenche.
 import "./mock/mockBootstrap";
-
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";

@@ -33,7 +33,6 @@ function persistedFromParams(p: MockParams): Record<string, unknown> {
 }
 
 function install(): void {
-  if (typeof window.acquireVsCodeApi === "function") return;
   applyEnvironment(params);
 
   const deliver = (msg: SimMessage): void => void window.postMessage(msg, "*");
@@ -82,6 +81,9 @@ function install(): void {
       return s;
     },
   };
+  // O app já adquiriu uma API delegadora; esta é a implementação por trás dela.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (window as any).__jataiMockApi = mockApi;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).acquireVsCodeApi = () => mockApi;
 }

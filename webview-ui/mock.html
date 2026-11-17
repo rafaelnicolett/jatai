@@ -39,6 +39,17 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      /* O app adquire a API no escopo do módulo; o mock a preenche depois.
+         As chamadas delegam para window.__jataiMockApi, definido pelo bootstrap. */
+      window.acquireVsCodeApi = function () {
+        return {
+          postMessage: function (msg) { if (window.__jataiMockApi) window.__jataiMockApi.postMessage(msg); },
+          getState: function () { return window.__jataiMockApi ? window.__jataiMockApi.getState() : undefined; },
+          setState: function (state) { return window.__jataiMockApi ? window.__jataiMockApi.setState(state) : state; },
+        };
+      };
+    </script>
     <script type="module" src="/src/mock-main.tsx"></script>
   </body>
 </html>
