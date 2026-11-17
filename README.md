@@ -15,7 +15,7 @@
   <img alt="versão" src="https://img.shields.io/badge/vers%C3%A3o-1.0.0-F39A1D">
   <img alt="licença" src="https://img.shields.io/badge/licen%C3%A7a-MIT-5B6B2C">
   <img alt="VS Code" src="https://img.shields.io/badge/VS%20Code-1.90%2B-007ACC">
-  <img alt="feito no Brasil" src="https://img.shields.io/badge/feito%20no-Brasil-F3D9A0?labelColor=2C1708">
+  <img alt="Brasil" src="https://img.shields.io/badge/Brasil-F3D9A0?labelColor=2C1708">
 </p>
 
 <p align="center">
@@ -36,7 +36,7 @@
   <a href="#o-que-você-vê">O que você vê</a> ·
   <a href="#comece-em-5-minutos">Comece em 5 minutos</a> ·
   <a href="#aberta-de-verdade">Aberta de verdade</a> ·
-  <a href="#feita-no-brasil">Feita no Brasil</a> ·
+  <a href="#por-que-jataí">Por que Jataí</a> ·
   <a href="#documentação">Documentação</a>
 </p>
 
@@ -61,23 +61,26 @@ A Jataí é um **método antes de ser uma ferramenta**. A extensão instala o m�
 - **Planejamento decide.** O que muda, em que ordem, com qual risco.
 - **Execução prova.** Testes primeiro, mudança incremental, nada de big bang.
 - **Operação sustenta.** O que foi entregue continua de pé.
-- **Três gates humanos.** D1, D2 e D3. Nenhum agente passa de um gate sem você.
+- **Três gates humanos.** O fim de cada etapa é uma aprovação sua: **D1** fecha a Descoberta, **D2** fecha o Planejamento e **D3** fecha a Execução. Nenhum agente passa de um gate sem você.
 - **Estado em arquivos.** O progresso, as decisões e as evidências ficam em `.github/artifacts/`, versionados com o código.
 - **Um agente por contexto.** O agente de Faturamento não carrega o contexto de Sinistros.
 
-> O nome vem da jataí, abelha nativa sem ferrão. A guarda da colônia inspeciona quem entra. Na Jataí, nenhum agente passa da guarda sem você.
-
 ## Como funciona
 
-```mermaid
-flowchart LR
-  D[Descoberta] --> D1{D1}
-  D1 --> P[Planejamento]
-  P --> D2{D2}
-  D2 --> E[Execução]
-  E --> D3{D3}
-  D3 --> O[Operação]
-```
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="media/readme/fluxo-escuro.png">
+    <img src="media/readme/fluxo-claro.png" alt="O método Jataí: Descoberta, gate D1, Planejamento, gate D2, Execução, gate D3 e Operação">
+  </picture>
+</p>
+
+<p align="center"><sub>Quatro etapas, três gates. O agente para em cada um; a decisão é sua.</sub></p>
+
+| Gate | Fecha | A pergunta |
+|---|---|---|
+| **D1** | Descoberta | O que existe foi entendido o bastante para planejar? |
+| **D2** | Planejamento | O que vai mudar está decidido, com risco e ordem? |
+| **D3** | Execução | O que foi entregue está provado e pode ir para operação? |
 
 | Etapa | O que acontece | O que fica registrado |
 |---|---|---|
@@ -99,7 +102,7 @@ Cada gate tem uma pergunta simples: **o que está em jogo, e você aprova?** O C
   </picture>
 </p>
 
-A tela **Agora** responde em três segundos: onde a iniciativa está, quem está trabalhando, o que espera você e o que travou — com o motivo em texto, nunca só uma cor.
+A tela **Agora** foi desenhada para responder em três segundos: onde a iniciativa está, quem está trabalhando, o que espera você e o que travou — com o motivo em texto, nunca só uma cor.
 
 ### O mapa da colmeia
 
@@ -141,7 +144,7 @@ O Wizard prepara a pasta, mostra o que será escrito e **não altera seus reposi
 
    Diga o que quer fazer — por exemplo, *"mapear o projeto"*. O `jatai` valida os pré-requisitos e chama o agente da etapa certa.
 
-5. **Aprove o D1.** O agente para e mostra o que encontrou. Você decide se a Descoberta está concluída. A partir daí, **Planejamento → D2 → Execução → D3 → Operação** seguem o mesmo contrato.
+5. **Aprove o D1, o gate que fecha a Descoberta.** O agente para e mostra o que encontrou. Você decide se a Descoberta está concluída. Depois, **Planejamento (D2)** e **Execução (D3)** seguem o mesmo contrato.
 
 > O primeiro comando é sempre o mesmo. O que muda é o ponto de partida; o método não muda.
 
@@ -169,11 +172,19 @@ Tudo é texto, versionado com o código. O chat pode fechar; o estado não fecha
 - **Sem lock-in.** O estado é YAML e Markdown no seu repositório. Se a extensão sumir, o método continua legível.
 - **API de extensão consentida.** Um serviço próprio pode se conectar à telemetria, aos templates ou à sincronização de artefatos — só depois de um consentimento por workspace, revogável. O núcleo nunca faz rede; quem faz é a extensão companheira.
 
-## Feita no Brasil
+## Por que Jataí
 
-A Jataí é uma abelha nativa sem ferrão (*Tetragonisca angustula*). O símbolo se chama **Guarda**: a abelha que fica na entrada da colônia e inspeciona quem entra. As quatro faixas de mel do abdômen são as quatro etapas do método; a ponta redonda, sem ferrão, é a mudança segura e reversível.
+A Jataí nasceu de uma necessidade prática: testar modelos de agentes com SDKs, fluxos e processo — não só prompts soltos. Eu queria uma ferramenta que me obrigasse a medir o modelo, o fluxo e o processo, e não apenas a resposta bonita do chat.
 
-A metodologia, a documentação e o produto são escritos em português, no Brasil. A ambição é simples: **tecnologia brasileira, aberta, para times que querem usar IA sem abrir mão de método**.
+O mercado tem ferramentas com milhares de estrelas. Isso é ótimo. Mas também é um lembrete de que a gente aprendeu a desconfiar do que é feito aqui. A Jataí é a minha aposta no contrário: uma engenharia brasileira, mais simples do que os gigantes, mas que trata **brownfield** com a seriedade que ele exige — arquitetura, dívida, testes de caracterização e mudança incremental. É onde a maioria das ferramentas não chega com método.
+
+> "Eu queria uma ferramenta que me obrigasse a testar o modelo, o fluxo e o processo. Não só a resposta bonita do chat. A Jataí é isso: um método que cabe no repositório e uma guarda que não abre sozinha."
+>
+> — Rafael Nicoleti, criador da Jataí
+
+O nome vem da jataí, abelha nativa sem ferrão (*Tetragonisca angustula*). A guarda da colônia inspeciona quem entra: é o símbolo **Guarda**. As quatro faixas de mel do abdômen são as quatro etapas do método; a ponta redonda, sem ferrão, é a mudança segura e reversível.
+
+Não é sobre ser a maior. É sobre ser boa, aberta e daqui.
 
 ## Para quem
 
