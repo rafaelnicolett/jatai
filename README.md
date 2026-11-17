@@ -1,13 +1,15 @@
 <p align="center">
-  <img src="media/readme/jatai-horizontal.png" width="360" alt="Jataí — agentes de IA com método">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="media/readme/jatai-horizontal-negativo.png">
+    <img src="media/readme/jatai-horizontal.png" width="360" alt="Jataí — metodologia agêntica para construção de software">
+  </picture>
 </p>
 
-<h1 align="center">Agentes de IA com método. Decisões com você.</h1>
+<h1 align="center">Metodologia Agêntica para Construção de Software</h1>
 
 <p align="center">
-  A Jataí é uma extensão de código aberto para o VS Code que coloca agentes de IA
-  dentro de um método de entrega. O agente escreve, testa e documenta;
-  <strong>você decide o que passa</strong>.
+  Uma extensão de código aberto para o VS Code que coloca agentes dentro de um método de engenharia.<br>
+  <strong>O agente trabalha. O teste prova. O gate espera por você.</strong>
 </p>
 
 <p align="center">
@@ -30,54 +32,52 @@
 </p>
 
 <p align="center">
-  <a href="#o-problema">O problema</a> ·
-  <a href="#a-proposta">A proposta</a> ·
-  <a href="#por-que-jataí">Por que Jataí</a> ·
+  <a href="#por-que-eu-construí-isto">Por que eu construí isto</a> ·
+  <a href="#o-que-é-a-jataí">O que é</a> ·
+  <a href="#o-que-eu-acredito">O que eu acredito</a> ·
   <a href="#como-funciona">Como funciona</a> ·
   <a href="#o-que-você-vê">O que você vê</a> ·
   <a href="#comece-em-5-minutos">Comece em 5 minutos</a> ·
-  <a href="#aberta-de-verdade">Aberta de verdade</a> ·
-  <a href="#documentação">Documentação</a>
+  <a href="#um-harness-para-testar-modelos">Um harness</a> ·
+  <a href="#o-nome">O nome</a>
 </p>
 
 ---
 
-## O problema
+## Por que eu construí isto
 
-Ferramentas de IA escrevem código mais rápido do que um time consegue revisar. Sem método, o resultado é previsível:
+Passei os últimos meses testando modelos de agentes em código que já existia: SDKs, fluxos e processo. O padrão se repetiu.
 
-- **big bang**: um agente muda dez arquivos de uma vez e ninguém consegue revisar;
-- **decisão sem dono**: a escolha mora no chat e some quando a sessão fecha;
-- **nenhum ponto de parada**: o agente avança sozinho e o merge é a primeira vez que alguém vê o todo;
-- **refactor sem rede**: sem um teste que fixe o comportamento atual, mudar é aposta.
+O agente entrega rápido. A revisão não acompanha. A decisão fica no chat. O teste que provaria a mudança não existe. E o sistema que já estava em produção vira o lugar onde a experiência é feita.
 
-O problema não é a IA escrever. É não haver um lugar para o estado, um momento para a decisão e uma prova do que mudou.
+Eu não queria mais uma ferramenta para gerar código. Queria uma forma de **testar o modelo, o fluxo e o processo** no sistema real, e de parar antes de transformar uma boa ideia num PR que ninguém consegue revisar.
 
-## A proposta
+A Jataí é a minha resposta. É a que eu queria usar.
 
-A Jataí é um **método antes de ser uma ferramenta**. A extensão instala o método na sua pasta e acompanha o trabalho:
-
-- **Descoberta só lê.** O sistema é entendido antes de ser tocado.
-- **Planejamento decide.** O que muda, em que ordem, com qual risco.
-- **Execução prova.** Testes primeiro, mudança incremental, nada de big bang.
-- **Operação sustenta.** O que foi entregue continua de pé.
-- **Três gates humanos.** O fim de cada etapa é uma aprovação sua: **D1** fecha a Descoberta, **D2** fecha o Planejamento e **D3** fecha a Execução. Nenhum agente passa de um gate sem você.
-- **Estado em arquivos.** O progresso, as decisões e as evidências ficam em `.github/artifacts/`, versionados com o código.
-- **Um agente por contexto.** O agente de Faturamento não carrega o contexto de Sinistros.
-
-## Por que Jataí
-
-A Jataí nasceu de uma necessidade prática: testar modelos de agentes com SDKs, fluxos e processo — não só prompts soltos. Eu queria uma ferramenta que me obrigasse a medir o modelo, o fluxo e o processo, e não apenas a resposta bonita do chat.
-
-O mercado tem ferramentas com milhares de estrelas. Isso é ótimo. Mas também é um lembrete de que a gente aprendeu a desconfiar do que é feito aqui. A Jataí é a minha aposta no contrário: uma engenharia brasileira, mais simples do que os gigantes, mas que trata **brownfield** com a seriedade que ele exige — arquitetura, dívida, testes de caracterização e mudança incremental. É onde a maioria das ferramentas não chega com método.
-
-> "Eu queria uma ferramenta que me obrigasse a testar o modelo, o fluxo e o processo. Não só a resposta bonita do chat. A Jataí é isso: um método que cabe no repositório e uma guarda que não abre sozinha."
+> "Eu queria uma ferramenta que me obrigasse a testar o modelo, o fluxo e o processo. Não só a resposta bonita do chat. A Jataí é isso: um método que cabe no repositório e um gate que só passa com a sua decisão."
 >
 > — Rafael Nicoleti, criador da Jataí
 
-O nome vem da jataí, abelha nativa sem ferrão (*Tetragonisca angustula*). A guarda da colônia inspeciona quem entra: é o símbolo **Guarda**. As quatro faixas de mel do abdômen são as quatro etapas do método; a ponta redonda, sem ferrão, é a mudança segura e reversível.
+O Brasil faz boa engenharia e ainda é lido como "mais simples". A Jataí é a minha aposta para mudar essa leitura: um produto brasileiro, aberto, que trata **brownfield** com o rigor que o problema exige. Não é sobre ser a maior. É sobre ser boa, aberta e daqui.
 
-Não é sobre ser a maior. É sobre ser boa, aberta e daqui.
+## O que é a Jataí
+
+A Jataí é uma extensão de VS Code com um kit de agentes, skills e regras. Ela instala um método de entrega no seu repositório e o acompanha até a operação.
+
+- **Descoberta:** o sistema é lido, o domínio é mapeado, a dívida aparece. Nada é alterado.
+- **Planejamento:** escopo, ordem, risco e ADRs. A mudança é desenhada em passos pequenos.
+- **Execução:** teste de caracterização, refactor e feature em PRs que dá para revisar.
+- **Operação:** CI/CD, observabilidade, incidentes e o próximo ciclo.
+
+O produto não é o chat. É o que fica escrito: o estado em `.github/artifacts/`, a decisão no gate e a prova no teste.
+
+## O que eu acredito
+
+- **Sistema que já existe não é rascunho.** Ele paga as contas. A Jataí começa entendendo, não reescrevendo.
+- **Sem teste que fixe o comportamento atual, refactor é aposta.** A Execução prova antes de trocar.
+- **Gate é gente.** Nenhum agente aprova o próprio trabalho. A decisão tem nome e data.
+- **Estado no chat é estado perdido.** O progresso, a decisão e a evidência ficam em arquivos no repositório.
+- **Aberto de verdade.** MIT, local, sem telemetria, sem conta. O método não pode depender de uma empresa.
 
 ## Como funciona
 
@@ -116,7 +116,7 @@ Cada gate tem uma pergunta simples: **o que está em jogo, e você aprova?** O C
   </picture>
 </p>
 
-A tela **Agora** foi desenhada para responder em três segundos: onde a iniciativa está, quem está trabalhando, o que espera você e o que travou — com o motivo em texto, nunca só uma cor.
+A tela **Agora** foi desenhada para responder em três segundos: onde a iniciativa está, quem está trabalhando, o que espera você e o que travou. O motivo aparece em texto, nunca só numa cor.
 
 ### O mapa da colmeia
 
@@ -177,20 +177,39 @@ jatai.config.yaml           # o workspace, os repositórios e o kit instalado
 
 Tudo é texto, versionado com o código. O chat pode fechar; o estado não fecha com ele.
 
-## Aberta de verdade
+## Um harness para testar modelos, não só prompts
 
-- **MIT.** Use, mude, distribua e integre. A licença está em [LICENSE](LICENSE).
-- **Local por padrão.** O núcleo não envia dados para fora. Um teste de zero egress roda no CI a cada mudança.
-- **Sem telemetria escondida.** Não há coleta de uso, prompt ou conteúdo de arquivo.
-- **Seu modelo, seu harness.** Hoje Claude Code e GitHub Copilot; a estrutura é Markdown e novos harnesses entram por adaptador. O modelo é escolha sua.
-- **Sem lock-in.** O estado é YAML e Markdown no seu repositório. Se a extensão sumir, o método continua legível.
-- **API de extensão consentida.** Um serviço próprio pode se conectar à telemetria, aos templates ou à sincronização de artefatos — só depois de um consentimento por workspace, revogável. O núcleo nunca faz rede; quem faz é a extensão companheira.
+A Jataí nasceu dessa necessidade: trocar o modelo sem trocar o método. O mesmo repositório, o mesmo teste, o mesmo gate, o mesmo artefato. A diferença aparece no diff, não no texto de apresentação.
+
+| Muda | Não muda |
+|---|---|
+| modelo e provedor | as quatro etapas e os três gates |
+| Claude Code ou GitHub Copilot | o estado em `.github/artifacts/` |
+| prompt e contexto | os testes que provam a mudança |
+
+Se você publica um modelo, um agente ou um harness, a Jataí é um lugar para medir o que ele faz num sistema real. A comparação é bem-vinda; o método é o mesmo.
+
+## O nome
+
+A jataí é uma abelha nativa sem ferrão (*Tetragonisca angustula*). Ela vive em quase todo o Brasil, do oco de árvore ao muro de cidade. Na entrada do ninho, a guarda inspeciona quem entra e quem sai.
+
+No produto, a guarda é o gate: **ela não decide sozinha. Ela espera você.** As quatro faixas de mel do abdômen são as quatro etapas do método; a ponta redonda, sem ferrão, é a mudança segura e reversível.
+
+Nenhum agente passa da guarda sem você.
 
 ## Para quem
 
 - **Times com sistema existente:** a Descoberta entende antes de mexer; a Execução troca em passos que você aprova, com um teste que fixa o comportamento atual.
 - **Times começando um projeto:** o contrato vem antes do código, cada decisão de arquitetura vira ADR e cada agente cuida da sua stack.
 - **Consultorias e tech leads:** o trabalho fica auditável no repositório, não na memória de uma sessão de chat.
+
+## Status e limites
+
+- **1.0.0.** O método funciona de ponta a ponta; as arestas estão documentadas.
+- **O Cockpit e o Wizard vivem no VS Code.** O método, os agentes e os artefatos não dependem do editor; a interface depende.
+- **Dois harnesses hoje:** Claude Code e GitHub Copilot. O suporte a outros harnesses entra por adaptador, com testes de paridade — OpenCode está no backlog.
+- **Sem serviço hospedado.** A Jataí é local; não há conta, nuvem ou painel web na 1.0.0.
+- **Windows no CI:** a suíte roda em Linux e macOS na 1.0.0; o job do Windows está em portabilidade experimental. A extensão funciona no Windows; o que falta é a suíte no runner, não o produto.
 
 ## Documentação
 
@@ -218,14 +237,6 @@ npm run package         # gera o .vsix
 
 As telas deste README são capturadas do mock visual com o Chrome, pelo script
 `webview-ui/scripts/capture-readme.mjs`; as imagens ficam em `media/readme/`.
-
-## Limitações
-
-- **O Cockpit e o Wizard vivem no VS Code.** O método, os agentes e os artefatos não dependem do editor; a interface depende.
-- **Dois harnesses hoje:** Claude Code e GitHub Copilot. O suporte a outros harnesses entra por adaptador, com testes de paridade — OpenCode está no backlog.
-- **Windows no CI:** a suíte roda em Linux e macOS na 1.0.0; o job do Windows está em portabilidade experimental. A extensão funciona no Windows — o que falta é a suíte de testes no runner, não o produto.
-- **Sem serviço hospedado.** A Jataí é local; não há conta, nuvem ou painel web na 1.0.0.
-- **A 1.0.0 é o começo.** O que está aqui é o método funcionando de ponta a ponta, com as arestas documentadas.
 
 ## Licença
 
