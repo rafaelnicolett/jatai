@@ -32,11 +32,11 @@
 <p align="center">
   <a href="#o-problema">O problema</a> ·
   <a href="#a-proposta">A proposta</a> ·
+  <a href="#por-que-jataí">Por que Jataí</a> ·
   <a href="#como-funciona">Como funciona</a> ·
   <a href="#o-que-você-vê">O que você vê</a> ·
   <a href="#comece-em-5-minutos">Comece em 5 minutos</a> ·
   <a href="#aberta-de-verdade">Aberta de verdade</a> ·
-  <a href="#por-que-jataí">Por que Jataí</a> ·
   <a href="#documentação">Documentação</a>
 </p>
 
@@ -64,6 +64,20 @@ A Jataí é um **método antes de ser uma ferramenta**. A extensão instala o m�
 - **Três gates humanos.** O fim de cada etapa é uma aprovação sua: **D1** fecha a Descoberta, **D2** fecha o Planejamento e **D3** fecha a Execução. Nenhum agente passa de um gate sem você.
 - **Estado em arquivos.** O progresso, as decisões e as evidências ficam em `.github/artifacts/`, versionados com o código.
 - **Um agente por contexto.** O agente de Faturamento não carrega o contexto de Sinistros.
+
+## Por que Jataí
+
+A Jataí nasceu de uma necessidade prática: testar modelos de agentes com SDKs, fluxos e processo — não só prompts soltos. Eu queria uma ferramenta que me obrigasse a medir o modelo, o fluxo e o processo, e não apenas a resposta bonita do chat.
+
+O mercado tem ferramentas com milhares de estrelas. Isso é ótimo. Mas também é um lembrete de que a gente aprendeu a desconfiar do que é feito aqui. A Jataí é a minha aposta no contrário: uma engenharia brasileira, mais simples do que os gigantes, mas que trata **brownfield** com a seriedade que ele exige — arquitetura, dívida, testes de caracterização e mudança incremental. É onde a maioria das ferramentas não chega com método.
+
+> "Eu queria uma ferramenta que me obrigasse a testar o modelo, o fluxo e o processo. Não só a resposta bonita do chat. A Jataí é isso: um método que cabe no repositório e uma guarda que não abre sozinha."
+>
+> — Rafael Nicoleti, criador da Jataí
+
+O nome vem da jataí, abelha nativa sem ferrão (*Tetragonisca angustula*). A guarda da colônia inspeciona quem entra: é o símbolo **Guarda**. As quatro faixas de mel do abdômen são as quatro etapas do método; a ponta redonda, sem ferrão, é a mudança segura e reversível.
+
+Não é sobre ser a maior. É sobre ser boa, aberta e daqui.
 
 ## Como funciona
 
@@ -171,20 +185,6 @@ Tudo é texto, versionado com o código. O chat pode fechar; o estado não fecha
 - **Seu modelo, seu harness.** Hoje Claude Code e GitHub Copilot; a estrutura é Markdown e novos harnesses entram por adaptador. O modelo é escolha sua.
 - **Sem lock-in.** O estado é YAML e Markdown no seu repositório. Se a extensão sumir, o método continua legível.
 - **API de extensão consentida.** Um serviço próprio pode se conectar à telemetria, aos templates ou à sincronização de artefatos — só depois de um consentimento por workspace, revogável. O núcleo nunca faz rede; quem faz é a extensão companheira.
-
-## Por que Jataí
-
-A Jataí nasceu de uma necessidade prática: testar modelos de agentes com SDKs, fluxos e processo — não só prompts soltos. Eu queria uma ferramenta que me obrigasse a medir o modelo, o fluxo e o processo, e não apenas a resposta bonita do chat.
-
-O mercado tem ferramentas com milhares de estrelas. Isso é ótimo. Mas também é um lembrete de que a gente aprendeu a desconfiar do que é feito aqui. A Jataí é a minha aposta no contrário: uma engenharia brasileira, mais simples do que os gigantes, mas que trata **brownfield** com a seriedade que ele exige — arquitetura, dívida, testes de caracterização e mudança incremental. É onde a maioria das ferramentas não chega com método.
-
-> "Eu queria uma ferramenta que me obrigasse a testar o modelo, o fluxo e o processo. Não só a resposta bonita do chat. A Jataí é isso: um método que cabe no repositório e uma guarda que não abre sozinha."
->
-> — Rafael Nicoleti, criador da Jataí
-
-O nome vem da jataí, abelha nativa sem ferrão (*Tetragonisca angustula*). A guarda da colônia inspeciona quem entra: é o símbolo **Guarda**. As quatro faixas de mel do abdômen são as quatro etapas do método; a ponta redonda, sem ferrão, é a mudança segura e reversível.
-
-Não é sobre ser a maior. É sobre ser boa, aberta e daqui.
 
 ## Para quem
 
