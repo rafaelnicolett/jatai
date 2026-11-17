@@ -17,6 +17,8 @@
 import * as vscode from "vscode";
 import type { CommandHandler } from "./CommandHandler";
 import { openChatWithPrompt, getHostAdapter, getActiveSyncContext } from "./hostChat";
+import { openInOpenCode } from "../../adapters/chat/openCode";
+import { BRAND } from "../../data/brand.pure";
 
 export const injectPromptHandler: CommandHandler = {
   type: "injectPrompt",
@@ -50,6 +52,10 @@ export const openChatHandler: CommandHandler = {
   type: "openChat",
   async handle(_msg, ctx) {
     const host = await getHostAdapter(ctx.configLoader);
+    if (host === "opencode") {
+      await openInOpenCode(`/${BRAND.name}`);
+      return;
+    }
     if (host === "claude") {
       try {
         await vscode.commands.executeCommand("workbench.action.chat.open", { agentId: "claude" });

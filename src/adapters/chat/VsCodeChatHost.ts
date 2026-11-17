@@ -12,6 +12,7 @@
 import * as vscode from "vscode";
 import type { ChatHost, ChatHostId, ChatOpenOptions } from "./ChatHost";
 import { openInClaudeCode, toClaudeCodePrompt } from "./claudeCode";
+import { openInOpenCode, toOpenCodePrompt } from "./openCode";
 
 export class VsCodeChatHost implements ChatHost {
   /** `resolveHost`: o harness do workspace (o container lê do config); default Copilot. */
@@ -25,6 +26,12 @@ export class VsCodeChatHost implements ChatHost {
     const host = options.host ?? (await this._resolveHost());
     if (host === "claude") {
       await openInClaudeCode(toClaudeCodePrompt(`@${agent} ${query}`));
+      return;
+    }
+    if (host === "opencode") {
+      // OpenCode é um harness externo: não há view de chat no VS Code. O pedido
+      // vai para a área de transferência no formato do comando e o usuário cola.
+      await openInOpenCode(toOpenCodePrompt(`@${agent} ${query}`));
       return;
     }
     await vscode.commands.executeCommand(

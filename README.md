@@ -155,7 +155,8 @@ O Wizard prepara a pasta, mostra o que será escrito e **não altera seus reposi
 
 4. **Comece pelo agente `jatai`.** No chat do seu harness:
    - **Claude Code:** chame `@jatai`;
-   - **GitHub Copilot:** selecione o agente **jatai** no seletor e escreva a intenção.
+   - **GitHub Copilot:** selecione o agente **jatai** no seletor e escreva a intenção;
+   - **OpenCode:** selecione o agente **jatai** (primary) ou rode `/jatai`.
 
    Diga o que quer fazer — por exemplo, *"mapear o projeto"*. O `jatai` valida os pré-requisitos e chama o agente da etapa certa.
 
@@ -170,7 +171,9 @@ O Wizard prepara a pasta, mostra o que será escrito e **não altera seus reposi
   assessment/               # Descoberta
   planning/                 # Planejamento, ADRs e risco
   execution/                # relatórios de execução e testes
-.claude/agents/             # agentes (Claude Code) — ou .github/agents/ no Copilot
+.claude/agents/             # agentes (Claude Code)
+.github/agents/             # agentes (GitHub Copilot)
+.opencode/agents/           # agentes (OpenCode)
 .claude/skills/             # skills reutilizáveis
 AGENTS.md                   # o ponto de entrada, lido pelo harness
 jatai.config.yaml           # o workspace, os repositórios e o kit instalado
@@ -185,7 +188,7 @@ A Jataí nasceu dessa necessidade: trocar o modelo sem trocar o método. O mesmo
 | Muda | Não muda |
 |---|---|
 | modelo e provedor | as quatro etapas e os três gates |
-| Claude Code ou GitHub Copilot | o estado em `.github/artifacts/` |
+| Claude Code, GitHub Copilot ou OpenCode | o estado em `.github/artifacts/` |
 | prompt e contexto | os testes que provam a mudança |
 
 Se você publica um modelo, um agente ou um harness, a Jataí é um lugar para medir o que ele faz num sistema real. A comparação é bem-vinda; o método é o mesmo.
@@ -208,7 +211,7 @@ Nenhum agente passa da guarda sem você.
 
 - **1.0.0.** O método funciona de ponta a ponta; as arestas estão documentadas.
 - **O Cockpit e o Wizard vivem no VS Code.** O método, os agentes e os artefatos não dependem do editor; a interface depende.
-- **Dois harnesses hoje:** Claude Code e GitHub Copilot. O suporte a outros harnesses entra por adaptador, com testes de paridade — OpenCode está no backlog.
+- **Três harnesses hoje:** Claude Code, GitHub Copilot e OpenCode. O mesmo kit é instalado por adaptador, com testes de paridade; o OpenCode usa `.opencode/`, agente `jatai` primary e o comando `/jatai`.
 - **Sem serviço hospedado.** A Jataí é local; não há conta, nuvem ou painel web na 1.0.0.
 - **Windows no CI:** a suíte roda em Linux e macOS na 1.0.0; o job do Windows está em portabilidade experimental. A extensão funciona no Windows; o que falta é a suíte no runner, não o produto.
 

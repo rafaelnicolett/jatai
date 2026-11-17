@@ -27,7 +27,7 @@ export const PENDING_FOUNDATION_KEY = `${BRAND.name}.pendingFoundation`;
 
 /** Abre o chat no agente orquestrador pedindo que o @assessor monte o inventário e comece o Discovery (ADR-0025). */
 export async function startFoundation(hostAdapter: string, ports: Pick<HostPorts, "notifier" | "chatHost">): Promise<void> {
-  const host: HostId = hostAdapter === "claude" ? "claude" : "copilot";
+  const host: HostId = hostAdapter === "claude" ? "claude" : hostAdapter === "opencode" ? "opencode" : "copilot";
   try {
     // O harness é o que o Wizard escolheu: no Claude Code, o pedido vai para o /<marca> (H-BUG-24).
     await handOffToOrchestrator(ports.chatHost, foundationPrompt(host), { host });

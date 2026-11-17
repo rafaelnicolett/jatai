@@ -21,7 +21,7 @@ alfabética.
 | **golden master** | a técnica de guardar uma saída como "esperado" e comparar byte a byte. Veja [golden master](praticas/golden-master.md) |
 | **greenfield** | o ponto de partida em que o projeto ainda não existe |
 | **guardião** | um agente que só entra nos gates do projeto novo e valida de ponta a ponta |
-| **harness** | o ambiente de IA onde os agentes rodam: o Claude Code ou o GitHub Copilot |
+| **harness** | o ambiente de IA onde os agentes rodam: o Claude Code, o GitHub Copilot ou o OpenCode |
 | **hotfix** | a iniciativa que corrige um defeito em produção, em três ondas: diagnóstico, fix com testes e validação |
 | **iniciativa** | uma unidade de trabalho com começo e fim: `feature`, `modernization` ou `hotfix`. Veja [iniciativas](iniciativas.md) |
 | **kit** | os agentes, as skills e as instruções que a Jataí instala no seu projeto |

@@ -7,7 +7,7 @@
  * `vscode` nem I/O.
  */
 
-export type ChatHostId = "copilot" | "claude";
+export type ChatHostId = "copilot" | "claude" | "opencode";
 
 export interface ChatOpenOptions {
   /** Só preenche o campo do chat, sem enviar (o usuário revisa e envia). */

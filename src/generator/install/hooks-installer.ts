@@ -15,10 +15,15 @@ import { atomicWrite } from "../../state/lock/atomic-write";
 import type { HarnessAdapter } from "../harness/HarnessAdapter";
 import { KIT_SCRIPTS_DIR } from "../content/mcp-config";
 import { claudeHookRelay, hookRelayFile, mergeClaudeSettings } from "../content/claude-hooks";
+import { installOpenCodeActivity } from "./opencode-activity-installer";
 
-/** Relé e hooks. */
+/** Relé e hooks (Claude) ou plugin (OpenCode). */
 export async function installAgentActivityHooks(targetDir: string, harness: HarnessAdapter): Promise<void> {
-  if (harness.projectHooksFile === null) return;
+  if (harness.activity === "plugin") {
+    await installOpenCodeActivity(targetDir);
+    return;
+  }
+  if (harness.activity === "none" || harness.projectHooksFile === null) return;
   const relay = path.join(targetDir, KIT_SCRIPTS_DIR, hookRelayFile());
   try {
     await fs.mkdir(path.dirname(relay), { recursive: true });
@@ -30,8 +35,13 @@ export async function installAgentActivityHooks(targetDir: string, harness: Harn
   await configureAgentActivityHooks(targetDir, harness);
 }
 
-/** Só os hooks na configuração de projeto (a retomada da instalação usa só isto). */
+/** Só os hooks/plugin na configuração do harness (a retomada da instalação usa só isto). */
 export async function configureAgentActivityHooks(targetDir: string, harness: HarnessAdapter): Promise<void> {
+  if (harness.activity === "plugin") {
+    await installOpenCodeActivity(targetDir);
+    return;
+  }
+  if (harness.activity === "none") return;
   const settings = harness.projectHooksFile;
   if (settings === null) return;
   try {

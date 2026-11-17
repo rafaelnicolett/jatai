@@ -16,6 +16,30 @@ A Jataí é a edição aberta da extensão antes distribuída como Helyx. O
 histórico começa aqui: as versões da edição anterior não fazem parte deste
 registro.
 
+## [1.1.0] - 2026-11-17
+
+### Adicionado
+
+- **OpenCode como terceiro harness.** O kit instala agentes, skills,
+  instruções e o comando `/jatai` em `.opencode/`, com o agente `jatai` como
+  orquestrador (`primary`) e os especialistas como subagentes. A entrada é o
+  agente `jatai` ou o comando `/jatai`.
+- O Wizard oferece **OpenCode** ao lado de Claude Code e GitHub Copilot, e o
+  Cockpit lê os agentes dos três layouts.
+- O servidor MCP é configurado em `opencode.json(c)`, preservando os outros
+  servidores e os comentários do arquivo do time.
+- A atividade dos subagentes do OpenCode entra no mesmo registro do mapa:
+  começou, terminou e bloqueou, com `harness: "opencode"`.
+- O comando `runs append` aceita `--harness opencode`.
+
+### Notas
+
+- O suporte é para o OpenCode **2.x**; o V1 fica para uma decisão futura.
+- A compatibilidade `.claude` do OpenCode (skills e comandos) continua, mas não
+  substitui os agentes nativos de `.opencode/`.
+- Esta versão vem depois da 1.0.0; a 1.0.0 continua sendo a primeira
+  publicação.
+
 ## [1.0.0] - 2026-11-17
 
 ### Adicionado

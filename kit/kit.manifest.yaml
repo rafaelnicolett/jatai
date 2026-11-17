@@ -97,6 +97,7 @@ editions:
       - agents/planning
       - claude-instructions.md
       - copilot-instructions.md
+      - opencode-instructions.md
       - { from: variants/brownfield/agents/maestro.agent.md, to: agents/maestro.agent.md }
       - { from: variants/brownfield/agents/operation/devops.agent.md, to: agents/operation/devops.agent.md }
       - { from: variants/brownfield/agents/operation/incident.agent.md, to: agents/operation/incident.agent.md }

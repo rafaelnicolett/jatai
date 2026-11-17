@@ -33,6 +33,7 @@ repositório, porque são do produto anterior ou de um modo online que a v1 não
 | [0023](0023-api-de-extensao-portas-com-consentimento.md) | API pública de extensão sobre as portas, com consentimento explícito | aceita |
 | [0024](0024-cli-de-estado-verbos-de-leitura-e-de-gate.md) | Verbos de leitura e de gate no CLI de estado, com `gate_d3` | aceita |
 | [0025](0025-mcp-no-kit-e-agente-jatai-como-entrada-nos-dois-harnesses.md) | Servidor MCP instalado pelo kit e o agente `jatai` como entrada | aceita |
+| [0026](0026-opencode-como-terceiro-harness.md) | OpenCode como terceiro harness nativo (agentes, skills, comandos, MCP e atividade) | aceita |
 
 ## Por tema
 
@@ -43,7 +44,8 @@ repositório, porque são do produto anterior ou de um modo online que a v1 não
 - **A metodologia nos arquivos:** 0001 (fluxo por tipo de iniciativa), 0002 (a
   Operação), 0006 a 0008 (épicos e tarefas), 0022 (status de trabalho), 0024 (o CLI
   de estado e os gates).
-- **O kit e a extensão:** 0018 (o kit), 0023 (a API para outras extensões).
+- **O kit e a extensão:** 0018 (o kit), 0023 (a API para outras extensões), 0026
+  (o OpenCode como terceiro harness).
 - **O mapa:** 0020 (eventos de atividade e o mapa em tempo real).
 
 ## Como propor uma decisão nova

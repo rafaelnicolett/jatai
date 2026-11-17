@@ -88,6 +88,7 @@ const BROWNFIELD_COPY_MAP = [
   "chatmodes",
   "copilot-instructions.md",
   "claude-instructions.md",
+  "opencode-instructions.md",
   "AGENTS.md",
 
   // Skills brownfield-specific (Discovery + Planning + Execution)

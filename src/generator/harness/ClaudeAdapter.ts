@@ -8,6 +8,7 @@ import { BRAND } from "../../data/brand.pure";
 import { walkFilesByExt } from "../fs/copy";
 import { renameKitOrchestrator } from "./orchestrator";
 import { entryPointParagraph } from "../content/entry-point";
+import { MCP_CONFIG_FILES } from "../content/mcp-config";
 
 /**
  * Gera .claude/agents/, .claude/commands/ e CLAUDE.md
@@ -21,6 +22,14 @@ export class ClaudeAdapter implements HarnessAdapter {
   readonly supportsChatmodes = false;
   readonly slashCommandsDir = ".claude/commands";
   readonly projectHooksFile = ".claude/settings.json";
+  readonly orchestratorFile = BRAND.files.orchestratorAgent;
+  readonly genericAgentsMd = true;
+  readonly mcpConfigs = MCP_CONFIG_FILES;
+  readonly activity = "hooks";
+
+  agentDestination(kitRel: string): string {
+    return kitRel;
+  }
 
   /**
    * Adapts agent files for Claude Code host:

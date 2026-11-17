@@ -1,5 +1,6 @@
 import type { WizardState } from "../../types";
 import type { HostId } from "../../data/foundation-prompt";
+import type { McpConfigFile } from "../content/mcp-config";
 
 /**
  * O que muda entre os harnesses (Claude Code e GitHub Copilot) quando o kit
@@ -24,6 +25,32 @@ export interface HarnessAdapter {
 
   /** De onde vêm as instruções no kit brownfield (relativo à raiz do kit). */
   readonly kitInstructionsFile: string;
+
+  /** Nome do orquestrador no destino, relativo a `hostDir/agents/` (ADR-0025). */
+  readonly orchestratorFile: string;
+
+  /**
+   * O kit instala o `AGENTS.md` genérico (que fala dos harnesses)? O OpenCode
+   * instala o próprio `opencode-instructions.md` como `AGENTS.md`, então não.
+   */
+  readonly genericAgentsMd: boolean;
+
+  /** Configurações MCP que este harness instala (ADR-0025, epic-9). */
+  readonly mcpConfigs: readonly McpConfigFile[];
+
+  /**
+   * Como o harness registra atividade de agente (contrato agent-activity):
+   * hooks de projeto (Claude Code), plugin (OpenCode) ou nenhum (Copilot, que
+   * depende do observador de artefatos).
+   */
+  readonly activity: "hooks" | "plugin" | "none";
+
+  /**
+   * Nome do arquivo de agente no destino, relativo a `hostDir/agents/`, dado o
+   * caminho no kit (ex.: `discovery/assessor.agent.md`). Claude/Copilot mantêm
+   * o caminho; o OpenCode achata em `<id>.md`.
+   */
+  agentDestination(kitRel: string): string;
 
   /** O harness lê `.github/chatmodes/`: o kit instala o chatmode do orquestrador. */
   readonly supportsChatmodes: boolean;

@@ -92,12 +92,13 @@ function walk(dir: string, base = dir, out: string[] = []): string[] {
 export function kitOwnedFiles(harness: HarnessAdapter): string[] {
   const out: string[] = [];
   for (const rel of walk(kitRoot("brownfield-templates"))) {
-    if (rel === `agents/${KIT_ORCHESTRATOR}`) out.push(`${harness.hostDir}/agents/${BRAND.files.orchestratorAgent}`);
-    else if (rel.startsWith("agents/") || rel.startsWith("skills/")) out.push(`${harness.hostDir}/${rel}`);
+    if (rel === `agents/${KIT_ORCHESTRATOR}`) out.push(`${harness.hostDir}/agents/${harness.orchestratorFile}`);
+    else if (rel.startsWith("agents/")) out.push(`${harness.hostDir}/agents/${harness.agentDestination(rel.slice("agents/".length))}`);
+    else if (rel.startsWith("skills/")) out.push(`${harness.hostDir}/${rel}`);
     else if (rel.startsWith("chatmodes/")) {
       if (harness.supportsChatmodes) out.push(`.github/${rel}`);
     } else if (rel === harness.kitInstructionsFile) out.push(harness.instructionsFile);
-    else if (rel === "AGENTS.md") out.push(rel);
+    else if (rel === "AGENTS.md" && harness.genericAgentsMd) out.push(rel);
   }
   return out.sort();
 }

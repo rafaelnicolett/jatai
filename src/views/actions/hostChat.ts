@@ -20,24 +20,30 @@ import { BRAND } from "../../data/brand.pure";
 import { findConfigPath } from "../../data/kit-version";
 import { mentionsEntry, withoutEntryMention } from "../../adapters/chat/orchestrator";
 import { openInClaudeCode, toClaudeCodePrompt } from "../../adapters/chat/claudeCode";
+import { openInOpenCode, toOpenCodePrompt } from "../../adapters/chat/openCode";
+import type { HostAdapter } from "../../types";
 
 export { toClaudeCodePrompt };
 
 /** Host do workspace (config em qualquer formato, senão o disco); default `"copilot"`. Ver `ConfigLoader.hostAdapter`. */
-export async function getHostAdapter(configLoader: ConfigLoader): Promise<"copilot" | "claude"> {
+export async function getHostAdapter(configLoader: ConfigLoader): Promise<HostAdapter> {
   return configLoader.hostAdapter();
 }
 
 /**
- * Abre o chat do host configurado (Copilot ou Claude Code) com o prompt dado.
- * Claude Code: adapta `@helyx` → `/helyx` e copia para a área de transferência
- * (Claude Code não tem um comando de "abrir com query" como o Copilot).
+ * Abre o chat do host configurado (Copilot, Claude Code ou OpenCode) com o
+ * prompt dado. Claude Code: adapta `@jatai` → `/jatai` e copia para a área de
+ * transferência. OpenCode: idem, sem view para focar.
  */
 export async function openChatWithPrompt(rawPrompt: string, isPartialQuery: boolean, configLoader: ConfigLoader): Promise<void> {
   const host = await getHostAdapter(configLoader);
 
   if (host === "claude") {
     await openInClaudeCode(toClaudeCodePrompt(rawPrompt));
+    return;
+  }
+  if (host === "opencode") {
+    await openInOpenCode(toOpenCodePrompt(rawPrompt));
     return;
   }
 

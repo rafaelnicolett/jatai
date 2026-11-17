@@ -4,7 +4,7 @@ A Jataí é distribuída sob a licença MIT (ver `LICENSE`). Os pacotes do `.vsi
 
 Arquivo gerado por `scripts/third-party-notices.mjs` a partir dos lockfiles. Não edite à mão: rode `npm run notices`.
 
-Total: 154 pacotes de produção.
+Total: 155 pacotes de produção.
 
 | Pacote | Versão | Licença | Usado em |
 |---|---|---|---|
@@ -99,6 +99,7 @@ Total: 154 pacotes de produção.
 | js-yaml | 4.1.1 | MIT | extensão, CLI e servidor MCP |
 | json-schema-traverse | 1.0.0 | MIT | extensão, CLI e servidor MCP |
 | json-schema-typed | 8.0.2 | BSD-2-Clause | extensão, CLI e servidor MCP |
+| jsonc-parser | 3.3.1 | MIT | extensão, CLI e servidor MCP |
 | jszip | 3.10.1 | MIT (o pacote é MIT OR GPL-3.0-or-later; a Jataí usa a opção MIT) | extensão, CLI e servidor MCP |
 | lie | 3.3.0 | MIT | extensão, CLI e servidor MCP |
 | loose-envify | 1.4.0 | MIT | webview (Cockpit) |
@@ -3230,6 +3231,38 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
 ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+</details>
+
+## jsonc-parser@3.3.1
+
+Licença: MIT
+
+<details><summary>LICENSE.md</summary>
+
+```text
+The MIT License (MIT)
+
+Copyright (c) Microsoft
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
 
 </details>

@@ -7,8 +7,8 @@ import { BRAND } from "./brand.pure";
  * (`renameKitOrchestrator`, em src/generator/harness/), o agente que é a
  * entrada da metodologia no Claude Code e no Copilot.
  */
-export function orchestratorAgentFilename(_host: HostId): string {
-  return BRAND.files.orchestratorAgent;
+export function orchestratorAgentFilename(host: HostId): string {
+  return host === "opencode" ? `${BRAND.name}.md` : BRAND.files.orchestratorAgent;
 }
 
 /**

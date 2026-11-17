@@ -2,9 +2,9 @@
 
 Um **agente** é um assistente de IA especializado numa tarefa: um analisa a
 arquitetura, outro escreve testes, outro registra decisões. Nenhum faz tudo. A
-Jataí instala os agentes no seu projeto como arquivos de texto (`.agent.md`), no
-formato que o Claude Code e o GitHub Copilot leem. O [catálogo](../agentes/README.md)
-tem uma ficha para cada um.
+Jataí instala os agentes no seu projeto como arquivos de texto (`.agent.md` no
+Claude Code e no Copilot, `.md` no OpenCode), no formato que os três leem. O
+[catálogo](../agentes/README.md) tem uma ficha para cada um.
 
 ## O ponto de entrada
 
@@ -12,7 +12,8 @@ Você nunca fala direto com um agente especialista. Toda conversa começa no
 **orquestrador**, o agente `jatai`:
 
 - no Claude Code, é o agente `@jatai`;
-- no Copilot, é o custom agent `jatai`, escolhido no seletor de agentes.
+- no Copilot, é o custom agent `jatai`, escolhido no seletor de agentes;
+- no OpenCode, é o agente `jatai` (primary) ou o comando `/jatai`.
 
 O orquestrador valida os pré-requisitos da etapa e roteia para o agente certo. Se
 faltar um artefato de uma etapa anterior, ele bloqueia e manda você para a etapa

@@ -11,12 +11,38 @@
  */
 
 import { BRAND } from "./brand.pure";
+import { deliveryAgentPath } from "../core/methodology/phase-catalog.pure";
 
-export type HostId = "copilot" | "claude";
+export type HostId = "copilot" | "claude" | "opencode";
 
 /** Onde os agentes vivem, por host. Artefatos ficam sempre em `.github/artifacts/`. */
 export function agentsDirFor(host: HostId): string {
-  return host === "claude" ? ".claude/agents" : ".github/agents";
+  if (host === "claude") return ".claude/agents";
+  if (host === "opencode") return ".opencode/agents";
+  return ".github/agents";
+}
+
+/**
+ * Nome do arquivo de um agente do kit no layout do harness.
+ *
+ * O kit nomeia `<stream>/<id>.agent.md`; Claude/Copilot mantêm o nome e a
+ * subpasta, e o OpenCode usa `<id>.md` plano (o ID do OpenCode é o caminho do
+ * arquivo). A LLM Wiki (`domain/<slug>.md`) é do cliente e não passa por aqui.
+ */
+export function agentFileNameFor(host: HostId, agentFile: string): string {
+  if (host !== "opencode") return agentFile;
+  return agentFile.replace(/\.agent\.md$/, ".md").split("/").pop()!;
+}
+
+/** Caminho relativo à raiz do workspace do arquivo de um agente do kit. */
+export function agentPathFor(host: HostId, agentFile: string): string {
+  return `${agentsDirFor(host)}/${agentFileNameFor(host, agentFile)}`;
+}
+
+/** Caminho do agente de uma fase de delivery no harness, ou `undefined` se a fase não existe. */
+export function deliveryAgentPathFor(host: HostId, phaseId: string): string | undefined {
+  const rel = deliveryAgentPath(phaseId)?.replace(/^\.github\/agents\//, "");
+  return rel ? agentPathFor(host, rel) : undefined;
 }
 
 /**
@@ -28,7 +54,7 @@ export function agentsDirFor(host: HostId): string {
  * adicionar um repositório depois — por isso a coleta vive aqui, e não no wizard.
  */
 export function foundationPrompt(host: HostId): string {
-  const agents = agentsDirFor(host);
+  const assessor = agentPathFor(host, "discovery/assessor.agent.md");
 
   return `Inicie o stream Foundation deste workspace brownfield seguindo o protocolo do @assessor.
 
@@ -64,7 +90,7 @@ Leia \`.github/artifacts/repos.yaml\`.
 
 ## Passo 1 — Discovery
 
-1. Leia \`${agents}/discovery/assessor.agent.md\` — é o coordenador do Foundation
+1. Leia \`${assessor}\` — é o coordenador do Foundation
 2. Siga o protocolo passo a passo, com gates HITL obrigatórios entre cada sub-agente
 3. Use \`AskUserQuestion\` em cada gate — nunca avance sem confirmação explícita
 4. Apresente os achados de cada sub-agente como mensagem Markdown **antes** de
@@ -89,8 +115,9 @@ primeira fase incompleta — repo a repo.
 
 /** Conteúdo do slash command `/helyx` gravado no workspace. */
 export function helyxCommandContent(host: HostId): string {
+  const agent = host === "opencode" ? `agent: ${BRAND.name}\n` : "";
   return `---
 description: "Iniciar ou retomar o Foundation stream (brownfield discovery)"
----
+${agent}---
 ${foundationPrompt(host)}`;
 }

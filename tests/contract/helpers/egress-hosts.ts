@@ -29,6 +29,7 @@ export const BUNDLE_HOST_ALLOWLIST: Record<string, string> = {
   "example.com": "exemplo em documentação de dependência",
   "mathiasbynens.be": "link em comentário de dependência",
   "stackoverflow.com": "link em comentário de dependência",
+  "opencode.ai": "`$schema` do opencode.json gerado pelo kit; identificador, não é baixado",
   "www.safaribooksonline.com": "link em comentário de dependência",
 };
 

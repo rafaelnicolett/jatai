@@ -153,8 +153,8 @@ describe("WizardSession — preview do template", () => {
     expect(msg).toMatchObject({ type: "templateManifest", source: "local" });
   });
 
-  it("REGRESSÃO: a prévia põe o config na raiz, com o nome da marca, e o estado em .github/artifacts/ nos dois harnesses", async () => {
-    for (const host of ["claude", "copilot"] as const) {
+  it("REGRESSÃO: a prévia põe o config na raiz, com o nome da marca, e o estado em .github/artifacts/ nos três harnesses", async () => {
+    for (const host of ["claude", "copilot", "opencode"] as const) {
       const host_ = new FakeHost();
       const session = new WizardSession(host_);
       await session.handle({ type: "stepUpdate", payload: { projectName: "loja", hostAdapter: host } });
@@ -166,7 +166,13 @@ describe("WizardSession — preview do template", () => {
       expect(tree.filter((p) => p.endsWith("ai-sdk.config.yaml")), host).toEqual([]);
       expect(tree, host).toContain(".github/artifacts/");
       if (host === "claude") expect(tree.filter((p) => p.startsWith(".claude/") && /chatmodes|artifacts/.test(p))).toEqual([]);
-      else expect(tree).toContain(".github/chatmodes/");
+      else if (host === "copilot") expect(tree).toContain(".github/chatmodes/");
+      else {
+        expect(tree).toContain(".opencode/agents/");
+        expect(tree).toContain(".opencode/commands/");
+        expect(tree).toContain("AGENTS.md");
+        expect(tree.filter((p) => p.includes("chatmodes")), host).toEqual([]);
+      }
     }
   });
 

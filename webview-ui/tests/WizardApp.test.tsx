@@ -117,18 +117,20 @@ describe("Wizard — grupos de opções são radiogroups (teclado)", () => {
     expect(radios(container)[1]!.getAttribute("aria-checked")).toBe("true");
   });
 
-  it("o harness lista o que cada um instala e onde, com o agente de entrada, o MCP e os hooks do Claude Code, sem o chat antigo", () => {
+  it("o harness lista o que cada um instala e onde, com o agente de entrada, o MCP e a atividade, sem o chat antigo", () => {
     const { container } = open("brownfield");
-    const [claude, copilot] = radios(container).map((c) => c.textContent ?? "") as [string, string];
-    // a ordem das opções é a do schema: Copilot primeiro, Claude depois
-    expect(claude).toContain(".github/agents/");
-    expect(claude).toContain(`.github/agents/${BRAND.files.orchestratorAgent}`);
-    expect(claude).toContain(".vscode/mcp.json");
-    expect(claude).not.toContain("Hooks");
-    expect(copilot).toContain(`.claude/agents/${BRAND.files.orchestratorAgent}`);
-    expect(copilot).toContain(".mcp.json");
-    expect(copilot).toContain(".claude/settings.json");
-    expect(`${claude}${copilot}`).not.toMatch(/concierge|maestro/i);
+    const [copilot, claude, opencode] = radios(container).map((c) => c.textContent ?? "") as [string, string, string];
+    // a ordem das opções é a do schema: Copilot, Claude, OpenCode
+    expect(copilot).toContain(".github/agents/");
+    expect(copilot).toContain(`.github/agents/${BRAND.files.orchestratorAgent}`);
+    expect(copilot).toContain(".vscode/mcp.json");
+    expect(copilot).not.toContain("Atividade");
+    expect(claude).toContain(`.claude/agents/${BRAND.files.orchestratorAgent}`);
+    expect(claude).toContain(".mcp.json");
+    expect(claude).toContain(".claude/settings.json");
+    expect(opencode).toContain(".opencode/agents/");
+    expect(opencode).toContain(".opencode/plugins/jatai-activity.ts");
+    expect(`${copilot}${claude}${opencode}`).not.toMatch(/concierge|maestro/i);
     expect(q(container, '[data-wizard="harness-note"]').textContent).toContain(`@${BRAND.guide.name}`);
     expect(q(container, '[data-wizard="harness-note"]').textContent).toContain(`agente ${BRAND.participant.name}`);
   });

@@ -683,6 +683,7 @@ exports[`contrato — MCP tools/list > snapshot completo de tools/list no format
           "enum": [
             "claude-code",
             "copilot",
+            "opencode",
             "cli",
             "mcp",
             "watcher",

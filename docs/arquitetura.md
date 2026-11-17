@@ -30,7 +30,7 @@ a transformação de YAML. Por isso a arquitetura é simples:
 | `src/cli/` | o CLI de estado (`jatai-state`): os verbos de escrita, de leitura e de gate |
 | `src/server/` | o State Service local (HTTP e SSE em `127.0.0.1`), o barramento de eventos e o observador de `runs/` |
 | `src/mcp/` | o servidor MCP, um cliente fino do State Service |
-| `src/generator/` | a instalação do kit: uma fachada sobre o `KitInstaller`, os adaptadores de harness (Claude Code e Copilot) e o gerador do projeto novo. Não importa o `vscode` |
+| `src/generator/` | a instalação do kit: uma fachada sobre o `KitInstaller`, os adaptadores de harness (Claude Code, Copilot e OpenCode) e o gerador do projeto novo. Não importa o `vscode` |
 | `src/extension.ts`, `src/extension/` | só a ligação: o container, as portas e um módulo por comando ou etapa de inicialização |
 | `src/adapters/` | as implementações das portas para o VS Code |
 | `src/chat/` | o guia do chat, que mostra onde a iniciativa está e encaminha para o agente `jatai` |
@@ -70,9 +70,10 @@ CLI grava direto no YAML, sob o mesmo lock.
 
 **Uma instalação de kit.** O Wizard (ou o comando de instalação) chama o gerador. O
 `KitInstaller` lê a edição certa do kit (projeto novo ou existente), o adaptador do
-harness (`ClaudeAdapter` ou `CopilotAdapter`) escolhe a pasta, o orquestrador e as
-instruções do host, e o resultado é gravado no projeto, com o servidor MCP configurado,
-os hooks de atividade e um `kit.lock.json` que registra o que foi instalado.
+harness (`ClaudeAdapter`, `CopilotAdapter` ou `OpenCodeAdapter`) escolhe a pasta, o
+orquestrador e as instruções do host, e o resultado é gravado no projeto, com o
+servidor MCP configurado, a atividade de agente (hooks ou plugin) e um
+`kit.lock.json` que registra o que foi instalado.
 
 ## Regras de dependência
 

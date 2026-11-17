@@ -59,7 +59,7 @@ export const RUN_EVENT_ACTORS = ["agent", "human"] as const;
 export type RunEventActor = (typeof RUN_EVENT_ACTORS)[number];
 
 /** Por onde o evento foi capturado (contrato agent-activity, §2.2). O mapa não depende disto. */
-export const RUN_EVENT_HARNESSES = ["claude-code", "copilot", "cli", "mcp", "watcher"] as const;
+export const RUN_EVENT_HARNESSES = ["claude-code", "copilot", "opencode", "cli", "mcp", "watcher"] as const;
 export type RunEventHarness = (typeof RUN_EVENT_HARNESSES)[number];
 
 /** Únicas chaves aceitas em `metadata` na escrita (R8, privacidade). */

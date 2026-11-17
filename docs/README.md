@@ -20,6 +20,7 @@ moldaram o código e o guia para contribuir com o kit. Tudo em português.
 | [Estado em arquivos](metodologia/estado-em-arquivos.md) | onde fica cada informação, quem escreve e o vocabulário de status |
 | [Agentes](metodologia/agentes.md) | o orquestrador, os papéis e as regras de conversa |
 | [Projeto existente ou novo](metodologia/brownfield-e-greenfield.md) | as duas portas de entrada |
+| [OpenCode](metodologia/opencode.md) | o harness OpenCode: instalação, `/jatai`, MCP, atividade e problemas comuns |
 | [Humano no circuito](metodologia/humano-no-circuito.md) | o que é sempre seu e quando um agente para |
 | [Iniciativas](metodologia/iniciativas.md) | feature, modernização e hotfix, épicos e tarefas |
 | [Práticas de mudança segura](metodologia/praticas/README.md) | Strangler, Expand-Contract, Parallel Run, BDD, testes de caracterização e golden master |

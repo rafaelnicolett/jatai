@@ -29,6 +29,13 @@ describe("WizardStateSchema", () => {
     expect(result.success).toBe(false);
   });
 
+  it("accepts the three harnesses", () => {
+    for (const host of ["copilot", "claude", "opencode"] as const) {
+      const result = WizardStateSchema.safeParse({ projectName: "my-saas", hostAdapter: host, backendStack: "python-api" });
+      expect(result.success, host).toBe(true);
+    }
+  });
+
   it("defaults frontendStack to none", () => {
     const result = WizardStateSchema.safeParse({
       projectName: "my-saas",

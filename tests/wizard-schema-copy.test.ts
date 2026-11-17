@@ -34,13 +34,14 @@ describe("texto do schema do Wizard", () => {
     }
   });
 
-  it("nos dois schemas, o harness diz que a entrada é o agente da marca, e as opções do harness são os dois", async () => {
+  it("nos dois schemas, o harness diz que a entrada é o agente da marca, e as opções do harness são os três", async () => {
     const greenfield = (await getWizardSchema()).find((s) => s.key === "hostAdapter")!;
     const brownfield = (await getBrownfieldSchema()).find((s) => s.key === "hostAdapter")!;
-    expect(greenfield.options?.map((o) => o.value)).toEqual(["copilot", "claude"]);
-    expect(brownfield.options?.map((o) => o.value)).toEqual(["copilot", "claude"]);
+    expect(greenfield.options?.map((o) => o.value)).toEqual(["copilot", "claude", "opencode"]);
+    expect(brownfield.options?.map((o) => o.value)).toEqual(["copilot", "claude", "opencode"]);
     expect(brownfield.description).toContain(`o agente ${BRAND.participant.name}`);
     expect(brownfield.description).toContain(".claude/agents/");
+    expect(brownfield.description).toContain(".opencode/agents/");
   });
 
   it("toda opção de escolha tem texto de apoio em português (sem os termos em inglês do texto antigo)", async () => {

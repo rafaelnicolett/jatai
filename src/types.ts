@@ -2,7 +2,7 @@ import * as z from "zod";
 
 // ── Wizard step types ──────────────────────────────────────────────────────
 
-export type HostAdapter = "copilot" | "claude";
+export type HostAdapter = "copilot" | "claude" | "opencode";
 
 export type BackendStack =
   | "python-api"
@@ -61,7 +61,7 @@ export const WizardStateSchema = z.object({
   startupIdea: z.string().min(1).max(500).optional(),
   domain: z.enum(["fintech","healthtech","edtech","marketplace","developer-tools","ai-native","ecommerce","logistics","other"]).optional(),
   deliveryMode: z.enum(["full-cycle","code-first","agentic-only"]).default("full-cycle"),
-  hostAdapter: z.enum(["copilot", "claude"]),
+  hostAdapter: z.enum(["copilot", "claude", "opencode"]),
   backendStack: z.enum([
     "python-api",
     "java-spring",

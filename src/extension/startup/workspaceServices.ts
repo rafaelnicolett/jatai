@@ -20,6 +20,7 @@ import type { Secrets } from "../../adapters/secrets/Secrets";
 import type { FileWatcher } from "../../adapters/files/FileWatcher";
 import {
   CLAUDE_LAYOUT_DIR,
+  OPENCODE_LAYOUT_DIR,
   WORKSPACE_MARKER_FILES,
   shouldStartWorkspaceServices,
   type WorkspaceActivationFacts,
@@ -55,7 +56,7 @@ const STATE_SERVICE_TOKEN_SECRET_KEY = `${BRAND.name}.stateServiceToken`;
 export function readWorkspaceActivationFacts(root: string | undefined): WorkspaceActivationFacts {
   const trusted = vscode.workspace.isTrusted;
   if (!root) return { hasFolder: false, trusted, rootEntries: [] };
-  const names = [...WORKSPACE_MARKER_FILES, CLAUDE_LAYOUT_DIR];
+  const names = [...WORKSPACE_MARKER_FILES, CLAUDE_LAYOUT_DIR, OPENCODE_LAYOUT_DIR];
   return { hasFolder: true, trusted, rootEntries: names.filter((name) => fs.existsSync(path.join(root, name))) };
 }
 
