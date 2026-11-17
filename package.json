@@ -1,7 +1,7 @@
 {
   "name": "jatai",
   "displayName": "Jataí",
-  "description": "Agentic delivery platform: wizard, generator, and delivery dashboard for GitHub Copilot & Claude.",
+  "description": "Agentes para software que já existe. Metodologia agêntica para Claude Code e GitHub Copilot, com aprovações humanas e estado em arquivos.",
   "version": "1.0.0",
   "publisher": "jatai",
   "private": true,
@@ -23,18 +23,21 @@
     "vscode": "^1.90.0"
   },
   "categories": [
+    "AI",
     "Other",
-    "Programming Languages",
-    "Snippets"
+    "Testing"
   ],
   "keywords": [
     "ai",
-    "agent",
-    "delivery",
+    "agents",
+    "agentic",
+    "brownfield",
+    "legacy",
+    "methodology",
     "copilot",
     "claude",
-    "fastapi",
-    "react"
+    "testing",
+    "code-review"
   ],
   "activationEvents": [
     "workspaceContains:jatai.config.yaml",
@@ -282,5 +285,9 @@
     "typescript": "^5.4.5",
     "vitest": "^1.6.0",
     "yaml": "^2.9.0"
+  },
+  "galleryBanner": {
+    "color": "#14100A",
+    "theme": "dark"
   }
 }
