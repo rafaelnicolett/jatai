@@ -5,10 +5,10 @@
   </picture>
 </p>
 
-<h1 align="center">Metodologia Agêntica para Construção de Software</h1>
+<h1 align="center">Agentes para software que já existe.</h1>
 
 <p align="center">
-  Uma extensão de código aberto para o VS Code que coloca agentes dentro de um método de engenharia.<br>
+  <strong>Metodologia agêntica para construção de software.</strong> Uma extensão de código aberto para o VS Code.<br>
   <strong>O agente trabalha. O teste prova. O gate espera por você.</strong>
 </p>
 
