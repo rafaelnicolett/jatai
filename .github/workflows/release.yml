@@ -11,19 +11,25 @@
 # pré-lançamento. Nada é enviado para as lojas.
 #
 # ENSAIO (nada é publicado): Actions → Release → Run workflow, com "publicar"
-# desmarcado. Verifica, empacota e, se os tokens existirem, confere que eles têm
-# direito de publicar (vsce verify-pat e ovsx verify-pat).
+# desmarcado. Verifica, empacota e, se OVSX_PAT existir, confere o token do
+# Open VSX. O Marketplace usa Trusted Publishing (OIDC): a política é exercitada
+# no primeiro publish, não no ensaio.
 #
 # CONFIGURAÇÃO ÚNICA, no GitHub (Settings → Environments → release):
 #   - Required reviewers: quem pode autorizar a publicação;
-#   - segredo VSCE_PAT: token do Marketplace para o publisher da extensão;
 #   - segredo OVSX_PAT: token do Open VSX para o namespace da extensão
 #     (o namespace é criado uma vez, com `ovsx create-namespace`).
-# Quem não tiver um dos dois segredos fica sem aquela loja, e o resumo do job avisa.
+# O Marketplace não usa PAT (os PATs globais do Azure DevOps se aposentam em
+# 2026-12-01). No publisher do Marketplace, crie uma política em Trusted
+# Publishing com repository owner `rafaelnicolett`, repository `jatai`,
+# workflow `release.yml` e environment `release`. O job "publicar" pede o
+# token OIDC (permissions: id-token: write) e roda `vsce publish --oidc`.
+# Quem não tiver OVSX_PAT fica sem Open VSX, e o resumo do job avisa.
 #
-# SEGURANÇA: os segredos só existem no job "publicar" e só nos passos que os usam.
-# Actions de terceiros fixadas pelo SHA do commit, com a versão no comentário;
-# vsce e ovsx fixados por versão. Para atualizar uma action:
+# SEGURANÇA: o OVSX_PAT só existe no job "publicar" e só no passo que o usa.
+# O token do Marketplace é OIDC, de curta duração. Actions de terceiros
+# fixadas pelo SHA do commit, com a versão no comentário; vsce e ovsx fixados
+# por versão. Para atualizar uma action:
 #   git ls-remote https://github.com/<dono>/<action> refs/tags/<versão>
 name: Release
 
@@ -122,7 +128,7 @@ jobs:
           retention-days: 30
 
   conferir-tokens:
-    name: conferir tokens (ensaio)
+    name: conferir Open VSX (ensaio)
     needs: verificar
     if: ${{ github.event_name == 'workflow_dispatch' && !inputs.publicar }}
     runs-on: ubuntu-latest
@@ -134,20 +140,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Node 20
+      - name: Node 22
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 20
+          node-version: 22
           package-manager-cache: false
-
-      - name: Marketplace do VS Code
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
-        run: |
-          if [ -z "$VSCE_PAT" ]; then echo "VSCE_PAT não configurado: sem Marketplace." >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
-          publisher=$(jq -r .publisher package.json)
-          npx --yes @vscode/vsce@2.32.0 verify-pat "$publisher"
-          echo "VSCE_PAT tem direito de publicar como $publisher." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Open VSX
         env:
@@ -169,11 +166,12 @@ jobs:
     permissions:
       contents: write # criar a GitHub Release
       actions: read # baixar o artefato desta mesma execução
+      id-token: write # Trusted Publishing do Marketplace (OIDC)
     steps:
-      - name: Node 20
+      - name: Node 22
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 20
+          node-version: 22
           package-manager-cache: false
 
       # O mesmo .vsix que passou nas verificações, não um reempacotado.
@@ -182,13 +180,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --name jatai-release --dir release
 
-      - name: Marketplace do VS Code
+      - name: Marketplace do VS Code (Trusted Publishing)
         if: ${{ !contains(github.ref_name, '-') }}
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: |
-          if [ -z "$VSCE_PAT" ]; then echo "- Marketplace: pulado (VSCE_PAT não configurado)" >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
-          npx --yes @vscode/vsce@2.32.0 publish --packagePath release/*.vsix --skip-duplicate
+          npx --yes @vscode/vsce@4.1.1 publish --packagePath release/*.vsix --skip-duplicate --oidc
           echo "- Marketplace: publicado" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Open VSX

@@ -33,10 +33,13 @@ Uma tag com sufixo (`v1.0.0-rc.1`) vira só uma GitHub Release de
 pré-lançamento, sem passar pelas lojas. Para ensaiar sem publicar nada:
 Actions → Release → Run workflow, com "publicar" desmarcado.
 
-Configuração única, no GitHub, em Settings → Environments → release:
-os segredos `VSCE_PAT` (token do Marketplace para o publisher) e `OVSX_PAT`
-(token do Open VSX para o namespace). Quem não tiver um dos dois fica sem
-aquela loja, e o resumo do job avisa.
+Configuração única, no Marketplace: crie o publisher `jatai` e uma política
+em **Trusted Publishing** com repository owner `rafaelnicolett`, repository
+`jatai`, workflow `release.yml` e environment `release`. O job `publicar`
+pede um token OIDC de curta duração; não existe `VSCE_PAT`. No GitHub, em
+Settings → Environments → release, configure os required reviewers e, se
+quiser Open VSX, o segredo `OVSX_PAT` (token do namespace `jatai`). Quem não
+tiver Open VSX fica sem essa loja, e o resumo do job avisa.
 
 ## Como falar com quem mantém
 
