@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="media/brand/jatai-horizontal.svg" width="360" alt="Jataí — agentes de IA com método">
+  <img src="media/readme/jatai-horizontal.png" width="360" alt="Jataí — agentes de IA com método">
 </p>
 
 <h1 align="center">Agentes de IA com método. Decisões com você.</h1>
@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/rafaelnicolett/jatai/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/rafaelnicolett/jatai/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/rafaelnicolett/jatai/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/rafaelnicolett/jatai/ci.yml?label=CI"></a>
   <img alt="versão" src="https://img.shields.io/badge/vers%C3%A3o-1.0.0-F39A1D">
   <img alt="licença" src="https://img.shields.io/badge/licen%C3%A7a-MIT-5B6B2C">
   <img alt="VS Code" src="https://img.shields.io/badge/VS%20Code-1.90%2B-007ACC">
