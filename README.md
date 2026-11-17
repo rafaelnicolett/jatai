@@ -11,6 +11,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/rafaelnicolett/jatai/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/rafaelnicolett/jatai/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="versão" src="https://img.shields.io/badge/vers%C3%A3o-1.0.0-F39A1D">
   <img alt="licença" src="https://img.shields.io/badge/licen%C3%A7a-MIT-5B6B2C">
   <img alt="VS Code" src="https://img.shields.io/badge/VS%20Code-1.90%2B-007ACC">
@@ -211,6 +212,7 @@ As telas deste README são capturadas do mock visual com o Chrome, pelo script
 
 - **O Cockpit e o Wizard vivem no VS Code.** O método, os agentes e os artefatos não dependem do editor; a interface depende.
 - **Dois harnesses hoje:** Claude Code e GitHub Copilot. O suporte a outros harnesses entra por adaptador, com testes de paridade — OpenCode está no backlog.
+- **Windows no CI:** a suíte roda em Linux e macOS na 1.0.0; o job do Windows está em portabilidade experimental. A extensão funciona no Windows — o que falta é a suíte de testes no runner, não o produto.
 - **Sem serviço hospedado.** A Jataí é local; não há conta, nuvem ou painel web na 1.0.0.
 - **A 1.0.0 é o começo.** O que está aqui é o método funcionando de ponta a ponta, com as arestas documentadas.
 

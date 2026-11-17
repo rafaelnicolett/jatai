@@ -59,6 +59,9 @@ function normalize(html: string): string {
       return ids.get(id)!;
     })
     .replace(/\b\d{1,2}:\d{2}(?::\d{2})?(?:\s?[AP]M)?/g, "<hh:mm>")
+    // Datas absolutas dependem do fuso do runner (UTC no CI, America/Sao_Paulo
+    // aqui): o snapshot caracteriza o formato, não o dia.
+    .replace(/\b\d{2}\/\d{2}\/\d{4}\b/g, "DATA")
     .replace(/></g, ">\n<");
 }
 

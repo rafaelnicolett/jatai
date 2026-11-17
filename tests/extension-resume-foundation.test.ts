@@ -104,7 +104,7 @@ describe("resumePendingFoundation — path-mismatch por normalização (FIX: hot
   // strings diferentes — o `if` retornava cedo, SEM log, SEM toast, SEM
   // erro. FIXADO: `isSameWorkspaceDir` resolve o caminho real (com fallback
   // tolerante a path que não existe mais) antes de comparar.
-  it("REGRESSÃO: symlink resolvido (macOS /tmp → /private/tmp) é tratado como o MESMO diretório → Foundation retoma", async () => {
+  it.runIf(process.platform === "darwin")("REGRESSÃO: symlink resolvido (macOS /tmp → /private/tmp) é tratado como o MESMO diretório → Foundation retoma", async () => {
     const executeCommand = vi.spyOn(commands, "executeCommand").mockResolvedValue(undefined);
     const pendingDir = "/tmp/helyx-workspace-teste"; // fsPath escolhido no showOpenDialog do wizard
     const reopenedDir = "/private/tmp/helyx-workspace-teste"; // mesmo diretório real, symlink resolvido no reload

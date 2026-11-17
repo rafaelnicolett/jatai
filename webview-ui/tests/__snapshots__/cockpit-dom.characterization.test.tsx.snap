@@ -1046,7 +1046,7 @@ exports[`caracterização — DOM do Cockpit (F3.9, regravada na F4.2) > central
 </path>
 </svg>
 <span class="text">Gate aprovado — @assessor · billing-api</span>
-<span class="time">20/07/2026</span>
+<span class="time">DATA</span>
 </li>
 <li class="row" data-kind="blocked">
 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-ban icon" aria-hidden="true">
@@ -1056,7 +1056,7 @@ exports[`caracterização — DOM do Cockpit (F3.9, regravada na F4.2) > central
 </path>
 </svg>
 <span class="text">@archaeologist bloqueado · legacy-erp — Sem acesso ao histórico git — repo é snapshot sem .git</span>
-<span class="time">20/07/2026</span>
+<span class="time">DATA</span>
 </li>
 <li class="row" data-kind="agent-done">
 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand icon" aria-hidden="true">
@@ -1070,7 +1070,7 @@ exports[`caracterização — DOM do Cockpit (F3.9, regravada na F4.2) > central
 </path>
 </svg>
 <span class="text">@arch-discoverer terminou · legacy-erp — aguarda aprovação</span>
-<span class="time">20/07/2026</span>
+<span class="time">DATA</span>
 </li>
 </ul>
 </div>
