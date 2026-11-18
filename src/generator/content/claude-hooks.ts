@@ -138,6 +138,52 @@ export function mergeClaudeSettings(current: string | null, brand: Brand = BRAND
 }
 
 /**
+ * Remove os hooks do kit do `.claude/settings.json`, preservando permissões,
+ * variáveis, outros hooks e a ordem das chaves. Espelho do merge, usado pelo
+ * `uninstall`. Arquivo que não parseia fica como está (`unreadable`).
+ */
+export function removeClaudeSettingsHooks(current: string | null, brand: Brand = BRAND): SettingsMergeResult {
+  if (current === null || current.trim() === "") return { kind: "unchanged" };
+  const relay = `${KIT_SCRIPTS_DIR}/${hookRelayFile(brand)}`;
+  let doc: Record<string, unknown>;
+  try {
+    const parsed: unknown = JSON.parse(current);
+    if (!isPlainObject(parsed)) return { kind: "unreadable", reason: "o topo não é um objeto" };
+    doc = parsed;
+  } catch (err) {
+    return { kind: "unreadable", reason: `não é JSON puro (${(err as Error).message})` };
+  }
+  const hooks = doc.hooks;
+  if (hooks === undefined) return { kind: "unchanged" };
+  if (!isPlainObject(hooks)) return { kind: "unreadable", reason: '"hooks" não é um objeto' };
+
+  const merged: Record<string, unknown> = { ...hooks };
+  let changed = false;
+  for (const event of CLAUDE_HOOK_EVENTS) {
+    const groups = hooks[event.hook];
+    if (groups === undefined) continue;
+    if (!Array.isArray(groups)) return { kind: "unreadable", reason: `"hooks.${event.hook}" não é uma lista` };
+    const kept: unknown[] = [];
+    for (const group of groups) {
+      if (!isPlainObject(group) || !Array.isArray(group.hooks)) {
+        kept.push(group);
+        continue;
+      }
+      const theirs = group.hooks.filter((h) => !(isPlainObject(h) && typeof h.command === "string" && h.command.includes(relay)));
+      if (theirs.length === group.hooks.length) kept.push(group);
+      else if (theirs.length > 0) kept.push({ ...group, hooks: theirs });
+      else changed = true;
+      if (theirs.length < group.hooks.length) changed = true;
+    }
+    if (kept.length === 0) delete merged[event.hook];
+    else merged[event.hook] = kept;
+  }
+  if (!changed) return { kind: "unchanged" };
+  const eol = current.endsWith("\n") ? "\n" : "";
+  return { kind: "write", text: `${JSON.stringify({ ...doc, hooks: merged }, null, indentOf(current))}${eol}` };
+}
+
+/**
  * O relé `.github/scripts/<marca>-hook.cjs`. Recebe o tipo de evento no
  * argumento e o aviso do Claude Code no stdin. Só repassa o nome do agente
  * (`agent_type`) e, na gravação, o caminho relativo do artefato: nunca

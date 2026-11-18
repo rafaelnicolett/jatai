@@ -25,13 +25,14 @@ autorizar a publicação.
    o CHANGELOG, e diz o que falta.
 3. Abra o PR, espere o CI verde nos três sistemas e faça o merge na `main`.
 4. Marque a tag na ponta da `main` e envie: `git tag -s vX.Y.Z && git push origin vX.Y.Z`.
-5. Aprove o job "publicar". Ele envia o mesmo `.vsix` que passou nas
-   verificações para o Marketplace do VS Code e para o Open VSX, e cria a
-   GitHub Release com as notas do CHANGELOG.
+5. Aprove os jobs "publicar" (extensão) e "publicar-npm" (CLI). O primeiro
+   envia o mesmo `.vsix` que passou nas verificações para o Marketplace do VS
+   Code e para o Open VSX, e cria a GitHub Release com as notas do CHANGELOG.
+   O segundo publica o pacote `jatai` da CLI com provenance.
 
 Uma tag com sufixo (`v1.0.0-rc.1`) vira só uma GitHub Release de
-pré-lançamento, sem passar pelas lojas. Para ensaiar sem publicar nada:
-Actions → Release → Run workflow, com "publicar" desmarcado.
+pré-lançamento, sem passar pelas lojas nem pelo npm. Para ensaiar sem publicar
+nada: Actions → Release → Run workflow, com "publicar" desmarcado.
 
 Configuração única, no Marketplace: crie o publisher `jatai` e uma política
 em **Trusted Publishing** com repository owner `rafaelnicolett`, repository
@@ -40,6 +41,12 @@ pede um token OIDC de curta duração; não existe `VSCE_PAT`. No GitHub, em
 Settings → Environments → release, configure os required reviewers e, se
 quiser Open VSX, o segredo `OVSX_PAT` (token do namespace `jatai`). Quem não
 tiver Open VSX fica sem essa loja, e o resumo do job avisa.
+
+Para a CLI no npm, o mesmo environment `release` precisa do segredo
+`NPM_TOKEN`: um token de automação do npm com permissão de publicação no
+pacote público `jatai`, com 2FA. O job `publicar-npm` publica com
+`--provenance`; sem o segredo, ele avisa e não falha. Se a versão já existir
+no npm, ele pula em vez de falhar.
 
 ## Como falar com quem mantém
 

@@ -46,6 +46,7 @@ export const CONFIG_FILENAMES: readonly string[] = [CONFIG_FILENAME, ...LEGACY_C
  */
 export function kitVersion(): string {
   for (const candidate of [
+    path.join(__dirname, "package.json"),              // pacote npm da CLI: bundle na raiz do pacote
     path.join(__dirname, "..", "package.json"),        // runtime: dist/../package.json
     path.join(__dirname, "..", "..", "package.json"),  // fonte: src/data/../../package.json
   ]) {

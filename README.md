@@ -181,6 +181,20 @@ jatai.config.yaml           # o workspace, os repositórios e o kit instalado
 
 Tudo é texto, versionado com o código. O chat pode fechar; o estado não fecha com ele.
 
+## CLI headless
+
+Quem vive no terminal pode instalar e manter o kit sem abrir o VS Code:
+
+```sh
+npx jatai init --harness opencode
+npx jatai doctor
+npx jatai update
+```
+
+A CLI usa o mesmo `KitInstaller` e o mesmo kit da extensão; o Wizard, o
+Cockpit e o mapa continuam no VS Code. O guia completo está em
+[docs/cli.md](docs/cli.md).
+
 ## Um harness para testar modelos, não só prompts
 
 A Jataí nasceu dessa necessidade: trocar o modelo sem trocar o método. O mesmo repositório, o mesmo teste, o mesmo gate, o mesmo artefato. A diferença aparece no diff, não no texto de apresentação.

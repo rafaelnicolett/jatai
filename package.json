@@ -237,6 +237,8 @@
   "scripts": {
     "copy-templates": "node scripts/copy-templates.js",
     "build:kit": "node scripts/kit.js --write",
+    "build:cli-kit": "npm run build:kit && node scripts/package-cli.mjs",
+    "package:cli": "npm run build:cli-kit",
     "build:webview": "npm --prefix webview-ui ci && npm --prefix webview-ui run build",
     "build:cli": "esbuild src/cli/helyx-state.ts --bundle --outfile=kit/scripts/jatai-state.cjs --format=cjs --platform=node --target=node18 --sourcemap",
     "build:mcp": "esbuild src/mcp/server.ts --bundle --outfile=kit/scripts/jatai-mcp.cjs --format=cjs --platform=node --target=node18",

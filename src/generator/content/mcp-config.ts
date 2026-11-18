@@ -72,6 +72,8 @@ export type McpMergeResult =
   | { readonly kind: "unchanged" }
   | { readonly kind: "unreadable"; readonly reason: string };
 
+export type McpRemoveResult = McpMergeResult;
+
 function isPlainObject(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null && !Array.isArray(v);
 }
@@ -196,4 +198,55 @@ function mergeJsoncMcpConfig(current: string | null, file: McpConfigFile, entry:
   });
   if (edits.length === 0) return { kind: "unchanged" };
   return { kind: "write", text: applyEdits(current, edits) };
+}
+
+/** Cópia de `root` sem a chave no caminho; `found` diz se a chave existia. */
+function removeEntry(root: Record<string, unknown>, path: readonly string[], key: string): { found: boolean; value: Record<string, unknown> } {
+  if (path.length === 0) {
+    if (!(key in root)) return { found: false, value: root };
+    const next = { ...root };
+    delete next[key];
+    return { found: true, value: next };
+  }
+  const [head, ...rest] = path;
+  const child = root[head!];
+  if (!isPlainObject(child)) return { found: false, value: root };
+  const removed = removeEntry(child, rest, key);
+  if (!removed.found) return { found: false, value: root };
+  return { found: true, value: { ...root, [head!]: removed.value } };
+}
+
+/**
+ * Remove só a entrada da marca de uma configuração MCP, preservando o resto
+ * (outros servidores, chaves de topo, comentários). Usado pelo `uninstall`.
+ * Arquivo que não parseia não é tocado (`unreadable`).
+ */
+export function removeMcpServer(current: string | null, file: McpConfigFile): McpRemoveResult {
+  if (current === null || current.trim() === "") return { kind: "unchanged" };
+  if (file.format === "jsonc") {
+    const errors: ParseError[] = [];
+    const doc: unknown = parse(current, errors, { allowTrailingComma: true, disallowComments: false });
+    if (errors.length > 0) return { kind: "unreadable", reason: `não é JSONC válido (${errors.length} erro(s))` };
+    if (!isPlainObject(doc)) return { kind: "unreadable", reason: "o topo não é um objeto" };
+    if (!pathIsObject(doc, file.serversPath)) return { kind: "unreadable", reason: `"${file.serversPath.join(".")}" não é um objeto` };
+    if (valueAt(doc, [...file.serversPath, MCP_SERVER_KEY]) === undefined) return { kind: "unchanged" };
+    const edits = modify(current, [...file.serversPath, MCP_SERVER_KEY], undefined, {
+      formattingOptions: formattingOf(current),
+    });
+    if (edits.length === 0) return { kind: "unchanged" };
+    return { kind: "write", text: applyEdits(current, edits) };
+  }
+
+  let doc: unknown;
+  try {
+    doc = JSON.parse(current);
+  } catch (err) {
+    return { kind: "unreadable", reason: `não é JSON puro (${(err as Error).message})` };
+  }
+  if (!isPlainObject(doc)) return { kind: "unreadable", reason: "o topo não é um objeto" };
+  if (!pathIsObject(doc, file.serversPath)) return { kind: "unreadable", reason: `"${file.serversPath.join(".")}" não é um objeto` };
+  const removed = removeEntry(doc, file.serversPath, MCP_SERVER_KEY);
+  if (!removed.found) return { kind: "unchanged" };
+  const eol = current.endsWith("\n") ? "\n" : "";
+  return { kind: "write", text: `${JSON.stringify(removed.value, null, indentOf(current))}${eol}` };
 }
