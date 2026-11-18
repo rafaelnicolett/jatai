@@ -43,8 +43,12 @@ export interface Brand {
   readonly name: string;
   /** Nome de exibição, com acento se houver. */
   readonly displayName: string;
-  /** Pacote da extensão (`package.json › name`). */
-  readonly package: { readonly name: string };
+  /**
+   * Pacotes publicados. `name` é o da extensão (`package.json › name`);
+   * `cli` é o da CLI no npm (escopado, porque o npm bloqueia `jatai` por
+   * semelhança com `jotai` e `jiti`). O binário continua `jatai`.
+   */
+  readonly package: { readonly name: string; readonly cli: string };
   /** Prefixo dos ids de comando: `<commandPrefix>.<comando>`. */
   readonly commandPrefix: string;
   /** Seção das chaves de configuração: `<configSection>.<chave>`. */

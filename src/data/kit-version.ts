@@ -41,10 +41,13 @@ export const CONFIG_FILENAMES: readonly string[] = [CONFIG_FILENAME, ...LEGACY_C
  * release, e o workspace passaria a registrar uma versão que não existe.
  *
  * O `package.json` certo é reconhecido pelo nome do pacote que o
- * `brand.json` declara (`BRAND.package.name`), e não por um nome escrito
- * aqui: trocar a marca não derruba a versão para `0.0.0` (ADR-0013).
+ * `brand.json` declara (`BRAND.package.name` ou `BRAND.package.cli`), e não
+ * por um nome escrito aqui: trocar a marca não derruba a versão para `0.0.0`
+ * (ADR-0013). A CLI publicada usa um pacote escopado; sem aceitar os dois
+ * nomes, o bundle publicado lia o próprio `package.json` e devolvia `0.0.0`.
  */
 export function kitVersion(): string {
+  const names = [BRAND.package.name, BRAND.package.cli];
   for (const candidate of [
     path.join(__dirname, "package.json"),              // pacote npm da CLI: bundle na raiz do pacote
     path.join(__dirname, "..", "package.json"),        // runtime: dist/../package.json
@@ -52,7 +55,7 @@ export function kitVersion(): string {
   ]) {
     try {
       const pkg = JSON.parse(fs.readFileSync(candidate, "utf-8")) as { name?: string; version?: string };
-      if (pkg.name === BRAND.package.name && pkg.version) return pkg.version;
+      if (pkg.name !== undefined && names.includes(pkg.name) && pkg.version) return pkg.version;
     } catch { /* tenta o próximo */ }
   }
   return "0.0.0"; // desconhecida — o status vai marcar como defasado, que é o lado seguro
