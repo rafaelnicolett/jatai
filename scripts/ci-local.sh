@@ -195,6 +195,8 @@ run_step "Testes (webview)" vitest in_webview npx vitest run --no-cache
 run_step "Build completo" build npm run build
 BUILD_STATUS=$LAST_STATUS
 run_step "Kit (validação)" kit node scripts/copy-templates.js
+run_step "CLI (pacote npm)" resumo node scripts/package-cli.mjs
+run_step "CLI (smoke)" resumo node scripts/cli-kit-check.mjs
 run_step "Catálogo de agentes (F7.2)" resumo node scripts/gen-agent-catalog.mjs --check
 if [ "$BUILD_STATUS" -ne 0 ]; then
   skip_step "Árvore limpa depois do build" "o build falhou"

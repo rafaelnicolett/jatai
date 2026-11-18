@@ -16,6 +16,19 @@ A Jataí é a edição aberta da extensão antes distribuída como Helyx. O
 histórico começa aqui: as versões da edição anterior não fazem parte deste
 registro.
 
+## [Não lançado]
+
+### Adicionado
+
+- **CLI headless `jatai`.** Instala, diagnostica, atualiza e remove o kit sem
+  abrir o VS Code, com o mesmo instalador da extensão: `jatai init
+  --harness <copilot|claude|opencode>`, `jatai doctor`, `jatai update`,
+  `jatai uninstall`, `jatai harness list` e `jatai state`. `--dry-run` mostra
+  o plano; `--json` é a saída de automação; `update`/`uninstall` usam o
+  `kit.lock.json` e preservam o que o time editou. O pacote vai para o npm
+  como `jatai`, sem `postinstall` e sem rede na instalação.
+- Guia público da CLI em `docs/cli.md`.
+
 ## [1.1.0] - 2026-11-17
 
 ### Adicionado

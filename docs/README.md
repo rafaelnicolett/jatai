@@ -51,6 +51,7 @@ reprova qualquer diferença entre ele e o kit.
 |---|---|
 | [Decisões de arquitetura](decisoes/README.md) | as ADRs públicas, com o índice e a leitura por tema |
 | [Arquitetura](arquitetura.md) | o desenho do código: o núcleo, a casca, as fronteiras e a rede de segurança |
+| [CLI](cli.md) | a frente headless: instalação, `init`, `doctor`, `update`, `uninstall` e guardrails |
 
 ## API e integrações
 
