@@ -21,9 +21,11 @@ import { fileURLToPath } from "node:url";
 
 const PKG_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
-// O npm bloqueia o nome sem escopo `jatai` por semelhança com `jotai` e
-// `jiti`. O pacote usa o escopo do mantenedor; o binário continua `jatai`.
-const CLI_PACKAGE_NAME = "@rafael_nicoleti/jatai";
+// Nome do pacote no npm vem do brand.json (`package.cli`): o npm bloqueia o
+// nome sem escopo `jatai` por semelhança com `jotai` e `jiti`. O binário
+// continua `jatai`.
+const brand = JSON.parse(fs.readFileSync(path.join(PKG_ROOT, "src", "data", "brand.json"), "utf-8"));
+const CLI_PACKAGE_NAME = brand.package.cli;
 const outIndex = process.argv.indexOf("--out");
 const outDir = path.resolve(outIndex > -1 ? process.argv[outIndex + 1] : "dist/cli-package");
 const kitDir = path.join(PKG_ROOT, "dist", "kit");

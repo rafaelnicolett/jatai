@@ -36,6 +36,23 @@ function fail(message, r) {
 const version = run(["--version"]);
 if (version.status !== 0 || version.stdout.trim() !== pkg.version) fail(`--version esperava ${pkg.version}`, version);
 
+// O pacote publicado roda sozinho: o único `package.json` acima do bundle é o
+// do próprio pacote escopado. Regressão da 1.2.1: o `--version` lia o
+// `package.json` da extensão (nome `jatai`) e devolvia `0.0.0`.
+const isolated = fs.mkdtempSync(path.join(os.tmpdir(), "jatai-cli-pkg-"));
+try {
+  fs.cpSync(path.join(PKG_ROOT, "dist", "cli-package"), isolated, { recursive: true });
+  const isolatedVersion = spawnSync(process.execPath, [path.join(isolated, "jatai.cjs"), "--version"], {
+    cwd: isolated,
+    encoding: "utf-8",
+  });
+  if (isolatedVersion.status !== 0 || isolatedVersion.stdout.trim() !== pkg.version) {
+    fail(`--version no layout publicado esperava ${pkg.version}`, isolatedVersion);
+  }
+} finally {
+  fs.rmSync(isolated, { recursive: true, force: true });
+}
+
 const listed = run(["harness", "list", "--json"]);
 if (listed.status !== 0) fail("harness list falhou", listed);
 const harnesses = JSON.parse(listed.stdout).harnesses;

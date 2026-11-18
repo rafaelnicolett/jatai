@@ -16,6 +16,14 @@ A Jataí é a edição aberta da extensão antes distribuída como Helyx. O
 histórico começa aqui: as versões da edição anterior não fazem parte deste
 registro.
 
+## [1.2.2] - 2026-11-18
+
+### Corrigido
+
+- No pacote publicado, `jatai --version`, `jatai doctor` e o `kit_version`
+  gravado no workspace voltam a ler a versão do pacote escopado
+  (`@rafael_nicoleti/jatai`); antes devolviam `0.0.0`. (#5)
+
 ## [1.2.1] - 2026-11-17
 
 ### Corrigido

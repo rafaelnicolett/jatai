@@ -11432,7 +11432,8 @@ var brand_default = {
   name: "jatai",
   displayName: "Jata\xED",
   package: {
-    name: "jatai"
+    name: "jatai",
+    cli: "@rafael_nicoleti/jatai"
   },
   commandPrefix: "jatai",
   configSection: "jatai",
