@@ -44,9 +44,13 @@ tiver Open VSX fica sem essa loja, e o resumo do job avisa.
 
 Para a CLI no npm, o mesmo environment `release` precisa do segredo
 `NPM_TOKEN`: um token de automação do npm com permissão de publicação no
-pacote público `jatai`, com 2FA. O job `publicar-npm` publica com
-`--provenance`; sem o segredo, ele avisa e não falha. Se a versão já existir
-no npm, ele pula em vez de falhar.
+pacote público `@rafael_nicoleti/jatai`, com bypass de 2FA. O job
+`publicar-npm` publica com `--provenance`; sem o segredo, ele avisa e não
+falha. Se a versão já existir no npm, ele pula em vez de falhar.
+
+O nome sem escopo `jatai` é bloqueado pelo npm por semelhança com `jotai` e
+`jiti`; por isso o pacote usa o escopo do mantenedor. O binário instalado
+continua sendo `jatai`.
 
 ## Como falar com quem mantém
 

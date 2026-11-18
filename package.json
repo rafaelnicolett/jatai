@@ -2,7 +2,7 @@
   "name": "jatai",
   "displayName": "Jataí",
   "description": "Agentes para software que já existe. Metodologia agêntica para Claude Code, GitHub Copilot e OpenCode, com aprovações humanas e estado em arquivos.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "jatai",
   "private": true,
   "license": "MIT",
