@@ -20,6 +20,10 @@ import * as path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const PKG_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+
+// O npm bloqueia o nome sem escopo `jatai` por semelhança com `jotai` e
+// `jiti`. O pacote usa o escopo do mantenedor; o binário continua `jatai`.
+const CLI_PACKAGE_NAME = "@rafael_nicoleti/jatai";
 const outIndex = process.argv.indexOf("--out");
 const outDir = path.resolve(outIndex > -1 ? process.argv[outIndex + 1] : "dist/cli-package");
 const kitDir = path.join(PKG_ROOT, "dist", "kit");
@@ -68,7 +72,7 @@ if (fs.existsSync(readme)) {
 // 4. package.json do pacote (sem postinstall, sem dependências: o bundle é
 //    autocontido).
 const pkg = {
-  name: "jatai",
+  name: CLI_PACKAGE_NAME,
   version: repoPkg.version,
   description: "CLI do Jataí — instala, atualiza e diagnostica o kit de agentes no seu projeto.",
   license: "MIT",

@@ -186,9 +186,9 @@ Tudo é texto, versionado com o código. O chat pode fechar; o estado não fecha
 Quem vive no terminal pode instalar e manter o kit sem abrir o VS Code:
 
 ```sh
-npx jatai init --harness opencode
-npx jatai doctor
-npx jatai update
+npx @rafael_nicoleti/jatai init --harness opencode
+npx @rafael_nicoleti/jatai doctor
+npx @rafael_nicoleti/jatai update
 ```
 
 A CLI usa o mesmo `KitInstaller` e o mesmo kit da extensão; o Wizard, o

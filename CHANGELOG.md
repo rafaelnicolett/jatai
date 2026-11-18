@@ -16,6 +16,14 @@ A Jataí é a edição aberta da extensão antes distribuída como Helyx. O
 histórico começa aqui: as versões da edição anterior não fazem parte deste
 registro.
 
+## [1.2.1] - 2026-11-17
+
+### Corrigido
+
+- O pacote da CLI passa a ser publicado como `@rafael_nicoleti/jatai`: o npm
+  bloqueia o nome sem escopo `jatai` por semelhança com `jotai` e `jiti`. O
+  comando instalado continua `jatai`. (#4)
+
 ## [1.2.0] - 2026-11-17
 
 ### Adicionado

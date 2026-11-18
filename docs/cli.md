@@ -19,20 +19,21 @@ os mesmos agentes, skills, `AGENTS.md`, comando de entrada, MCP e
 
 ## Instalação
 
-Quando a versão estiver publicada no npm:
-
 ```sh
-npx jatai --version
+npx @rafael_nicoleti/jatai --version
 ```
 
 Não é preciso instalar globalmente. Se quiser instalar:
 
 ```sh
-npm install --global jatai
+npm install --global @rafael_nicoleti/jatai
 jatai --version
 ```
 
-Enquanto a versão não estiver no npm, o pacote pode ser montado do repositório:
+O binário continua sendo `jatai`. O pacote tem escopo porque o npm bloqueia o
+nome sem escopo `jatai` por semelhança com `jotai` e `jiti`.
+
+Para desenvolver a própria CLI, o pacote pode ser montado do repositório:
 
 ```sh
 npm run build:cli-kit
@@ -45,10 +46,10 @@ node dist/cli-package/jatai.cjs --version
 cd /caminho/do/meu-projeto
 
 # 1. escolha o harness e instale o kit
-npx jatai init --harness opencode
+npx @rafael_nicoleti/jatai init --harness opencode
 
 # 2. confira o workspace
-npx jatai doctor
+npx @rafael_nicoleti/jatai doctor
 
 # 3. a partir daqui, abra o OpenCode no projeto e rode /jatai
 ```
@@ -208,7 +209,7 @@ Além dos agentes e skills, o kit cria `.github/artifacts/`, `.github/scripts/`
 
 | Sintoma | O que conferir |
 |---|---|
-| `npx jatai` não encontra o pacote | veja se a versão foi publicada no npm; enquanto isso, use `node dist/cli-package/jatai.cjs` |
+| `npx @rafael_nicoleti/jatai` não encontra o pacote | veja se a versão foi publicada no npm; para desenvolvimento, use `node dist/cli-package/jatai.cjs` |
 | `init` recusa a pasta | pasta não vazia sem `--yes`, ou já é um workspace Jataí com outro harness |
 | `doctor` aponta arquivo ausente | o kit foi editado/removido; rode `jatai update` ou reinstale |
 | MCP não conecta | a extensão/State Service precisa estar no ar; `opencode mcp list` / `doctor` |
