@@ -60,12 +60,13 @@ export function buildLocalManifest(templateId: string, state: WizardStatePartial
     ...(state.cloud && state.cloud !== "none" ? [state.cloud] : []),
   ];
 
-  const hostDir = state.hostAdapter === "claude" ? ".claude" : ".github";
+  const hostDir = state.hostAdapter === "claude" ? ".claude" : state.hostAdapter === "opencode" ? ".opencode" : ".github";
   const tree: string[] = [
     `${hostDir}/`,
     `${hostDir}/agents/`,
-    // os chat modes são do Copilot; o estado fica em .github/artifacts/ nos dois harnesses
+    // os chat modes são do Copilot; o estado fica em .github/artifacts/ nos três harnesses
     ...(hostDir === ".github" ? [".github/chatmodes/"] : []),
+    ...(hostDir === ".opencode" ? [".opencode/commands/", "AGENTS.md"] : []),
     `${hostDir}/skills/`,
     ".github/artifacts/",
     // o config fica na raiz do projeto, com o nome da marca (antes: `ai-sdk.config.yaml` dentro da pasta do host, que nunca existiu)

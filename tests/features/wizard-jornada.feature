@@ -50,12 +50,13 @@ Funcionalidade: Jornada guiada de preparação da Jataí
       | harness        | entrada                       | skills          | instrucoes                      | mcp              |
       | Claude Code    | .claude/agents/jatai.agent.md | .claude/skills/ | CLAUDE.md e AGENTS.md           | .mcp.json        |
       | GitHub Copilot | .github/agents/jatai.agent.md | .github/skills/ | .github/copilot-instructions.md e AGENTS.md | .vscode/mcp.json |
+      | OpenCode       | .opencode/agents/jatai.md      | .opencode/skills/ | AGENTS.md                     | opencode.json    |
 
   @happy-path
-  Cenário: Só o Claude Code instala hooks, e o chat da extensão é o guia
+  Cenário: Claude e OpenCode instalam atividade (hooks/plugin), e o chat da extensão é o guia
     Dado que a pessoa chegou ao passo do harness
-    Quando ela compara as opções "Claude Code" e "GitHub Copilot"
-    Então só o "Claude Code" lista hooks, em ".claude/settings.json"
+    Quando ela compara as opções "Claude Code", "GitHub Copilot" e "OpenCode"
+    Então "Claude Code" e "OpenCode" listam atividade, em ".claude/settings.json" e ".opencode/plugins/jatai-activity.ts"
     E a Jataí diz que o chat da extensão, o guia, leva ao agente jatai
     E nenhum texto cita o chat antigo da extensão
 
@@ -175,6 +176,7 @@ Funcionalidade: Jornada guiada de preparação da Jataí
       | harness        |
       | Claude Code    |
       | GitHub Copilot |
+      | OpenCode       |
 
   @happy-path
   Cenário: O Pronto oferece abrir o Cockpit quando a pasta instalada é a pasta aberta

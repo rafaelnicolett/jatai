@@ -6,9 +6,10 @@ escrevem testes e mudam código. Você decide nos **gates** (pontos de aprovaç�
 humana), e tudo o que foi descoberto ou decidido fica registrado em arquivo, não
 só na conversa.
 
-Este guia explica o método. Ele vale para o Claude Code e para o GitHub Copilot, e
-faz sentido sem a extensão do VS Code: o Cockpit e o mapa são uma janela sobre os
-mesmos arquivos.
+Este guia explica o método. Ele vale para o Claude Code, para o GitHub Copilot e
+para o OpenCode, e faz sentido sem a extensão do VS Code: o Cockpit e o mapa são
+uma janela sobre os mesmos arquivos. O caminho operacional do OpenCode está em
+[OpenCode](opencode.md).
 
 ## Quatro etapas, nesta ordem
 

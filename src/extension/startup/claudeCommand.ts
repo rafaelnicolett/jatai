@@ -28,3 +28,22 @@ export async function ensureClaudeSlashCommand(ports: Pick<HostPorts, "workspace
     }
   }
 }
+
+/** Garante o `/jatai` do OpenCode em `.opencode/commands/` (epic-9). */
+export async function ensureOpenCodeSlashCommand(ports: Pick<HostPorts, "workspaceRoot">): Promise<void> {
+  const root = ports.workspaceRoot.current();
+  if (!root) { return; }
+  const commandFile = path.join(root, ".opencode", "commands", BRAND.files.slashCommand);
+  try {
+    await fs.access(commandFile);
+    // Already exists — nothing to do
+  } catch {
+    try {
+      await fs.mkdir(path.dirname(commandFile), { recursive: true });
+      // O comando é gerado com os paths e o `agent: <marca>` do OpenCode.
+      await fs.writeFile(commandFile, helyxCommandContent("opencode"), "utf-8");
+    } catch {
+      // Non-fatal
+    }
+  }
+}

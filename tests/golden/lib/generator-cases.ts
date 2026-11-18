@@ -159,6 +159,13 @@ export const GREENFIELD_CASES: readonly GreenfieldCase[] = [
     state: { projectName: "orbita", hostAdapter: "copilot", backendStack: "python-api" },
     registry: { kind: "offline" },
   },
+  {
+    id: "greenfield-opencode-padrao",
+    title: "OpenCode, todos os defaults do Wizard (base do delta opencode)",
+    base: null,
+    state: { projectName: "orbita", hostAdapter: "opencode", backendStack: "python-api" },
+    registry: { kind: "offline" },
+  },
   ...PAIRWISE_ROWS.map((row, i): GreenfieldCase => {
     const state = pairwiseRawState(row);
     return {
@@ -296,6 +303,7 @@ const THREE_FRAMEWORKS = ["dora-4keys", "space-devex", "owasp-samm"] as const;
 export const BROWNFIELD_CASES: readonly BrownfieldCase[] = [
   { id: "brownfield-claude-padrao", title: "Claude Code, maturidade default (base do delta claude)", base: null, host: "claude", projectName: "orbita-ws" },
   { id: "brownfield-copilot-padrao", title: "Copilot, maturidade default (base do delta copilot)", base: null, host: "copilot", projectName: "orbita-ws" },
+  { id: "brownfield-opencode-padrao", title: "OpenCode, maturidade default (base do delta opencode)", base: null, host: "opencode", projectName: "orbita-ws" },
   {
     id: "brownfield-claude-maturidade-tres",
     title: "Claude Code com 3 frameworks de maturidade",

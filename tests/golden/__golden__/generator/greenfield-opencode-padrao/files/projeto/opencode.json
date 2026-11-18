@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "helyx": {
+        "type": "local",
+        "command": [
+          "node",
+          ".github/scripts/helyx-mcp.cjs"
+        ],
+        "cwd": "."
+      }
+    }
+  }
+}

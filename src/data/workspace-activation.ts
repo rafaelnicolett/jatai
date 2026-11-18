@@ -25,6 +25,9 @@ export const WORKSPACE_MARKER_FILES: readonly string[] = CONFIG_FILENAMES;
 /** Pasta do layout do Claude Code, onde vive o `/helyx` (`.claude/commands/helyx.md`). */
 export const CLAUDE_LAYOUT_DIR = ".claude";
 
+/** Pasta do layout do OpenCode, onde vive o `/jatai` (`.opencode/commands/jatai.md`). */
+export const OPENCODE_LAYOUT_DIR = ".opencode";
+
 export interface WorkspaceActivationFacts {
   /** Há uma pasta aberta (`workspaceFolders[0]`). */
   hasFolder: boolean;
@@ -51,4 +54,9 @@ export function shouldStartWorkspaceServices(facts: WorkspaceActivationFacts): b
 /** `/helyx` do Claude Code: só em workspace Helyx que já usa o layout do Claude (um workspace Copilot não ganha `.claude/`). */
 export function shouldEnsureClaudeCommand(facts: WorkspaceActivationFacts): boolean {
   return shouldStartWorkspaceServices(facts) && facts.rootEntries.includes(CLAUDE_LAYOUT_DIR);
+}
+
+/** `/jatai` do OpenCode: só em workspace Helyx que já usa o layout do OpenCode. */
+export function shouldEnsureOpenCodeCommand(facts: WorkspaceActivationFacts): boolean {
+  return shouldStartWorkspaceServices(facts) && facts.rootEntries.includes(OPENCODE_LAYOUT_DIR);
 }

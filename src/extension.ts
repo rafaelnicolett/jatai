@@ -13,12 +13,12 @@ import { CockpitNextController } from "./views/CockpitNextController";
 import { createDeliveryStateAccess } from "./views/actions/deliveryStateAccess";
 import { registerConciergeParticipant } from "./chat/ConciergeParticipant";
 import { registerArtifactValidation } from "./codelens/ArtifactValidationProvider";
-import { shouldEnsureClaudeCommand, shouldStartWorkspaceServices } from "./data/workspace-activation";
+import { shouldEnsureClaudeCommand, shouldEnsureOpenCodeCommand, shouldStartWorkspaceServices } from "./data/workspace-activation";
 import { ExtensionContainer } from "./extension/container";
 import { createVsCodePorts } from "./extension/ports";
 import { PENDING_FOUNDATION_KEY, resumePendingFoundation as resumeFoundation } from "./extension/startup/foundationResume";
 import { checkKitVersion } from "./extension/startup/kitNag";
-import { ensureClaudeSlashCommand } from "./extension/startup/claudeCommand";
+import { ensureClaudeSlashCommand, ensureOpenCodeSlashCommand } from "./extension/startup/claudeCommand";
 import { readWorkspaceActivationFacts } from "./extension/startup/workspaceServices";
 import { scheduleAutoOpen } from "./extension/startup/autoOpen";
 import { bindWorkspaceContext } from "./extension/startup/workspaceContext";
@@ -138,6 +138,8 @@ export function activate(context: vscode.ExtensionContext): JataiApiV1 {
 
   // `/helyx` do Claude Code: só em workspace Helyx com layout Claude (C7).
   if (shouldEnsureClaudeCommand(workspaceFacts)) void ensureClaudeSlashCommand(ports);
+  // `/jatai` do OpenCode: só em workspace Helyx com layout OpenCode (epic-9).
+  if (shouldEnsureOpenCodeCommand(workspaceFacts)) void ensureOpenCodeSlashCommand(ports);
 
   scheduleAutoOpen(context, configLoader, cockpitNextController);
   return createJataiApi(apiHub);

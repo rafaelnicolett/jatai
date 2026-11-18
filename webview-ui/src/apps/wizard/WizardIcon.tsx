@@ -11,6 +11,7 @@ import s from "./Wizard.module.css";
 const MONOGRAMS: Record<string, { text: string; label: string }> = {
   "icon:github": { text: "GH", label: "GitHub" },
   "icon:claude": { text: "Cl", label: "Claude" },
+  "icon:opencode": { text: "OC", label: "OpenCode" },
   "icon:python": { text: "Py", label: "Python" },
   "icon:fastapi": { text: "FA", label: "FastAPI" },
   "icon:spring": { text: "Sp", label: "Spring" },

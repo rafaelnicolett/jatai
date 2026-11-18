@@ -1,9 +1,9 @@
 # Criar agentes e skills
 
 O kit é o coração da Jataí: são os agentes e as skills que a extensão instala no
-projeto de quem a usa, para o Claude Code e para o GitHub Copilot. Este guia mostra
-onde cada coisa mora, qual é o formato, como conferir o seu trabalho e como propor o
-agente ou a skill num PR.
+projeto de quem a usa, para o Claude Code, para o GitHub Copilot e para o OpenCode.
+Este guia mostra onde cada coisa mora, qual é o formato, como conferir o seu trabalho
+e como propor o agente ou a skill num PR.
 
 Antes de começar, leia o [CONTRIBUTING.md](../CONTRIBUTING.md) e a
 [metodologia](metodologia/README.md): um agente novo precisa se encaixar numa etapa
@@ -17,7 +17,7 @@ Abra uma issue com o template de feature e a área "kit", e conte:
 - que problema o agente ou a skill resolve, e para quem;
 - em que etapa e fase ele atua, e com quais agentes conversa;
 - se é para projeto novo (greenfield), projeto existente (brownfield) ou os dois;
-- como funciona nos dois harnesses. Um agente que só funciona num deles ainda não
+- como funciona nos três harnesses. Um agente que só funciona num deles ainda não
   está pronto.
 
 Espere o aceite antes de escrever. A estrutura do kit pode mudar, e a conversa na
@@ -60,6 +60,11 @@ instruções. O frontmatter é validado pelo `kit/schema/agent.schema.json`:
 
 Uma chave fora da lista reprova (`additionalProperties: false`), então um erro de
 digitação não passa em silêncio.
+
+No OpenCode, o mesmo agente chega como `<id>.md` plano em `.opencode/agents/`:
+o ID do agente é o caminho do arquivo, e a subpasta do stream viraria parte do ID
+(`discovery/assessor`). O adaptador achata o arquivo e remove `model` e os campos
+do Copilot; escreva o agente no formato do kit, sem se preocupar com o layout.
 
 Um exemplo mínimo e válido:
 
@@ -204,7 +209,7 @@ Abra o PR com o checklist abaixo, e assine os commits (`git commit -s`):
 - [ ] `description` diz quando usar, e `guard_rails` e `exit_contract` estão
   preenchidos;
 - [ ] `npm run build:kit`, o `kit-lint` e o lint de marca estão limpos;
-- [ ] funciona nos dois harnesses, Claude Code e Copilot. Quando o texto depende de um
+- [ ] funciona nos três harnesses: Claude Code e Copilot (`.agent.md`, com a subpasta do stream) e OpenCode (`.md` plano, sem `.agent`). Quando o texto depende de um
   deles, diz qual;
 - [ ] o golden do gerador foi regravado, com o diff explicado;
 - [ ] `npm run docs:agents` foi rodado, e o catálogo está no PR;

@@ -42,6 +42,11 @@ describe("parseAgentFile", () => {
     expect(parseAgentFile(raw, "modernization-planner.agent.md")).toEqual({ id: "@modernization-planner", role: "Monta o roadmap em épicos." });
   });
 
+  it("OpenCode: arquivo .md plano sem id usa o nome do arquivo", () => {
+    const raw = '---\ndescription: "Execution: agente do OpenCode."\nmode: subagent\n---\ncorpo';
+    expect(parseAgentFile(raw, "migration-agent.md")).toEqual({ id: "@migration-agent", role: "Agente do OpenCode." });
+  });
+
   it("sem frontmatter, sem description ou com YAML inválido não há responsabilidade a mostrar", () => {
     expect(parseAgentFile("# só corpo", "a.agent.md")).toBeNull();
     expect(parseAgentFile("---\nid: a\n---\ncorpo", "a.agent.md")).toBeNull();
@@ -55,8 +60,9 @@ describe("parseAgentFile", () => {
 });
 
 describe("AgentCatalogReader", () => {
-  it("lê os dois layouts (Claude Code e Copilot); o mesmo id vale uma vez, com preferência para .claude", () => {
+  it("lê os três layouts (OpenCode, Claude Code e Copilot); o mesmo id vale uma vez, na ordem OpenCode → Claude → Copilot", () => {
     const root = workspace({
+      ".opencode/agents/migration-agent.md": '---\ndescription: "Execution: a do OpenCode."\nmode: subagent\n---\n\n# corpo\n',
       ".claude/agents/execution/migration-agent.agent.md": agent("migration-agent", "Execution: a do Claude."),
       ".github/agents/execution/migration-agent.agent.md": agent("migration-agent", "Execution: a do Copilot."),
       ".github/agents/planning/risk-prioritizer.agent.md": agent("risk-prioritizer", "Planning: ordena o roadmap pela matriz."),
@@ -64,7 +70,7 @@ describe("AgentCatalogReader", () => {
     });
     const catalog = new AgentCatalogReader().read(root);
     expect(catalog.map((e) => e.id).sort()).toEqual(["@migration-agent", "@risk-prioritizer"]);
-    expect(catalog.find((e) => e.id === "@migration-agent")?.role).toBe("A do Claude.");
+    expect(catalog.find((e) => e.id === "@migration-agent")?.role).toBe("A do OpenCode.");
   });
 
   it("sem pasta de agentes devolve vazio, sem lançar", () => {

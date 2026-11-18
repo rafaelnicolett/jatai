@@ -1,8 +1,8 @@
 {
   "name": "jatai",
   "displayName": "Jataí",
-  "description": "Agentes para software que já existe. Metodologia agêntica para Claude Code e GitHub Copilot, com aprovações humanas e estado em arquivos.",
-  "version": "1.0.0",
+  "description": "Agentes para software que já existe. Metodologia agêntica para Claude Code, GitHub Copilot e OpenCode, com aprovações humanas e estado em arquivos.",
+  "version": "1.1.0",
   "publisher": "jatai",
   "private": true,
   "license": "MIT",
@@ -36,6 +36,7 @@
     "methodology",
     "copilot",
     "claude",
+    "opencode",
     "testing",
     "code-review"
   ],
@@ -266,6 +267,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
     "js-yaml": "^4.1.0",
+    "jsonc-parser": "^3.3.1",
     "jszip": "^3.10.1",
     "zod": "^3.23.4"
   },

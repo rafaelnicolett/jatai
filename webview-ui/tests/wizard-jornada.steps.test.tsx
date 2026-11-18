@@ -295,15 +295,17 @@ const SCENARIOS: Record<string, () => void | Promise<void>> = {
     expect(reloaded.view.values).toMatchObject({ projectName: "loja-demo", hostAdapter: "claude" });
   },
 
-  "Só o Claude Code instala hooks, e o chat da extensão é o guia": () => {
+  "Claude e OpenCode instalam atividade (hooks/plugin), e o chat da extensão é o guia": () => {
     // Dado que a pessoa chegou ao passo do harness
     const { container } = openAt("greenfield", "harness");
-    const [copilot, claude] = radios(container).map((c) => textOf(c)) as [string, string];
-    // Quando ela compara as opções "Claude Code" e "GitHub Copilot"
-    // Então só o "Claude Code" lista hooks, em ".claude/settings.json"
-    expect(claude).toContain("Hooks");
+    const [copilot, claude, opencode] = radios(container).map((c) => textOf(c)) as [string, string, string];
+    // Quando ela compara as opções "Claude Code", "GitHub Copilot" e "OpenCode"
+    // Então só Claude e OpenCode listam atividade
+    expect(claude).toContain("Atividade");
     expect(claude).toContain(".claude/settings.json");
-    expect(copilot).not.toContain("Hooks");
+    expect(copilot).not.toContain("Atividade");
+    expect(opencode).toContain("Atividade");
+    expect(opencode).toContain(".opencode/plugins/jatai-activity.ts");
     // E a Jataí diz que o chat da extensão, o guia, leva ao agente jatai
     expect(textOf(q(container, '[data-wizard="harness-note"]'))).toContain(`@${BRAND.guide.name}, mostra onde você está e leva ao agente ${BRAND.participant.name}`);
     // E nenhum texto cita o chat antigo da extensão
@@ -674,13 +676,18 @@ for (const title of titlesStartingWith("Nome de projeto inválido é recusado na
 for (const title of titlesStartingWith("O Pronto aponta o próximo passo no harness escolhido")) {
   SCENARIOS[title] = () => {
     const [harness] = rowOf(title) as [string];
-    const host = harness === "Claude Code" ? "claude" : "copilot";
+    const host = harness === "Claude Code" ? "claude" : harness === "OpenCode" ? "opencode" : "copilot";
     // Dado que a instalação terminou com o harness "<harness>"
     const { container } = openInstalled({ mode: "brownfield", folder: "/sintetico/ws", hostAdapter: host, folderIsOpen: true });
     // Quando a pessoa lê o passo "Pronto"
     const next = textOf(q(container, '[data-wizard="next-step"]'));
-    // Então a Jataí manda entrar pelo agente jatai no chat do "<harness>"
-    expect(next).toContain(host === "claude" ? `chame o agente @${BRAND.participant.name}` : `escolha o agente ${BRAND.participant.name} no seletor de agentes`);
+    // Então a Jataí manda entrar pelo agente jatai no harness escolhido
+    const expected = host === "claude"
+      ? `chame o agente @${BRAND.participant.name}`
+      : host === "opencode"
+        ? `selecione o agente ${BRAND.participant.name} ou rode /${BRAND.participant.name}`
+        : `escolha o agente ${BRAND.participant.name} no seletor de agentes`;
+    expect(next).toContain(expected);
     expect(textOf(container)).toContain(harness);
   };
 }

@@ -36,7 +36,7 @@ export const RUN_EVENT_TYPES = [
 export const RUN_EVENT_ACTORS = ["agent", "human"];
 
 /** Por onde o evento foi capturado. */
-export const RUN_EVENT_HARNESSES = ["claude-code", "copilot", "cli", "mcp", "watcher"];
+export const RUN_EVENT_HARNESSES = ["claude-code", "copilot", "opencode", "cli", "mcp", "watcher"];
 
 /** Únicas chaves aceitas em `metadata` (lista fechada, R8). */
 export const RUN_EVENT_METADATA_KEYS = ["reason", "task", "path", "count"];

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { foundationPrompt, helyxCommandContent, agentsDirFor } from "../src/data/foundation-prompt";
+import { foundationPrompt, helyxCommandContent, agentsDirFor, agentPathFor, deliveryAgentPathFor } from "../src/data/foundation-prompt";
 
 describe("agentsDirFor — o path do agente depende do host", () => {
   it("Claude lê agentes de .claude/agents", () => {
@@ -7,6 +7,9 @@ describe("agentsDirFor — o path do agente depende do host", () => {
   });
   it("Copilot lê agentes de .github/agents", () => {
     expect(agentsDirFor("copilot")).toBe(".github/agents");
+  });
+  it("OpenCode lê agentes de .opencode/agents", () => {
+    expect(agentsDirFor("opencode")).toBe(".opencode/agents");
   });
 });
 
@@ -23,8 +26,15 @@ describe("REGRESSÃO: prompt não pode ter path de agente hardcoded", () => {
     expect(p).not.toContain(".claude/agents/discovery");
   });
 
-  it("artefatos ficam em .github/artifacts nos dois hosts (host-neutral)", () => {
-    for (const host of ["claude", "copilot"] as const) {
+  it("o prompt do OpenCode aponta para o agente plano em .opencode/agents", () => {
+    const p = foundationPrompt("opencode");
+    expect(p).toContain(".opencode/agents/assessor.md");
+    expect(p).not.toContain(".opencode/agents/discovery/assessor");
+    expect(p).not.toContain(".github/agents/discovery");
+  });
+
+  it("artefatos ficam em .github/artifacts nos três hosts (host-neutral)", () => {
+    for (const host of ["claude", "copilot", "opencode"] as const) {
       const p = foundationPrompt(host);
       expect(p).toContain(".github/artifacts/repos.yaml");
       expect(p).toContain(".github/artifacts/assessment/foundation-state.yaml");
@@ -113,5 +123,23 @@ describe("helyxCommandContent — slash command gravado no workspace", () => {
   it("embute o prompt do host correspondente", () => {
     expect(helyxCommandContent("claude")).toContain(".claude/agents/discovery");
     expect(helyxCommandContent("copilot")).toContain(".github/agents/discovery");
+    expect(helyxCommandContent("opencode")).toContain(".opencode/agents/assessor.md");
+  });
+
+  it("no OpenCode, o comando seleciona o agente orquestrador", () => {
+    expect(helyxCommandContent("opencode")).toContain("agent: jatai");
+  });
+});
+
+describe("paths de agente por harness", () => {
+  it("OpenCode achata o stream e usa .md", () => {
+    expect(agentPathFor("opencode", "discovery/assessor.agent.md")).toBe(".opencode/agents/assessor.md");
+    expect(deliveryAgentPathFor("opencode", "backend")).toBe(".opencode/agents/backend-python-api.md");
+    expect(deliveryAgentPathFor("opencode", "reviewer")).toBe(".opencode/agents/reviewer.md");
+  });
+
+  it("Claude/Copilot mantêm o caminho do kit", () => {
+    expect(deliveryAgentPathFor("claude", "backend")).toBe(".claude/agents/downstream/backend-python-api.agent.md");
+    expect(deliveryAgentPathFor("copilot", "backend")).toBe(".github/agents/downstream/backend-python-api.agent.md");
   });
 });

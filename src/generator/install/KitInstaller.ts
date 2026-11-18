@@ -89,7 +89,7 @@ export class KitInstaller {
       const staging = await fs.mkdtemp(path.join(os.tmpdir(), `${BRAND.name}-resume-`));
       try {
         await this.installBrownfield(staging, projectName, hostAdapter, maturityFrameworks);
-        await copyMissing(staging, targetDir, new Set([...CONFIG_FILENAMES, ".gitignore"]));
+        await copyMissing(staging, targetDir, new Set([...CONFIG_FILENAMES, ".gitignore", "opencode.json", "opencode.jsonc"]));
       } finally {
         await fs.rm(staging, { recursive: true, force: true }).catch(() => undefined);
       }
@@ -100,7 +100,7 @@ export class KitInstaller {
       await ensureRunsGitignored(targetDir);
       // ADR-0025: o servidor da marca entra nas configurações MCP que o time
       // já tinha (merge por nome); as que faltavam vieram do staging.
-      await configureMcpServer(targetDir);
+      await configureMcpServer(targetDir, harnessFor(hostAdapter));
       // Contrato agent-activity: os hooks do kit entram na configuração de
       // projeto do harness que o time já tinha, preservando o resto.
       await configureAgentActivityHooks(targetDir, harnessFor(hostAdapter));
@@ -161,8 +161,8 @@ export class KitInstaller {
     );
 
     // Servidor MCP do estado (ADR-0025): bundle ao lado do CLI e as
-    // configurações MCP dos dois harnesses (.mcp.json e .vscode/mcp.json).
-    await installMcpServer(targetDir);
+    // configurações MCP do harness (.mcp.json/.vscode/mcp.json ou opencode.json).
+    await installMcpServer(targetDir, harness);
 
     // Hooks de atividade de agente (contrato agent-activity §4), no harness
     // que tem hooks de projeto (Claude Code: .claude/settings.json).
@@ -195,13 +195,16 @@ export class KitInstaller {
       );
     }
 
-    // 6. Copy AGENTS.md (brownfield variant)
-    try {
-      await copyKitFile(
-        path.join(tmplRoot, "AGENTS.md"),
-        path.join(targetDir, "AGENTS.md")
-      );
-    } catch { /* skip gracefully */ }
+    // 6. Copy AGENTS.md (brownfield variant) — o OpenCode instala o próprio
+    // `opencode-instructions.md` como AGENTS.md no passo 4; não sobrepor.
+    if (harness.genericAgentsMd) {
+      try {
+        await copyKitFile(
+          path.join(tmplRoot, "AGENTS.md"),
+          path.join(targetDir, "AGENTS.md")
+        );
+      } catch { /* skip gracefully */ }
+    }
 
     // 7. Config do workspace (variante brownfield, sem stacks: o assessment as
     // descobre), sob o lock do estado (ADR-0017): agente e Cockpit também o editam.
@@ -275,14 +278,17 @@ export class KitInstaller {
 
     // Servidor MCP do estado (ADR-0025) e hooks de atividade de agente
     // (contrato agent-activity), como na instalação brownfield.
-    await installMcpServer(dir);
+    await installMcpServer(dir, harness);
     await installAgentActivityHooks(dir, harness);
 
-    // Create AGENTS.md at project root
-    await fs.writeFile(
-      path.join(dir, "AGENTS.md"),
-      buildAgentsReadme(state, harness.hostDir)
-    );
+    // Create AGENTS.md at project root. O OpenCode gera o dele no adapter
+    // (`generateAgentArtifacts`), com o texto do harness.
+    if (harness.genericAgentsMd) {
+      await fs.writeFile(
+        path.join(dir, "AGENTS.md"),
+        buildAgentsReadme(state, harness.hostDir)
+      );
+    }
   }
 
   /**
@@ -354,7 +360,9 @@ export class KitInstaller {
       path.join(tmplRoot, harness.kitInstructionsFile),
       path.join(targetDir, harness.instructionsFile)
     );
-    await copyFileIfExists(path.join(tmplRoot, "AGENTS.md"), path.join(targetDir, "AGENTS.md"));
+    if (harness.genericAgentsMd) {
+      await copyFileIfExists(path.join(tmplRoot, "AGENTS.md"), path.join(targetDir, "AGENTS.md"));
+    }
 
     // 5. Comando /helyx com os paths do host
     if (harness.slashCommandsDir !== null) {
@@ -389,7 +397,7 @@ export class KitInstaller {
     // 6c. Servidor MCP do estado (ADR-0025): atualiza o bundle e põe ou
     // atualiza o servidor da marca nas duas configurações MCP, sem apagar
     // os servidores que o time já declarou (merge por nome).
-    await installMcpServer(targetDir);
+    await installMcpServer(targetDir, harness);
 
     // 6d. Hooks de atividade de agente (contrato agent-activity §4): relé
     // atualizado e hooks do kit na configuração de projeto do harness, sem

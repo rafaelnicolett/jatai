@@ -6,7 +6,8 @@ import * as yaml from "js-yaml";
 import { findConfigPath, LEGACY_CONFIG_FILENAMES } from "../../data/kit-version";
 import { agentsDirFor } from "../../data/foundation-prompt";
 import { claudeOrchestratorFilenames } from "../../data/orchestrator-entry-prompt";
-import { HelyxConfigSchema, HelyxBrownfieldConfigSchema, type HelyxConfig } from "../../types";
+import { BRAND } from "../../data/brand.pure";
+import { HelyxConfigSchema, HelyxBrownfieldConfigSchema, type HelyxConfig, type HostAdapter } from "../../types";
 
 /**
  * Carrega e valida ai-sdk.config.yaml do workspace.
@@ -83,16 +84,17 @@ export class ConfigLoader {
    * com `load()` (só single-project) devolvendo null, o host virava "copilot"
    * e o `migrateKit` instalava o kit Copilot num workspace Claude Code. Agora:
    * o `host_adapter` declarado vale nos dois formatos; sem ele, o disco
-   * decide (o orquestrador do Claude Code em `.claude/agents/`); sem nenhum
-   * dos dois, `"copilot"`, o default de sempre. Nunca lança.
+   * decide (o orquestrador do Claude Code em `.claude/agents/` ou o do
+   * OpenCode em `.opencode/agents/`); sem nenhum dos dois, `"copilot"`, o
+   * default de sempre. Nunca lança.
    */
-  async hostAdapter(): Promise<"claude" | "copilot"> {
+  async hostAdapter(): Promise<HostAdapter> {
     const configPath = this._findConfigPath();
     if (configPath !== null) {
       try {
         const parsed = yaml.load(await fs.readFile(configPath, "utf-8")) as { host_adapter?: unknown } | null;
         const declared = parsed && typeof parsed === "object" ? parsed.host_adapter : undefined;
-        if (declared === "claude" || declared === "copilot") return declared;
+        if (declared === "claude" || declared === "copilot" || declared === "opencode") return declared;
       } catch {
         // config ilegível — o disco decide
       }
@@ -105,6 +107,16 @@ export class ConfigLoader {
         return "claude";
       } catch {
         // tenta o próximo nome (o atual primeiro, depois os de marcas anteriores)
+      }
+    }
+    // OpenCode: o orquestrador é `<marca>.md` (o layout anterior usava
+    // `<marca>.agent.md`; um workspace migrado pode ter o antigo).
+    for (const orchestrator of [`${BRAND.name}.md`, BRAND.files.orchestratorAgent]) {
+      try {
+        accessSync(path.join(root, agentsDirFor("opencode"), orchestrator));
+        return "opencode";
+      } catch {
+        // tenta o próximo nome
       }
     }
     return "copilot";

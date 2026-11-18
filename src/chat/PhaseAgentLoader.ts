@@ -11,7 +11,7 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import { deliveryAgentPath } from "../data/phase-catalog.pure";
+import { deliveryAgentPathFor } from "../data/foundation-prompt";
 
 // Phase ID → path do agent.md (`.github/agents/<stream>/<arquivo>.agent.md`, ou
 // o mesmo arquivo em `.claude/agents/`): consulta ao catálogo único
@@ -28,14 +28,14 @@ export interface PhaseAgent {
 }
 
 /**
- * Onde a persona pode estar: o layout do Copilot (`.github/agents/`, o do
- * catálogo) e o do Claude Code (`.claude/agents/`, L9). O primeiro que existir vence.
+ * Onde a persona pode estar: o layout do Copilot (`.github/agents/`), o do
+ * Claude Code (`.claude/agents/`) e o do OpenCode (`.opencode/agents/`, plano).
+ * O primeiro que existir vence.
  */
 function personaCandidates(phaseId: string): string[] {
-  const rel = deliveryAgentPath(phaseId);
-  if (!rel) return [];
-  const copilotPrefix = ".github/agents/";
-  return rel.startsWith(copilotPrefix) ? [rel, `.claude/agents/${rel.slice(copilotPrefix.length)}`] : [rel];
+  return (["copilot", "claude", "opencode"] as const)
+    .map((host) => deliveryAgentPathFor(host, phaseId))
+    .filter((p): p is string => p !== undefined);
 }
 
 export class PhaseAgentLoader {

@@ -237,6 +237,7 @@
           "allowed": [
             "claude-code",
             "copilot",
+            "opencode",
             "cli",
             "mcp",
             "watcher"

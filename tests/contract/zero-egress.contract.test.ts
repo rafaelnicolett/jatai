@@ -74,6 +74,9 @@ const SOURCE_URL_ALLOWLIST: Record<string, Record<string, string>> = {
   "src/core/methodology/phase-contracts.ts": {
     "https://12factor.net": "referência em texto de um item de checklist",
   },
+  "src/generator/content/mcp-config.ts": {
+    "https://opencode.ai/config.json": "$schema do opencode.json gerado; identificador, não é chamado pela extensão",
+  },
 };
 
 const LOOPBACK = /^https?:\/\/(127\.0\.0\.1|localhost)([:/]|$)/;

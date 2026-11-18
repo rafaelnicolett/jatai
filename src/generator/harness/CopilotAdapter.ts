@@ -4,6 +4,7 @@ import { orchestratorEntryBody } from "../../data/orchestrator-entry-prompt";
 import { BRAND } from "../../data/brand.pure";
 import { renameKitOrchestrator } from "./orchestrator";
 import { entryPointParagraph } from "../content/entry-point";
+import { MCP_CONFIG_FILES } from "../content/mcp-config";
 
 /**
  * Gera .github/agents/, .github/skills/, .github/chatmodes/ e
@@ -17,6 +18,14 @@ export class CopilotAdapter implements HarnessAdapter {
   readonly supportsChatmodes = true;
   readonly slashCommandsDir = null;
   readonly projectHooksFile = null;
+  readonly orchestratorFile = BRAND.files.orchestratorAgent;
+  readonly genericAgentsMd = true;
+  readonly mcpConfigs = MCP_CONFIG_FILES;
+  readonly activity = "none";
+
+  agentDestination(kitRel: string): string {
+    return kitRel;
+  }
 
   /**
    * Os agentes do kit já nascem com os paths do Copilot (`.github/agents/`).

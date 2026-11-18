@@ -15883,7 +15883,7 @@ var RUN_EVENT_TYPES = [
   "decision-made"
 ];
 var RUN_EVENT_ACTORS = ["agent", "human"];
-var RUN_EVENT_HARNESSES = ["claude-code", "copilot", "cli", "mcp", "watcher"];
+var RUN_EVENT_HARNESSES = ["claude-code", "copilot", "opencode", "cli", "mcp", "watcher"];
 var RUN_EVENT_MESSAGE_MAX = 140;
 var RUN_EVENT_TYPES_WITH_AUTHOR = ["decision-made", "gate-approved", "item-approved"];
 var KNOWN_TYPES = new Set(RUN_EVENT_TYPES);

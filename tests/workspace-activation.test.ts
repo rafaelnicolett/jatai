@@ -2,9 +2,11 @@ import { describe, it, expect } from "vitest";
 import * as fs from "fs";
 import * as path from "path";
 import {
+  OPENCODE_LAYOUT_DIR,
   WORKSPACE_MARKER_FILES,
   isHelyxWorkspace,
   shouldEnsureClaudeCommand,
+  shouldEnsureOpenCodeCommand,
   shouldStartWorkspaceServices,
 } from "../src/data/workspace-activation";
 
@@ -36,6 +38,14 @@ describe("workspace-activation — quando a ativação pode mexer na pasta abert
     expect(shouldEnsureClaudeCommand({ hasFolder: true, trusted: true, rootEntries: ["helyx.config.yaml", ".claude"] })).toBe(true);
     expect(shouldEnsureClaudeCommand({ hasFolder: true, trusted: true, rootEntries: ["helyx.config.yaml"] })).toBe(false);
     expect(shouldEnsureClaudeCommand({ hasFolder: true, trusted: true, rootEntries: [".claude"] })).toBe(false);
+  });
+
+  it("/jatai do OpenCode: só em workspace Helyx que já tem .opencode/", () => {
+    expect(OPENCODE_LAYOUT_DIR).toBe(".opencode");
+    expect(shouldEnsureOpenCodeCommand({ hasFolder: true, trusted: true, rootEntries: ["jatai.config.yaml", ".opencode"] })).toBe(true);
+    expect(shouldEnsureOpenCodeCommand({ hasFolder: true, trusted: true, rootEntries: ["jatai.config.yaml"] })).toBe(false);
+    expect(shouldEnsureOpenCodeCommand({ hasFolder: true, trusted: true, rootEntries: [".opencode"] })).toBe(false);
+    expect(shouldEnsureOpenCodeCommand({ hasFolder: true, trusted: false, rootEntries: ["jatai.config.yaml", ".opencode"] })).toBe(false);
   });
 
   it("G12: o manifesto declara que a extensão não roda em workspace não confiável", () => {

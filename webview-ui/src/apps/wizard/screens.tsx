@@ -89,7 +89,7 @@ export function ModeScreen({ view, flow }: ScreenProps) {
 export function HarnessScreen({ view, flow }: ScreenProps) {
   const step = stepOf(view.schema, "hostAdapter");
   const options = optionsOf(step, (value) => {
-    const facts = HARNESS_FACTS[value as "claude" | "copilot"];
+    const facts = HARNESS_FACTS[value as keyof typeof HARNESS_FACTS];
     if (!facts) return undefined;
     return (
       <span className={s.installs}>
@@ -109,7 +109,7 @@ export function HarnessScreen({ view, flow }: ScreenProps) {
         </span>
         {facts.hooks && (
           <span>
-            Hooks: <Code>{facts.hooks.join(" e ")}</Code>
+            Atividade: <Code>{facts.hooks.join(" e ")}</Code>
           </span>
         )}
       </span>
@@ -415,6 +415,7 @@ export function InstallingScreen({ view }: ScreenProps) {
 export function DoneScreen({ view }: ScreenProps) {
   const done = view.installed!;
   const harness = HARNESS_FACTS[done.hostAdapter];
+  const nextStep = DONE_COPY[done.hostAdapter];
   return (
     <div className={s.review} data-wizard="done">
       <Card as="section" aria-labelledby="done-where" className={s.progress}>
@@ -431,7 +432,7 @@ export function DoneScreen({ view }: ScreenProps) {
         </h2>
         <ol className={s.nextSteps}>
           {!done.folderIsOpen && <li data-wizard="open-folder-first">{DONE_COPY.openFolderFirst}</li>}
-          <li data-wizard="next-step">{done.hostAdapter === "claude" ? DONE_COPY.claude : DONE_COPY.copilot}</li>
+          <li data-wizard="next-step">{nextStep}</li>
         </ol>
         <p className={s.help}>{COMMON_FACTS.guideNote}</p>
       </section>

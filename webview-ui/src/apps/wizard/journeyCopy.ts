@@ -137,11 +137,11 @@ export interface HarnessFacts {
   /** Os arquivos de instruções. */
   instructions: readonly string[];
   mcp: string;
-  /** Hooks que registram a atividade dos agentes (só no Claude Code). */
+  /** Hooks ou plugin que registram a atividade dos agentes. */
   hooks: readonly string[] | null;
 }
 
-export const HARNESS_FACTS: Record<"claude" | "copilot", HarnessFacts> = {
+export const HARNESS_FACTS: Record<"claude" | "copilot" | "opencode", HarnessFacts> = {
   claude: {
     label: "Claude Code",
     summary: "Para conversar no Claude Code, no terminal ou no VS Code.",
@@ -164,9 +164,20 @@ export const HARNESS_FACTS: Record<"claude" | "copilot", HarnessFacts> = {
     mcp: ".vscode/mcp.json",
     hooks: null,
   },
+  opencode: {
+    label: "OpenCode",
+    summary: "Para conversar no OpenCode, no terminal.",
+    entry: `o agente ${AGENT} ou o comando /${AGENT}`,
+    agents: ".opencode/agents/",
+    entryFile: `.opencode/agents/${AGENT}.md`,
+    skills: ".opencode/skills/",
+    instructions: ["AGENTS.md"],
+    mcp: "opencode.json",
+    hooks: [`.opencode/plugins/${BRAND.name}-activity.ts`],
+  },
 };
 
-/** O que vale para os dois harnesses. */
+/** O que vale para os três harnesses. */
 export const COMMON_FACTS = {
   state: ".github/artifacts/",
   scripts: ".github/scripts/",
@@ -186,6 +197,7 @@ export const DONE_COPY = {
   openFolderFirst: "Essa não é a pasta aberta no editor. Abra-a no VS Code antes de seguir: o aviso do editor tem o botão.",
   claude: `No Claude Code, chame o agente @${AGENT}. Ele conduz a metodologia daqui em diante.`,
   copilot: `No chat do GitHub Copilot, escolha o agente ${AGENT} no seletor de agentes. Ele conduz a metodologia daqui em diante.`,
+  opencode: `No OpenCode, selecione o agente ${AGENT} ou rode /${AGENT}. Ele conduz a metodologia daqui em diante.`,
   cockpit: "Abrir o Cockpit",
   close: "Fechar",
   stepLabel: "Concluído",

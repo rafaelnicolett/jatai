@@ -23,7 +23,9 @@
 
 import * as vscode from "vscode";
 import { PHASE_CONTRACTS } from "../../data/phase-contracts";
-import { canonicalDeliveryPhaseId, deliveryAgentPath, deliveryPhase, nextDeliveryPhaseId } from "../../data/phase-catalog.pure";
+import { canonicalDeliveryPhaseId, deliveryPhase, nextDeliveryPhaseId } from "../../data/phase-catalog.pure";
+import { deliveryAgentPathFor } from "../../data/foundation-prompt";
+import type { HostAdapter } from "../../types";
 import type { CommandHandler, ActionContext } from "./CommandHandler";
 import { openChatWithPrompt, getHostAdapter, getActiveSyncContext } from "./hostChat";
 import { getActiveDeliveryStatePath } from "./deliveryStatePaths.pure";
@@ -32,7 +34,7 @@ import { BRAND } from "../../data/brand.pure";
 export { getActiveDeliveryStatePath };
 
 /** Monta o prompt de handoff para o chat nativo do host, apontando para o próximo agente. */
-function buildHandoffPrompt(phaseLabel: string, agentName: string, agentFile: string, host: "copilot" | "claude"): string {
+function buildHandoffPrompt(phaseLabel: string, agentName: string, agentFile: string, host: HostAdapter): string {
   const parts: string[] = [];
   if (agentFile) {
     if (host === "copilot") {
@@ -164,10 +166,7 @@ export async function approveAndAdvancePhase(requestedPhaseId: string, ctx: Acti
   //    para o arquivo .md do próximo agente.
   const host = await getHostAdapter(ctx.configLoader);
   const agentName = deliveryPhase(nextPhase)?.agent ?? `@${nextPhase}`;
-  const agentFileBase = deliveryAgentPath(nextPhase) ?? "";
-  const agentFile = agentFileBase
-    ? agentFileBase.replace(/^\.github\//, host === "claude" ? ".claude/" : ".github/")
-    : "";
+  const agentFile = deliveryAgentPathFor(host, nextPhase) ?? "";
   const nextLabel = deliveryPhase(nextPhase)?.label ?? nextPhase;
   const prompt = buildHandoffPrompt(nextLabel, agentName, agentFile, host);
 

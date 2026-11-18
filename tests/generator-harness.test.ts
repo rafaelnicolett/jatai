@@ -25,10 +25,18 @@ describe("HarnessAdapter — layout de cada harness", () => {
     });
   });
 
-  it("findHarness é estrito (greenfield); harnessFor cai no Copilot para qualquer id que não seja claude (brownfield e migrateKit)", () => {
+  it("OpenCode: .opencode/, AGENTS.md, sem chatmodes, com commands/ e sem settings de hook", () => {
+    const h = findHarness("opencode")!;
+    expect({ name: h.name, hostDir: h.hostDir, instructionsFile: h.instructionsFile, kitInstructionsFile: h.kitInstructionsFile, supportsChatmodes: h.supportsChatmodes, slashCommandsDir: h.slashCommandsDir, projectHooksFile: h.projectHooksFile }).toEqual({
+      name: "opencode", hostDir: ".opencode", instructionsFile: "AGENTS.md", kitInstructionsFile: "opencode-instructions.md", supportsChatmodes: false, slashCommandsDir: ".opencode/commands", projectHooksFile: null,
+    });
+  });
+
+  it("findHarness é estrito (greenfield); harnessFor cai no Copilot para qualquer id que não seja claude ou opencode (brownfield e migrateKit)", () => {
     expect(findHarness("vscode")).toBeUndefined();
     expect(findHarness("constructor")).toBeUndefined();
     expect(harnessFor("claude").name).toBe("claude");
+    expect(harnessFor("opencode").name).toBe("opencode");
     for (const id of ["copilot", "vscode", "", "Claude"]) expect(harnessFor(id).name, id).toBe("copilot");
   });
 });
@@ -46,7 +54,7 @@ describe("HarnessAdapter — nenhuma condicional de harness fora dos adapters", 
         }
         if (!e.name.endsWith(".ts")) continue;
         fs.readFileSync(full, "utf-8").split("\n").forEach((line, i) => {
-          if (/(===|!==)\s*"(claude|copilot)"|"(claude|copilot)"\s*(===|!==)/.test(line)) offenders.push(`${path.relative(root, full)}:${i + 1}`);
+          if (/(===|!==)\s*"(claude|copilot|opencode)"|"(claude|copilot|opencode)"\s*(===|!==)/.test(line)) offenders.push(`${path.relative(root, full)}:${i + 1}`);
         });
       }
     };

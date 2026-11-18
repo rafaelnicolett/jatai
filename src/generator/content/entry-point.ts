@@ -17,6 +17,7 @@ import { BRAND } from "../../data/brand.pure";
 const HOW_TO_CALL: Record<HostId, (file: string) => string> = {
   claude: (file) => `No Claude Code, chame \`@${BRAND.name}\` (o agente em \`${file}\`).`,
   copilot: (file) => `No Copilot, escolha o agente \`${BRAND.name}\` no seletor de agentes do chat (o custom agent em \`${file}\`).`,
+  opencode: (file) => `No OpenCode, selecione o agente \`${BRAND.name}\` (primary) ou rode \`/${BRAND.name}\` (o agente em \`${file}\`).`,
 };
 
 function howToCall(host: HostId): string {

@@ -2,10 +2,10 @@
  * agentDirectory.ts — lê dos agentes instalados no workspace a responsabilidade
  * de cada um (F5.3), para o painel da ilha do mapa da colmeia.
  *
- * Os agentes ficam em `.claude/agents/**` (Claude Code) e `.github/agents/**`
- * (Copilot), um `<id>.agent.md` com frontmatter YAML. Vale o campo
- * `description`. Só o frontmatter é lido, nunca o corpo do agente (R8: o mapa
- * mostra metadados).
+ * Os agentes ficam em `.opencode/agents/**` (OpenCode, `<id>.md` plano),
+ * `.claude/agents/**` (Claude Code) e `.github/agents/**` (Copilot), um
+ * `<id>.agent.md` com frontmatter YAML. Vale o campo `description`. Só o
+ * frontmatter é lido, nunca o corpo do agente (R8: o mapa mostra metadados).
  *
  * O Cockpit monta o snapshot a cada 4 s e a cada evento, então o leitor guarda
  * o resultado e só relê quando a lista de arquivos, o tamanho ou o horário de
@@ -19,15 +19,16 @@ import { parse as parseYaml } from "yaml";
 import { BRAND } from "../../data/brand.pure";
 import { agentRoleFromDescription, normalizeAgentId, type AgentCatalogEntry } from "../../core/contracts/agent-directory.pure";
 
-/** Onde o kit instala os agentes, na ordem de preferência quando o mesmo id aparece nos dois. */
-export const AGENT_DIRS = [".claude/agents", ".github/agents"] as const;
+/** Onde o kit instala os agentes, na ordem de preferência quando o mesmo id aparece em mais de um. */
+export const AGENT_DIRS = [".opencode/agents", ".claude/agents", ".github/agents"] as const;
 
-const AGENT_FILE = /\.agent\.md$/;
+/** `.agent.md` (Claude/Copilot) ou `.md` (OpenCode); o id é o nome sem o sufixo. */
+const AGENT_FILE = /(\.agent)?\.md$/;
 const MAX_DEPTH = 3;
 /** Um agente com mais que isto não é um agente do kit; o frontmatter não passa de alguns KB. */
 const MAX_FILE_BYTES = 256 * 1024;
 
-/** O frontmatter de um `.agent.md`, ou `null` se o arquivo não tem um. */
+/** O frontmatter de um `.agent.md`/`.md`, ou `null` se o arquivo não tem um. */
 function frontmatterOf(raw: string): Record<string, unknown> | null {
   const m = raw.replace(/\r\n/g, "\n").match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
   if (!m) return null;

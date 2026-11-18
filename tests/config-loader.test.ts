@@ -175,6 +175,19 @@ describe("ConfigLoader.hostAdapter() — host do workspace em qualquer formato d
     expect(await new ConfigLoader(folders()).hostAdapter()).toBe("copilot");
   });
 
+  it("config multi-repo sem host_adapter num workspace OpenCode → opencode, pelo orquestrador .opencode/agents/<marca>.md", async () => {
+    await write(CONFIG_FILENAME, BROWNFIELD_CONFIG);
+    await fs.mkdir(path.join(tmpDir, ".opencode", "agents"), { recursive: true });
+    await fs.writeFile(path.join(tmpDir, ".opencode", "agents", "jatai.md"), "# orquestrador\n");
+    expect(await new ConfigLoader(folders()).hostAdapter()).toBe("opencode");
+  });
+
+  it("host_adapter declarado opencode vence o disco", async () => {
+    await claudeOrchestrator();
+    await write(CONFIG_FILENAME, `host_adapter: opencode\n${BROWNFIELD_CONFIG}`);
+    expect(await new ConfigLoader(folders()).hostAdapter()).toBe("opencode");
+  });
+
   it("YAML malformado ou sem pasta aberta: não lança; cai no disco ou em copilot", async () => {
     await write(CONFIG_FILENAME, "not: [valid: yaml");
     expect(await new ConfigLoader(folders()).hostAdapter()).toBe("copilot");
