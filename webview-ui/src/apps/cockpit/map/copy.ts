@@ -8,7 +8,8 @@
  * Ficam fora dos componentes para o painel, a lista e o rótulo da cena dizerem
  * exatamente a mesma coisa (o teste de paridade da lista confere).
  */
-import type { ColmeiaBridge, IslandAgentStatus, IslandDetail, IslandState } from "@data";
+import type { ColmeiaBridge, IslandAgentStatus, IslandDetail, IslandState, MapProcessStatus } from "@data";
+import { personaOf } from "@data";
 import type { WorkStatus } from "../../../design-system/status/workStatus";
 import { describeWorkStatus } from "../../../design-system/status/workStatus";
 
@@ -129,6 +130,21 @@ export function liveChip(input: { paused: boolean; waiting: number; working: num
 
 /** O rótulo da entrega: o nome do arquivo, para o link do painel e da lista. */
 export const potLabel = (artifactPath: string): string => artifactPath.split("/").pop() ?? artifactPath;
+
+/** O nome de cena do responsável por um processo ("Meli · @tech-mapper"), ou "sem agente". */
+export function processOwner(agentId: string | undefined): string {
+  return agentId ? `${personaOf(agentId).name} · ${agentId}` : "sem agente";
+}
+
+/** O texto e o glifo de cada status de processo do inventário. */
+export const PROCESS_TEXT: Record<MapProcessStatus, { status: WorkStatus; text: string }> = {
+  done: { status: "done", text: "feito" },
+  working: { status: "working", text: "em andamento" },
+  review: { status: "you", text: "espera você" },
+  open: { status: "queue", text: "em aberto" },
+  blocked: { status: "blocked", text: "bloqueado" },
+  failed: { status: "failed", text: "falhou" },
+};
 
 /** Linhas do checklist do gate, no texto de cada estado. */
 export const CHECKLIST_TEXT: Record<string, { status: WorkStatus; text: string }> = {

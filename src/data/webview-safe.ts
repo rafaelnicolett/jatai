@@ -36,4 +36,7 @@ export * from "../core/validation/project-name";
 // F5.3: o painel da ilha (responsabilidade do agente, passo atual, checklist do gate).
 export * from "../core/contracts/agent-directory.pure";
 export * from "../core/plans/colmeia-detail";
+// F5.4: o inventário da ilha — todos os processos e o elenco com persona.
+export * from "../core/plans/map-cast.pure";
+export * from "../core/plans/map-inventory.pure";
 export type { KitStatus } from "./kit-version";

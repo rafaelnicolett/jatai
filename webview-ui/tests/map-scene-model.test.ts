@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { MAX_BEES_PER_ISLAND } from "../src/apps/cockpit/map/sceneModel";
+import { MAX_BEES_PER_ISLAND, MAX_PROCESS_TRAIL } from "../src/apps/cockpit/map/sceneModel";
 import { MAX_COMB_CELLS, hexSpiral } from "../src/apps/cockpit/map/islandArt";
 import { agentStatusView, beeCondition, countsOf, islandAriaLabel, islandBlurb, islandEyebrow, islandMeta, plural } from "../src/apps/cockpit/map/copy";
 import { dist, inDiamond, pt } from "../src/apps/cockpit/map/projection";
@@ -61,11 +61,22 @@ describe("buildScene — as ilhas e as pontes", () => {
   });
 
   it("sem iniciativa ativa não há ilha nem ponte, e a cena leva o que falta e como resolver", () => {
-    const w = world({ active: null });
+    const w = world({ active: null, foundation: null, reposInventory: null });
     expect(w.scene.islands).toEqual([]);
     expect(w.scene.bridges).toEqual([]);
     expect(w.scene.empty?.reason).toMatch(/não há iniciativa ativa/i);
     expect(w.scene.empty?.hint).toContain("@jatai");
+  });
+
+  it("sem iniciativa, mas com o Foundation em andamento, a cena mostra a descoberta e o D1", () => {
+    const w = world({
+      active: null,
+      foundation: { phases: {}, repos: { jatai: { phases: { "tech-stack": { status: "in-progress", human_checklist: {} } }, gate_d1: { status: "pending" } } } },
+    });
+    expect(w.scene.empty).toBeNull();
+    expect(w.scene.islands.map((i) => i.label)).toEqual(["Descoberta", "Planejamento"]);
+    expect(w.scene.bridges[0]).toMatchObject({ gate: "D1", state: "unbuilt" });
+    expect(w.scene.islands[0]!.progress).toMatchObject({ total: expect.any(Number) });
   });
 
   it("é puro: o mesmo mapa dá exatamente a mesma cena", () => {
@@ -84,6 +95,21 @@ describe("buildScene — as abelhas", () => {
     const after = world({ events: [...events, finished("@migration-agent", "epic-0/task-0.2")] });
     expect(after.scene.bees.filter((b) => b.agentId === "@migration-agent")).toEqual([]);
     expect(after.scene.flying).toBe(0);
+  });
+
+  it("a persona dá a cor do colar, e a ilha desenha a trilha de processos no chão", () => {
+    const events = [
+      started("@migration-agent", "epic-0/task-0.2"),
+      colmeiaEvent({ event_type: "agent-started", agent_id: "@arch-discoverer", phase_id: "arch", repo_id: "jatai" }),
+    ];
+    const w = world({ events });
+    expect(w.scene.bees.find((b) => b.agentId === "@migration-agent")?.accent).toBe("honey");
+    expect(w.scene.bees.find((b) => b.agentId === "@arch-discoverer")?.accent).toBe("lavender");
+    const discovery = island(w, "discovery");
+    expect(discovery.processTrail?.nodes.length).toBeGreaterThan(0);
+    expect(discovery.processTrail!.nodes.length).toBeLessThanOrEqual(MAX_PROCESS_TRAIL);
+    expect(discovery.processTrail!.nodes.every((n) => n.at.y > discovery.placement.c.y)).toBe(true);
+    expect(island(w, "execution").processTrail?.nodes.some((n) => n.status === "working")).toBe(true);
   });
 
   it("sem ninguém trabalhando nada voa: zero abelhas e zero voltas", () => {

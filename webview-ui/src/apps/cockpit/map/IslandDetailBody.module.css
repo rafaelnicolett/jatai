@@ -50,8 +50,8 @@
   list-style: none;
 }
 
-/* ── Linha de agente ──────────────────────────────────────────────────── */
-.agent {
+/* ── Linha de agente / ficha do personagem ───────────────────────────── */
+.agentLegacy {
   display: flex;
   align-items: flex-start;
   gap: var(--jt-space-3);
@@ -59,15 +59,59 @@
   border-radius: var(--jt-radius-lg);
   background: var(--jt-surface-2);
 }
+.agent {
+  border-radius: var(--jt-radius-lg);
+  background: var(--jt-surface-2);
+  border: 1px solid transparent;
+}
+.agent[open] { border-color: var(--jt-line-strong); }
+
+.agentSummary {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--jt-space-3);
+  padding: var(--jt-space-2) var(--jt-space-3);
+  border-radius: var(--jt-radius-lg);
+  cursor: pointer;
+  list-style: none;
+}
+.agentSummary::-webkit-details-marker { display: none; }
+.agentSummary:hover { background: color-mix(in srgb, var(--jt-surface-2) 70%, var(--jt-surface)); }
+.agentSummary:focus-visible {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+}
+
 .bee {
   display: inline-flex;
   flex: none;
   color: var(--jt-status-queue-fg);
 }
-.agent[data-tone="working"] .bee { color: var(--jt-status-working-fg); }
-.agent[data-tone="done"] .bee { color: var(--jt-status-done-fg); }
-.agent[data-tone="blocked"] .bee { color: var(--jt-status-blocked-fg); }
-.agent[data-tone="future"] .bee { color: var(--jt-status-future-fg); }
+.agentLegacy[data-tone="working"] .bee { color: var(--jt-status-working-fg); }
+.agentLegacy[data-tone="done"] .bee { color: var(--jt-status-done-fg); }
+.agentLegacy[data-tone="blocked"] .bee { color: var(--jt-status-blocked-fg); }
+.agentLegacy[data-tone="future"] .bee { color: var(--jt-status-future-fg); }
+
+/* O avatar de persona: monograma + cor do arquétipo (o status continua no glifo). */
+.avatar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  color: var(--jt-status-working-fg);
+  background: color-mix(in srgb, currentColor 14%, transparent);
+  font: var(--jt-type-display-sm);
+}
+.agent[data-accent="honey"] .avatar { color: var(--jt-mel-line); }
+.agent[data-accent="lavender"] .avatar { color: var(--jt-scene-ipe-roxo); }
+.agent[data-accent="rose"] .avatar { color: var(--jt-scene-ipe-rosa); }
+.agent[data-accent="leaf"] .avatar { color: var(--jt-scene-grass-1); }
+.agent[data-accent="sky"] .avatar { color: var(--jt-status-you-fg); }
+.agent[data-accent="sand"] .avatar { color: var(--jt-cerume); }
 
 .agentBody {
   display: flex;
@@ -75,8 +119,93 @@
   min-width: 0;
 }
 .agentName { font: var(--jt-type-data-md); color: var(--jt-fg); overflow-wrap: anywhere; }
+.agentId { font: var(--jt-type-data-xs); color: var(--jt-fg-3); }
 .role { font: var(--jt-type-body-sm); color: var(--jt-fg-2); }
 .task { font: var(--jt-type-data-sm); color: var(--jt-fg-3); overflow-wrap: anywhere; }
+.agentDetail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  padding: var(--jt-space-2) var(--jt-space-3) var(--jt-space-3);
+  border-top: 1px solid var(--jt-line);
+}
+.agentDetail p { margin: 0; }
+.trait { font: var(--jt-type-body-sm); color: var(--jt-fg-2); font-style: italic; }
+.metaLine { font: var(--jt-type-meta); color: var(--jt-fg-3); }
+.warn { font: var(--jt-type-body-sm); color: var(--jt-status-blocked-fg); }
+.deliverables { display: flex; flex-direction: column; gap: var(--jt-space-1); }
+
+/* ── Inventário de processos ──────────────────────────────────────────── */
+.count { font: var(--jt-type-data-xs); color: var(--jt-fg-3); }
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  padding: var(--jt-space-2);
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-lg);
+  background: color-mix(in srgb, var(--jt-surface) 88%, transparent);
+}
+.groupHead { display: flex; align-items: baseline; gap: var(--jt-space-2); }
+.groupTitle {
+  margin: 0;
+  font: var(--jt-type-eyebrow-strong);
+  color: var(--jt-fg-2);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.groupCount { margin-left: auto; font: var(--jt-type-data-xs); color: var(--jt-fg-3); }
+.gateChip {
+  padding: 0 var(--jt-space-1);
+  border: 1px solid var(--jt-line-strong);
+  border-radius: var(--jt-radius-2xs);
+  font: var(--jt-type-data-xs);
+  color: var(--jt-fg-2);
+}
+.process {
+  border: 1px solid var(--jt-line);
+  border-radius: var(--jt-radius-lg);
+  background: color-mix(in srgb, var(--jt-surface-2) 72%, transparent);
+}
+.process[open] { border-color: var(--jt-line-strong); }
+.processSummary {
+  display: flex;
+  align-items: center;
+  gap: var(--jt-space-2);
+  padding: var(--jt-space-2) var(--jt-space-3);
+  border-radius: var(--jt-radius-lg);
+  cursor: pointer;
+  list-style: none;
+}
+.processSummary::-webkit-details-marker { display: none; }
+.processSummary:hover { background: color-mix(in srgb, var(--jt-surface-2) 55%, var(--jt-surface)); }
+.processSummary:focus-visible {
+  outline: var(--jt-size-focus-width) solid var(--jt-focus);
+  outline-offset: var(--jt-size-focus-offset);
+}
+.processIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--jt-status-working-fg) 14%, transparent);
+  font-size: var(--jt-text-base);
+}
+.processBody { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.processLabel { font: var(--jt-type-body-strong); color: var(--jt-fg); overflow-wrap: anywhere; }
+.processMeta { font: var(--jt-type-meta); color: var(--jt-fg-2); }
+.processDetail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jt-space-1);
+  padding: var(--jt-space-2) var(--jt-space-3) var(--jt-space-3);
+  border-top: 1px solid var(--jt-line);
+}
+.processDetail p { margin: 0; }
+.why { font: var(--jt-type-body-sm); color: var(--jt-fg-2); }
 
 .state {
   display: inline-flex;

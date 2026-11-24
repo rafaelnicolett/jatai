@@ -48,6 +48,15 @@
 .thorax { fill: var(--jt-scene-bee-thorax); }
 .head { fill: var(--jt-scene-bee-stripe); }
 
+/* O colar da persona: cor do arquétipo, sem carregar status (a pose e o glifo já dizem). */
+.collar { fill: var(--jt-scene-bee-stripe); }
+.glyph[data-accent="honey"] .collar { fill: var(--jt-mel-line); }
+.glyph[data-accent="lavender"] .collar { fill: var(--jt-scene-ipe-roxo); }
+.glyph[data-accent="rose"] .collar { fill: var(--jt-scene-ipe-rosa); }
+.glyph[data-accent="leaf"] .collar { fill: var(--jt-scene-grass-1); }
+.glyph[data-accent="sky"] .collar { fill: var(--jt-status-you-fg); }
+.glyph[data-accent="sand"] .collar { fill: var(--jt-cerume); }
+
 .wings {
   transform-box: fill-box;
   transform-origin: center;

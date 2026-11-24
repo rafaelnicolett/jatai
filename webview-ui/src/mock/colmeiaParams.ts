@@ -6,7 +6,7 @@
  *
  * | Parâmetro | Valores | O que faz |
  * |---|---|---|
- * | `cenario` | `vivo` (padrão), `hotfix`, `vazio`, `estresse` | a história: a Missão em laço, o hotfix, sem iniciativa, 30 agentes |
+ * | `cenario` | `vivo` (padrão), `descoberta`, `hotfix`, `vazio`, `estresse` | a história: a Missão em laço, a descoberta do brownfield sem iniciativa, o hotfix, sem Foundation, 30 agentes |
  * | `vista` | `mapa`, `cockpit` (padrão) | qual vista abre |
  * | `cena` | `dia`, `noite` | a variante lembrada da cena |
  * | `modo` | `lista`, `mapa` | o modo lembrado |
@@ -19,7 +19,7 @@
  * | `ritmo` | ms | o intervalo entre passos (padrão 1600) |
  */
 
-export type MockScenario = "vivo" | "hotfix" | "vazio" | "estresse";
+export type MockScenario = "vivo" | "descoberta" | "hotfix" | "vazio" | "estresse";
 
 export interface MockParams {
   scenario: MockScenario;
@@ -35,7 +35,7 @@ export interface MockParams {
   tickMs: number;
 }
 
-const SCENARIOS: readonly MockScenario[] = ["vivo", "hotfix", "vazio", "estresse"];
+const SCENARIOS: readonly MockScenario[] = ["vivo", "descoberta", "hotfix", "vazio", "estresse"];
 
 export function readMockParams(search: string): MockParams {
   const q = new URLSearchParams(search);

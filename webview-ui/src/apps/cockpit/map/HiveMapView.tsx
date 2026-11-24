@@ -195,7 +195,11 @@ export function HiveMapView({ onBack, onOpenDecision, onSelectInitiative, initia
 
   const header = (
     <MapHeader
-      initiative={{ id: vm.initiativeId, name: active?.name ?? null, options: (initiatives?.initiatives ?? []).map((i) => ({ id: i.id, name: i.name })) }}
+      initiative={{
+        id: vm.initiativeId,
+        name: active?.name ?? (vm.flow === "foundation" ? "Descoberta do brownfield" : null),
+        options: (initiatives?.initiatives ?? []).map((i) => ({ id: i.id, name: i.name })),
+      }}
       onSelectInitiative={onSelectInitiative}
       where={where}
       working={working}

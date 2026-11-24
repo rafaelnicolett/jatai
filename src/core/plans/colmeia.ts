@@ -37,8 +37,10 @@ import {
   type WaveItemStatusEntry,
   type WaveStatusEntry,
 } from "../contracts/initiatives-contract.pure";
-import type { FoundationState } from "../contracts/foundation-state-contract.pure";
+import { isD1GlobalReady, type FoundationState } from "../contracts/foundation-state-contract.pure";
 import type { DeliveryState } from "../contracts/delivery-state-contract.pure";
+import type { ReposInventory } from "../contracts/repos-contract.pure";
+import type { FoundationPlan } from "./foundation-plan";
 import { isClosedStatus } from "../contracts/work-status.pure";
 import { DELIVERY_PHASES, canonicalDeliveryPhaseId, deliveryPhase } from "../methodology/phase-catalog.pure";
 import { FOUNDATION_CONTRACTS, SKILL_LINKING_CONTRACT } from "../methodology/foundation-contracts";
@@ -46,7 +48,7 @@ import { BRAND } from "../brand/brand.pure";
 
 // ── Tipos ───────────────────────────────────────────────────────────────────
 
-export type InitiativeFlowKind = "streams" | "greenfield" | "waves";
+export type InitiativeFlowKind = "streams" | "greenfield" | "waves" | "foundation";
 
 /** Uma etapa do fluxo da iniciativa: vira uma ilha. `agents` é o elenco do stream. */
 export interface FlowIsland {
@@ -145,10 +147,18 @@ export interface ColmeiaVM {
 }
 
 /** O que o mapa lê do snapshot do Cockpit (o `CockpitSnapshot` satisfaz esta forma). */
+/** O recorte do inventário que o mapa precisa; o `ReposInventory` completo satisfaz. */
+export interface ColmeiaReposInventory {
+  repos: Array<{ id: string; scan_profile?: string; has_frontend?: boolean }>;
+}
+
 export interface ColmeiaSnapshot {
   initiatives: InitiativesState | null;
   foundationState: FoundationState | null;
   deliveryState: DeliveryState | null;
+  /** Inventário e plano do Foundation: a descoberta acontece antes de existir uma iniciativa. */
+  reposInventory?: ColmeiaReposInventory | null;
+  foundationPlan?: FoundationPlan | null;
 }
 
 export interface DeriveColmeiaOptions {
@@ -160,10 +170,18 @@ export interface DeriveColmeiaOptions {
 
 const unique = (xs: string[]): string[] => [...new Set(xs)];
 
-const DISCOVERY_AGENTS = unique(["@assessor", ...FOUNDATION_CONTRACTS.map((c) => c.agent), SKILL_LINKING_CONTRACT.agent]);
+const DISCOVERY_AGENTS = unique([
+  "@assessor",
+  ...FOUNDATION_CONTRACTS.map((c) => c.agent),
+  SKILL_LINKING_CONTRACT.agent,
+  // Fases que o @assessor coordena e que não estão nos contratos do D1.
+  "@security-auditor",
+  "@test-coverage-mapper",
+  "@maturity-assessor",
+]);
 const PLANNING_AGENTS = ["@modernization-planner", "@risk-prioritizer", "@adr-recorder"];
 const EXECUTION_AGENTS = ["@test-backfill-agent", "@refactor-agent", "@migration-agent", "@feature-adder", "@reviewer"];
-const OPERATION_AGENTS = ["@devops", "@observability", "@incident", "@sustain"];
+const OPERATION_AGENTS = ["@devops", "@release", "@observability", "@incident", "@sustain"];
 
 /** Os 4 streams do Brownfield, ligados por D1, D2 e D3. */
 const STREAMS_FLOW: InitiativeFlow = {
@@ -414,13 +432,184 @@ function isWatcherDuplicate(e: RunEvent, all: RunEvent[]): boolean {
 const EMPTY_HINT = `Abra uma iniciativa com o @${BRAND.name}`;
 
 /**
+ * O fluxo da descoberta do brownfield: a Foundation roda antes de existir uma
+ * iniciativa. A ilha da descoberta mostra o plano do Foundation (fases por
+ * repo + cross-repo) e a ponte D1 acende quando o gate global fecha.
+ */
+const FOUNDATION_FLOW: InitiativeFlow = {
+  kind: "foundation",
+  islands: [
+    { id: "discovery", label: "Descoberta", agents: DISCOVERY_AGENTS },
+    { id: "planning", label: "Planejamento", agents: PLANNING_AGENTS },
+  ],
+  bridges: [{ gate: "D1", from: "discovery", to: "planning" }],
+};
+
+const PHASE_LABEL = new Map([...FOUNDATION_CONTRACTS, SKILL_LINKING_CONTRACT].map((c) => [c.phaseId, c.label]));
+const EXTRA_PHASE_LABEL: Record<string, string> = {
+  security: "Segurança",
+  "test-coverage": "Cobertura de testes",
+  maturity: "Maturidade",
+};
+const labelOfPhase = (phaseId: string): string => PHASE_LABEL.get(phaseId) ?? EXTRA_PHASE_LABEL[phaseId] ?? phaseId;
+
+/** O agente de um `PlanItem` já vem com arroba; aceita as duas formas. */
+const agentIdOf = (raw: string | undefined): string | undefined => (raw ? (raw.startsWith("@") ? raw : `@${raw}`) : undefined);
+
+/** O D1 global fechou? Com inventário, vale a regra canônica; sem ele, todos os repos aprovados. */
+function foundationReady(snapshot: ColmeiaSnapshot): boolean {
+  const state = snapshot.foundationState;
+  if (!state) return false;
+  if (snapshot.reposInventory) return isD1GlobalReady(state, snapshot.reposInventory as ReposInventory);
+  const repos = Object.values(state.repos ?? {});
+  return repos.length > 0 && repos.every((r) => r.gate_d1.status === "approved");
+}
+
+/**
+ * O mapa da descoberta, quando não há iniciativa ativa mas o Foundation já
+ * começou. Devolve `null` quando não há nada de Foundation para mostrar, e aí
+ * o mapa cai no estado vazio de sempre.
+ */
+function foundationColmeia(snapshot: ColmeiaSnapshot, events: RunEvent[], options?: DeriveColmeiaOptions): ColmeiaVM | null {
+  const state = snapshot.foundationState;
+  const hasState = !!state && (Object.keys(state.repos ?? {}).length > 0 || Object.keys(state.phases ?? {}).length > 0);
+  // Um workspace configurado para brownfield (repos.yaml) já entra na descoberta,
+  // mesmo sem nenhuma fase rodada. Sem inventário e sem estado, não há o que mostrar.
+  const hasInventory = (snapshot.reposInventory?.repos.length ?? 0) > 0;
+  if (!hasState && !hasInventory) return null;
+
+  const ready = foundationReady(snapshot);
+  const flow = FOUNDATION_FLOW;
+  const bridges: ColmeiaBridge[] = flow.bridges.map((b) => ({ ...b, state: b.gate === "D1" && ready ? "approved" : "unbuilt" }));
+  const relevant = events.filter((e) => isKnownEventType(e.event_type) && e.initiative_id === undefined);
+  const activity = pairEvents(relevant);
+
+  const bees: ColmeiaBee[] = [];
+  const beeFor = (e: RunEvent, beeState: "working" | "blocked"): ColmeiaBee => ({
+    agentId: agentOf(e) ?? null,
+    islandId: "discovery",
+    state: beeState,
+    ...(e.task_id ? { taskId: e.task_id } : {}),
+    ...(e.phase_id ? { phaseId: e.phase_id } : {}),
+    ...(beeState === "blocked" && reasonOf(e) ? { reason: reasonOf(e) } : {}),
+    since: e.timestamp,
+    source: "event",
+  });
+  for (const e of activity.running) bees.push(beeFor(e, "working"));
+  for (const e of activity.blocked) bees.push(beeFor(e, "blocked"));
+
+  const guards: ColmeiaGuard[] = [];
+  const seen = new Set<string>();
+  const pushGuard = (guard: ColmeiaGuard): void => {
+    const key = `${guard.kind}|${guard.taskId ?? ""}|${guard.reason}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    guards.push(guard);
+  };
+  for (const [repoId, repo] of Object.entries(state?.repos ?? {})) {
+    for (const [phaseId, phase] of Object.entries(repo.phases)) {
+      if (phase.status !== "agent-done") continue;
+      pushGuard({
+        islandId: "discovery",
+        kind: "approval",
+        reason: `${repoId} · ${labelOfPhase(phaseId)} espera você`,
+        ...(phase.completed_at ? { since: phase.completed_at } : {}),
+      });
+    }
+  }
+  for (const [phaseId, phase] of Object.entries(state?.phases ?? {})) {
+    if (phase.status !== "agent-done") continue;
+    pushGuard({
+      islandId: "discovery",
+      kind: "approval",
+      reason: `${labelOfPhase(phaseId)} espera você`,
+      ...(phase.completed_at ? { since: phase.completed_at } : {}),
+    });
+  }
+  const decisions = new Map<string, RunEvent>();
+  for (const e of relevant) {
+    const key = e.task_id ?? (typeof e.metadata?.task === "string" ? e.metadata.task : undefined) ?? e.run_id;
+    if (e.event_type === "decision-requested") decisions.set(key, e);
+    if (e.event_type === "decision-made") decisions.delete(key);
+  }
+  for (const e of decisions.values()) {
+    pushGuard({ islandId: "discovery", kind: "decision", reason: reasonOf(e) ?? "decisão pedida", ...(e.task_id ? { taskId: e.task_id } : {}), since: e.timestamp });
+  }
+
+  const pots: ColmeiaPot[] = [];
+  const addPot = (pot: ColmeiaPot): void => {
+    if (!pots.some((p) => p.artifactPath === pot.artifactPath)) pots.push(pot);
+  };
+  for (const e of relevant) {
+    if (e.event_type !== "artifact-written" || !e.artifact_path || STATE_FILE.test(e.artifact_path)) continue;
+    addPot({ islandId: "discovery", artifactPath: e.artifact_path, ...(agentOf(e) ? { agentId: agentOf(e)! } : {}), ...(e.task_id ? { taskId: e.task_id } : {}), source: "event" });
+  }
+  for (const item of snapshot.foundationPlan?.items ?? []) {
+    if (item.kind !== "phase" || !item.produces || (item.status !== "done" && item.status !== "review")) continue;
+    addPot({ islandId: "discovery", artifactPath: item.produces, ...(agentIdOf(item.agent) ? { agentId: agentIdOf(item.agent)! } : {}), source: "state" });
+  }
+
+  const feed = relevant
+    .filter((e) => !isWatcherDuplicate(e, relevant))
+    .slice()
+    .reverse()
+    .slice(0, options?.recentLimit ?? 8)
+    .map((e): ColmeiaFeedItem => {
+      const agent = agentOf(e);
+      return {
+        timestamp: e.timestamp,
+        eventType: e.event_type,
+        text: clip(describeEvent(e)),
+        islandId: "discovery",
+        ...(agent ? { agentId: agent } : {}),
+        ...(e.task_id ? { taskId: e.task_id } : {}),
+        ...(e.artifact_path ? { artifactPath: e.artifact_path } : {}),
+        ...(e.by ? { by: e.by } : {}),
+      };
+    });
+
+  const focus = ready ? undefined : snapshot.foundationPlan?.focus?.label;
+  const statusOf = (agentId: string): IslandAgentStatus => bees.find((b) => b.agentId === agentId)?.state ?? (ready ? "done" : "queued");
+  const islands: ColmeiaIsland[] = [
+    {
+      id: "discovery",
+      label: "Descoberta",
+      state: ready ? "done" : "current",
+      ...(focus ? { focus } : {}),
+      agents: DISCOVERY_AGENTS.map((agentId) => ({ agentId, status: statusOf(agentId) })),
+    },
+    {
+      id: "planning",
+      label: "Planejamento",
+      state: ready ? "current" : "sleeping",
+      ...(ready ? { focus: `Abra uma iniciativa com o @${BRAND.name}` } : { wakesAfterGate: "D1" }),
+      agents: PLANNING_AGENTS.map((agentId) => ({ agentId, status: ready ? "queued" : "sleeping" })),
+    },
+  ];
+
+  return { initiativeId: null, flow: "foundation", islands, bridges, bees, guards, pots, feed };
+}
+
+/**
  * O mapa da iniciativa ativa. `flow` é o fluxo do tipo da iniciativa
  * (`initiativeFlow`); ausente, é calculado aqui.
  */
 export function deriveColmeia(snapshot: ColmeiaSnapshot, events: RunEvent[], flow?: InitiativeFlow, options?: DeriveColmeiaOptions): ColmeiaVM {
   const initiative = activeInitiative(snapshot.initiatives);
   if (!initiative) {
-    return { initiativeId: null, flow: null, empty: { reason: "Não há iniciativa ativa", hint: EMPTY_HINT }, islands: [], bridges: [], bees: [], guards: [], pots: [], feed: [] };
+    return (
+      foundationColmeia(snapshot, events, options) ?? {
+        initiativeId: null,
+        flow: null,
+        empty: { reason: "Não há iniciativa ativa", hint: EMPTY_HINT },
+        islands: [],
+        bridges: [],
+        bees: [],
+        guards: [],
+        pots: [],
+        feed: [],
+      }
+    );
   }
   const theFlow = flow ?? initiativeFlow(initiative);
 

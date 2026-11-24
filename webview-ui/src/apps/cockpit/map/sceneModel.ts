@@ -13,7 +13,8 @@
  * núcleo não tem como gate): ela só liga as ilhas, em tabuleiro quando a
  * onda seguinte já começou e tracejada antes.
  */
-import type { ColmeiaBee, ColmeiaGuard, ColmeiaVM, IslandDetail } from "@data";
+import type { CastAccent, ColmeiaBee, ColmeiaGuard, ColmeiaVM, IslandDetail, MapProcessStatus } from "@data";
+import { personaOf } from "@data";
 import { describeWorkStatus } from "../../../design-system/status/workStatus";
 import { beeCondition, countsOf, guardChip, islandAriaLabel, islandMeta, type IslandCounts } from "./copy";
 import { planRoute, perchOf, type BeeRoute } from "./beeRoutes";
@@ -23,6 +24,9 @@ import { add, lerp, mid, pt, sub, type Pt } from "./projection";
 
 /** Quantas abelhas uma ilha desenha; as outras viram o chip "+N" (DS v2 §4.8). */
 export const MAX_BEES_PER_ISLAND = 6;
+
+/** Quantas células a trilha de processos de uma ilha desenha; o resto vira "+N". */
+export const MAX_PROCESS_TRAIL = 9;
 
 /**
  * Até quantas abelhas voando as asas batem. Cada abelha anima uma volta (no
@@ -64,6 +68,22 @@ export interface SceneIsland {
   counts: IslandCounts;
   /** Há guarda acesa na ilha (decisão ou aprovação esperando a pessoa). */
   lit: { count: number; reasons: string[]; at: Pt } | null;
+  /** Progresso do inventário de processos da ilha (F5.4): `3/9` no rótulo. */
+  progress: { done: number; total: number } | null;
+  /** A trilha de processos no chão da ilha (F5.4): uma célula por processo, amostrada. */
+  processTrail: SceneProcessTrail | null;
+}
+
+export interface SceneProcessTrailNode {
+  key: string;
+  label: string;
+  status: MapProcessStatus;
+  at: Pt;
+}
+
+export interface SceneProcessTrail {
+  nodes: SceneProcessTrailNode[];
+  overflow: number;
 }
 
 export interface BridgeArt {
@@ -94,6 +114,8 @@ export interface SceneBee {
   agentId: string | null;
   index: number;
   size: number;
+  /** A cor do arquétipo no colar da abelha (decorativa; o status fica no glifo). */
+  accent: CastAccent;
   condition: "working" | "blocked" | "failed";
   /** A volta; `null` quando a abelha para (bloqueada ou com falha). */
   route: BeeRoute | null;
@@ -174,6 +196,27 @@ function litOf(art: IslandArt, guards: ColmeiaGuard[]): SceneIsland["lit"] {
   return guards.length === 0 ? null : { count: guards.length, reasons: guards.map((g) => g.reason), at: art.anchors.guard };
 }
 
+/**
+ * A trilha de processos no chão da ilha: uma célula por processo, na ordem do
+ * fluxo. Acima do limite, amostra uniformemente e o resto vira `+N` — o painel
+ * guarda a lista inteira. As posições seguem um arco raso na frente da ilha,
+ * abaixo da caixa e do favo, para não competir com a colônia.
+ */
+function processTrailOf(processes: NonNullable<IslandDetail["processes"]>, placement: IslandPlacement): SceneProcessTrail | null {
+  if (processes.length === 0) return null;
+  const picked =
+    processes.length <= MAX_PROCESS_TRAIL
+      ? processes
+      : Array.from({ length: MAX_PROCESS_TRAIL }, (_, i) => processes[Math.round((i * (processes.length - 1)) / (MAX_PROCESS_TRAIL - 1))]!);
+  const nodes = picked.map((process, index): SceneProcessTrailNode => {
+    const t = picked.length === 1 ? 0.5 : index / (picked.length - 1);
+    const dx = (t - 0.5) * placement.w * 0.62;
+    const at = pt(placement.c.x + dx, placement.c.y + placement.w * 0.14 + Math.pow((t - 0.5) * 2, 2) * placement.w * 0.03);
+    return { key: `${placement.id}:${process.id}`, label: process.label, status: process.status, at };
+  });
+  return { nodes, overflow: processes.length - picked.length };
+}
+
 const EMPTY_SCENE = (vm: ColmeiaVM): SceneModel => ({ stage: STAGE, initiativeId: vm.initiativeId, empty: vm.empty ?? null, scale: 1, islands: [], bridges: [], bees: [], overflow: [], flying: 0 });
 
 /** A cena de uma iniciativa. `details` tem uma entrada por ilha do `vm`, na mesma ordem (`deriveIslandDetails`). */
@@ -209,6 +252,8 @@ export function buildScene(vm: ColmeiaVM, details: IslandDetail[], options: Scen
       combOverflow: overflow,
       counts,
       lit: litOf(art, detail.guards),
+      progress: detail.processSummary && detail.processSummary.total > 0 ? detail.processSummary : null,
+      processTrail: processTrailOf(detail.processes ?? [], placement),
     };
   });
   const byId = new Map(islands.map((i) => [i.id, i]));
@@ -250,6 +295,7 @@ export function buildScene(vm: ColmeiaVM, details: IslandDetail[], options: Scen
         agentId: bee.agentId,
         index,
         size: beeSize(index, island.placement.u),
+        accent: personaOf(bee.agentId ?? "").accent,
         condition,
         route: condition === "working" ? planRoute(index, island.art.anchors, head, island.placement.u) : null,
         perch: perchOf(island.art.anchors, index),

@@ -9,7 +9,7 @@
  * Os eventos andam pela mesma mensagem do host (`shell/snapshot` e, logo
  * depois, `shell/runEvents-append`), então o mapa exercita o caminho real.
  */
-import { HOTFIX_ID, buildColmeiaSnapshot, colmeiaEvent, createColmeiaSimulator, stressEvents, type SimMessage } from "./colmeiaScenarios";
+import { HOTFIX_ID, foundationDiscovery, buildColmeiaSnapshot, colmeiaEvent, createColmeiaSimulator, stressEvents, type SimMessage } from "./colmeiaScenarios";
 import { readMockParams, type MockParams } from "./colmeiaParams";
 
 export const params: MockParams = readMockParams(window.location.search);
@@ -47,8 +47,19 @@ function install(): void {
 
   const start = (): void => {
     switch (params.scenario) {
+      case "descoberta": {
+        const at = Date.now() - Date.parse("2026-11-16T12:00:00Z") - 5000;
+        const events = [
+          colmeiaEvent(
+            { event_type: "agent-started", agent_id: "@coding-archaeologist", phase_id: "coding-archaeology", repo_id: "jatai", message: "lendo o padrão que o time já usa", initiative_id: undefined },
+            at
+          ),
+        ];
+        deliver({ type: "shell/snapshot", seq: seq++, generatedAt: new Date().toISOString(), payload: buildColmeiaSnapshot({ active: null, foundation: foundationDiscovery(), events }) });
+        return;
+      }
       case "vazio":
-        sendStatic(null, []);
+        deliver({ type: "shell/snapshot", seq: seq++, generatedAt: new Date().toISOString(), payload: buildColmeiaSnapshot({ active: null, foundation: null, reposInventory: null, events: [] }) });
         return;
       case "estresse":
         sendStatic(undefined, stressEvents(30, (i) => Date.now() - Date.parse("2026-11-16T12:00:00Z") - 30_000 + i * 900));

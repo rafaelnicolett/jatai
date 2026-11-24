@@ -99,6 +99,37 @@
 .combHi { fill: var(--jt-scene-comb-hi); opacity: 0.85; }
 .combEmpty { fill: none; stroke: var(--jt-scene-comb-empty); stroke-width: 2; stroke-dasharray: 3 3; }
 
+/* ── A trilha de processos no chão da ilha (F5.4) ─────────────────────── */
+.processTrail { pointer-events: none; }
+.processHex {
+  stroke: color-mix(in srgb, var(--jt-propolis) 55%, transparent);
+  stroke-width: 0.7;
+}
+.processNode[data-status="done"] .processHex { fill: var(--jt-status-done-fg); opacity: 0.82; }
+.processNode[data-status="working"] .processHex { fill: var(--jt-status-working-fg); }
+.processNode[data-status="review"] .processHex { fill: var(--jt-status-you-fg); }
+.processNode[data-status="open"] .processHex {
+  fill: var(--jt-scene-comb-empty);
+  stroke: var(--jt-scene-comb);
+  stroke-dasharray: 1.6 1.2;
+}
+.processNode[data-status="blocked"] .processHex,
+.processNode[data-status="failed"] .processHex { fill: var(--jt-status-blocked-fg); }
+.processPulse {
+  fill: none;
+  stroke: var(--jt-status-working-fg);
+  stroke-width: 1;
+  opacity: 0.45;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: process-pulse var(--jt-dur-slow) var(--jt-ease-sine) infinite alternate;
+  animation-play-state: var(--jt-anim-play);
+}
+@keyframes process-pulse {
+  to { transform: scale(1.35); opacity: 0.12; }
+}
+.processOverflow { fill: var(--jt-fg-3); font: var(--jt-type-data-xs); }
+
 /* O favo que acabou de encher cresce uma vez (--jt-dur-fill) e fica. */
 .potFill { animation: pot-fill var(--jt-dur-fill) var(--jt-ease-standard) 1 both; }
 @keyframes pot-fill {

@@ -53,6 +53,11 @@ function IslandLabel({ island }: { island: SceneIsland }) {
     <div className={s.label} data-state={island.state} data-label={island.id} style={at(x, y)}>
       <span className={s.labelName}>{island.label}</span>
       <span className={s.labelMeta} data-tone={island.meta.tone}>{island.meta.text}</span>
+      {island.progress && (
+        <span className={s.processChip} data-process-progress={island.id}>
+          {island.progress.done}/{island.progress.total} processos
+        </span>
+      )}
       {island.chips.map((chip) => (
         <span key={chip.text} className={s.chip} data-tone={chip.tone}>
           <StatusGlyph status={chip.glyph} size={12} color="inherit" />

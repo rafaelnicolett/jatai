@@ -52,10 +52,18 @@ Funcionalidade: Abrir o mapa da colmeia
 
   @validation
   Cenário: Sem iniciativa ativa o mapa explica o que falta
-    Dado que o workspace não tem iniciativa ativa
+    Dado que o workspace não tem iniciativa ativa nem Foundation
     Quando o operador abre o mapa da colmeia
     Então o mapa informa que não há iniciativa ativa
     E o mapa indica como abrir uma iniciativa com o @jatai
+
+  @happy-path
+  Cenário: Sem iniciativa, mas com o Foundation em andamento, o mapa mostra a descoberta do brownfield
+    Dado um workspace sem iniciativa ativa e com o Foundation em andamento
+    Quando o operador abre o mapa da colmeia
+    Então a ilha da "Descoberta" aparece como a etapa atual
+    E o cabeçalho diz "Descoberta do brownfield"
+    E o mapa não mostra o aviso de "Sem iniciativa ativa"
 
   # ── Acrescentados na F5.3 ──────────────────────────────────────────────────
 

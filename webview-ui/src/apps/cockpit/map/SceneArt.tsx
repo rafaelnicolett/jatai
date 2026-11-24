@@ -101,6 +101,37 @@ function tuftPath(at: Pt, u: number): string {
   return `M${at.x - 2.2 * u},${at.y} l${-0.8 * u},${-h} M${at.x},${at.y} l${0.4 * u},${-h * 1.3} M${at.x + 2.2 * u},${at.y} l${1.1 * u},${-h}`;
 }
 
+/** Os seis vértices de uma célula hexagonal, com o topo em ponta (a mesma geometria do favo). */
+function hexPoints(c: Pt, r: number): string {
+  return Array.from({ length: 6 }, (_, i) => {
+    const angle = (Math.PI / 3) * i - Math.PI / 2;
+    return `${c.x + r * Math.cos(angle)},${c.y + r * Math.sin(angle)}`;
+  }).join(" ");
+}
+
+/** A trilha de processos (F5.4): uma célula por processo, com o status no preenchimento. */
+function ProcessTrail({ island }: { island: SceneIsland }) {
+  const trail = island.processTrail!;
+  const r = 4.6 * island.placement.u;
+  const last = trail.nodes[trail.nodes.length - 1]!;
+  return (
+    <g className={s.processTrail} data-process-trail={island.id} aria-hidden="true">
+      {trail.nodes.map((node) => (
+        <g key={node.key} className={s.processNode} data-process-node={node.key} data-status={node.status}>
+          {node.status === "working" && <circle className={s.processPulse} cx={node.at.x} cy={node.at.y} r={r * 1.9} />}
+          <polygon className={s.processHex} points={hexPoints(node.at, r)} />
+          <title>{`${node.label}: ${node.status}`}</title>
+        </g>
+      ))}
+      {trail.overflow > 0 && (
+        <text className={s.processOverflow} x={last.at.x + r * 2} y={last.at.y + r}>
+          {`+${trail.overflow}`}
+        </text>
+      )}
+    </g>
+  );
+}
+
 function Island({ island, fresh }: { island: SceneIsland; fresh: ReadonlySet<string> }) {
   const { art, placement, tree } = island;
   const { u } = placement;
@@ -165,6 +196,7 @@ function Island({ island, fresh }: { island: SceneIsland; fresh: ReadonlySet<str
           )}
         </g>
       ))}
+      {island.processTrail && <ProcessTrail island={island} />}
       {sleeping && <ellipse className={s.haze} cx={art.haze.cx} cy={art.haze.cy} rx={art.haze.rx} ry={art.haze.ry} />}
     </g>
   );

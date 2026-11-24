@@ -25,6 +25,7 @@ import {
   type FoundationState,
   type Initiative,
   type InitiativesState,
+  type ReposInventory,
   type RunEvent,
 } from "@data";
 import type { CockpitSnapshot } from "@shared/cockpit-protocol";
@@ -105,6 +106,32 @@ export function foundationDone(): FoundationState {
   };
 }
 
+/** A descoberta do brownfield em andamento, sem iniciativa ativa: o cenário `?cenario=descoberta`. */
+export function foundationDiscovery(): FoundationState {
+  const phase = (status: "done" | "agent-done" | "in-progress" | "pending", human_checklist: Record<string, boolean> = {}) => ({ status, human_checklist });
+  return {
+    phases: {
+      domain: phase("in-progress"),
+      "business-context": phase("pending"),
+    },
+    repos: {
+      [BRAND.name]: {
+        phases: {
+          "tech-stack": phase("done", { "stack-identified": true }),
+          arch: phase("agent-done"),
+          "coding-archaeology": phase("in-progress"),
+          design: phase("pending"),
+          quality: phase("pending"),
+          debt: phase("pending"),
+          security: phase("in-progress"),
+          "test-coverage": phase("pending"),
+        },
+        gate_d1: { status: "pending" },
+      },
+    },
+  };
+}
+
 const REPOS_YAML = `
 version: 1
 repos:
@@ -161,6 +188,8 @@ export interface ColmeiaSnapshotOptions {
   active?: string | null;
   events?: RunEvent[];
   foundation?: FoundationState | null;
+  /** `null` = workspace sem repos.yaml (nem descoberta para mostrar). */
+  reposInventory?: ReposInventory | null;
   agents?: AgentCatalogEntry[];
 }
 
@@ -171,7 +200,7 @@ export function buildColmeiaSnapshot(options: ColmeiaSnapshotOptions = {}): Cock
   const state: InitiativesState | null = active === null ? null : { active, initiatives };
   const events = options.events ?? [];
   const foundationState = options.foundation === undefined ? foundationDone() : options.foundation;
-  const reposInventory = parseReposYaml(REPOS_YAML).inventory;
+  const reposInventory = options.reposInventory === undefined ? parseReposYaml(REPOS_YAML).inventory : options.reposInventory;
   const liveActivity = deriveActivity(events);
   return {
     config: null,

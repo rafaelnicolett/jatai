@@ -141,7 +141,7 @@ const SCENARIOS: Record<string, () => void | Promise<void>> = {
   },
 
   "Sem iniciativa ativa o mapa explica o que falta": () => {
-    deliver({ active: null, events: [] });
+    deliver({ active: null, foundation: null, reposInventory: null, events: [] });
     const { root } = mountMap();
     const empty = root().querySelector("[data-map-empty]");
     expect(empty).not.toBeNull();
@@ -150,6 +150,19 @@ const SCENARIOS: Record<string, () => void | Promise<void>> = {
     expect(islandButtons(root())).toEqual([]);
     click(buttonNamed(root(), "Abrir o chat"));
     expect(sent).toContainEqual({ type: "openChat" });
+  },
+
+  "Sem iniciativa, mas com o Foundation em andamento, o mapa mostra a descoberta do brownfield": () => {
+    deliver({
+      active: null,
+      foundation: { phases: {}, repos: { jatai: { phases: { "tech-stack": { status: "in-progress", human_checklist: {} } }, gate_d1: { status: "pending" } } } },
+      events: [],
+    });
+    const { root } = mountMap();
+    expect(root().querySelector("[data-map-empty]")).toBeNull();
+    expect(islandButtons(root()).map((b) => b.getAttribute("data-island"))).toEqual(["discovery", "planning"]);
+    expect(islandButton(root(), "discovery").getAttribute("data-state")).toBe("current");
+    expect(textOf(root().querySelector("nav[aria-label='Onde a iniciativa está']"))).toContain("Descoberta do brownfield");
   },
 
   "Uma falha ao desenhar o mapa não apaga o painel": () => {

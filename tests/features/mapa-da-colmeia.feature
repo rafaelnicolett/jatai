@@ -43,9 +43,18 @@ Funcionalidade: Derivar o mapa da colmeia do estado gravado e dos eventos de ati
 
   @validation
   Cenário: Sem iniciativa ativa o mapa explica o que falta
-    Dado que o workspace não tem iniciativa ativa
+    Dado que o workspace não tem iniciativa ativa nem Foundation
     Quando o mapa é derivado
     Então o mapa informa que não há iniciativa ativa e indica como abrir uma com o @jatai
+
+  @happy-path
+  Cenário: Sem iniciativa, mas com o Foundation em andamento, o mapa mostra a descoberta do brownfield
+    Dado que o workspace não tem iniciativa ativa
+    E o Foundation tem o repositório "jatai" com o D1 pendente
+    Quando o mapa é derivado
+    Então a ilha "Descoberta" é onde o Foundation está agora
+    E a ponte "D1" aparece por construir
+    E a ilha "Planejamento" aparece adormecida e acorda depois do gate "D1"
 
   # ── Acompanhar os agentes ──────────────────────────────────────────────────
 

@@ -37,6 +37,9 @@ describe("HiveMapView — as abelhas", () => {
     const { root } = mountMap();
     expect(islandButtons(root()).map((b) => b.getAttribute("data-island"))).toEqual(["discovery", "planning", "execution", "operation"]);
     expect(bees(root()).map((b) => b.getAttribute("data-bee"))).toEqual(["@migration-agent"]);
+    // A persona colore o colar da abelha (decorativo) e a ilha mostra a trilha de processos.
+    expect(beeOf(root(), "@migration-agent")?.getAttribute("data-accent")).toBe("honey");
+    expect(root().querySelector("[data-process-trail='discovery']")?.querySelectorAll("[data-process-node]").length).toBeGreaterThan(0);
   });
 
   it("a abelha voa por `transform` (Web Animations), uma volta em loop, e com atraso negativo para não voar junto das outras", () => {

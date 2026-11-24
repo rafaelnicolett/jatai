@@ -157,11 +157,27 @@ const SCENARIOS: Record<string, (() => void) | "pendente"> = {
   },
 
   "Sem iniciativa ativa o mapa explica o que falta": () => {
-    const vm = deriveColmeia(snapshot(null), [started("epic-0/task-0.2")]);
+    const vm = deriveColmeia({ initiatives: null, foundationState: null, deliveryState: null }, [started("epic-0/task-0.2")]);
     expect(vm.initiativeId).toBeNull();
     expect(vm.empty?.reason).toMatch(/não há iniciativa ativa/i);
     expect(vm.empty?.hint).toContain("@jatai");
     expect(vm.islands).toEqual([]);
+  },
+
+  "Sem iniciativa, mas com o Foundation em andamento, o mapa mostra a descoberta do brownfield": () => {
+    const foundation: FoundationState = {
+      phases: { domain: { status: "in-progress", human_checklist: {} } },
+      repos: { jatai: { phases: { "tech-stack": { status: "done", human_checklist: {} } }, gate_d1: { status: "pending" } } },
+    };
+    const vm = deriveColmeia({ initiatives: null, foundationState: foundation, deliveryState: null }, []);
+    expect(vm.flow).toBe("foundation");
+    expect(vm.initiativeId).toBeNull();
+    expect(vm.empty).toBeUndefined();
+    expect(vm.islands.map((i) => i.label)).toEqual(["Descoberta", "Planejamento"]);
+    expect(vm.islands.find((i) => i.id === "discovery")?.state).toBe("current");
+    expect(vm.islands.find((i) => i.id === "planning")?.state).toBe("sleeping");
+    expect(vm.islands.find((i) => i.id === "planning")?.wakesAfterGate).toBe("D1");
+    expect(vm.bridges).toEqual([expect.objectContaining({ gate: "D1", state: "unbuilt" })]);
   },
 
   "Um agente que começa uma tarefa aparece como abelha na ilha do seu stream": () => {

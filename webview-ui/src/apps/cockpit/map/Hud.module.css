@@ -95,6 +95,18 @@
   border-radius: var(--jt-radius-full);
   background: var(--jt-scene-comb);
 }
+/* Três células da trilha de processos: feito, em andamento e espera você. */
+.miniTrail {
+  width: 18px;
+  height: 6px;
+  border-radius: var(--jt-radius-xs);
+  background: linear-gradient(
+    90deg,
+    var(--jt-status-done-fg) 0 33%,
+    var(--jt-status-working-fg) 33% 66%,
+    var(--jt-status-you-fg) 66% 100%
+  );
+}
 
 /* O miniglifo da guarda azul usa a mesma abelha da cena. */
 .mini :global(svg) { width: 100%; height: 100%; }
