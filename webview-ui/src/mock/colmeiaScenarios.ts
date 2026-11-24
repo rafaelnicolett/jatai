@@ -106,6 +106,32 @@ export function foundationDone(): FoundationState {
   };
 }
 
+/** A descoberta do brownfield em andamento, sem iniciativa ativa: o cenário `?cenario=descoberta`. */
+export function foundationDiscovery(): FoundationState {
+  const phase = (status: "done" | "agent-done" | "in-progress" | "pending", human_checklist: Record<string, boolean> = {}) => ({ status, human_checklist });
+  return {
+    phases: {
+      domain: phase("in-progress"),
+      "business-context": phase("pending"),
+    },
+    repos: {
+      [BRAND.name]: {
+        phases: {
+          "tech-stack": phase("done", { "stack-identified": true }),
+          arch: phase("agent-done"),
+          "coding-archaeology": phase("in-progress"),
+          design: phase("pending"),
+          quality: phase("pending"),
+          debt: phase("pending"),
+          security: phase("in-progress"),
+          "test-coverage": phase("pending"),
+        },
+        gate_d1: { status: "pending" },
+      },
+    },
+  };
+}
+
 const REPOS_YAML = `
 version: 1
 repos:

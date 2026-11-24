@@ -174,6 +174,7 @@ describe("os parâmetros da página do mapa", () => {
       tickMs: 900,
     });
     expect(readMockParams("?cenario=estresse").scenario).toBe("estresse");
+    expect(readMockParams("?cenario=descoberta").scenario).toBe("descoberta");
     expect(readMockParams("?cenario=vazio").scenario).toBe("vazio");
   });
 
