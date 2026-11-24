@@ -38,8 +38,15 @@ export function Legend() {
           </dt>
           <dd>uma entrega pronta</dd>
         </div>
+        <div className={s.term}>
+          <dt data-tone="working">
+            <span className={s.miniTrail} aria-hidden="true" />
+            Trilha
+          </dt>
+          <dd>os processos da ilha, do feito ao que espera você</dd>
+        </div>
       </dl>
-      <p className={s.quiet}>Clique numa ilha para ver quem trabalha ali.</p>
+      <p className={s.quiet}>Clique numa ilha para abrir o inventário de processos e o elenco.</p>
     </section>
   );
 }

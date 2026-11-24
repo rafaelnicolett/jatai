@@ -25,6 +25,7 @@ import {
   type FoundationState,
   type Initiative,
   type InitiativesState,
+  type ReposInventory,
   type RunEvent,
 } from "@data";
 import type { CockpitSnapshot } from "@shared/cockpit-protocol";
@@ -161,6 +162,8 @@ export interface ColmeiaSnapshotOptions {
   active?: string | null;
   events?: RunEvent[];
   foundation?: FoundationState | null;
+  /** `null` = workspace sem repos.yaml (nem descoberta para mostrar). */
+  reposInventory?: ReposInventory | null;
   agents?: AgentCatalogEntry[];
 }
 
@@ -171,7 +174,7 @@ export function buildColmeiaSnapshot(options: ColmeiaSnapshotOptions = {}): Cock
   const state: InitiativesState | null = active === null ? null : { active, initiatives };
   const events = options.events ?? [];
   const foundationState = options.foundation === undefined ? foundationDone() : options.foundation;
-  const reposInventory = parseReposYaml(REPOS_YAML).inventory;
+  const reposInventory = options.reposInventory === undefined ? parseReposYaml(REPOS_YAML).inventory : options.reposInventory;
   const liveActivity = deriveActivity(events);
   return {
     config: null,

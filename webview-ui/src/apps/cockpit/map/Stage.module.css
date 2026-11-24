@@ -56,6 +56,17 @@
 .labelMeta[data-tone="queue"] { color: var(--jt-status-queue-fg); }
 .labelMeta[data-tone="future"] { color: var(--jt-status-future-fg); }
 
+/* "3/9 processos": o inventário da ilha num relance (F5.4). */
+.processChip {
+  display: inline-flex;
+  padding: 0 var(--jt-space-1);
+  border: 1px solid var(--jt-scene-hud-line);
+  border-radius: var(--jt-radius-full);
+  background: var(--jt-scene-hud-pill);
+  color: var(--jt-fg-2);
+  font: var(--jt-type-data-xs);
+}
+
 /* "■ 1 espera você", "⊘ 1 bloqueada": o estado também em texto, nunca só em cor. */
 .chip {
   display: inline-flex;

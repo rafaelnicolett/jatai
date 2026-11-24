@@ -50,6 +50,23 @@ const SCENARIOS: Record<string, () => void | Promise<void>> = {
     expect(textOf(row("@test-backfill-agent"))).toContain("na fila");
   },
 
+  "A ilha abre o inventário de processos e o elenco": () => {
+    deliver({ events: [] });
+    const { root } = mountMap();
+    const panel = open(root(), "discovery");
+    const summary = panel.querySelector("[data-process-summary]")!;
+    expect(textOf(summary)).toMatch(/\d+\/\d+/);
+    const processes = [...panel.querySelectorAll<HTMLElement>("[data-process]")];
+    const tech = processes.find((p) => textOf(p).includes("Tech Stack"))!;
+    expect(tech).toBeTruthy();
+    expect(textOf(tech)).toContain("Meli");
+    expect(textOf(tech)).toContain("Descobre a stack real");
+    const meli = panel.querySelector("[data-agent='@tech-mapper']")!;
+    expect(textOf(meli)).toContain("Meli");
+    expect(textOf(meli)).toContain("A Cartógrafa");
+    expect(textOf(meli)).toContain("Confia no lock");
+  },
+
   "Cada entrega leva à sua evidência": () => {
     deliver({ events: [] });
     const { root } = mountMap();

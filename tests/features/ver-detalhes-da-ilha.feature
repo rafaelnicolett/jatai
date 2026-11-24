@@ -21,6 +21,14 @@ Funcionalidade: Ver os detalhes de uma ilha
     E os detalhes mostram o "@test-backfill-agent" como "na fila"
 
   @happy-path
+  Cenário: A ilha abre o inventário de processos e o elenco
+    Quando o operador abre os detalhes da ilha da "Descoberta"
+    Então os detalhes mostram o progresso dos processos da ilha
+    E o processo "Tech Stack" mostra a persona "Meli"
+    E o elenco mostra "Meli" e o arquétipo "A Cartógrafa"
+    E o processo explica por que ele existe
+
+  @happy-path
   Cenário: Cada entrega leva à sua evidência
     Dado que o Planejamento produziu "roadmap.md" e "risk-matrix.md"
     Quando o operador abre os detalhes da ilha do "Planejamento"

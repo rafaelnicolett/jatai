@@ -98,13 +98,14 @@ function BeeSprite({ bee, motion, landing, onGone }: SpriteProps) {
       data-bee={bee.agentId ?? bee.key}
       data-island={bee.islandId}
       data-condition={bee.condition}
+      data-accent={bee.accent}
       data-flying={animates ? "true" : "false"}
       data-landing={landing ? "true" : undefined}
       data-leaving={leaving ? "true" : undefined}
       data-enter={landing ? undefined : ""}
       style={{ width: bee.size, height: bee.size, transform: start }}
     >
-      <BeeGlyph posture={posture} condition={bee.condition} />
+      <BeeGlyph posture={posture} condition={bee.condition} accent={bee.accent} />
     </div>
   );
 }

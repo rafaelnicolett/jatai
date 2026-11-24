@@ -20,11 +20,13 @@ import { activeInitiative, type Initiative, type WaveItemStatusEntry } from "../
 import { phasesForRepo } from "../contracts/foundation-state-contract.pure";
 import type { RepoEntry } from "../contracts/repos-contract.pure";
 import { agentRoleIndex, normalizeAgentId, type AgentCatalogEntry } from "../contracts/agent-directory.pure";
-import { FOUNDATION_CONTRACTS } from "../methodology/foundation-contracts";
+import { FOUNDATION_CONTRACTS, SKILL_LINKING_CONTRACT } from "../methodology/foundation-contracts";
 import { DELIVERY_PHASES } from "../methodology/phase-catalog.pure";
 import { D2_REQUIRED_GATES, d1RequiredPhases } from "./gate-readiness";
 import { executionGateItems } from "./work-status-view";
+import type { FoundationPlan, PlanItem } from "./foundation-plan";
 import type { ColmeiaGuard, ColmeiaPot, ColmeiaSnapshot, ColmeiaVM, IslandAgentStatus, IslandState } from "./colmeia";
+import { deriveIslandInventory, type MapCharacter, type MapProcess } from "./map-inventory.pure";
 
 /** Quantos favos vazios (entregas por vir) a ilha desenha, no máximo: o resto vira só o número do checklist. */
 export const MAX_PLANNED_POTS = 6;
@@ -73,11 +75,18 @@ export interface IslandDetail {
   /** Entregas por vir, para os favos vazios (no máximo `MAX_PLANNED_POTS`). */
   plannedPots: number;
   checklist: IslandChecklist | null;
+  /** Todos os processos da ilha, não só o gate. Aditivo: o painel antigo ignora. */
+  processes?: MapProcess[];
+  /** O elenco com persona, status e o que cada um carrega. Aditivo. */
+  characters?: MapCharacter[];
+  /** Progresso dos processos da ilha, para o cabeçalho e a cena. */
+  processSummary?: { done: number; total: number };
 }
 
 /** O que o painel lê do snapshot: o do mapa, mais o inventário (só para saber se o repo tem frontend). */
 export interface ColmeiaDetailSnapshot extends ColmeiaSnapshot {
   reposInventory?: { repos: Array<Pick<RepoEntry, "id" | "has_frontend">> } | null;
+  foundationPlan?: FoundationPlan | null;
 }
 
 const clip = (text: string): string => [...text].slice(0, RUN_EVENT_MESSAGE_MAX).join("");
@@ -158,7 +167,54 @@ function greenfieldChecklist(snapshot: ColmeiaSnapshot, stream: string): Checkli
   }));
 }
 
+/** Do status do `FoundationPlan` para o vocabulário do checklist. */
+function fromPlanStatus(status: PlanItem["status"]): ChecklistStatus {
+  return status === "running" ? "in-progress" : status === "pending" ? "open" : status;
+}
+
+/**
+ * O checklist da descoberta quando não há iniciativa: o plano do Foundation
+ * inteiro, por repositório e cross-repo. É o mesmo `FoundationPlan` que o
+ * dashboard usa, então o mapa não inventa fase nem ordem.
+ */
+function foundationChecklist(snapshot: ColmeiaDetailSnapshot): IslandChecklist | null {
+  const plan = snapshot.foundationPlan;
+  if (plan?.items.length) {
+    const phases = plan.items.filter((i) => i.kind === "phase");
+    const repos = new Set(phases.map((i) => i.repoId).filter((id): id is string => !!id));
+    return {
+      gate: "D1",
+      items: phases.map((item) => ({
+        key: item.key,
+        label: item.repoId && repos.size > 1 ? `${item.repoId} · ${item.label}` : item.label,
+        status: fromPlanStatus(item.status),
+        ...(item.blockedBy ? { reason: clip(item.blockedBy) } : {}),
+      })),
+    };
+  }
+
+  const state = snapshot.foundationState;
+  if (!state) return null;
+  const items: ChecklistItem[] = [];
+  const repoIds = Object.keys(state.repos ?? {});
+  for (const repoId of repoIds) {
+    const phases = phasesForRepo(state, repoId);
+    for (const contract of FOUNDATION_CONTRACTS.filter((c) => c.scope === "repo")) {
+      items.push({
+        key: `${repoId}/${contract.phaseId}`,
+        label: repoIds.length > 1 ? `${repoId} · ${contract.label}` : contract.label,
+        status: fromFoundationPhase(phases[contract.phaseId]?.status),
+      });
+    }
+  }
+  for (const contract of [...FOUNDATION_CONTRACTS.filter((c) => c.scope === "workspace"), SKILL_LINKING_CONTRACT]) {
+    items.push({ key: contract.phaseId, label: contract.label, status: fromFoundationPhase(state.phases[contract.phaseId]?.status) });
+  }
+  return items.length > 0 ? { gate: "D1", items } : null;
+}
+
 function checklistFor(snapshot: ColmeiaDetailSnapshot, vm: ColmeiaVM, islandId: string, state: IslandState): IslandChecklist | null {
+  if (vm.flow === "foundation") return islandId === "discovery" ? foundationChecklist(snapshot) : null;
   const initiative = activeInitiative(snapshot.initiatives);
   // A ilha adormecida ainda não tem o que listar; só as ondas de um hotfix mostram as que virão.
   if (!initiative || (state === "sleeping" && vm.flow !== "waves")) return null;
@@ -199,29 +255,34 @@ export function deriveIslandDetails(
   return vm.islands.map((island): IslandDetail => {
     const checklist = checklistFor(snapshot, vm, island.id, island.state);
     const open = checklist ? checklist.items.filter((i) => i.status !== "done" && i.status !== "cancelled").length : 0;
+    const agents = island.agents.map(({ agentId, status }): IslandDetailAgent => {
+      const bee = vm.bees.find((b) => b.islandId === island.id && b.agentId === agentId);
+      const role = roles.get(agentId);
+      const step = status === "working" || status === "blocked" ? steps.get(agentId) : undefined;
+      return {
+        agentId,
+        status,
+        ...(role ? { role } : {}),
+        ...(bee?.taskId ? { taskId: bee.taskId } : {}),
+        ...(step ? { step } : {}),
+        ...(bee?.reason ? { reason: bee.reason } : {}),
+      };
+    });
+    const inventory = deriveIslandInventory({ snapshot, vm, island, agents, events, catalog });
     return {
       islandId: island.id,
       label: island.label,
       state: island.state,
       ...(island.focus ? { focus: island.focus } : {}),
       ...(island.wakesAfterGate ? { wakesAfterGate: island.wakesAfterGate } : {}),
-      agents: island.agents.map(({ agentId, status }): IslandDetailAgent => {
-        const bee = vm.bees.find((b) => b.islandId === island.id && b.agentId === agentId);
-        const role = roles.get(agentId);
-        const step = status === "working" || status === "blocked" ? steps.get(agentId) : undefined;
-        return {
-          agentId,
-          status,
-          ...(role ? { role } : {}),
-          ...(bee?.taskId ? { taskId: bee.taskId } : {}),
-          ...(step ? { step } : {}),
-          ...(bee?.reason ? { reason: bee.reason } : {}),
-        };
-      }),
+      agents,
       guards: vm.guards.filter((g) => g.islandId === island.id),
       pots: vm.pots.filter((p) => p.islandId === island.id),
       plannedPots: island.state === "current" ? Math.min(open, MAX_PLANNED_POTS) : 0,
       checklist,
+      processes: inventory.processes,
+      characters: inventory.characters,
+      processSummary: inventory.summary,
     };
   });
 }
