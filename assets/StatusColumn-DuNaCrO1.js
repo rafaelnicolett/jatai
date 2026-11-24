@@ -1,0 +1,21 @@
+import{q as x,j as s,S as d,V as m,r as k,Q as N,B as y}from"./EpicStop-CZniplu9.js";/**
+ * @license lucide-react v1.25.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const g=[["path",{d:"M10.268 21a2 2 0 0 0 3.464 0",key:"vwvbt9"}],["path",{d:"M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326",key:"11g9vi"}]],W=x("bell",g);/**
+ * @license lucide-react v1.25.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const f=[["path",{d:"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z",key:"yt0hxn"}]],J=x("hexagon",f);/**
+ * @license lucide-react v1.25.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const v=[["path",{d:"m21 21-4.34-4.34",key:"14j7rj"}],["circle",{cx:"11",cy:"11",r:"8",key:"4ej97u"}]],P=x("search",v);/**
+ * @license lucide-react v1.25.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const T=[["path",{d:"M18 6 6 18",key:"1bl5f8"}],["path",{d:"m6 6 12 12",key:"d8bk6v"}]],Y=x("x",T),S={approved:"aprovado",waiting:"espera você",future:"depois",blocked:"bloqueado"},A="_badge_6onmx_2",B="_key_6onmx_16",C="_mark_6onmx_25",u={badge:A,key:B,mark:C};function Z({gate:e,status:t}){return s.jsxs("span",{className:u.badge,"data-status":t,children:[s.jsx("span",{className:u.key,children:e}),t==="waiting"&&s.jsx(d,{status:"you",size:10,className:u.mark}),t==="blocked"&&s.jsx(d,{status:"blocked",size:10,className:u.mark}),s.jsxs(m,{children:[", ",S[t]]})]})}const $="_card_1b10b_7",E="_top_1b10b_29",q="_id_1b10b_36",w="_elapsed_1b10b_44",z="_title_1b10b_50",L="_titleButton_1b10b_56",M="_meta_1b10b_74",H="_reason_1b10b_81",I="_actions_1b10b_94",c={card:$,top:E,id:q,elapsed:w,title:z,titleButton:L,meta:M,reason:H,actions:I};function K({id:e,title:t,variant:r,meta:i,condition:a,elapsed:_,onOpen:l,action:n,headingLevel:b=3}){const h=`${k.useId()}-title`,p=b===4?"h4":"h3";return s.jsxs("article",{className:c.card,"data-variant":r,"data-condition":a==null?void 0:a.kind,"data-interactive":l?!0:void 0,"aria-labelledby":h,children:[s.jsxs("div",{className:c.top,children:[s.jsxs("span",{className:c.id,children:[a&&s.jsx(d,{status:a.kind,size:12}),e]}),_&&s.jsx("span",{className:c.elapsed,children:_})]}),s.jsx(p,{className:c.title,id:h,children:l?s.jsx("button",{type:"button",className:c.titleButton,onClick:l,children:t}):t}),i&&s.jsx("p",{className:c.meta,children:i}),a&&s.jsx("p",{className:c.reason,children:N(a.kind,a.reason)}),n&&s.jsx("div",{className:c.actions,children:s.jsx(y,{variant:"you",size:"sm","aria-label":n.accessibleLabel,onClick:n.onClick,children:n.label})})]})}const ss=["queue","working","you","done"],U={queue:"Fila",working:"Trabalhando",you:"Espera você",done:"Feito"};function G(e){return`${e} ${e===1?"bloqueada":"bloqueadas"}`}const R="_column_1fpt6_3",V="_header_1fpt6_10",F="_label_1fpt6_21",X="_count_1fpt6_23",D="_blocked_1fpt6_29",O="_list_1fpt6_37",o={column:R,header:V,label:F,count:X,blocked:D,list:O};function es({status:e,count:t,blockedCount:r=0,headingLevel:i=2,activityKey:a,children:_}){const l=k.useId(),n=k.Children.toArray(_),b=t??n.length,j=i===3?"h3":"h2";return s.jsxs("section",{className:o.column,"data-status":e,"aria-labelledby":l,children:[s.jsxs(j,{className:o.header,id:l,children:[s.jsx(d,{status:e,pulse:e==="working"&&a!==void 0},a),s.jsx("span",{className:o.label,children:U[e]}),s.jsxs("span",{className:o.count,children:[s.jsx(m,{children:", "}),b,s.jsxs(m,{children:[" ",b===1?"tarefa":"tarefas"]})]}),r>0&&s.jsxs("span",{className:o.blocked,children:[s.jsx("span",{"aria-hidden":"true",children:"·"}),s.jsx(m,{children:", "}),s.jsx(d,{status:"blocked",size:12,color:"inherit"}),G(r)]})]}),n.length>0&&s.jsx("ul",{className:o.list,children:n.map((h,p)=>s.jsx("li",{children:h},p))})]})}export{W as B,Z as G,J as H,P as S,K as T,Y as X,es as a,S as b,ss as c};
